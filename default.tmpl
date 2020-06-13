@@ -1,0 +1,19 @@
+{{~ it.alerts :alert }}
+{{? alert.status === "firing" }}
+🔥 <b>{{= alert.status.toUpperCase() }}</b> 🔥
+{{?? true }}
+<b>{{= alert.status.toUpperCase() }}</b>
+{{?}}<br/>
+<b>alert:</b> {{= it.commonLabels.alertname }}<br/>
+<b>instance:</b> {{= it.commonLabels.instance }}<br/>
+<b>service:</b> {{= it.commonLabels.service }}<br/>
+<b>severity:</b> {{= it.commonLabels.severity }}<br/>
+<b>summary:</b> {{= alert.annotations.summary || it.commonAnnotations.summary || "" }}<br/>
+<b>message:</b> {{= alert.annotations.message || it.commonAnnotations.message || "" }}<br/>
+<b>description:</b> {{= alert.annotations.description || it.commonAnnotations.description || "" }}<br/>
+<br/>
+<b>Started at:</b> {{= new Date(alert.startsAt).toLocaleDateString("en-GB", { dateStyle: "long", timeStyle: "long" }) }}<br/>
+{{? alert.status === "resolved" }}
+<b>Ended at:</b> {{= new Date(alert.endsAt).toLocaleDateString("en-GB", { dateStyle: "long", timeStyle: "long" }) }}<br/>
+{{?}}
+{{~}}
