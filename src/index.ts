@@ -2,7 +2,6 @@ import { Telegraf } from 'telegraf';
 
 import { BotContext } from './alertmanager/context';
 import alertmanager from './alertmanager/middleware';
-import { AdminOnlyMiddleware } from './middlewares';
 
 require('dotenv').config();
 
