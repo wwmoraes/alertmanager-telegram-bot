@@ -1,12 +1,13 @@
 {
-  "name": "telegram-bot",
+  "name": "alertmanager-telegram-bot",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "build/index.js",
   "author": "William Wagner Moraes Artero <williamwmoraes@gmail.com>",
   "license": "Apache-2.0",
   "scripts": {
     "prestart": "tsc",
-    "start": "node build/index.js",
+    "start": "node --trace-warnings build/index.js",
+    "ngrok": "ts-node scripts/start-ngrok.ts",
     "build": "tsc"
   },
   "dependencies": {
@@ -14,11 +15,14 @@
     "dotenv": "^8.2.0",
     "level-ts": "^1.12.2",
     "messagepack": "^1.1.10",
+    "node-fetch": "^2.6.0",
     "telegraf": "^3.38.0"
   },
   "devDependencies": {
     "@types/dot": "^1.1.4",
     "@types/node": "^14.0.12",
+    "@types/node-fetch": "^2.5.7",
+    "ngrok": "^3.2.7",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.5"
   }

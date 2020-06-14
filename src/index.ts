@@ -1,7 +1,11 @@
 import { Telegraf } from 'telegraf';
 
-import { BotContext } from './alertmanager/context';
-import alertmanager from './alertmanager/middleware';
+import {
+  AlertManagerContext,
+  AlertManagerMiddleware,
+  setupAlertManagerContext
+} from './alertManager';
+import { AdminOnlyContext, AdminOnlyMiddleware } from './adminOnly';
 
 require('dotenv').config();
 
@@ -10,63 +14,48 @@ if (process.env.TELEGRAM_TOKEN === undefined) {
   process.exit(2);
 }
 
-if (process.env.TELEGRAM_ADMIN === undefined) {
-  console.error("TELEGRAM_ADMIN is undefined");
+if (process.env.TELEGRAM_ADMINS === undefined || process.env.TELEGRAM_ADMINS.length === 0) {
+  console.error("TELEGRAM_ADMINS is undefined");
   process.exit(2);
 }
 
-const bot = new Telegraf<BotContext>(process.env.TELEGRAM_TOKEN!, {
+interface BotContext extends AlertManagerContext, AdminOnlyContext {}
+
+const bot = new Telegraf<BotContext>(process.env.TELEGRAM_TOKEN, {
   telegram: {
     webhookReply: false
   }
 });
 
-alertmanager.setupContext(bot);
+bot.context.adminUserIds = process.env.TELEGRAM_ADMINS.split(',');
+
+setupAlertManagerContext(bot);
 
 bot.use(
-  alertmanager.Middleware,
   AdminOnlyMiddleware,
+  AlertManagerMiddleware,
 );
 
 bot.start((ctx) => {
-  if (ctx.from && ctx.chat) {
-    const chatId = ctx.chats.get(ctx.from.id.toString());
+  if (!ctx.from || !ctx.chat) return;
 
-    if (chatId === undefined) {
-      ctx.chats.put(ctx.from.id.toString(), {
-        chatId: ctx.chat.id
-      });
-      ctx.reply('Welcome!').catch(console.error);
-    } else {
-      ctx.reply('BRO, y u do dis? You\'re already registered :facepalm:').catch(console.error);
-    }
-  } else {
-    console.error("unknown start request", ctx);
+  if (ctx.alertManager.hasUserChat(ctx.from.id.toString(), ctx.chat.id.toString())) {
+    ctx.reply("y u do dis? You're already registered").catch(console.error);
+
+    bot.telegram.getStickerSet("Meme_stickers")
+    .then(stickerSet => stickerSet.stickers)
+    .then(stickers => stickers.filter(sticker => sticker.emoji && ['🤦‍♂️', '🤦‍♀️'].includes(sticker.emoji)))
+    .then(stickers => stickers[Math.round(Math.random()*(stickers.length-1))])
+    .then(sticker => ctx.replyWithSticker(sticker.file_id));
+    return;
   }
+
+  ctx.alertManager.addUserChat(ctx.from.id.toString(), ctx.chat.id.toString());
+  ctx.reply('Welcome!').catch(console.error);
 });
 bot.help((ctx) => ctx.reply('Send me a sticker').catch(console.error));
-bot.on('sticker', (ctx) => ctx.reply('👍').catch(console.error));
+bot.on('sticker', (ctx) => ctx.reply(`Sticker file ID ${ctx.update.message?.sticker?.file_id} 👍`).catch(console.error));
 bot.hears('hi', (ctx) => ctx.reply('Hey there').catch(console.error));
-
-bot.hears('test', (ctx) => {
-  console.log("test heard");
-
-  ctx.reply('Pick!', {
-    reply_markup: {
-      inline_keyboard: [
-        [
-          { text: "B1", callback_data: "B1" }
-        ]
-      ]
-    }
-  }).catch(console.error);
-});
-
-bot.on('callback_query', (ctx) => {
-  console.log("callback query!");
-  ctx.answerCbQuery(`received ${ctx.callbackQuery?.data}`).catch(console.error);
-  ctx.reply("DONE BRO").catch(console.error);
-});
 
 // bot.on('inline_query', (ctx) => {
 //   console.log("inline query");

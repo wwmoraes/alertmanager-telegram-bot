@@ -1,6 +1,6 @@
 export type Labels = { [label: string]: string };
 
-export interface Alert {
+export interface AlertInfo {
   status: "resolved" | "firing",
   labels: Labels,
   annotations: Labels,
@@ -20,7 +20,13 @@ export interface AlertUpdate {
   commonLabels: Labels,
   commonAnnotations: Labels,
   externalURL?: string,
-  alerts: Alert[],
+  alerts: AlertInfo[],
+}
+
+export interface AlertManagerUrls {
+  baseUrl: string,
+  silenceUrl: string,
+  relatedAlertsUrl: string,
 }
 
 export interface CallbackData {
