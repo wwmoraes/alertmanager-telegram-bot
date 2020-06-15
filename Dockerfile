@@ -2,30 +2,59 @@ FROM node:14-alpine AS builder
 
 WORKDIR /usr/local/bot/
 
-COPY package.json yarn.lock tsconfig.json ./
-RUN yarn install
+COPY package.json yarn.lock tsconfig.json tsconfig.production.json ./
+RUN yarn install --frozen-lockfile --link-duplicates --ignore-optional && \
+  rm -rf \
+  /usr/local/lib/node_modules \
+  /usr/local/share/.cache
 
 COPY src ./src
-RUN yarn build
+RUN yarn build -p tsconfig.production.json && \
+  rm -rf src/ node_modules/ *.json *.lock
 
-RUN yarn install --prod
 
 FROM node:14-alpine AS runner
 
-RUN apk add --update --no-cache ca-certificates tini
-
-RUN yarn install --prod
-
 WORKDIR /opt/bot
 
-RUN mkdir -p ./data/chats
+RUN apk add --update --no-cache ca-certificates tini
 
-COPY --from=builder /usr/local/bot/node_modules ./node_modules
-COPY --from=builder /usr/local/bot/build ./
+### Prepare user
+RUN addgroup --gid 1001 bot \
+  && adduser \
+  --home /dev/null \
+  --gecos "" \
+  --shell /bin/false \
+  --ingroup bot \
+  --system \
+  --disabled-password \
+  --no-create-home \
+  --uid 1001 \
+  bot
 
-COPY default.tmpl .
+RUN mkdir /opt/bot/data
 
-VOLUME ["./data"]
+COPY --chown=bot:bot package.json yarn.lock ./
+
+RUN yarn install --prod --frozen-lockfile --link-duplicates --ignore-optional && \
+  rm -rf \
+  /usr/local/lib/node_modules \
+  /usr/local/share/.cache \
+  /opt/yarn*
+
+### last-mile cleanups
+RUN rm -rf \
+  /tmp \
+  /root
+
+RUN chown -R bot:bot /opt/bot
+USER bot
+
+COPY --from=builder --chown=bot:bot /usr/local/bot/build ./
+
+COPY --chown=bot:bot default.tmpl .
+
+VOLUME ["/opt/bot/data"]
 
 EXPOSE 8443
 

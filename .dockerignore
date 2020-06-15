@@ -1,1 +1,11 @@
+.git
+.github
+.vscode
+build
+data
+scripts
 node_modules
+.env
+.gitignore
+*.log
+tmp
