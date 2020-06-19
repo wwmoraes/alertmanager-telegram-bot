@@ -93,10 +93,28 @@ export class AlertManager {
       } as AlertMessage,
       filter: (solution, callback) => callback(null, solution.alertId === alertHash && solution),
     },
-      { subject: this.db.v("userId"), predicate: "chat-on", object: this.db.v("chatId"), },
-      { subject: this.db.v("chatId"), predicate: "has-message", object: this.db.v("messageId") },
-      { subject: this.db.v("messageId"), predicate: "alerts", object: this.db.v("alertId") },
+      { subject: this.db.v("userId"), predicate: AlertManagerPredicates.ChatOn, object: this.db.v("chatId"), },
+      { subject: this.db.v("chatId"), predicate: AlertManagerPredicates.HasMessage, object: this.db.v("messageId") },
+      { subject: this.db.v("messageId"), predicate: AlertManagerPredicates.Alerts, object: this.db.v("alertId") },
     ) as Promise<AlertMessage[]>;
+  }
+
+  async getUnalertedChats(alertHash: string) {
+    const chatIds = await this.getChats().then(chats => chats.map(chat => chat.object));
+
+    return this.db.walk({
+      materialized: {
+      subject: this.db.v("userId"),
+      predicate: AlertManagerPredicates.ChatOn,
+      object: this.db.v("chatId")
+      },
+      filter: (solution, callback) => callback(null, solution.alertHash === alertHash && solution),
+    },
+      { subject: this.db.v("userId"), predicate: AlertManagerPredicates.ChatOn, object: this.db.v("chatId"), },
+      { subject: this.db.v("chatId"), predicate: AlertManagerPredicates.HasMessage, object: this.db.v("messageId") },
+      { subject: this.db.v("messageId"), predicate: AlertManagerPredicates.Alerts, object: this.db.v("alertHash") },
+    ).then(entries => entries.map(entry => entry.object))
+    .then(chats => chatIds.filter(chat => !chats.includes(chat)));
   }
 
   /** get the alert context for the given message */
@@ -110,9 +128,9 @@ export class AlertManager {
       } as AlertMessage,
       filter: (solution, callback) => callback(null, solution.messageId === messageId && solution),
     },
-      { subject: this.db.v("userId"), predicate: "chat-on", object: this.db.v("chatId"), },
-      { subject: this.db.v("chatId"), predicate: "has-message", object: this.db.v("messageId") },
-      { subject: this.db.v("messageId"), predicate: "alerts", object: this.db.v("alertId") },
+      { subject: this.db.v("userId"), predicate: AlertManagerPredicates.ChatOn, object: this.db.v("chatId"), },
+      { subject: this.db.v("chatId"), predicate: AlertManagerPredicates.HasMessage, object: this.db.v("messageId") },
+      { subject: this.db.v("messageId"), predicate: AlertManagerPredicates.Alerts, object: this.db.v("alertId") },
     ).then(results => results[0])  as Promise<AlertMessage>;
   }
 
@@ -138,11 +156,11 @@ export class AlertManager {
     if (alert.isFiring) {
       // if firing, we probably have a new alert
       this.addAlert(alert);
-      const chats = await this.getChats().then(chats => chats.map(chat => chat.object));
 
-      // TODO send alert only to chats that haven't received previously
+      // get chats that haven't received this alert
+      const chatIds = await this.getUnalertedChats(alert.hash);
 
-      return chats.forEach(chatId => telegram.sendMessage(chatId, alert.text, {
+      return chatIds.forEach(chatId => telegram.sendMessage(chatId, alert.text, {
         parse_mode: "HTML",
         reply_markup: this.firingMessageMarkup(alert),
       }).then(message => this.addAlertMessage(chatId.toString(), message.message_id.toString(), alert.hash)));
