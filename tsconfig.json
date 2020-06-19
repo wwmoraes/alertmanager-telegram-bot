@@ -1,5 +1,5 @@
 {
-  "exclude": ["scripts/*"],
+  "exclude": ["scripts/*", "tmp/*"],
   "compilerOptions": {
     /* Basic Options */
     // "incremental": true,                   /* Enable incremental compilation */

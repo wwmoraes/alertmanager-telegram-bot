@@ -20,11 +20,12 @@ to messages instead of the boring slash commands.
 
 The bot expects two variables on the environment to run:
 
-| variable name   | expected value                                                |
-| --------------- | ------------------------------------------------------------- |
-| TELEGRAM_ADMINS | comma-separated telegram user IDs, which the bot will talk to |
-| TELEGRAM_TOKEN  | your bot token                                                |
-| TEMPLATE_FILE   | template file path to use for messages                        |
+| variable name   | expected value                                                          |
+| --------------- | ----------------------------------------------------------------------- |
+| TELEGRAM_ADMINS | comma-separated telegram user IDs, which the bot will talk to           |
+| TELEGRAM_TOKEN  | your bot token                                                          |
+| TEMPLATE_FILE   | template file path to use for messages                                  |
+| EXTERNAL_URL    | set if using a reverse proxy so the bot can register itself on Telegram |
 
 ### Prerequisites
 

@@ -1,4 +1,5 @@
 import { Telegraf } from 'telegraf';
+import fetch from 'node-fetch';
 
 import {
   AlertManagerContext,
@@ -64,3 +65,15 @@ bot.hears('hi', (ctx) => ctx.reply('Hey there').catch(console.error));
 
 console.log("starting webhook on :8443...");
 bot.startWebhook('/', null, 8443);
+
+if (process.env.EXTERNAL_URL !== undefined) {
+  console.log(`registering webhook on ${process.env.EXTERNAL_URL}...`);
+  fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_TOKEN}/setWebhook?url=${process.env.EXTERNAL_URL}`)
+  .then(response =>
+    console.log(
+      response.status === 200
+      ? "webhook set successfully"
+      : "error setting the wehbook"
+      )
+    , console.error);
+}

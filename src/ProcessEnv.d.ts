@@ -4,5 +4,6 @@ declare namespace NodeJS {
     TEMPLATE_FILE?: string;
     TELEGRAM_TOKEN: string;
     TELEGRAM_ADMINS: string;
+    EXTERNAL_URL?: string;
   }
 }
