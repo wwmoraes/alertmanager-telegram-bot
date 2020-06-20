@@ -184,6 +184,9 @@ export class AlertManager {
     const hours = parseInt(time);
     const startAt = new Date(Date.now());
     const endsAt = new Date(startAt.getTime() + (hours*60*60*1000));
+    const callbackBaseUrl = process.env.INTERNAL_URL
+      ? new URL(process.env.INTERNAL_URL)
+      : alert.baseUrl;
 
     const silenceRequestBody = {
       matchers: alert.matchers,
@@ -194,7 +197,7 @@ export class AlertManager {
       id: null
     };
 
-    return fetch(`${alert.baseUrl}api/v2/silences`, {
+    return fetch(`${callbackBaseUrl}api/v2/silences`, {
       method: "POST",
       body: JSON.stringify(silenceRequestBody),
       headers: [["Content-Type", "application/json"]],

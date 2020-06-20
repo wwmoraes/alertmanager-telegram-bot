@@ -5,7 +5,7 @@ import { template } from 'dot';
 import { readFileSync } from 'fs';
 
 export class Alert {
-  private static alertManagerUrl = new URL(process.env.ALERTMANAGER_URL || "http://williams-macbook-pro.local:9093");
+  private static alertManagerUrl = new URL(process.env.EXTERNAL_URL || "http://127.0.0.1:9093");
   private static templatePath = process.env.TEMPLATE_FILE || "default.tmpl";
 
   private static formatAlert = template(readFileSync(Alert.templatePath).toString());
@@ -29,7 +29,9 @@ export class Alert {
     if (this.alertData.status === undefined) throw Error("no status defined on update");
     if (this.alertData.receiver === undefined) throw Error("no receiver defined on update");
 
-    if (this.alertData.externalURL === undefined || this.alertData.externalURL.indexOf('.') === -1)
+    if (process.env.EXTERNAL_URL !== undefined
+      || this.alertData.externalURL === undefined
+      || this.alertData.externalURL.indexOf('.') === -1)
       this.baseUrl = Alert.alertManagerUrl;
     else this.baseUrl = new URL(this.alertData.externalURL);
 

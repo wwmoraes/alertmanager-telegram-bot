@@ -18,14 +18,15 @@ to messages instead of the boring slash commands.
 
 ## Getting Started <a name = "getting_started"></a>
 
-The bot expects two variables on the environment to run:
+You can setup the bot using those environment variables:
 
-| variable name   | expected value                                                          |
-| --------------- | ----------------------------------------------------------------------- |
-| TELEGRAM_ADMINS | comma-separated telegram user IDs, which the bot will talk to           |
-| TELEGRAM_TOKEN  | your bot token                                                          |
-| TEMPLATE_FILE   | template file path to use for messages                                  |
-| EXTERNAL_URL    | set if using a reverse proxy so the bot can register itself on Telegram |
+| variable        | description                                                                                        |
+|-----------------|----------------------------------------------------------------------------------------------------|
+| TELEGRAM_ADMINS | comma-separated telegram user IDs, which the bot will talk to                                      |
+| TELEGRAM_TOKEN  | your bot token                                                                                     |
+| TEMPLATE_FILE   | template file path to use for messages                                                             |
+| EXTERNAL_URL    | endpoint to register the webhook on Telegram (useful for reversed-proxy deployments)               |
+| INTERNAL_URL    | alertmanager endpoint to send silence requests (default: uses `externalURL` provided on the alert) |
 
 ### Prerequisites
 
@@ -44,9 +45,9 @@ docker build -t wwmoraes/alertmanager-telegram-bot .
 ### message template
 
 For formatting messages the bot uses [doT](https://github.com/olado/doT) + a
-linebreak replacement. You can provide a custom template file using the
-environment variable `TEMPLATE_FILE`. All `br` HTML tags will be replaced by
-linebreaks.
+linebreak replacement. You can provide a custom template file by mounting your file
+as a volume + setting the path on `TEMPLATE_FILE`. All `br` HTML tags will be
+replaced by line breaks.
 
 ### using it as a module on another bot
 
@@ -54,17 +55,20 @@ The alertmanager logic is also available as a Telegraf module to be used on othe
 bots. You can do so with
 
 ```typescript
-import { BotContext } from "alertmanager-telegram-bot/alertmanager/context";
-import alertmanager from "alertmanager-telegram-bot/alertmanager/middleware";
+import {
+  AlertManagerContext,
+  AlertManagerMiddleware,
+  setupAlertManagerContext
+} from './alertManager';
 
-const bot = new Telegraf<BotContext>("your-bot-token");
+interface YourBotContext extends AlertManagerContext {}
 
-alertmanager.setupContext(bot);
+const bot = new Telegraf<YourBotContext>("your-bot-token");
 
-bot.use(alertmanager.Middleware);
+setupAlertManagerContext(bot);
+
+bot.use(AlertManagerMiddleware);
 ```
-
-If you already have a bot context, extend it using the provided `BotContext`.
 
 ## Usage <a name = "usage"></a>
 
@@ -80,3 +84,15 @@ docker run --rm -it --env-file=.env -p 8443:8443 wwmoraes/alertmanager-telegram-
 
 The bot itself is very straightforward, and does most of the actions using inline
 keyboards. You can enroll yourself to receive the AM alerts using `/start` 😄
+
+### Slash commands
+
+The alertmanager middleware uses no slash commands, and instead automatically
+registers the given user IDs to receive notifications.
+
+If using the full bot from this repository, then you can use:
+
+- `/start` - registers yourself to receive the alerts
+- `/help` - well, halp 😂
+
+It also responds to `hi` and stickers as a "health check".
