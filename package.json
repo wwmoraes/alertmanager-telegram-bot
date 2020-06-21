@@ -12,7 +12,21 @@
     "build": "tsc",
     "analyze": "codeclimate analyze",
     "lint": "eslint -c .eslintrc.yml --ext .ts src",
-    "docs": "typedoc --out docs src"
+    "docs": "typedoc --out docs src",
+    "test": "jest --verbose --all",
+    "coverage": "jest --verbose --all --coverage",
+    "postcoverage": "cc-test-reporter format-coverage -t lcov",
+    "upload-coverage": "cc-test-reporter upload-coverage"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "jest-environment-node",
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/**/*.d.ts",
+      "!src/setupTests.ts",
+      "!src/**/*.(spec|test).ts"
+    ]
   },
   "dependencies": {
     "dot": "^1.1.3",
@@ -34,8 +48,13 @@
     "typescript": "^3.9.5"
   },
   "optionalDependencies": {
+    "@types/fetch-mock": "^7.3.2",
+    "@types/jest": "^26.0.0",
+    "fetch-mock": "^9.10.2",
     "g8-typedoc-dark": "^0.1.2",
+    "jest": "^26.0.1",
     "ngrok": "^3.2.7",
+    "ts-jest": "^26.1.0",
     "ts-node": "^8.10.2",
     "typedoc": "^0.17.7",
     "typedoc-plugin-external-module-name": "^4.0.3"

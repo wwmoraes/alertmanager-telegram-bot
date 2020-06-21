@@ -3,6 +3,8 @@
  * @module AlertManager
  */
 
+import {Update} from "telegraf/typings/telegram-types";
+
 export type Labels = { [label: string]: string };
 
 export interface AlertInfo {
@@ -15,7 +17,7 @@ export interface AlertInfo {
   fingerprint: string,
 }
 
-export interface AlertUpdate {
+export interface AlertUpdate extends Update {
   version: string,
   groupKey: string,
   truncatedAlerts: number,

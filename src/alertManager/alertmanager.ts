@@ -4,8 +4,11 @@
  */
 
 import {Telegram} from "telegraf";
-import Level, {LevelGraph, IGetTriple, ITriple} from "level-ts";
+import Level, {LevelGraph} from "level-ts";
+import {IGetTriple, ITriple} from "level-ts/dist/LevelGraph";
 import fetch, {FetchError, Response} from "node-fetch";
+import fs from "fs";
+import path from "path";
 
 import {
   InlineKeyboardButton,
@@ -61,14 +64,20 @@ export class AlertManager {
   private static silenceCallbackData =
     (duration: string): string =>
       encodeToString({
-        "module": "am",
+        module: "am",
         "do": "silence",
-        "params": {
-          "time": duration
+        params: {
+          time: duration
         }
       } as CallbackData);
 
   constructor (dbPath: string, alertDbPath: string) {
+    if (!fs.existsSync(path.dirname(dbPath))) {
+      throw new Error(`path ${path.dirname(dbPath)} does not exist`);
+    }
+    if (!fs.existsSync(path.dirname(alertDbPath))) {
+      throw new Error(`path ${path.dirname(alertDbPath)} does not exist`);
+    }
     this.db = new LevelGraph(dbPath);
     this.alerts = new Level<Alert>(alertDbPath);
     this.silenceButtons = [
@@ -77,8 +86,8 @@ export class AlertManager {
     ].
       map((time) =>
         ({
-          "text": `🤫 ${time}`,
-          "callback_data": AlertManager.silenceCallbackData(time)
+          text: `🤫 ${time}`,
+          callback_data: AlertManager.silenceCallbackData(time)
         }));
   }
 
@@ -89,18 +98,18 @@ export class AlertManager {
    */
   private firingMessageMarkup (alert: Alert): InlineKeyboardMarkup {
     return {
-      "inline_keyboard": [
+      inline_keyboard: [
         [
           {
-            "text": "🚨 Alerts",
-            "url": alert.relatedAlertsUrl
+            text: "🚨 Alerts",
+            url: alert.relatedAlertsUrl
           }
         ],
         this.silenceButtons,
         [
           {
-            "text": "🤫 Custom Silence",
-            "url": alert.silenceUrl
+            text: "🤫 Custom Silence",
+            url: alert.silenceUrl
           }
         ]
       ]
@@ -116,9 +125,9 @@ export class AlertManager {
   hasUserChat (userId: string, chatId: string): Promise<boolean> {
     return this.db.
       get({
-        "object": chatId,
-        "predicate": AlertManagerPredicates.ChatOn,
-        "subject": userId
+        object: chatId,
+        predicate: AlertManagerPredicates.ChatOn,
+        subject: userId
       }).then((result) =>
         result.length > 0);
   }
@@ -131,9 +140,9 @@ export class AlertManager {
    */
   addUserChat (userId: string, chatId: string): Promise<void> {
     return this.db.put({
-      "subject": userId,
-      "predicate": AlertManagerPredicates.ChatOn,
-      "object": chatId
+      subject: userId,
+      predicate: AlertManagerPredicates.ChatOn,
+      object: chatId
     });
   }
 
@@ -146,13 +155,13 @@ export class AlertManager {
    */
   addAlertMessage (chatId: string, messageId: string, alertHash: string): Promise<IGetTriple<string | number>[]> {
     return this.db.chain.put({
-      "subject": chatId,
-      "predicate": AlertManagerPredicates.HasMessage,
-      "object": messageId
+      subject: chatId,
+      predicate: AlertManagerPredicates.HasMessage,
+      object: messageId
     }).put({
-      "subject": messageId,
-      "predicate": AlertManagerPredicates.Alerts,
-      "object": alertHash
+      subject: messageId,
+      predicate: AlertManagerPredicates.Alerts,
+      object: alertHash
     }).
       finish();
   }
@@ -165,27 +174,27 @@ export class AlertManager {
   getAlertMessages (alertHash: string): Promise<AlertMessage[]> {
     return this.db.walk(
       {
-        "materialized": {
-          "userId": this.db.v("userId"),
-          "chatId": this.db.v("chatId"),
-          "messageId": this.db.v("messageId"),
-          "alertHash": this.db.v("alertId")
+        materialized: {
+          userId: this.db.v("userId"),
+          chatId: this.db.v("chatId"),
+          messageId: this.db.v("messageId"),
+          alertHash: this.db.v("alertId")
         } as AlertMessage,
-        "filter": (solution, callback) =>
+        filter: (solution, callback) =>
           callback(
             null,
             solution.alertId === alertHash && solution
           )
       },
-      {"subject": this.db.v("userId"),
-        "predicate": AlertManagerPredicates.ChatOn,
-        "object": this.db.v("chatId")},
-      {"subject": this.db.v("chatId"),
-        "predicate": AlertManagerPredicates.HasMessage,
-        "object": this.db.v("messageId")},
-      {"subject": this.db.v("messageId"),
-        "predicate": AlertManagerPredicates.Alerts,
-        "object": this.db.v("alertId")}
+      {subject: this.db.v("userId"),
+        predicate: AlertManagerPredicates.ChatOn,
+        object: this.db.v("chatId")},
+      {subject: this.db.v("chatId"),
+        predicate: AlertManagerPredicates.HasMessage,
+        object: this.db.v("messageId")},
+      {subject: this.db.v("messageId"),
+        predicate: AlertManagerPredicates.Alerts,
+        object: this.db.v("alertId")}
     ) as Promise<AlertMessage[]>;
   }
 
@@ -201,26 +210,26 @@ export class AlertManager {
 
     return this.db.walk(
       {
-        "materialized": {
-          "subject": this.db.v("userId"),
-          "predicate": AlertManagerPredicates.ChatOn,
-          "object": this.db.v("chatId")
+        materialized: {
+          subject: this.db.v("userId"),
+          predicate: AlertManagerPredicates.ChatOn,
+          object: this.db.v("chatId")
         },
-        "filter": (solution, callback) =>
+        filter: (solution, callback) =>
           callback(
             null,
             solution.alertHash === alertHash && solution
           )
       },
-      {"subject": this.db.v("userId"),
-        "predicate": AlertManagerPredicates.ChatOn,
-        "object": this.db.v("chatId")},
-      {"subject": this.db.v("chatId"),
-        "predicate": AlertManagerPredicates.HasMessage,
-        "object": this.db.v("messageId")},
-      {"subject": this.db.v("messageId"),
-        "predicate": AlertManagerPredicates.Alerts,
-        "object": this.db.v("alertHash")}
+      {subject: this.db.v("userId"),
+        predicate: AlertManagerPredicates.ChatOn,
+        object: this.db.v("chatId")},
+      {subject: this.db.v("chatId"),
+        predicate: AlertManagerPredicates.HasMessage,
+        object: this.db.v("messageId")},
+      {subject: this.db.v("messageId"),
+        predicate: AlertManagerPredicates.Alerts,
+        object: this.db.v("alertHash")}
     ).then((entries) =>
       entries.map((entry) =>
         entry.object)).
@@ -232,34 +241,34 @@ export class AlertManager {
   /**
    * Get the alert context for the given message
    * @param {string} messageId telegram message ID
-   * @returns {Promise<AlertMessage>} alert context
+   * @returns {Promise<AlertMessage|undefined>} alert context
    */
-  getAlertFromMessage (messageId: string): Promise<AlertMessage> {
+  getAlertFromMessage (messageId: string): Promise<AlertMessage|undefined> {
     return this.db.walk(
       {
-        "materialized": {
-          "userId": this.db.v("userId"),
-          "chatId": this.db.v("chatId"),
-          "messageId": this.db.v("messageId"),
-          "alertHash": this.db.v("alertId")
+        materialized: {
+          userId: this.db.v("userId"),
+          chatId: this.db.v("chatId"),
+          messageId: this.db.v("messageId"),
+          alertHash: this.db.v("alertId")
         } as AlertMessage,
-        "filter": (solution, callback) =>
+        filter: (solution, callback) =>
           callback(
             null,
             solution.messageId === messageId && solution
           )
       },
-      {"subject": this.db.v("userId"),
-        "predicate": AlertManagerPredicates.ChatOn,
-        "object": this.db.v("chatId")},
-      {"subject": this.db.v("chatId"),
-        "predicate": AlertManagerPredicates.HasMessage,
-        "object": this.db.v("messageId")},
-      {"subject": this.db.v("messageId"),
-        "predicate": AlertManagerPredicates.Alerts,
-        "object": this.db.v("alertId")}
+      {subject: this.db.v("userId"),
+        predicate: AlertManagerPredicates.ChatOn,
+        object: this.db.v("chatId")},
+      {subject: this.db.v("chatId"),
+        predicate: AlertManagerPredicates.HasMessage,
+        object: this.db.v("messageId")},
+      {subject: this.db.v("messageId"),
+        predicate: AlertManagerPredicates.Alerts,
+        object: this.db.v("alertId")}
     ).then((results) =>
-      results[0]) as Promise<AlertMessage>;
+      results[0]) as Promise<AlertMessage|undefined>;
   }
 
   /**
@@ -267,7 +276,7 @@ export class AlertManager {
    * @returns {Promise<ITriple<string|number>[]>} chat entries
    */
   getChats (): Promise<ITriple<string|number>[]> {
-    return this.db.get({"predicate": AlertManagerPredicates.ChatOn});
+    return this.db.get({predicate: AlertManagerPredicates.ChatOn});
   }
 
   /**
@@ -308,8 +317,8 @@ export class AlertManager {
           chatId,
           alert.text,
           {
-            "parse_mode": "HTML",
-            "reply_markup": this.firingMessageMarkup(alert)
+            parse_mode: "HTML",
+            reply_markup: this.firingMessageMarkup(alert)
           }
         ).then((message) =>
           this.addAlertMessage(
@@ -334,7 +343,7 @@ export class AlertManager {
         parseInt(entry.messageId, 10),
         "",
         alert.text,
-        {"parse_mode": "HTML"}
+        {parse_mode: "HTML"}
       );
     });
   }
@@ -357,20 +366,20 @@ export class AlertManager {
       : alert.baseUrl;
 
     const silenceRequestBody = {
-      "matchers": alert.matchers,
-      "startsAt": startAt.toISOString(),
-      "endsAt": endsAt.toISOString(),
-      "createdBy": username,
-      "comment": comment || "silenced from Telegram bot",
-      "id": null
+      matchers: alert.matchers,
+      startsAt: startAt.toISOString(),
+      endsAt: endsAt.toISOString(),
+      createdBy: username,
+      comment: comment || "silenced from Telegram bot",
+      id: null
     };
 
     return fetch(
       `${callbackBaseUrl}api/v2/silences`,
       {
-        "method": "POST",
-        "body": JSON.stringify(silenceRequestBody),
-        "headers": [
+        method: "POST",
+        body: JSON.stringify(silenceRequestBody),
+        headers: [
           [
             "Content-Type",
             "application/json"
@@ -412,6 +421,11 @@ export class AlertManager {
     console.info("[AlertManager] fetching alert message...");
     const alertMessage = await this.getAlertFromMessage(ctx.callbackQuery.message.message_id.toString());
 
+    if (typeof alertMessage === "undefined") {
+      // TODO give a feedback to the user or fetch alert info from alertmanager
+      throw new Error("message not found");
+    }
+
     console.info("[AlertManager] fetching alert...");
     const alert = await this.getAlert(alertMessage.alertHash);
 
@@ -452,7 +466,7 @@ export class AlertManager {
           ctx.reply(
             `ok, I've silenced this alert for ${decodedData.params.time} - more info here ${alert.baseUrl}/#/silences/${responseData.silenceID}`,
             {
-              "reply_to_message_id": ctx.callbackQuery?.message?.message_id
+              reply_to_message_id: ctx.callbackQuery?.message?.message_id
             }
           )
         ]).then((_result): Promise<void> =>

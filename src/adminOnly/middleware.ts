@@ -4,33 +4,31 @@
  */
 
 import {AdminOnlyContext} from "./context";
-import {Middleware} from "telegraf";
+import {MiddlewareFn} from "telegraf/typings/composer";
 
 /**
  * Only allows messages from the
  * [provided user IDs]{@link AdminOnlyContext.adminUserIds}
  */
 
-export const AdminOnlyMiddleware: Middleware<AdminOnlyContext> =
+export const AdminOnlyMiddleware: MiddlewareFn<AdminOnlyContext> =
   (ctx: AdminOnlyContext, next) => {
     // Not a known update type i.e. probably a webhook call
     if (typeof ctx.updateType === "undefined") {
-      next();
-
-      return;
+      return next();
     }
 
     // Drop without sender
     if (typeof ctx.from === "undefined") {
-      return;
+      return Promise.resolve();
     }
 
     // Drop non-admin
     if (!ctx.adminUserIds.includes(ctx.from.id.toString())) {
-      return;
+      return Promise.resolve();
     }
 
-    next();
+    return next();
   };
 
 export default AdminOnlyMiddleware;

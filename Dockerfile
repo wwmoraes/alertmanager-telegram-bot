@@ -2,6 +2,7 @@ FROM node:14-alpine AS builder
 
 WORKDIR /usr/local/bot/
 
+COPY patches patches
 COPY package.json yarn.lock tsconfig.json tsconfig.production.json ./
 RUN yarn install --frozen-lockfile --link-duplicates --ignore-optional && \
   rm -rf \
@@ -34,6 +35,7 @@ RUN addgroup --gid 1001 bot \
 
 RUN mkdir /opt/bot/data
 
+COPY --chown=bot:bot patches patches
 COPY --chown=bot:bot package.json yarn.lock ./
 
 RUN yarn install --prod --frozen-lockfile --link-duplicates --ignore-optional && \

@@ -31,7 +31,7 @@ rules:
     allow:
     - message_id
     - file_id
-  capitalized-comments: error
+  capitalized-comments: 0
   class-methods-use-this: error
   comma-dangle: error
   comma-spacing: error
@@ -96,7 +96,7 @@ rules:
   max-params: [warn, 4]
   max-statements: [error, 40]
   max-statements-per-line: error
-  multiline-comment-style: error
+  multiline-comment-style: 0
   multiline-ternary: error
   new-cap: error
   new-parens: error
@@ -174,7 +174,7 @@ rules:
   no-sequences: error
   no-shadow: error
   no-spaced-func: error
-  no-sync: error
+  no-sync: 0
   no-tabs: error
   no-template-curly-in-string: error
   no-ternary: 0
@@ -197,7 +197,7 @@ rules:
   no-useless-return: error
   no-var: error
   no-void: error
-  no-warning-comments: error
+  no-warning-comments: 0
   no-whitespace-before-property: error
   nonblock-statement-body-position: error
   object-curly-newline: error
@@ -223,7 +223,11 @@ rules:
   prefer-rest-params: error
   prefer-spread: error
   prefer-template: error
-  quote-props: error
+  quote-props:
+  - error
+  - as-needed
+  - unnecessary: true
+    keywords: true
   quotes: error
   radix: error
   require-atomic-updates: error

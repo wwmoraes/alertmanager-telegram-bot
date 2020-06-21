@@ -3,4 +3,12 @@ plugins:
     enabled: true
     config: .eslint.yml
 exclude_patterns:
+- ".github/"
+- ".vscode/"
 - "docs/"
+- "patches/"
+- "*.md"
+- "LICENSE"
+- "package.json"
+- "yarn.lock"
+- "**/.gitignore"
