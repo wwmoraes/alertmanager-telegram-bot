@@ -1,7 +1,9 @@
 {
   "cSpell.words": [
     "Telegraf",
+    "Unalerted",
     "alertmanager",
+    "levelgraph",
     "messagepack",
     "middlewares",
     "tmpl"

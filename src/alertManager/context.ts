@@ -3,8 +3,8 @@
  * @module AlertManager
  */
 
-import { Context } from 'telegraf';
-import { AlertManager } from './alertmanager';
+import {AlertManager} from "./alertmanager";
+import {Context} from "telegraf";
 
 export interface AlertManagerContext extends Context {
   alertManager: AlertManager,

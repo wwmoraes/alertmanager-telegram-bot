@@ -1,0 +1,49 @@
+diff --git a/node_modules/level-ts/dist/LevelGraph.d.ts b/node_modules/level-ts/dist/LevelGraph.d.ts
+index 26f162e..af66ac2 100644
+--- a/node_modules/level-ts/dist/LevelGraph.d.ts
++++ b/node_modules/level-ts/dist/LevelGraph.d.ts
+@@ -1,19 +1,19 @@
+-declare type TripleInp = string | number;
+-interface ITripleBase {
++export declare type TripleInp = string | number;
++export interface ITripleBase {
+     subject: TripleInp;
+     predicate: TripleInp;
+     object: TripleInp;
+ }
+-interface ITriple<Predicates extends TripleInp> extends ITripleBase {
++export interface ITriple<Predicates extends TripleInp> extends ITripleBase {
+     predicate: Predicates;
+     [key: string]: any;
+ }
+-interface IGetTriple<Predicates extends TripleInp> extends Partial<ITriple<Predicates>> {
++export interface IGetTriple<Predicates extends TripleInp> extends Partial<ITriple<Predicates>> {
+     limit?: number;
+     offset?: number;
+     reverse?: boolean;
+ }
+-interface IChainObject<Predicates extends TripleInp> {
++export interface IChainObject<Predicates extends TripleInp> {
+     put(triple: ITriple<Predicates>): IChainObject<Predicates>;
+     del(triple: ITriple<Predicates>): IChainObject<Predicates>;
+     get(triple: IGetTriple<Predicates>): IChainObject<Predicates>;
+@@ -35,8 +35,8 @@ export declare class LevelGraph<StaticPredicates extends TripleInp = string | nu
+         [key: string]: any;
+     }>>;
+ }
+-declare type GraphVar = any;
+-interface IWalkOptions {
++export declare type GraphVar = any;
++export interface IWalkOptions {
+     /**Maximum of results */
+     limit?: number;
+     /**First to skip (Pagination)*/
+@@ -46,7 +46,7 @@ interface IWalkOptions {
+     };
+     filter?: (solution: any, callback: (error: string | null, solution?: any) => void) => void;
+ }
+-interface IWalkPath<Predicates extends TripleInp> {
++export interface IWalkPath<Predicates extends TripleInp> {
+     subject: string | GraphVar;
+     predicate: string | GraphVar;
+     object: string | GraphVar;

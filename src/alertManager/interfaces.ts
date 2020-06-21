@@ -34,7 +34,7 @@ export interface AlertManagerUrls {
   relatedAlertsUrl: string,
 }
 
-export interface CallbackData {
+export interface CallbackData extends Record<string, unknown> {
   module: "am",
   do: "silence",
   params: { [key:string]: string }

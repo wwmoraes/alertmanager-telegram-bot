@@ -3,89 +3,120 @@
  *
  * @packageDocumentation
  * @module Bot
- * */
-import { Telegraf } from 'telegraf';
-import fetch from 'node-fetch';
+ *
+ */
 
+import {
+  AdminOnlyContext,
+  AdminOnlyMiddleware
+} from "./adminOnly";
 import {
   AlertManagerContext,
   AlertManagerMiddleware,
   setupAlertManagerContext
-} from './alertManager';
-import { AdminOnlyContext, AdminOnlyMiddleware } from './adminOnly';
+} from "./alertManager";
 
-require('dotenv').config();
+import {Telegraf} from "telegraf";
+import fetch from "node-fetch";
 
-if (process.env.TELEGRAM_TOKEN === undefined) {
-  console.error("TELEGRAM_TOKEN is undefined");
-  process.exit(2);
-}
-
-if (process.env.TELEGRAM_ADMINS === undefined || process.env.TELEGRAM_ADMINS.length === 0) {
-  console.error("TELEGRAM_ADMINS is undefined");
-  process.exit(2);
-}
+import config from "./config";
 
 /**
- * bot context extending both the [[AlertManagerContext]] and [[AdminOnlyContext]]
+ * Bot context extending both the [[AlertManagerContext]] and
+ * [[AdminOnlyContext]]
  */
 interface BotContext extends AlertManagerContext, AdminOnlyContext {}
 
 /**
- * bot instance
+ * Bot instance
  */
-const bot = new Telegraf<BotContext>(process.env.TELEGRAM_TOKEN, {
-  telegram: {
-    webhookReply: false
+const bot = new Telegraf<BotContext>(
+  config.telegramToken,
+  {
+    "telegram": {
+      "webhookReply": false
+    }
   }
-});
+);
 
-bot.context.adminUserIds = process.env.TELEGRAM_ADMINS.split(',');
+bot.context.adminUserIds = config.telegramAdmins.split(",");
 
 setupAlertManagerContext(bot);
 
 bot.use(
   AdminOnlyMiddleware,
-  AlertManagerMiddleware,
+  AlertManagerMiddleware
 );
 
 bot.start((ctx) => {
-  if (!ctx.from || !ctx.chat) return;
-
-  if (ctx.alertManager.hasUserChat(ctx.from.id.toString(), ctx.chat.id.toString())) {
-    ctx.reply("y u do dis? You're already registered").catch(console.error);
-
-    bot.telegram.getStickerSet("Meme_stickers")
-    .then(stickerSet => stickerSet.stickers)
-    .then(stickers => stickers.filter(sticker => sticker.emoji && ['🤦‍♂️', '🤦‍♀️'].includes(sticker.emoji)))
-    .then(stickers => stickers[Math.round(Math.random()*(stickers.length-1))])
-    .then(sticker => ctx.replyWithSticker(sticker.file_id));
+  if (!ctx.from || !ctx.chat) {
     return;
   }
 
-  ctx.alertManager.addUserChat(ctx.from.id.toString(), ctx.chat.id.toString());
-  ctx.reply('Welcome!').catch(console.error);
+  if (ctx.alertManager.hasUserChat(
+    ctx.from.id.toString(),
+    ctx.chat.id.toString()
+  )) {
+    ctx.reply("y u do dis? You're already registered").catch(console.error);
+
+    bot.telegram.getStickerSet("Meme_stickers").
+      then((stickerSet) =>
+        stickerSet.stickers).
+      then((stickers) =>
+        stickers.filter((sticker) =>
+          sticker.emoji && [
+            "🤦‍♂️",
+            "🤦‍♀️"
+          ].includes(sticker.emoji))).
+      then((stickers) =>
+        stickers[Math.round(Math.random() * (stickers.length - 1))]).
+      then((sticker) =>
+        ctx.replyWithSticker(sticker.file_id));
+
+    return;
+  }
+
+  ctx.alertManager.addUserChat(
+    ctx.from.id.toString(),
+    ctx.chat.id.toString()
+  );
+  ctx.reply("Welcome!").catch(console.error);
 });
-bot.help((ctx) => ctx.reply('Send me a sticker').catch(console.error));
-bot.on('sticker', (ctx) => ctx.reply(`Sticker file ID ${ctx.update.message?.sticker?.file_id} 👍`).catch(console.error));
-bot.hears('hi', (ctx) => ctx.reply('Hey there').catch(console.error));
+bot.help((ctx) =>
+  ctx.reply("Send me a sticker").catch(console.error));
+bot.on(
+  "sticker",
+  (ctx) =>
+    ctx.reply(`Sticker file ID ${ctx.update.message?.sticker?.file_id} 👍`).catch(console.error)
+);
+bot.hears(
+  "hi",
+  (ctx) =>
+    ctx.reply("Hey there").catch(console.error)
+);
 
-// bot.on('inline_query', (ctx) => {
-//   console.log("inline query");
-//   ctx.answerInlineQuery([]).catch(console.error);
-// });
+/*
+ * Bot.on('inline_query', (ctx) => {
+ *   console.log("inline query");
+ *   ctx.answerInlineQuery([]).catch(console.error);
+ * });
+ */
 
-console.log("starting webhook on :8443...");
-bot.startWebhook('/', null, 8443);
+console.info("starting webhook on :8443...");
+bot.startWebhook(
+  "/",
+  null,
+  config.port
+);
 
-if (process.env.EXTERNAL_URL !== undefined) {
-  console.log(`registering webhook on ${process.env.EXTERNAL_URL}...`);
-  fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_TOKEN}/setWebhook?url=${process.env.EXTERNAL_URL}`)
-  .then(response =>
-    console.log(
-      response.status === 200
-      ? "webhook set successfully"
-      : "error setting the wehbook"
-      )
-    , console.error);
+if (typeof config.externalUrl !== "undefined") {
+  console.info(`registering webhook on ${config.externalUrl}...`);
+  fetch(`https://api.telegram.org/bot${config.telegramToken}/setWebhook?url=${config.externalUrl}`).
+    then(
+      (response) =>
+        console.info(response.status === 200
+          ? "webhook set successfully"
+          : "error setting the wehbook")
+      , console.error
+    );
 }
