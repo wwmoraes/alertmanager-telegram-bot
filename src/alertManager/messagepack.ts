@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module AlertManager
+ */
+
 import { encode, decode } from 'messagepack';
 
 export const encodeToString = (obj: object): string =>

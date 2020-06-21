@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module AlertManager
+ */
+
 export type Labels = { [label: string]: string };
 
 export interface AlertInfo {

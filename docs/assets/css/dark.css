@@ -1,0 +1,121 @@
+/*
+ * GPLv3 https://www.gnu.org/licenses/gpl-3.0.en.html
+ *
+ * Author: eidng8
+ */
+
+.container {
+  max-width: unset;
+}
+
+body,
+footer,
+.tsd-page-toolbar,
+.tsd-page-title,
+.tsd-panel table tr {
+  background-color: #333;
+}
+
+.tsd-panel table tr:nth-child(2n) {
+  background-color: #393939;
+}
+
+.tsd-panel {
+  background-color: #222;
+}
+
+#tsd-search.has-focus,
+#tsd-search .results li,
+.tsd-select .tsd-select-list li {
+  background-color: #111;
+}
+
+#tsd-search .results li:nth-child(even),
+.tsd-select .tsd-select-list li:nth-child(even) {
+  background-color: #000;
+}
+
+#tsd-search .results li.current,
+#tsd-search .results li:hover,
+#tsd-search .results li:nth-child(even).current,
+#tsd-search .results li:nth-child(even):hover,
+.tsd-select .tsd-select-list li:hover,
+.tsd-select .tsd-select-list li:nth-child(even):hover {
+  background-color: #234;
+}
+
+code, pre {
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, .2);
+}
+
+.tsd-page-toolbar,
+.tsd-navigation.primary li,
+footer.with-border-bottom,
+.tsd-panel table th,
+.tsd-panel table td {
+  border-color: #666;
+}
+
+body,
+.tsd-page-toolbar,
+.tsd-page-title,
+.tsd-navigation a,
+#tsd-search .field input,
+#tsd-search .results,
+#tsd-search .results span.parent {
+  color: #aaa;
+}
+
+.tsd-page-toolbar a,
+.tsd-breadcrumb a {
+  color: #759cd7;
+}
+
+.tsd-index-panel a,
+.tsd-index-panel .tsd-parent-kind-module a,
+.tsd-index-panel .tsd-kind-module a {
+  color: #407fbf;
+}
+
+.hljs-string,
+.hljs-title,
+.hljs-parent,
+.hljs-tag .hljs-value,
+.hljs-rules .hljs-value {
+  color: #777;
+}
+
+.hljs-keyword,
+.hljs-id,
+.hljs-built_in,
+.css .smalltalk .hljs-class,
+.hljs-winutils,
+.bash .hljs-variable,
+.tex .hljs-command,
+.hljs-request,
+.hljs-status,
+.nginx .hljs-title {
+  color: #aaf;
+}
+
+.hljs-template_tag,
+.django .hljs-variable,
+.hljs-addition,
+.hljs-flow,
+.hljs-stream,
+.apache .hljs-tag,
+.hljs-date,
+.tex .hljs-formula,
+.coffeescript .hljs-attribute {
+  color: #cc6;
+}
+
+.hljs-comment,
+.hljs-annotation,
+.hljs-template_comment,
+.diff .hljs-header,
+.hljs-chunk,
+.apache .hljs-cbracket {
+  color: #555;
+}

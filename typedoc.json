@@ -1,0 +1,5 @@
+{
+  "mode": "modules",
+  "out": "docs",
+  "theme": "./node_modules/g8-typedoc-dark/wide"
+}

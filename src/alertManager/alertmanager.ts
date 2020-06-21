@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module AlertManager
+ */
+
 import { LevelGraph } from 'level-ts';
 import { Alert } from './alert';
 import level from 'level-ts';
@@ -8,19 +13,34 @@ import { AlertManagerContext } from './context';
 import { InlineKeyboardMarkup, InlineKeyboardButton } from "telegraf/typings/telegram-types";
 import fetch, { FetchError } from 'node-fetch';
 
+/** predicates used on the levelgraph database to link resources */
 export const enum AlertManagerPredicates {
+  /** `user-id` `chat-on` `chat-id` */
   ChatOn = "chat-on",
+  /** `chat-id` `has-message` `message-id` */
   HasMessage = "has-message",
+  /** `message-id` `alerts` `alert-hash` */
   Alerts = "alerts",
 }
 
+/**
+ * materialization structure containing the full chain of ids for an alert
+ * @category levelgraph
+ * */
 export interface AlertMessage {
+  /** telegram API user ID */
   userId: string,
+  /** telegram API chat ID */
   chatId: string,
+  /** telegram API message ID */
   messageId: string,
+  /** alert hash from [[Alert.hash]] */
   alertHash: string,
 }
 
+/**
+ * @public
+ */
 export class AlertManager {
   private db: LevelGraph;
   private alerts: level<Alert>;

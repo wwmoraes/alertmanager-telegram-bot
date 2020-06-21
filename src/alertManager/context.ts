@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module AlertManager
+ */
+
 import { Context } from 'telegraf';
 import { AlertManager } from './alertmanager';
 

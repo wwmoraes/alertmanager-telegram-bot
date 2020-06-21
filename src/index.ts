@@ -1,3 +1,9 @@
+/**
+ * Sample bot using the [[AlertManager]] and [[AdminOnly]] modules.
+ *
+ * @packageDocumentation
+ * @module Bot
+ * */
 import { Telegraf } from 'telegraf';
 import fetch from 'node-fetch';
 
@@ -20,8 +26,14 @@ if (process.env.TELEGRAM_ADMINS === undefined || process.env.TELEGRAM_ADMINS.len
   process.exit(2);
 }
 
+/**
+ * bot context extending both the [[AlertManagerContext]] and [[AdminOnlyContext]]
+ */
 interface BotContext extends AlertManagerContext, AdminOnlyContext {}
 
+/**
+ * bot instance
+ */
 const bot = new Telegraf<BotContext>(process.env.TELEGRAM_TOKEN, {
   telegram: {
     webhookReply: false

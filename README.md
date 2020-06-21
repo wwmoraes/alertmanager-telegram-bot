@@ -2,7 +2,21 @@
 
 > Yet another Prometheus alertmanager's telegram bot
 
+![GitHub license](https://img.shields.io/github/license/wwmoraes/alertmanager-telegram-bot)
+![GitHub top language](https://img.shields.io/github/languages/top/wwmoraes/alertmanager-telegram-bot)
+![GitHub repo size](https://img.shields.io/github/repo-size/wwmoraes/alertmanager-telegram-bot)
+![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/wwmoraes/alertmanager-telegram-bot)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/wwmoraes/alertmanager-telegram-bot)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/wwmoraes/alertmanager-telegram-bot/DockerHub)
+
+![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability-percentage/wwmoraes/alertmanager-telegram-bot)
+![Code Climate issues](https://img.shields.io/codeclimate/issues/wwmoraes/alertmanager-telegram-bot)
+![Code Climate technical debt](https://img.shields.io/codeclimate/tech-debt/wwmoraes/alertmanager-telegram-bot)
+
 This is a work in progress, so take all functionalities with a grain of salt.
+
+You can also [jump directly to the docs](http://wwmoraes.github.io/alertmanager-telegram-bot).
 
 ## Table of Contents
 

@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module AlertManager
+ */
+
 import Telegraf, { Composer } from 'telegraf';
 import { AlertManagerContext } from './context';
 import { AlertManager } from './alertmanager';
@@ -5,7 +10,7 @@ import { Alert } from './alert';
 
 export const AlertManagerMiddleware = new Composer<AlertManagerContext>();
 
-AlertManagerMiddleware.use(async (ctx, next) => {
+AlertManagerMiddleware.use(async (ctx: AlertManagerContext, next) => {
   // pass-through in case it is not an alertmanager update
   console.log("[AlertManager] checking if update has a known type...");
   if (ctx.updateType !== undefined) return next();
@@ -20,7 +25,7 @@ AlertManagerMiddleware.use(async (ctx, next) => {
   }
 });
 
-AlertManagerMiddleware.on('callback_query', async (ctx, next) => {
+AlertManagerMiddleware.on('callback_query', async (ctx: AlertManagerContext, next) => {
   // no chat, move along
   console.log("[AlertManager] checking if the request came from a chat...");
   if (ctx.chat === undefined) return next();

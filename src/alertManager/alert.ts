@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module AlertManager
+ */
+
 import { AlertUpdate } from "./interfaces";
 import { Update } from "telegraf/typings/telegram-types";
 import { createHash } from 'crypto';
