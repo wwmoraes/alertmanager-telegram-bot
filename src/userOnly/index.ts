@@ -6,5 +6,5 @@
  * @module UserOnly
  */
 
-export * from "./IUserOnlyContext";
+export * from "./IUserOnlyContext.d";
 export * from "./userOnlyMiddleware";

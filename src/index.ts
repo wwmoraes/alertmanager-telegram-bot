@@ -21,7 +21,7 @@ import {BotContext} from "./BotContext";
 /**
  * Bot instance
  */
-const bot = new Telegraf<BotContext>(
+export const bot = new Telegraf<BotContext>(
   config.telegramToken,
   {
     telegram: {

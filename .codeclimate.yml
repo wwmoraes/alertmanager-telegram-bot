@@ -12,3 +12,4 @@ exclude_patterns:
 - "package.json"
 - "yarn.lock"
 - "**/.gitignore"
+- "**/__fixtures__/*"
