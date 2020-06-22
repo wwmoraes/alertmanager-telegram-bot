@@ -1,4 +1,9 @@
-import {Alert} from "./alert";
+/**
+ * @packageDocumentation
+ * @module AlertManager
+ */
+
+import {Alert} from "./Alert";
 import {validAlertUpdate} from "./__fixtures__/updates";
 import {IAlertUpdate} from "./IAlertUpdate";
 

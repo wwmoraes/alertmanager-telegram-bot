@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module Bot
+ */
+
 /* eslint-disable no-process-env */
 
 import dotenv from "dotenv";

@@ -75,7 +75,7 @@ import {
   AlertManagerContext,
   AlertManagerMiddleware,
   setupAlertManagerContext,
-} from "./alertManager";
+} from "./AlertManager";
 
 interface YourBotContext extends AlertManagerContext {}
 

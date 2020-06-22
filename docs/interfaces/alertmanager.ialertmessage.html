@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CallbackData | alertmanager-telegram-bot</title>
-	<meta name="description" content="Documentation for alertmanager-telegram-bot">
+	<title>IAlertMessage | AlertManager Telegram Bot</title>
+	<meta name="description" content="Documentation for AlertManager Telegram Bot">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 	<link rel="stylesheet" href="../assets/css/dark.css">
@@ -23,7 +23,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">alertmanager-telegram-bot</a>
+					<a href="../index.html" class="title">AlertManager Telegram Bot</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -39,8 +39,6 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 							<input type="checkbox" id="tsd-filter-only-exported" />
 							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
@@ -60,21 +58,28 @@
 					<a href="../modules/alertmanager.html">AlertManager</a>
 				</li>
 				<li>
-					<a href="alertmanager.callbackdata-1.html">CallbackData</a>
+					<a href="alertmanager.ialertmessage.html">IAlertMessage</a>
 				</li>
 			</ul>
-			<h1>Interface CallbackData</h1>
+			<h1>Interface IAlertMessage</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Materialization structure containing the full chain of ids for an alert</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">CallbackData</span>
+						<span class="target">IAlertMessage</span>
 					</li>
 				</ul>
 			</section>
@@ -85,9 +90,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="alertmanager.callbackdata-1.html#do" class="tsd-kind-icon">do</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="alertmanager.callbackdata-1.html#module" class="tsd-kind-icon">module</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="alertmanager.callbackdata-1.html#params" class="tsd-kind-icon">params</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="alertmanager.ialertmessage.html#alerthash" class="tsd-kind-icon">alert<wbr>Hash</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="alertmanager.ialertmessage.html#chatid" class="tsd-kind-icon">chat<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="alertmanager.ialertmessage.html#messageid" class="tsd-kind-icon">message<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="alertmanager.ialertmessage.html#userid" class="tsd-kind-icon">user<wbr>Id</a></li>
 							</ul>
 						</section>
 					</div>
@@ -96,41 +102,63 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="do" class="tsd-anchor"></a>
-					<h3>do</h3>
-					<div class="tsd-signature tsd-kind-icon">do<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"silence"</span></div>
+					<a name="alerthash" class="tsd-anchor"></a>
+					<h3>alert<wbr>Hash</h3>
+					<div class="tsd-signature tsd-kind-icon">alert<wbr>Hash<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/ce889dd/src/alertManager/interfaces.ts#L39">src/alertManager/interfaces.ts:39</a></li>
+							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/c020a6f/src/alertManager/IAlertMessage.d.ts#L21">src/alertManager/IAlertMessage.d.ts:21</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Alert hash from <a href="../classes/alertmanager.alert.html#hash">Alert.hash</a></p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="module" class="tsd-anchor"></a>
-					<h3>module</h3>
-					<div class="tsd-signature tsd-kind-icon">module<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"am"</span></div>
+					<a name="chatid" class="tsd-anchor"></a>
+					<h3>chat<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">chat<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/ce889dd/src/alertManager/interfaces.ts#L38">src/alertManager/interfaces.ts:38</a></li>
+							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/c020a6f/src/alertManager/IAlertMessage.d.ts#L15">src/alertManager/IAlertMessage.d.ts:15</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Telegram API chat ID</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="params" class="tsd-anchor"></a>
-					<h3>params</h3>
-					<div class="tsd-signature tsd-kind-icon">params<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
+					<a name="messageid" class="tsd-anchor"></a>
+					<h3>message<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">message<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/ce889dd/src/alertManager/interfaces.ts#L40">src/alertManager/interfaces.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/c020a6f/src/alertManager/IAlertMessage.d.ts#L18">src/alertManager/IAlertMessage.d.ts:18</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter-index-signature">
-								<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">string</span></h5>
-							</li>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Telegram API message ID</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="userid" class="tsd-anchor"></a>
+					<h3>user<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">user<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/c020a6f/src/alertManager/IAlertMessage.d.ts#L12">src/alertManager/IAlertMessage.d.ts:12</a></li>
 						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Telegram API user ID</p>
+						</div>
 					</div>
 				</section>
 			</section>
@@ -141,45 +169,33 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/adminonly.html">Admin<wbr>Only</a>
-					</li>
 					<li class="current tsd-kind-module">
 						<a href="../modules/alertmanager.html">Alert<wbr>Manager</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/bot.html">Bot</a>
 					</li>
+					<li class=" tsd-kind-namespace">
+						<a href="../modules/nodejs.html">NodeJS</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/useronly.html">User<wbr>Only</a>
+					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="../modules/alertmanager.html#alertinfo" class="tsd-kind-icon">Alert<wbr>Info</a>
+						<a href="../modules/alertmanager.html#ialertmanagercontext" class="tsd-kind-icon">IAlert<wbr>Manager<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="../modules/alertmanager.html#alertmanagercontext" class="tsd-kind-icon">Alert<wbr>Manager<wbr>Context</a>
-					</li>
-					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="../modules/alertmanager.html#alertmanagermiddleware" class="tsd-kind-icon">Alert<wbr>Manager<wbr>Middleware</a>
-					</li>
-					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="../modules/alertmanager.html#alertmanagerurls" class="tsd-kind-icon">Alert<wbr>Manager<wbr>Urls</a>
-					</li>
-					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="../modules/alertmanager.html#alertupdate" class="tsd-kind-icon">Alert<wbr>Update</a>
-					</li>
-					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="../modules/alertmanager.html#callbackdata" class="tsd-kind-icon">Callback<wbr>Data</a>
-					</li>
-					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="../modules/alertmanager.html#labels" class="tsd-kind-icon">Labels</a>
+						<a href="../modules/alertmanager.html#alertmanagercomposer" class="tsd-kind-icon">alert<wbr>Manager<wbr>Composer</a>
 					</li>
 					<li class=" tsd-kind-reference tsd-parent-kind-module">
 						<a href="../modules/alertmanager.html#setupalertmanagercontext" class="tsd-kind-icon">setup<wbr>Alert<wbr>Manager<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="../enums/alertmanager.alertmanagerpredicates.html" class="tsd-kind-icon">Alert<wbr>Manager<wbr>Predicates</a>
+						<a href="../enums/alertmanager.ialertmanagerpredicates.html" class="tsd-kind-icon">IAlert<wbr>Manager<wbr>Predicates</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-module">
 						<a href="../classes/alertmanager.alert.html" class="tsd-kind-icon">Alert</a>
@@ -188,43 +204,67 @@
 						<a href="../classes/alertmanager.alertmanager-1.html" class="tsd-kind-icon">Alert<wbr>Manager</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="alertmanager.alertinfo-1.html" class="tsd-kind-icon">Alert<wbr>Info</a>
+						<a href="alertmanager.ialertinfo.html" class="tsd-kind-icon">IAlert<wbr>Info</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="alertmanager.alertmanagercontext-1.html" class="tsd-kind-icon">Alert<wbr>Manager<wbr>Context</a>
+						<a href="alertmanager.ialertmanagercontext-1.html" class="tsd-kind-icon">IAlert<wbr>Manager<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="alertmanager.alertmanagerurls-1.html" class="tsd-kind-icon">Alert<wbr>Manager<wbr>Urls</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="alertmanager.alertmessage.html" class="tsd-kind-icon">Alert<wbr>Message</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="alertmanager.alertupdate-1.html" class="tsd-kind-icon">Alert<wbr>Update</a>
+						<a href="alertmanager.ialertmanagerurls.html" class="tsd-kind-icon">IAlert<wbr>Manager<wbr>Urls</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="alertmanager.callbackdata-1.html" class="tsd-kind-icon">Callback<wbr>Data</a>
+						<a href="alertmanager.ialertmessage.html" class="tsd-kind-icon">IAlert<wbr>Message</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="alertmanager.callbackdata-1.html#do" class="tsd-kind-icon">do</a>
+								<a href="alertmanager.ialertmessage.html#alerthash" class="tsd-kind-icon">alert<wbr>Hash</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="alertmanager.callbackdata-1.html#module" class="tsd-kind-icon">module</a>
+								<a href="alertmanager.ialertmessage.html#chatid" class="tsd-kind-icon">chat<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="alertmanager.callbackdata-1.html#params" class="tsd-kind-icon">params</a>
+								<a href="alertmanager.ialertmessage.html#messageid" class="tsd-kind-icon">message<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="alertmanager.ialertmessage.html#userid" class="tsd-kind-icon">user<wbr>Id</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="alertmanager.ialertupdate.html" class="tsd-kind-icon">IAlert<wbr>Update</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="alertmanager.icallbackdata.html" class="tsd-kind-icon">ICallback<wbr>Data</a>
+					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="../modules/alertmanager.html#labels-1" class="tsd-kind-icon">Labels</a>
+						<a href="../modules/alertmanager.html#ilabels" class="tsd-kind-icon">ILabels</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-module">
-						<a href="../modules/alertmanager.html#alertmanagermiddleware-1" class="tsd-kind-icon">Alert<wbr>Manager<wbr>Middleware</a>
+						<a href="../modules/alertmanager.html#alertmanagercomposer-1" class="tsd-kind-icon">alert<wbr>Manager<wbr>Composer</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="../modules/alertmanager.html#alertmanagerdbpath" class="tsd-kind-icon">alert<wbr>Manager<wbr>DbPath</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="../modules/alertmanager.html#alertsdbpath" class="tsd-kind-icon">alerts<wbr>DbPath</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="../modules/alertmanager.html#externalurl" class="tsd-kind-icon">external<wbr>Url</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="../modules/alertmanager.html#internalurl" class="tsd-kind-icon">internal<wbr>Url</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="../modules/alertmanager.html#templatepath" class="tsd-kind-icon">template<wbr>Path</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="../modules/alertmanager.html#alertmanagercbmiddleware" class="tsd-kind-icon">alert<wbr>ManagerCBMiddleware</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="../modules/alertmanager.html#alertmanagermiddleware" class="tsd-kind-icon">alert<wbr>Manager<wbr>Middleware</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
 						<a href="../modules/alertmanager.html#decodefromstring" class="tsd-kind-icon">decode<wbr>From<wbr>String</a>

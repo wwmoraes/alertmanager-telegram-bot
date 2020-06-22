@@ -1,7 +1,13 @@
+/**
+ * @packageDocumentation
+ * @module AlertManager
+ */
+
 import {IAlertManagerContext} from "./IAlertManagerContext";
 import {MiddlewareFn} from "telegraf/typings/composer";
 
-export const alertManagerCBMiddleware: MiddlewareFn<IAlertManagerContext> = (ctx: IAlertManagerContext, next): Promise<void> => {
+export const alertManagerCBMiddleware: MiddlewareFn<IAlertManagerContext> =
+(ctx: IAlertManagerContext, next): Promise<void> => {
   // No chat, move along
   console.info("[AlertManager] checking if the request came from a chat...");
   if (typeof ctx.chat === "undefined") {

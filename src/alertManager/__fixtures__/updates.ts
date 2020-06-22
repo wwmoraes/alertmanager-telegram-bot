@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module AlertManager
+ */
+
 import {IAlertUpdate} from "../IAlertUpdate";
 
 export const validAlertUpdate: IAlertUpdate = {

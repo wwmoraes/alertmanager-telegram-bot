@@ -1,8 +1,14 @@
+/**
+ * @packageDocumentation
+ * @module AlertManager
+ */
+
 import {IAlertManagerContext} from "./IAlertManagerContext";
 import {Alert} from "./Alert";
 import {MiddlewareFn} from "telegraf/typings/composer";
 
-export const alertManagerMiddleware: MiddlewareFn<IAlertManagerContext> = (ctx: IAlertManagerContext, next): Promise<void> => {
+export const alertManagerMiddleware: MiddlewareFn<IAlertManagerContext> =
+(ctx: IAlertManagerContext, next): Promise<void> => {
   // Pass-through in case it is not an alertmanager update
   console.info("[AlertManager] checking if update has a known type...");
   if (typeof ctx.updateType !== "undefined") {

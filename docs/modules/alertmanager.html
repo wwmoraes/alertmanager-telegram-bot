@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AlertManager | alertmanager-telegram-bot</title>
-	<meta name="description" content="Documentation for alertmanager-telegram-bot">
+	<title>AlertManager | AlertManager Telegram Bot</title>
+	<meta name="description" content="Documentation for AlertManager Telegram Bot">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 	<link rel="stylesheet" href="../assets/css/dark.css">
@@ -23,7 +23,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">alertmanager-telegram-bot</a>
+					<a href="../index.html" class="title">AlertManager Telegram Bot</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -39,8 +39,6 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 							<input type="checkbox" id="tsd-filter-only-exported" />
 							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
@@ -67,16 +65,6 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>middleware that handles Prometheus Alertmanager alerts, with a stateful context
-							to provide interactions such as silencing and visualization of related alerts,
-							silences created and generator URLs (e.g. graphs) through inline keyboards and NLP.
-						This enables the users to act upon the alert directly through the chat.</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
@@ -84,20 +72,15 @@
 						<section class="tsd-index-section ">
 							<h3>References</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="alertmanager.html#alertinfo" class="tsd-kind-icon">Alert<wbr>Info</a></li>
-								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="alertmanager.html#alertmanagercontext" class="tsd-kind-icon">Alert<wbr>Manager<wbr>Context</a></li>
-								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="alertmanager.html#alertmanagermiddleware" class="tsd-kind-icon">Alert<wbr>Manager<wbr>Middleware</a></li>
-								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="alertmanager.html#alertmanagerurls" class="tsd-kind-icon">Alert<wbr>Manager<wbr>Urls</a></li>
-								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="alertmanager.html#alertupdate" class="tsd-kind-icon">Alert<wbr>Update</a></li>
-								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="alertmanager.html#callbackdata" class="tsd-kind-icon">Callback<wbr>Data</a></li>
-								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="alertmanager.html#labels" class="tsd-kind-icon">Labels</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="alertmanager.html#ialertmanagercontext" class="tsd-kind-icon">IAlert<wbr>Manager<wbr>Context</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="alertmanager.html#alertmanagercomposer" class="tsd-kind-icon">alert<wbr>Manager<wbr>Composer</a></li>
 								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="alertmanager.html#setupalertmanagercontext" class="tsd-kind-icon">setup<wbr>Alert<wbr>Manager<wbr>Context</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Enumerations</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-enum tsd-parent-kind-module"><a href="../enums/alertmanager.alertmanagerpredicates.html" class="tsd-kind-icon">Alert<wbr>Manager<wbr>Predicates</a></li>
+								<li class="tsd-kind-enum tsd-parent-kind-module"><a href="../enums/alertmanager.ialertmanagerpredicates.html" class="tsd-kind-icon">IAlert<wbr>Manager<wbr>Predicates</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -108,34 +91,38 @@
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
-							<h3>Other Interfaces</h3>
+							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/alertmanager.alertinfo-1.html" class="tsd-kind-icon">Alert<wbr>Info</a></li>
-								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/alertmanager.alertmanagercontext-1.html" class="tsd-kind-icon">Alert<wbr>Manager<wbr>Context</a></li>
-								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/alertmanager.alertmanagerurls-1.html" class="tsd-kind-icon">Alert<wbr>Manager<wbr>Urls</a></li>
-								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/alertmanager.alertupdate-1.html" class="tsd-kind-icon">Alert<wbr>Update</a></li>
-								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/alertmanager.callbackdata-1.html" class="tsd-kind-icon">Callback<wbr>Data</a></li>
-							</ul>
-							<h3>levelgraph Interfaces</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/alertmanager.alertmessage.html" class="tsd-kind-icon">Alert<wbr>Message</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/alertmanager.ialertinfo.html" class="tsd-kind-icon">IAlert<wbr>Info</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/alertmanager.ialertmanagercontext-1.html" class="tsd-kind-icon">IAlert<wbr>Manager<wbr>Context</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/alertmanager.ialertmanagerurls.html" class="tsd-kind-icon">IAlert<wbr>Manager<wbr>Urls</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/alertmanager.ialertmessage.html" class="tsd-kind-icon">IAlert<wbr>Message</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/alertmanager.ialertupdate.html" class="tsd-kind-icon">IAlert<wbr>Update</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/alertmanager.icallbackdata.html" class="tsd-kind-icon">ICallback<wbr>Data</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="alertmanager.html#labels-1" class="tsd-kind-icon">Labels</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="alertmanager.html#ilabels" class="tsd-kind-icon">ILabels</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Variables</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="alertmanager.html#alertmanagermiddleware-1" class="tsd-kind-icon">Alert<wbr>Manager<wbr>Middleware</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="alertmanager.html#alertmanagercomposer-1" class="tsd-kind-icon">alert<wbr>Manager<wbr>Composer</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="alertmanager.html#alertmanagerdbpath" class="tsd-kind-icon">alert<wbr>Manager<wbr>DbPath</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="alertmanager.html#alertsdbpath" class="tsd-kind-icon">alerts<wbr>DbPath</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="alertmanager.html#externalurl" class="tsd-kind-icon">external<wbr>Url</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="alertmanager.html#internalurl" class="tsd-kind-icon">internal<wbr>Url</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="alertmanager.html#templatepath" class="tsd-kind-icon">template<wbr>Path</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="alertmanager.html#alertmanagercbmiddleware" class="tsd-kind-icon">alert<wbr>ManagerCBMiddleware</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="alertmanager.html#alertmanagermiddleware" class="tsd-kind-icon">alert<wbr>Manager<wbr>Middleware</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="alertmanager.html#decodefromstring" class="tsd-kind-icon">decode<wbr>From<wbr>String</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="alertmanager.html#encodetostring" class="tsd-kind-icon">encode<wbr>ToString</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module"><a href="alertmanager.html#setupalertmanagercontext-1" class="tsd-kind-icon">setup<wbr>Alert<wbr>Manager<wbr>Context</a></li>
@@ -147,39 +134,14 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>References</h2>
 				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
-					<a name="alertinfo" class="tsd-anchor"></a>
-					<h3>Alert<wbr>Info</h3>
-					Re-exports <a href="../interfaces/alertmanager.alertinfo-1.html">AlertInfo</a>
+					<a name="ialertmanagercontext" class="tsd-anchor"></a>
+					<h3>IAlert<wbr>Manager<wbr>Context</h3>
+					Re-exports <a href="../interfaces/alertmanager.ialertmanagercontext-1.html">IAlertManagerContext</a>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
-					<a name="alertmanagercontext" class="tsd-anchor"></a>
-					<h3>Alert<wbr>Manager<wbr>Context</h3>
-					Re-exports <a href="../interfaces/alertmanager.alertmanagercontext-1.html">AlertManagerContext</a>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
-					<a name="alertmanagermiddleware" class="tsd-anchor"></a>
-					<h3>Alert<wbr>Manager<wbr>Middleware</h3>
-					Re-exports <a href="alertmanager.html#alertmanagermiddleware-1">AlertManagerMiddleware</a>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
-					<a name="alertmanagerurls" class="tsd-anchor"></a>
-					<h3>Alert<wbr>Manager<wbr>Urls</h3>
-					Re-exports <a href="../interfaces/alertmanager.alertmanagerurls-1.html">AlertManagerUrls</a>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
-					<a name="alertupdate" class="tsd-anchor"></a>
-					<h3>Alert<wbr>Update</h3>
-					Re-exports <a href="../interfaces/alertmanager.alertupdate-1.html">AlertUpdate</a>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
-					<a name="callbackdata" class="tsd-anchor"></a>
-					<h3>Callback<wbr>Data</h3>
-					Re-exports <a href="../interfaces/alertmanager.callbackdata-1.html">CallbackData</a>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
-					<a name="labels" class="tsd-anchor"></a>
-					<h3>Labels</h3>
-					Re-exports <a href="alertmanager.html#labels-1">Labels</a>
+					<a name="alertmanagercomposer" class="tsd-anchor"></a>
+					<h3>alert<wbr>Manager<wbr>Composer</h3>
+					Re-exports <a href="alertmanager.html#alertmanagercomposer-1">alertManagerComposer</a>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
 					<a name="setupalertmanagercontext" class="tsd-anchor"></a>
@@ -190,12 +152,12 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Type aliases</h2>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
-					<a name="labels-1" class="tsd-anchor"></a>
-					<h3>Labels</h3>
-					<div class="tsd-signature tsd-kind-icon">Labels<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
+					<a name="ilabels" class="tsd-anchor"></a>
+					<h3>ILabels</h3>
+					<div class="tsd-signature tsd-kind-icon">ILabels<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/ce889dd/src/alertManager/interfaces.ts#L6">src/alertManager/interfaces.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/c020a6f/src/alertManager/ILabels.d.ts#L6">src/alertManager/ILabels.d.ts:6</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -211,18 +173,144 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Variables</h2>
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
-					<a name="alertmanagermiddleware-1" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> Alert<wbr>Manager<wbr>Middleware</h3>
-					<div class="tsd-signature tsd-kind-icon">Alert<wbr>Manager<wbr>Middleware<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Composer</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/alertmanager.alertmanagercontext-1.html" class="tsd-signature-type">AlertManagerContext</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new Composer&lt;AlertManagerContext&gt;()</span></div>
+					<a name="alertmanagercomposer-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> alert<wbr>Manager<wbr>Composer</h3>
+					<div class="tsd-signature tsd-kind-icon">alert<wbr>Manager<wbr>Composer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Composer</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/alertmanager.ialertmanagercontext-1.html" class="tsd-signature-type">IAlertManagerContext</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new Composer&lt;IAlertManagerContext&gt;()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/ce889dd/src/alertManager/middleware.ts#L11">src/alertManager/middleware.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/c020a6f/src/alertManager/alertManagerComposer.ts#L11">src/alertManager/alertManagerComposer.ts:11</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="alertmanagerdbpath" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> alert<wbr>Manager<wbr>DbPath</h3>
+					<div class="tsd-signature tsd-kind-icon">alert<wbr>Manager<wbr>DbPath<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = process.env.ALERTMANAGER_DB_PATH ||&quot;data/alertmanager&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/c020a6f/src/alertManager/config.ts#L7">src/alertManager/config.ts:7</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="alertsdbpath" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> alerts<wbr>DbPath</h3>
+					<div class="tsd-signature tsd-kind-icon">alerts<wbr>DbPath<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = process.env.ALERTS_DB_PATH ||&quot;data/alerts&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/c020a6f/src/alertManager/config.ts#L10">src/alertManager/config.ts:10</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="externalurl" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> external<wbr>Url</h3>
+					<div class="tsd-signature tsd-kind-icon">external<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">URL</span><span class="tsd-signature-symbol"> = new URL(process.env.EXTERNAL_URL ||&quot;http://127.0.0.1:9093&quot;)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/c020a6f/src/alertManager/config.ts#L15">src/alertManager/config.ts:15</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="internalurl" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> internal<wbr>Url</h3>
+					<div class="tsd-signature tsd-kind-icon">internal<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = process.env.INTERNAL_URL</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/c020a6f/src/alertManager/config.ts#L13">src/alertManager/config.ts:13</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="templatepath" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> template<wbr>Path</h3>
+					<div class="tsd-signature tsd-kind-icon">template<wbr>Path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = process.env.TEMPLATE_FILE ||&quot;default.tmpl&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/c020a6f/src/alertManager/config.ts#L18">src/alertManager/config.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="alertmanagercbmiddleware" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> alert<wbr>ManagerCBMiddleware</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">alert<wbr>ManagerCBMiddleware<span class="tsd-signature-symbol">(</span>ctx<span class="tsd-signature-symbol">: </span><a href="../interfaces/alertmanager.ialertmanagercontext-1.html" class="tsd-signature-type">IAlertManagerContext</a>, next<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/c020a6f/src/alertManager/alertManagerCBMiddleware.ts#L9">src/alertManager/alertManagerCBMiddleware.ts:9</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>ctx: <a href="../interfaces/alertmanager.ialertmanagercontext-1.html" class="tsd-signature-type">IAlertManagerContext</a></h5>
+								</li>
+								<li>
+									<h5>next: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="alertmanagermiddleware" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> alert<wbr>Manager<wbr>Middleware</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">alert<wbr>Manager<wbr>Middleware<span class="tsd-signature-symbol">(</span>ctx<span class="tsd-signature-symbol">: </span><a href="../interfaces/alertmanager.ialertmanagercontext-1.html" class="tsd-signature-type">IAlertManagerContext</a>, next<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/c020a6f/src/alertManager/alertManagerMiddleware.ts#L10">src/alertManager/alertManagerMiddleware.ts:10</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>ctx: <a href="../interfaces/alertmanager.ialertmanagercontext-1.html" class="tsd-signature-type">IAlertManagerContext</a></h5>
+								</li>
+								<li>
+									<h5>next: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
 					<a name="decodefromstring" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> decode<wbr>From<wbr>String</h3>
@@ -233,7 +321,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/ce889dd/src/alertManager/messagepack.ts#L11">src/alertManager/messagepack.ts:11</a></li>
+									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/c020a6f/src/alertManager/messagepack.ts#L11">src/alertManager/messagepack.ts:11</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -256,19 +344,19 @@
 					<a name="encodetostring" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> encode<wbr>ToString</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">encode<wbr>ToString<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">encode<wbr>ToString<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/ce889dd/src/alertManager/messagepack.ts#L8">src/alertManager/messagepack.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/c020a6f/src/alertManager/messagepack.ts#L8">src/alertManager/messagepack.ts:8</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>obj: <span class="tsd-signature-type">object</span></h5>
+									<h5>obj: <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -279,22 +367,22 @@
 					<a name="setupalertmanagercontext-1" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> setup<wbr>Alert<wbr>Manager<wbr>Context</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">setup<wbr>Alert<wbr>Manager<wbr>Context<span class="tsd-signature-symbol">(</span>bot<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Telegraf</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/alertmanager.alertmanagercontext-1.html" class="tsd-signature-type">AlertManagerContext</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">setup<wbr>Alert<wbr>Manager<wbr>Context<span class="tsd-signature-symbol">(</span>bot<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Telegraf</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/alertmanager.ialertmanagercontext-1.html" class="tsd-signature-type">IAlertManagerContext</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/ce889dd/src/alertManager/middleware.ts#L59">src/alertManager/middleware.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/c020a6f/src/alertManager/setupAlertManagerContext.ts#L11">src/alertManager/setupAlertManagerContext.ts:11</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>bot: <span class="tsd-signature-type">Telegraf</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/alertmanager.alertmanagercontext-1.html" class="tsd-signature-type">AlertManagerContext</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>bot: <span class="tsd-signature-type">Telegraf</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/alertmanager.ialertmanagercontext-1.html" class="tsd-signature-type">IAlertManagerContext</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -306,45 +394,33 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-module">
-						<a href="adminonly.html">Admin<wbr>Only</a>
-					</li>
 					<li class="current tsd-kind-module">
 						<a href="alertmanager.html">Alert<wbr>Manager</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="bot.html">Bot</a>
 					</li>
+					<li class=" tsd-kind-namespace">
+						<a href="nodejs.html">NodeJS</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="useronly.html">User<wbr>Only</a>
+					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="alertmanager.html#alertinfo" class="tsd-kind-icon">Alert<wbr>Info</a>
+						<a href="alertmanager.html#ialertmanagercontext" class="tsd-kind-icon">IAlert<wbr>Manager<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="alertmanager.html#alertmanagercontext" class="tsd-kind-icon">Alert<wbr>Manager<wbr>Context</a>
-					</li>
-					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="alertmanager.html#alertmanagermiddleware" class="tsd-kind-icon">Alert<wbr>Manager<wbr>Middleware</a>
-					</li>
-					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="alertmanager.html#alertmanagerurls" class="tsd-kind-icon">Alert<wbr>Manager<wbr>Urls</a>
-					</li>
-					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="alertmanager.html#alertupdate" class="tsd-kind-icon">Alert<wbr>Update</a>
-					</li>
-					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="alertmanager.html#callbackdata" class="tsd-kind-icon">Callback<wbr>Data</a>
-					</li>
-					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="alertmanager.html#labels" class="tsd-kind-icon">Labels</a>
+						<a href="alertmanager.html#alertmanagercomposer" class="tsd-kind-icon">alert<wbr>Manager<wbr>Composer</a>
 					</li>
 					<li class=" tsd-kind-reference tsd-parent-kind-module">
 						<a href="alertmanager.html#setupalertmanagercontext" class="tsd-kind-icon">setup<wbr>Alert<wbr>Manager<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-enum tsd-parent-kind-module">
-						<a href="../enums/alertmanager.alertmanagerpredicates.html" class="tsd-kind-icon">Alert<wbr>Manager<wbr>Predicates</a>
+						<a href="../enums/alertmanager.ialertmanagerpredicates.html" class="tsd-kind-icon">IAlert<wbr>Manager<wbr>Predicates</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-module">
 						<a href="../classes/alertmanager.alert.html" class="tsd-kind-icon">Alert</a>
@@ -353,28 +429,49 @@
 						<a href="../classes/alertmanager.alertmanager-1.html" class="tsd-kind-icon">Alert<wbr>Manager</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="../interfaces/alertmanager.alertinfo-1.html" class="tsd-kind-icon">Alert<wbr>Info</a>
+						<a href="../interfaces/alertmanager.ialertinfo.html" class="tsd-kind-icon">IAlert<wbr>Info</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="../interfaces/alertmanager.alertmanagercontext-1.html" class="tsd-kind-icon">Alert<wbr>Manager<wbr>Context</a>
+						<a href="../interfaces/alertmanager.ialertmanagercontext-1.html" class="tsd-kind-icon">IAlert<wbr>Manager<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="../interfaces/alertmanager.alertmanagerurls-1.html" class="tsd-kind-icon">Alert<wbr>Manager<wbr>Urls</a>
+						<a href="../interfaces/alertmanager.ialertmanagerurls.html" class="tsd-kind-icon">IAlert<wbr>Manager<wbr>Urls</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="../interfaces/alertmanager.alertmessage.html" class="tsd-kind-icon">Alert<wbr>Message</a>
+						<a href="../interfaces/alertmanager.ialertmessage.html" class="tsd-kind-icon">IAlert<wbr>Message</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="../interfaces/alertmanager.alertupdate-1.html" class="tsd-kind-icon">Alert<wbr>Update</a>
+						<a href="../interfaces/alertmanager.ialertupdate.html" class="tsd-kind-icon">IAlert<wbr>Update</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="../interfaces/alertmanager.callbackdata-1.html" class="tsd-kind-icon">Callback<wbr>Data</a>
+						<a href="../interfaces/alertmanager.icallbackdata.html" class="tsd-kind-icon">ICallback<wbr>Data</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="alertmanager.html#labels-1" class="tsd-kind-icon">Labels</a>
+						<a href="alertmanager.html#ilabels" class="tsd-kind-icon">ILabels</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-module">
-						<a href="alertmanager.html#alertmanagermiddleware-1" class="tsd-kind-icon">Alert<wbr>Manager<wbr>Middleware</a>
+						<a href="alertmanager.html#alertmanagercomposer-1" class="tsd-kind-icon">alert<wbr>Manager<wbr>Composer</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="alertmanager.html#alertmanagerdbpath" class="tsd-kind-icon">alert<wbr>Manager<wbr>DbPath</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="alertmanager.html#alertsdbpath" class="tsd-kind-icon">alerts<wbr>DbPath</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="alertmanager.html#externalurl" class="tsd-kind-icon">external<wbr>Url</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="alertmanager.html#internalurl" class="tsd-kind-icon">internal<wbr>Url</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="alertmanager.html#templatepath" class="tsd-kind-icon">template<wbr>Path</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="alertmanager.html#alertmanagercbmiddleware" class="tsd-kind-icon">alert<wbr>ManagerCBMiddleware</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="alertmanager.html#alertmanagermiddleware" class="tsd-kind-icon">alert<wbr>Manager<wbr>Middleware</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
 						<a href="alertmanager.html#decodefromstring" class="tsd-kind-icon">decode<wbr>From<wbr>String</a>

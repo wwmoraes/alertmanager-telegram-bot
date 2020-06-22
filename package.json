@@ -12,7 +12,7 @@
     "build": "tsc",
     "analyze": "codeclimate analyze",
     "lint": "eslint -c .eslintrc.yml --ext .ts src",
-    "docs": "typedoc --out docs src",
+    "docs": "typedoc --includeDeclarations --excludeExternals --name 'AlertManager Telegram Bot' --exclude '**/__fixtures__/*' --exclude '**/*.spec.ts' src",
     "test": "jest --verbose --all",
     "test:debug": "node --inspect-brk -r ts-node/register node_modules/.bin/jest --runInBand",
     "coverage": "jest --verbose --all --coverage",

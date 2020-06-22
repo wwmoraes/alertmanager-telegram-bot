@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module AlertManager
+ */
+
 /* eslint-disable global-require */
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-process-env */
@@ -43,7 +48,7 @@ describe("instance creation", () => {
   });
 
   it("should instantiate successfully", async () => {
-    const AlertManager = await (await import("./alertmanager")).AlertManager;
+    const AlertManager = await (await import("./AlertManager")).AlertManager;
 
     let alertManagerInstance: typeof AlertManager.prototype|undefined = undefined;
     let error: Error|undefined = undefined;
@@ -109,7 +114,7 @@ describe("instance creation", () => {
       }
     } as unknown as IAlertManagerContext;
 
-    const AlertManager = await (await import("./alertmanager")).AlertManager;
+    const AlertManager = await (await import("./AlertManager")).AlertManager;
 
     let alertManagerInstance: typeof AlertManager.prototype|undefined = undefined;
     let error: Error|undefined = undefined;
@@ -154,7 +159,7 @@ describe("callback invalid data handling", () => {
     process.env.ALERTMANAGER_DB_PATH = alertManagerDbPath();
     process.env.ALERTS_DB_PATH = alertsDbPath();
 
-    const AlertManager = await (await import("./alertmanager")).AlertManager;
+    const AlertManager = await (await import("./AlertManager")).AlertManager;
 
     let alertManagerInstance: typeof AlertManager.prototype|undefined = undefined;
     let error: Error|undefined = undefined;
@@ -176,7 +181,7 @@ describe("callback invalid data handling", () => {
   });
 
   it("should error on empty callback data", async () => {
-    const AlertManager = await (await import("./alertmanager")).AlertManager;
+    const AlertManager = await (await import("./AlertManager")).AlertManager;
     let alertManagerInstance: typeof AlertManager.prototype|undefined = undefined;
     let error: Error|undefined = undefined;
 
@@ -197,7 +202,7 @@ describe("callback invalid data handling", () => {
   });
 
   it("should error on empty callback message", async () => {
-    const AlertManager = await (await import("./alertmanager")).AlertManager;
+    const AlertManager = await (await import("./AlertManager")).AlertManager;
     let alertManagerInstance: typeof AlertManager.prototype|undefined = undefined;
     let error: Error|undefined = undefined;
 

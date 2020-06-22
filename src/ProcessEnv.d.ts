@@ -1,4 +1,10 @@
-declare namespace NodeJS {
+/**
+  * @packageDocumentation
+  * @module NodeJS
+  */
+
+/** @module NodeJS */
+ declare namespace NodeJS {
   interface ProcessEnv {
     NODE_ENV?: string;
     TEMPLATE_FILE?: string;

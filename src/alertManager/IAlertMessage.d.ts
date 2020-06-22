@@ -1,9 +1,11 @@
 /**
- * Materialization structure containing the full chain of ids for an alert
  * @packageDocumentation
  * @module AlertManager
  */
 
+/**
+ * Materialization structure containing the full chain of ids for an alert
+ */
 export interface IAlertMessage {
 
   /** Telegram API user ID */

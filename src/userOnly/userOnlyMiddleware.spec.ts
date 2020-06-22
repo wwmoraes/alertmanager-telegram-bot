@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module UserOnly
+ */
+
 import userOnlyMiddleware from "./userOnlyMiddleware";
 import IContext from "./IUserOnlyContext";
 

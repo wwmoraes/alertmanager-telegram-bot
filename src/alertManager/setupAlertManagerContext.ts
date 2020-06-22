@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module AlertManager
+ */
+
 import Telegraf from "telegraf";
 import {IAlertManagerContext} from "./IAlertManagerContext";
 import {AlertManager} from "./AlertManager";

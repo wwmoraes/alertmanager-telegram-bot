@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AdminOnly | alertmanager-telegram-bot</title>
-	<meta name="description" content="Documentation for alertmanager-telegram-bot">
+	<title>UserOnly | AlertManager Telegram Bot</title>
+	<meta name="description" content="Documentation for AlertManager Telegram Bot">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 	<link rel="stylesheet" href="../assets/css/dark.css">
@@ -23,7 +23,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">alertmanager-telegram-bot</a>
+					<a href="../index.html" class="title">AlertManager Telegram Bot</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -39,8 +39,6 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 							<input type="checkbox" id="tsd-filter-only-exported" />
 							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
@@ -57,10 +55,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="adminonly.html">AdminOnly</a>
+					<a href="useronly.html">UserOnly</a>
 				</li>
 			</ul>
-			<h1>Module AdminOnly</h1>
+			<h1>Module UserOnly</h1>
 		</div>
 	</div>
 </header>
@@ -82,20 +80,20 @@
 						<section class="tsd-index-section ">
 							<h3>References</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="adminonly.html#adminonlycontext" class="tsd-kind-icon">Admin<wbr>Only<wbr>Context</a></li>
-								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="adminonly.html#adminonlymiddleware" class="tsd-kind-icon">Admin<wbr>Only<wbr>Middleware</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="useronly.html#iuseronlycontext" class="tsd-kind-icon">IUser<wbr>Only<wbr>Context</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="useronly.html#useronlymiddleware" class="tsd-kind-icon">user<wbr>Only<wbr>Middleware</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/adminonly.adminonlycontext-1.html" class="tsd-kind-icon">Admin<wbr>Only<wbr>Context</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-module"><a href="../interfaces/useronly.iuseronlycontext-1.html" class="tsd-kind-icon">IUser<wbr>Only<wbr>Context</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="adminonly.html#adminonlymiddleware-1" class="tsd-kind-icon">Admin<wbr>Only<wbr>Middleware</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="useronly.html#useronlymiddleware-1" class="tsd-kind-icon">user<wbr>Only<wbr>Middleware</a></li>
 							</ul>
 						</section>
 					</div>
@@ -104,40 +102,41 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>References</h2>
 				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
-					<a name="adminonlycontext" class="tsd-anchor"></a>
-					<h3>Admin<wbr>Only<wbr>Context</h3>
-					Re-exports <a href="../interfaces/adminonly.adminonlycontext-1.html">AdminOnlyContext</a>
+					<a name="iuseronlycontext" class="tsd-anchor"></a>
+					<h3>IUser<wbr>Only<wbr>Context</h3>
+					Re-exports <a href="../interfaces/useronly.iuseronlycontext-1.html">IUserOnlyContext</a>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
-					<a name="adminonlymiddleware" class="tsd-anchor"></a>
-					<h3>Admin<wbr>Only<wbr>Middleware</h3>
-					Re-exports <a href="adminonly.html#adminonlymiddleware-1">AdminOnlyMiddleware</a>
+					<a name="useronlymiddleware" class="tsd-anchor"></a>
+					<h3>user<wbr>Only<wbr>Middleware</h3>
+					Re-exports <a href="useronly.html#useronlymiddleware-1">userOnlyMiddleware</a>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="adminonlymiddleware-1" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> Admin<wbr>Only<wbr>Middleware</h3>
+					<a name="useronlymiddleware-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> user<wbr>Only<wbr>Middleware</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">Admin<wbr>Only<wbr>Middleware<span class="tsd-signature-symbol">(</span>ctx<span class="tsd-signature-symbol">: </span><a href="../interfaces/adminonly.adminonlycontext-1.html" class="tsd-signature-type">AdminOnlyContext</a>, next<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">user<wbr>Only<wbr>Middleware<span class="tsd-signature-symbol">(</span>ctx<span class="tsd-signature-symbol">: </span><a href="../interfaces/useronly.iuseronlycontext-1.html" class="tsd-signature-type">IUserOnlyContext</a>, next<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/ce889dd/src/adminOnly/middleware.ts#L12">src/adminOnly/middleware.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/c020a6f/src/userOnly/userOnlyMiddleware.ts#L14">src/userOnly/userOnlyMiddleware.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>only allows messages from the <a href="../interfaces/adminonly.adminonlycontext-1.html#adminuserids">provided user IDs</a></p>
+									<p>Only allows messages from the
+									<a href="../interfaces/useronly.iuseronlycontext-1.html#userids">provided user IDs</a></p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>ctx: <a href="../interfaces/adminonly.adminonlycontext-1.html" class="tsd-signature-type">AdminOnlyContext</a></h5>
+									<h5>ctx: <a href="../interfaces/useronly.iuseronlycontext-1.html" class="tsd-signature-type">IUserOnlyContext</a></h5>
 								</li>
 								<li>
 									<h5>next: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h5>
@@ -155,7 +154,7 @@
 									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -167,30 +166,33 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class="current tsd-kind-module">
-						<a href="adminonly.html">Admin<wbr>Only</a>
-					</li>
 					<li class=" tsd-kind-module">
 						<a href="alertmanager.html">Alert<wbr>Manager</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="bot.html">Bot</a>
 					</li>
+					<li class=" tsd-kind-namespace">
+						<a href="nodejs.html">NodeJS</a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="useronly.html">User<wbr>Only</a>
+					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="adminonly.html#adminonlycontext" class="tsd-kind-icon">Admin<wbr>Only<wbr>Context</a>
+						<a href="useronly.html#iuseronlycontext" class="tsd-kind-icon">IUser<wbr>Only<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="adminonly.html#adminonlymiddleware" class="tsd-kind-icon">Admin<wbr>Only<wbr>Middleware</a>
+						<a href="useronly.html#useronlymiddleware" class="tsd-kind-icon">user<wbr>Only<wbr>Middleware</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="../interfaces/adminonly.adminonlycontext-1.html" class="tsd-kind-icon">Admin<wbr>Only<wbr>Context</a>
+						<a href="../interfaces/useronly.iuseronlycontext-1.html" class="tsd-kind-icon">IUser<wbr>Only<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="adminonly.html#adminonlymiddleware-1" class="tsd-kind-icon">Admin<wbr>Only<wbr>Middleware</a>
+						<a href="useronly.html#useronlymiddleware-1" class="tsd-kind-icon">user<wbr>Only<wbr>Middleware</a>
 					</li>
 				</ul>
 			</nav>

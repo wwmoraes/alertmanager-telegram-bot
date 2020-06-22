@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AdminOnlyContext | alertmanager-telegram-bot</title>
-	<meta name="description" content="Documentation for alertmanager-telegram-bot">
+	<title>IUserOnlyContext | AlertManager Telegram Bot</title>
+	<meta name="description" content="Documentation for AlertManager Telegram Bot">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 	<link rel="stylesheet" href="../assets/css/dark.css">
@@ -23,7 +23,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">alertmanager-telegram-bot</a>
+					<a href="../index.html" class="title">AlertManager Telegram Bot</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -39,8 +39,6 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 							<input type="checkbox" id="tsd-filter-only-exported" />
 							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
@@ -57,13 +55,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/adminonly.html">AdminOnly</a>
+					<a href="../modules/useronly.html">UserOnly</a>
 				</li>
 				<li>
-					<a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>
+					<a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>
 				</li>
 			</ul>
-			<h1>Interface AdminOnlyContext</h1>
+			<h1>Interface IUserOnlyContext</h1>
 		</div>
 	</div>
 </header>
@@ -73,8 +71,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p><a href="../modules/adminonly.html">AdminOnly</a> bot context which contains a <a href="adminonly.adminonlycontext-1.html#adminuserids">list of user IDs</a>
-						to allow interaction with</p>
+						<p><a href="../modules/useronly.html">UserOnly</a> bot context which contains a
+						<a href="useronly.iuseronlycontext-1.html#userids">list of user IDs</a> to allow interaction with</p>
 					</div>
 				</div>
 			</section>
@@ -85,7 +83,7 @@
 						<span class="tsd-signature-type">TelegrafContext</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">AdminOnlyContext</span>
+								<span class="target">IUserOnlyContext</span>
 								<ul class="tsd-hierarchy">
 									<li>
 										<a href="bot.botcontext.html" class="tsd-signature-type">BotContext</a>
@@ -103,89 +101,89 @@
 						<section class="tsd-index-section tsd-is-inherited">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="adminonly.adminonlycontext-1.html#adminuserids" class="tsd-kind-icon">admin<wbr>User<wbr>Ids</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#botinfo" class="tsd-kind-icon">bot<wbr>Info</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#callbackquery" class="tsd-kind-icon">callback<wbr>Query</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#channelpost" class="tsd-kind-icon">channel<wbr>Post</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#chat" class="tsd-kind-icon">chat</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#choseninlineresult" class="tsd-kind-icon">chosen<wbr>Inline<wbr>Result</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#editedchannelpost" class="tsd-kind-icon">edited<wbr>Channel<wbr>Post</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#editedmessage" class="tsd-kind-icon">edited<wbr>Message</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#from" class="tsd-kind-icon">from</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#inlinequery" class="tsd-kind-icon">inline<wbr>Query</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#match" class="tsd-kind-icon">match</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#me" class="tsd-kind-icon">me</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#message" class="tsd-kind-icon">message</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#poll" class="tsd-kind-icon">poll</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#pollanswer" class="tsd-kind-icon">poll<wbr>Answer</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#precheckoutquery" class="tsd-kind-icon">pre<wbr>Checkout<wbr>Query</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#shippingquery" class="tsd-kind-icon">shipping<wbr>Query</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#telegram" class="tsd-kind-icon">telegram</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#tg" class="tsd-kind-icon">tg</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#update" class="tsd-kind-icon">update</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#updatesubtypes" class="tsd-kind-icon">update<wbr>Sub<wbr>Types</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#updatetype" class="tsd-kind-icon">update<wbr>Type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#botinfo" class="tsd-kind-icon">bot<wbr>Info</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#callbackquery" class="tsd-kind-icon">callback<wbr>Query</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#channelpost" class="tsd-kind-icon">channel<wbr>Post</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#chat" class="tsd-kind-icon">chat</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#choseninlineresult" class="tsd-kind-icon">chosen<wbr>Inline<wbr>Result</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#editedchannelpost" class="tsd-kind-icon">edited<wbr>Channel<wbr>Post</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#editedmessage" class="tsd-kind-icon">edited<wbr>Message</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#from" class="tsd-kind-icon">from</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#inlinequery" class="tsd-kind-icon">inline<wbr>Query</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#match" class="tsd-kind-icon">match</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#me" class="tsd-kind-icon">me</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#message" class="tsd-kind-icon">message</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#poll" class="tsd-kind-icon">poll</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#pollanswer" class="tsd-kind-icon">poll<wbr>Answer</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#precheckoutquery" class="tsd-kind-icon">pre<wbr>Checkout<wbr>Query</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#shippingquery" class="tsd-kind-icon">shipping<wbr>Query</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#telegram" class="tsd-kind-icon">telegram</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#tg" class="tsd-kind-icon">tg</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#update" class="tsd-kind-icon">update</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#updatesubtypes" class="tsd-kind-icon">update<wbr>Sub<wbr>Types</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#updatetype" class="tsd-kind-icon">update<wbr>Type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="useronly.iuseronlycontext-1.html#userids" class="tsd-kind-icon">user<wbr>Ids</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-inherited">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#addstickertoset" class="tsd-kind-icon">add<wbr>Sticker<wbr>ToSet</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#answercbquery" class="tsd-kind-icon">answer<wbr>CbQuery</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#answergamequery" class="tsd-kind-icon">answer<wbr>Game<wbr>Query</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#answerinlinequery" class="tsd-kind-icon">answer<wbr>Inline<wbr>Query</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#answerprecheckoutquery" class="tsd-kind-icon">answer<wbr>Pre<wbr>Checkout<wbr>Query</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#answershippingquery" class="tsd-kind-icon">answer<wbr>Shipping<wbr>Query</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#createnewstickerset" class="tsd-kind-icon">create<wbr>New<wbr>Sticker<wbr>Set</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#deletechatphoto" class="tsd-kind-icon">delete<wbr>Chat<wbr>Photo</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#deletemessage" class="tsd-kind-icon">delete<wbr>Message</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#deletestickerfromset" class="tsd-kind-icon">delete<wbr>Sticker<wbr>From<wbr>Set</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#editmessagecaption" class="tsd-kind-icon">edit<wbr>Message<wbr>Caption</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#editmessagelivelocation" class="tsd-kind-icon">edit<wbr>Message<wbr>Live<wbr>Location</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#editmessagemedia" class="tsd-kind-icon">edit<wbr>Message<wbr>Media</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#editmessagereplymarkup" class="tsd-kind-icon">edit<wbr>Message<wbr>Reply<wbr>Markup</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#editmessagetext" class="tsd-kind-icon">edit<wbr>Message<wbr>Text</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#exportchatinvitelink" class="tsd-kind-icon">export<wbr>Chat<wbr>Invite<wbr>Link</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#getchat" class="tsd-kind-icon">get<wbr>Chat</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#getchatadministrators" class="tsd-kind-icon">get<wbr>Chat<wbr>Administrators</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#getchatmember" class="tsd-kind-icon">get<wbr>Chat<wbr>Member</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#getchatmemberscount" class="tsd-kind-icon">get<wbr>Chat<wbr>Members<wbr>Count</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#getstickerset" class="tsd-kind-icon">get<wbr>Sticker<wbr>Set</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#kickchatmember" class="tsd-kind-icon">kick<wbr>Chat<wbr>Member</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#leavechat" class="tsd-kind-icon">leave<wbr>Chat</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#pinchatmessage" class="tsd-kind-icon">pin<wbr>Chat<wbr>Message</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#promotechatmember" class="tsd-kind-icon">promote<wbr>Chat<wbr>Member</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#reply" class="tsd-kind-icon">reply</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#replywithaudio" class="tsd-kind-icon">reply<wbr>With<wbr>Audio</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#replywithchataction" class="tsd-kind-icon">reply<wbr>With<wbr>Chat<wbr>Action</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#replywithdice" class="tsd-kind-icon">reply<wbr>With<wbr>Dice</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#replywithdocument" class="tsd-kind-icon">reply<wbr>With<wbr>Document</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#replywithgame" class="tsd-kind-icon">reply<wbr>With<wbr>Game</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#replywithhtml" class="tsd-kind-icon">reply<wbr>WithHTML</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#replywithinvoice" class="tsd-kind-icon">reply<wbr>With<wbr>Invoice</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#replywithlocation" class="tsd-kind-icon">reply<wbr>With<wbr>Location</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#replywithmarkdown" class="tsd-kind-icon">reply<wbr>With<wbr>Markdown</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#replywithmediagroup" class="tsd-kind-icon">reply<wbr>With<wbr>Media<wbr>Group</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#replywithphoto" class="tsd-kind-icon">reply<wbr>With<wbr>Photo</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#replywithpoll" class="tsd-kind-icon">reply<wbr>With<wbr>Poll</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#replywithquiz" class="tsd-kind-icon">reply<wbr>With<wbr>Quiz</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#replywithsticker" class="tsd-kind-icon">reply<wbr>With<wbr>Sticker</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#replywithvideo" class="tsd-kind-icon">reply<wbr>With<wbr>Video</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#replywithvoice" class="tsd-kind-icon">reply<wbr>With<wbr>Voice</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#restrictchatmember" class="tsd-kind-icon">restrict<wbr>Chat<wbr>Member</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#setchattitle" class="tsd-kind-icon">set<wbr>Chat<wbr>Title</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#setstickerpositioninset" class="tsd-kind-icon">set<wbr>Sticker<wbr>Position<wbr>InSet</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#stopmessagelivelocation" class="tsd-kind-icon">stop<wbr>Message<wbr>Live<wbr>Location</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#stoppoll" class="tsd-kind-icon">stop<wbr>Poll</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#unbanchatmember" class="tsd-kind-icon">unban<wbr>Chat<wbr>Member</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#unpinchatmessage" class="tsd-kind-icon">unpin<wbr>Chat<wbr>Message</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="adminonly.adminonlycontext-1.html#uploadstickerfile" class="tsd-kind-icon">upload<wbr>Sticker<wbr>File</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#addstickertoset" class="tsd-kind-icon">add<wbr>Sticker<wbr>ToSet</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#answercbquery" class="tsd-kind-icon">answer<wbr>CbQuery</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#answergamequery" class="tsd-kind-icon">answer<wbr>Game<wbr>Query</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#answerinlinequery" class="tsd-kind-icon">answer<wbr>Inline<wbr>Query</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#answerprecheckoutquery" class="tsd-kind-icon">answer<wbr>Pre<wbr>Checkout<wbr>Query</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#answershippingquery" class="tsd-kind-icon">answer<wbr>Shipping<wbr>Query</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#createnewstickerset" class="tsd-kind-icon">create<wbr>New<wbr>Sticker<wbr>Set</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#deletechatphoto" class="tsd-kind-icon">delete<wbr>Chat<wbr>Photo</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#deletemessage" class="tsd-kind-icon">delete<wbr>Message</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#deletestickerfromset" class="tsd-kind-icon">delete<wbr>Sticker<wbr>From<wbr>Set</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#editmessagecaption" class="tsd-kind-icon">edit<wbr>Message<wbr>Caption</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#editmessagelivelocation" class="tsd-kind-icon">edit<wbr>Message<wbr>Live<wbr>Location</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#editmessagemedia" class="tsd-kind-icon">edit<wbr>Message<wbr>Media</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#editmessagereplymarkup" class="tsd-kind-icon">edit<wbr>Message<wbr>Reply<wbr>Markup</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#editmessagetext" class="tsd-kind-icon">edit<wbr>Message<wbr>Text</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#exportchatinvitelink" class="tsd-kind-icon">export<wbr>Chat<wbr>Invite<wbr>Link</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#getchat" class="tsd-kind-icon">get<wbr>Chat</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#getchatadministrators" class="tsd-kind-icon">get<wbr>Chat<wbr>Administrators</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#getchatmember" class="tsd-kind-icon">get<wbr>Chat<wbr>Member</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#getchatmemberscount" class="tsd-kind-icon">get<wbr>Chat<wbr>Members<wbr>Count</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#getstickerset" class="tsd-kind-icon">get<wbr>Sticker<wbr>Set</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#kickchatmember" class="tsd-kind-icon">kick<wbr>Chat<wbr>Member</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#leavechat" class="tsd-kind-icon">leave<wbr>Chat</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#pinchatmessage" class="tsd-kind-icon">pin<wbr>Chat<wbr>Message</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#promotechatmember" class="tsd-kind-icon">promote<wbr>Chat<wbr>Member</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#reply" class="tsd-kind-icon">reply</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#replywithaudio" class="tsd-kind-icon">reply<wbr>With<wbr>Audio</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#replywithchataction" class="tsd-kind-icon">reply<wbr>With<wbr>Chat<wbr>Action</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#replywithdice" class="tsd-kind-icon">reply<wbr>With<wbr>Dice</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#replywithdocument" class="tsd-kind-icon">reply<wbr>With<wbr>Document</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#replywithgame" class="tsd-kind-icon">reply<wbr>With<wbr>Game</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#replywithhtml" class="tsd-kind-icon">reply<wbr>WithHTML</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#replywithinvoice" class="tsd-kind-icon">reply<wbr>With<wbr>Invoice</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#replywithlocation" class="tsd-kind-icon">reply<wbr>With<wbr>Location</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#replywithmarkdown" class="tsd-kind-icon">reply<wbr>With<wbr>Markdown</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#replywithmediagroup" class="tsd-kind-icon">reply<wbr>With<wbr>Media<wbr>Group</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#replywithphoto" class="tsd-kind-icon">reply<wbr>With<wbr>Photo</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#replywithpoll" class="tsd-kind-icon">reply<wbr>With<wbr>Poll</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#replywithquiz" class="tsd-kind-icon">reply<wbr>With<wbr>Quiz</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#replywithsticker" class="tsd-kind-icon">reply<wbr>With<wbr>Sticker</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#replywithvideo" class="tsd-kind-icon">reply<wbr>With<wbr>Video</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#replywithvoice" class="tsd-kind-icon">reply<wbr>With<wbr>Voice</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#restrictchatmember" class="tsd-kind-icon">restrict<wbr>Chat<wbr>Member</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#setchattitle" class="tsd-kind-icon">set<wbr>Chat<wbr>Title</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#setstickerpositioninset" class="tsd-kind-icon">set<wbr>Sticker<wbr>Position<wbr>InSet</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#stopmessagelivelocation" class="tsd-kind-icon">stop<wbr>Message<wbr>Live<wbr>Location</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#stoppoll" class="tsd-kind-icon">stop<wbr>Poll</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#unbanchatmember" class="tsd-kind-icon">unban<wbr>Chat<wbr>Member</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#unpinchatmessage" class="tsd-kind-icon">unpin<wbr>Chat<wbr>Message</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="useronly.iuseronlycontext-1.html#uploadstickerfile" class="tsd-kind-icon">upload<wbr>Sticker<wbr>File</a></li>
 							</ul>
 						</section>
 					</div>
@@ -197,12 +195,12 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-interface tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Admin<wbr>Only<wbr>Context<span class="tsd-signature-symbol">(</span>update<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Update</span>, telegram<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Telegram</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>username<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="adminonly.adminonlycontext-1.html" class="tsd-signature-type">AdminOnlyContext</a></li>
+						<li class="tsd-signature tsd-kind-icon">new IUser<wbr>Only<wbr>Context<span class="tsd-signature-symbol">(</span>update<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Update</span>, telegram<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Telegram</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>username<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="useronly.iuseronlycontext-1.html" class="tsd-signature-type">IUserOnlyContext</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#constructor">constructor</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#constructor">constructor</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:28</li>
 								</ul>
@@ -219,34 +217,19 @@
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>username<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="adminonly.adminonlycontext-1.html" class="tsd-signature-type">AdminOnlyContext</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="useronly.iuseronlycontext-1.html" class="tsd-signature-type">IUserOnlyContext</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="adminuserids" class="tsd-anchor"></a>
-					<h3>admin<wbr>User<wbr>Ids</h3>
-					<div class="tsd-signature tsd-kind-icon">admin<wbr>User<wbr>Ids<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/ce889dd/src/adminOnly/context.ts#L14">src/adminOnly/context.ts:14</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>list of Telegram user IDs to allow interactions with</p>
-						</div>
-					</div>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="botinfo" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> bot<wbr>Info</h3>
 					<div class="tsd-signature tsd-kind-icon">bot<wbr>Info<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">tt.User</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#botinfo">botInfo</a></p>
+						<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#botinfo">botInfo</a></p>
 						<ul>
 							<li>Defined in node_modules/telegraf/typings/context.d.ts:12</li>
 						</ul>
@@ -257,7 +240,7 @@
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> callback<wbr>Query</h3>
 					<div class="tsd-signature tsd-kind-icon">callback<wbr>Query<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">tt.CallbackQuery</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#callbackquery">callbackQuery</a></p>
+						<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#callbackquery">callbackQuery</a></p>
 						<ul>
 							<li>Defined in node_modules/telegraf/typings/context.d.ts:14</li>
 						</ul>
@@ -268,7 +251,7 @@
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> channel<wbr>Post</h3>
 					<div class="tsd-signature tsd-kind-icon">channel<wbr>Post<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">tt.Message</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#channelpost">channelPost</a></p>
+						<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#channelpost">channelPost</a></p>
 						<ul>
 							<li>Defined in node_modules/telegraf/typings/context.d.ts:15</li>
 						</ul>
@@ -279,7 +262,7 @@
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> chat</h3>
 					<div class="tsd-signature tsd-kind-icon">chat<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">tt.Chat</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#chat">chat</a></p>
+						<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#chat">chat</a></p>
 						<ul>
 							<li>Defined in node_modules/telegraf/typings/context.d.ts:16</li>
 						</ul>
@@ -290,7 +273,7 @@
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> chosen<wbr>Inline<wbr>Result</h3>
 					<div class="tsd-signature tsd-kind-icon">chosen<wbr>Inline<wbr>Result<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">tt.ChosenInlineResult</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#choseninlineresult">chosenInlineResult</a></p>
+						<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#choseninlineresult">chosenInlineResult</a></p>
 						<ul>
 							<li>Defined in node_modules/telegraf/typings/context.d.ts:17</li>
 						</ul>
@@ -301,7 +284,7 @@
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> edited<wbr>Channel<wbr>Post</h3>
 					<div class="tsd-signature tsd-kind-icon">edited<wbr>Channel<wbr>Post<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">tt.Message</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#editedchannelpost">editedChannelPost</a></p>
+						<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#editedchannelpost">editedChannelPost</a></p>
 						<ul>
 							<li>Defined in node_modules/telegraf/typings/context.d.ts:18</li>
 						</ul>
@@ -312,7 +295,7 @@
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> edited<wbr>Message</h3>
 					<div class="tsd-signature tsd-kind-icon">edited<wbr>Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">tt.Message</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#editedmessage">editedMessage</a></p>
+						<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#editedmessage">editedMessage</a></p>
 						<ul>
 							<li>Defined in node_modules/telegraf/typings/context.d.ts:19</li>
 						</ul>
@@ -323,7 +306,7 @@
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> from</h3>
 					<div class="tsd-signature tsd-kind-icon">from<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">tt.User</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#from">from</a></p>
+						<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#from">from</a></p>
 						<ul>
 							<li>Defined in node_modules/telegraf/typings/context.d.ts:20</li>
 						</ul>
@@ -334,7 +317,7 @@
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> inline<wbr>Query</h3>
 					<div class="tsd-signature tsd-kind-icon">inline<wbr>Query<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">tt.InlineQuery</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#inlinequery">inlineQuery</a></p>
+						<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#inlinequery">inlineQuery</a></p>
 						<ul>
 							<li>Defined in node_modules/telegraf/typings/context.d.ts:21</li>
 						</ul>
@@ -345,7 +328,7 @@
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> match</h3>
 					<div class="tsd-signature tsd-kind-icon">match<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExpExecArray</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#match">match</a></p>
+						<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#match">match</a></p>
 						<ul>
 							<li>Defined in node_modules/telegraf/typings/context.d.ts:22</li>
 						</ul>
@@ -356,7 +339,7 @@
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> me</h3>
 					<div class="tsd-signature tsd-kind-icon">me<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#me">me</a></p>
+						<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#me">me</a></p>
 						<ul>
 							<li>Defined in node_modules/telegraf/typings/context.d.ts:23</li>
 						</ul>
@@ -367,7 +350,7 @@
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> message</h3>
 					<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">tt.IncomingMessage</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#message">message</a></p>
+						<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#message">message</a></p>
 						<ul>
 							<li>Defined in node_modules/telegraf/typings/context.d.ts:24</li>
 						</ul>
@@ -378,7 +361,7 @@
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> poll</h3>
 					<div class="tsd-signature tsd-kind-icon">poll<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">tt.Poll</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#poll">poll</a></p>
+						<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#poll">poll</a></p>
 						<ul>
 							<li>Defined in node_modules/telegraf/typings/context.d.ts:25</li>
 						</ul>
@@ -389,7 +372,7 @@
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> poll<wbr>Answer</h3>
 					<div class="tsd-signature tsd-kind-icon">poll<wbr>Answer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">tt.PollAnswer</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#pollanswer">pollAnswer</a></p>
+						<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#pollanswer">pollAnswer</a></p>
 						<ul>
 							<li>Defined in node_modules/telegraf/typings/context.d.ts:26</li>
 						</ul>
@@ -400,7 +383,7 @@
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> pre<wbr>Checkout<wbr>Query</h3>
 					<div class="tsd-signature tsd-kind-icon">pre<wbr>Checkout<wbr>Query<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">tt.PreCheckoutQuery</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#precheckoutquery">preCheckoutQuery</a></p>
+						<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#precheckoutquery">preCheckoutQuery</a></p>
 						<ul>
 							<li>Defined in node_modules/telegraf/typings/context.d.ts:27</li>
 						</ul>
@@ -411,7 +394,7 @@
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> shipping<wbr>Query</h3>
 					<div class="tsd-signature tsd-kind-icon">shipping<wbr>Query<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">tt.ShippingQuery</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#shippingquery">shippingQuery</a></p>
+						<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#shippingquery">shippingQuery</a></p>
 						<ul>
 							<li>Defined in node_modules/telegraf/typings/context.d.ts:28</li>
 						</ul>
@@ -422,7 +405,7 @@
 					<h3>telegram</h3>
 					<div class="tsd-signature tsd-kind-icon">telegram<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Telegram</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#telegram">telegram</a></p>
+						<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#telegram">telegram</a></p>
 						<ul>
 							<li>Defined in node_modules/telegraf/typings/context.d.ts:13</li>
 						</ul>
@@ -433,7 +416,7 @@
 					<h3>tg</h3>
 					<div class="tsd-signature tsd-kind-icon">tg<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Telegram</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#tg">tg</a></p>
+						<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#tg">tg</a></p>
 						<ul>
 							<li>Defined in node_modules/telegraf/typings/context.d.ts:11</li>
 						</ul>
@@ -444,7 +427,7 @@
 					<h3>update</h3>
 					<div class="tsd-signature tsd-kind-icon">update<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Update</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#update">update</a></p>
+						<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#update">update</a></p>
 						<ul>
 							<li>Defined in node_modules/telegraf/typings/context.d.ts:10</li>
 						</ul>
@@ -455,7 +438,7 @@
 					<h3>update<wbr>Sub<wbr>Types</h3>
 					<div class="tsd-signature tsd-kind-icon">update<wbr>Sub<wbr>Types<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">tt.MessageSubTypes</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#updatesubtypes">updateSubTypes</a></p>
+						<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#updatesubtypes">updateSubTypes</a></p>
 						<ul>
 							<li>Defined in node_modules/telegraf/typings/context.d.ts:9</li>
 						</ul>
@@ -466,11 +449,26 @@
 					<h3>update<wbr>Type</h3>
 					<div class="tsd-signature tsd-kind-icon">update<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">tt.UpdateType</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#updatetype">updateType</a></p>
+						<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#updatetype">updateType</a></p>
 						<ul>
 							<li>Defined in node_modules/telegraf/typings/context.d.ts:8</li>
 						</ul>
 					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="userids" class="tsd-anchor"></a>
+					<h3>user<wbr>Ids</h3>
+					<div class="tsd-signature tsd-kind-icon">user<wbr>Ids<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/c020a6f/src/userOnly/IUserOnlyContext.d.ts#L15">src/userOnly/IUserOnlyContext.d.ts:15</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>List of Telegram user IDs to allow interactions with</p>
+						</div>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
@@ -484,7 +482,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#addstickertoset">addStickerToSet</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#addstickertoset">addStickerToSet</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:44</li>
 								</ul>
@@ -535,7 +533,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#answercbquery">answerCbQuery</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#answercbquery">answerCbQuery</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:355</li>
 								</ul>
@@ -565,7 +563,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#answergamequery">answerGameQuery</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#answergamequery">answerGameQuery</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:365</li>
 								</ul>
@@ -597,7 +595,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#answerinlinequery">answerInlineQuery</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#answerinlinequery">answerInlineQuery</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:393</li>
 								</ul>
@@ -637,7 +635,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#answerprecheckoutquery">answerPreCheckoutQuery</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#answerprecheckoutquery">answerPreCheckoutQuery</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:384</li>
 								</ul>
@@ -675,7 +673,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#answershippingquery">answerShippingQuery</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#answershippingquery">answerShippingQuery</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:373</li>
 								</ul>
@@ -719,7 +717,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#createnewstickerset">createNewStickerSet</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#createnewstickerset">createNewStickerSet</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:59</li>
 								</ul>
@@ -770,7 +768,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#deletechatphoto">deleteChatPhoto</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#deletechatphoto">deleteChatPhoto</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:70</li>
 								</ul>
@@ -794,7 +792,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#deletemessage">deleteMessage</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#deletemessage">deleteMessage</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:496</li>
 								</ul>
@@ -831,7 +829,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#deletestickerfromset">deleteStickerFromSet</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#deletestickerfromset">deleteStickerFromSet</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:77</li>
 								</ul>
@@ -864,7 +862,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#editmessagecaption">editMessageCaption</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#editmessagecaption">editMessageCaption</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:415</li>
 								</ul>
@@ -903,7 +901,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#editmessagelivelocation">editMessageLiveLocation</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#editmessagelivelocation">editMessageLiveLocation</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:446</li>
 								</ul>
@@ -945,7 +943,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#editmessagemedia">editMessageMedia</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#editmessagemedia">editMessageMedia</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:435</li>
 								</ul>
@@ -981,7 +979,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#editmessagereplymarkup">editMessageReplyMarkup</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#editmessagereplymarkup">editMessageReplyMarkup</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:425</li>
 								</ul>
@@ -1014,7 +1012,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#editmessagetext">editMessageText</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#editmessagetext">editMessageText</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:404</li>
 								</ul>
@@ -1053,7 +1051,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#exportchatinvitelink">exportChatInviteLink</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#exportchatinvitelink">exportChatInviteLink</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:83</li>
 								</ul>
@@ -1077,7 +1075,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#getchat">getChat</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#getchat">getChat</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:89</li>
 								</ul>
@@ -1101,7 +1099,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#getchatadministrators">getChatAdministrators</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#getchatadministrators">getChatAdministrators</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:95</li>
 								</ul>
@@ -1125,7 +1123,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#getchatmember">getChatMember</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#getchatmember">getChatMember</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:102</li>
 								</ul>
@@ -1158,7 +1156,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#getchatmemberscount">getChatMembersCount</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#getchatmemberscount">getChatMembersCount</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:108</li>
 								</ul>
@@ -1182,7 +1180,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#getstickerset">getStickerSet</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#getstickerset">getStickerSet</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:126</li>
 								</ul>
@@ -1215,7 +1213,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#kickchatmember">kickChatMember</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#kickchatmember">kickChatMember</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:458</li>
 								</ul>
@@ -1254,7 +1252,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#leavechat">leaveChat</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#leavechat">leaveChat</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:132</li>
 								</ul>
@@ -1278,7 +1276,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#pinchatmessage">pinChatMessage</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#pinchatmessage">pinChatMessage</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:140</li>
 								</ul>
@@ -1317,7 +1315,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#promotechatmember">promoteChatMember</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#promotechatmember">promoteChatMember</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:473</li>
 								</ul>
@@ -1353,7 +1351,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#reply">reply</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#reply">reply</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:157</li>
 								</ul>
@@ -1392,7 +1390,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#replywithaudio">replyWithAudio</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#replywithaudio">replyWithAudio</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:167</li>
 								</ul>
@@ -1433,7 +1431,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#replywithchataction">replyWithChatAction</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#replywithchataction">replyWithChatAction</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:186</li>
 								</ul>
@@ -1477,7 +1475,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#replywithdice">replyWithDice</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#replywithdice">replyWithDice</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:349</li>
 								</ul>
@@ -1510,7 +1508,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#replywithdocument">replyWithDocument</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#replywithdocument">replyWithDocument</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:194</li>
 								</ul>
@@ -1549,7 +1547,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#replywithgame">replyWithGame</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#replywithgame">replyWithGame</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:205</li>
 								</ul>
@@ -1588,7 +1586,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#replywithhtml">replyWithHTML</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#replywithhtml">replyWithHTML</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:216</li>
 								</ul>
@@ -1627,7 +1625,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#replywithinvoice">replyWithInvoice</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#replywithinvoice">replyWithInvoice</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:224</li>
 								</ul>
@@ -1666,7 +1664,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#replywithlocation">replyWithLocation</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#replywithlocation">replyWithLocation</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:236</li>
 								</ul>
@@ -1711,7 +1709,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#replywithmarkdown">replyWithMarkdown</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#replywithmarkdown">replyWithMarkdown</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:248</li>
 								</ul>
@@ -1750,7 +1748,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#replywithmediagroup">replyWithMediaGroup</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#replywithmediagroup">replyWithMediaGroup</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:270</li>
 								</ul>
@@ -1789,7 +1787,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#replywithphoto">replyWithPhoto</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#replywithphoto">replyWithPhoto</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:259</li>
 								</ul>
@@ -1828,7 +1826,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#replywithpoll">replyWithPoll</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#replywithpoll">replyWithPoll</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:282</li>
 								</ul>
@@ -1873,7 +1871,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#replywithquiz">replyWithQuiz</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#replywithquiz">replyWithQuiz</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:295</li>
 								</ul>
@@ -1918,7 +1916,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#replywithsticker">replyWithSticker</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#replywithsticker">replyWithSticker</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:315</li>
 								</ul>
@@ -1957,7 +1955,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#replywithvideo">replyWithVideo</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#replywithvideo">replyWithVideo</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:327</li>
 								</ul>
@@ -1997,7 +1995,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#replywithvoice">replyWithVoice</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#replywithvoice">replyWithVoice</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:338</li>
 								</ul>
@@ -2036,7 +2034,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#restrictchatmember">restrictChatMember</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#restrictchatmember">restrictChatMember</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:116</li>
 								</ul>
@@ -2072,7 +2070,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#setchattitle">setChatTitle</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#setchattitle">setChatTitle</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:523</li>
 								</ul>
@@ -2105,7 +2103,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#setstickerpositioninset">setStickerPositionInSet</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#setstickerpositioninset">setStickerPositionInSet</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:516</li>
 								</ul>
@@ -2144,7 +2142,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#stopmessagelivelocation">stopMessageLiveLocation</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#stopmessagelivelocation">stopMessageLiveLocation</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:483</li>
 								</ul>
@@ -2177,7 +2175,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#stoppoll">stopPoll</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#stoppoll">stopPoll</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:307</li>
 								</ul>
@@ -2216,7 +2214,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#unbanchatmember">unbanChatMember</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#unbanchatmember">unbanChatMember</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:465</li>
 								</ul>
@@ -2249,7 +2247,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#unpinchatmessage">unpinChatMessage</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#unpinchatmessage">unpinChatMessage</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:149</li>
 								</ul>
@@ -2273,7 +2271,7 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="adminonly.adminonlycontext-1.html">AdminOnlyContext</a>.<a href="adminonly.adminonlycontext-1.html#uploadstickerfile">uploadStickerFile</a></p>
+								<p>Inherited from <a href="useronly.iuseronlycontext-1.html">IUserOnlyContext</a>.<a href="useronly.iuseronlycontext-1.html#uploadstickerfile">uploadStickerFile</a></p>
 								<ul>
 									<li>Defined in node_modules/telegraf/typings/context.d.ts:505</li>
 								</ul>
@@ -2312,255 +2310,258 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class="current tsd-kind-module">
-						<a href="../modules/adminonly.html">Admin<wbr>Only</a>
-					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/alertmanager.html">Alert<wbr>Manager</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/bot.html">Bot</a>
 					</li>
+					<li class=" tsd-kind-namespace">
+						<a href="../modules/nodejs.html">NodeJS</a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="../modules/useronly.html">User<wbr>Only</a>
+					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="../modules/adminonly.html#adminonlycontext" class="tsd-kind-icon">Admin<wbr>Only<wbr>Context</a>
+						<a href="../modules/useronly.html#iuseronlycontext" class="tsd-kind-icon">IUser<wbr>Only<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-reference tsd-parent-kind-module">
-						<a href="../modules/adminonly.html#adminonlymiddleware" class="tsd-kind-icon">Admin<wbr>Only<wbr>Middleware</a>
+						<a href="../modules/useronly.html#useronlymiddleware" class="tsd-kind-icon">user<wbr>Only<wbr>Middleware</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="adminonly.adminonlycontext-1.html" class="tsd-kind-icon">Admin<wbr>Only<wbr>Context</a>
+						<a href="useronly.iuseronlycontext-1.html" class="tsd-kind-icon">IUser<wbr>Only<wbr>Context</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="useronly.iuseronlycontext-1.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="useronly.iuseronlycontext-1.html#botinfo" class="tsd-kind-icon">bot<wbr>Info</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="useronly.iuseronlycontext-1.html#callbackquery" class="tsd-kind-icon">callback<wbr>Query</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="useronly.iuseronlycontext-1.html#channelpost" class="tsd-kind-icon">channel<wbr>Post</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="useronly.iuseronlycontext-1.html#chat" class="tsd-kind-icon">chat</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="useronly.iuseronlycontext-1.html#choseninlineresult" class="tsd-kind-icon">chosen<wbr>Inline<wbr>Result</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="useronly.iuseronlycontext-1.html#editedchannelpost" class="tsd-kind-icon">edited<wbr>Channel<wbr>Post</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="useronly.iuseronlycontext-1.html#editedmessage" class="tsd-kind-icon">edited<wbr>Message</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="useronly.iuseronlycontext-1.html#from" class="tsd-kind-icon">from</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="useronly.iuseronlycontext-1.html#inlinequery" class="tsd-kind-icon">inline<wbr>Query</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="useronly.iuseronlycontext-1.html#match" class="tsd-kind-icon">match</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="useronly.iuseronlycontext-1.html#me" class="tsd-kind-icon">me</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="useronly.iuseronlycontext-1.html#message" class="tsd-kind-icon">message</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="useronly.iuseronlycontext-1.html#poll" class="tsd-kind-icon">poll</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="useronly.iuseronlycontext-1.html#pollanswer" class="tsd-kind-icon">poll<wbr>Answer</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="useronly.iuseronlycontext-1.html#precheckoutquery" class="tsd-kind-icon">pre<wbr>Checkout<wbr>Query</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="useronly.iuseronlycontext-1.html#shippingquery" class="tsd-kind-icon">shipping<wbr>Query</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="useronly.iuseronlycontext-1.html#telegram" class="tsd-kind-icon">telegram</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="useronly.iuseronlycontext-1.html#tg" class="tsd-kind-icon">tg</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="useronly.iuseronlycontext-1.html#update" class="tsd-kind-icon">update</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="useronly.iuseronlycontext-1.html#updatesubtypes" class="tsd-kind-icon">update<wbr>Sub<wbr>Types</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="useronly.iuseronlycontext-1.html#updatetype" class="tsd-kind-icon">update<wbr>Type</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="adminonly.adminonlycontext-1.html#adminuserids" class="tsd-kind-icon">admin<wbr>User<wbr>Ids</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#botinfo" class="tsd-kind-icon">bot<wbr>Info</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#callbackquery" class="tsd-kind-icon">callback<wbr>Query</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#channelpost" class="tsd-kind-icon">channel<wbr>Post</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#chat" class="tsd-kind-icon">chat</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#choseninlineresult" class="tsd-kind-icon">chosen<wbr>Inline<wbr>Result</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#editedchannelpost" class="tsd-kind-icon">edited<wbr>Channel<wbr>Post</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#editedmessage" class="tsd-kind-icon">edited<wbr>Message</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#from" class="tsd-kind-icon">from</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#inlinequery" class="tsd-kind-icon">inline<wbr>Query</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#match" class="tsd-kind-icon">match</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#me" class="tsd-kind-icon">me</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#message" class="tsd-kind-icon">message</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#poll" class="tsd-kind-icon">poll</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#pollanswer" class="tsd-kind-icon">poll<wbr>Answer</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#precheckoutquery" class="tsd-kind-icon">pre<wbr>Checkout<wbr>Query</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#shippingquery" class="tsd-kind-icon">shipping<wbr>Query</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#telegram" class="tsd-kind-icon">telegram</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#tg" class="tsd-kind-icon">tg</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#update" class="tsd-kind-icon">update</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#updatesubtypes" class="tsd-kind-icon">update<wbr>Sub<wbr>Types</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#updatetype" class="tsd-kind-icon">update<wbr>Type</a>
+								<a href="useronly.iuseronlycontext-1.html#userids" class="tsd-kind-icon">user<wbr>Ids</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#addstickertoset" class="tsd-kind-icon">add<wbr>Sticker<wbr>ToSet</a>
+								<a href="useronly.iuseronlycontext-1.html#addstickertoset" class="tsd-kind-icon">add<wbr>Sticker<wbr>ToSet</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#answercbquery" class="tsd-kind-icon">answer<wbr>CbQuery</a>
+								<a href="useronly.iuseronlycontext-1.html#answercbquery" class="tsd-kind-icon">answer<wbr>CbQuery</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#answergamequery" class="tsd-kind-icon">answer<wbr>Game<wbr>Query</a>
+								<a href="useronly.iuseronlycontext-1.html#answergamequery" class="tsd-kind-icon">answer<wbr>Game<wbr>Query</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#answerinlinequery" class="tsd-kind-icon">answer<wbr>Inline<wbr>Query</a>
+								<a href="useronly.iuseronlycontext-1.html#answerinlinequery" class="tsd-kind-icon">answer<wbr>Inline<wbr>Query</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#answerprecheckoutquery" class="tsd-kind-icon">answer<wbr>Pre<wbr>Checkout<wbr>Query</a>
+								<a href="useronly.iuseronlycontext-1.html#answerprecheckoutquery" class="tsd-kind-icon">answer<wbr>Pre<wbr>Checkout<wbr>Query</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#answershippingquery" class="tsd-kind-icon">answer<wbr>Shipping<wbr>Query</a>
+								<a href="useronly.iuseronlycontext-1.html#answershippingquery" class="tsd-kind-icon">answer<wbr>Shipping<wbr>Query</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#createnewstickerset" class="tsd-kind-icon">create<wbr>New<wbr>Sticker<wbr>Set</a>
+								<a href="useronly.iuseronlycontext-1.html#createnewstickerset" class="tsd-kind-icon">create<wbr>New<wbr>Sticker<wbr>Set</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#deletechatphoto" class="tsd-kind-icon">delete<wbr>Chat<wbr>Photo</a>
+								<a href="useronly.iuseronlycontext-1.html#deletechatphoto" class="tsd-kind-icon">delete<wbr>Chat<wbr>Photo</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#deletemessage" class="tsd-kind-icon">delete<wbr>Message</a>
+								<a href="useronly.iuseronlycontext-1.html#deletemessage" class="tsd-kind-icon">delete<wbr>Message</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#deletestickerfromset" class="tsd-kind-icon">delete<wbr>Sticker<wbr>From<wbr>Set</a>
+								<a href="useronly.iuseronlycontext-1.html#deletestickerfromset" class="tsd-kind-icon">delete<wbr>Sticker<wbr>From<wbr>Set</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#editmessagecaption" class="tsd-kind-icon">edit<wbr>Message<wbr>Caption</a>
+								<a href="useronly.iuseronlycontext-1.html#editmessagecaption" class="tsd-kind-icon">edit<wbr>Message<wbr>Caption</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#editmessagelivelocation" class="tsd-kind-icon">edit<wbr>Message<wbr>Live<wbr>Location</a>
+								<a href="useronly.iuseronlycontext-1.html#editmessagelivelocation" class="tsd-kind-icon">edit<wbr>Message<wbr>Live<wbr>Location</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#editmessagemedia" class="tsd-kind-icon">edit<wbr>Message<wbr>Media</a>
+								<a href="useronly.iuseronlycontext-1.html#editmessagemedia" class="tsd-kind-icon">edit<wbr>Message<wbr>Media</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#editmessagereplymarkup" class="tsd-kind-icon">edit<wbr>Message<wbr>Reply<wbr>Markup</a>
+								<a href="useronly.iuseronlycontext-1.html#editmessagereplymarkup" class="tsd-kind-icon">edit<wbr>Message<wbr>Reply<wbr>Markup</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#editmessagetext" class="tsd-kind-icon">edit<wbr>Message<wbr>Text</a>
+								<a href="useronly.iuseronlycontext-1.html#editmessagetext" class="tsd-kind-icon">edit<wbr>Message<wbr>Text</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#exportchatinvitelink" class="tsd-kind-icon">export<wbr>Chat<wbr>Invite<wbr>Link</a>
+								<a href="useronly.iuseronlycontext-1.html#exportchatinvitelink" class="tsd-kind-icon">export<wbr>Chat<wbr>Invite<wbr>Link</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#getchat" class="tsd-kind-icon">get<wbr>Chat</a>
+								<a href="useronly.iuseronlycontext-1.html#getchat" class="tsd-kind-icon">get<wbr>Chat</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#getchatadministrators" class="tsd-kind-icon">get<wbr>Chat<wbr>Administrators</a>
+								<a href="useronly.iuseronlycontext-1.html#getchatadministrators" class="tsd-kind-icon">get<wbr>Chat<wbr>Administrators</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#getchatmember" class="tsd-kind-icon">get<wbr>Chat<wbr>Member</a>
+								<a href="useronly.iuseronlycontext-1.html#getchatmember" class="tsd-kind-icon">get<wbr>Chat<wbr>Member</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#getchatmemberscount" class="tsd-kind-icon">get<wbr>Chat<wbr>Members<wbr>Count</a>
+								<a href="useronly.iuseronlycontext-1.html#getchatmemberscount" class="tsd-kind-icon">get<wbr>Chat<wbr>Members<wbr>Count</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#getstickerset" class="tsd-kind-icon">get<wbr>Sticker<wbr>Set</a>
+								<a href="useronly.iuseronlycontext-1.html#getstickerset" class="tsd-kind-icon">get<wbr>Sticker<wbr>Set</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#kickchatmember" class="tsd-kind-icon">kick<wbr>Chat<wbr>Member</a>
+								<a href="useronly.iuseronlycontext-1.html#kickchatmember" class="tsd-kind-icon">kick<wbr>Chat<wbr>Member</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#leavechat" class="tsd-kind-icon">leave<wbr>Chat</a>
+								<a href="useronly.iuseronlycontext-1.html#leavechat" class="tsd-kind-icon">leave<wbr>Chat</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#pinchatmessage" class="tsd-kind-icon">pin<wbr>Chat<wbr>Message</a>
+								<a href="useronly.iuseronlycontext-1.html#pinchatmessage" class="tsd-kind-icon">pin<wbr>Chat<wbr>Message</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#promotechatmember" class="tsd-kind-icon">promote<wbr>Chat<wbr>Member</a>
+								<a href="useronly.iuseronlycontext-1.html#promotechatmember" class="tsd-kind-icon">promote<wbr>Chat<wbr>Member</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#reply" class="tsd-kind-icon">reply</a>
+								<a href="useronly.iuseronlycontext-1.html#reply" class="tsd-kind-icon">reply</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#replywithaudio" class="tsd-kind-icon">reply<wbr>With<wbr>Audio</a>
+								<a href="useronly.iuseronlycontext-1.html#replywithaudio" class="tsd-kind-icon">reply<wbr>With<wbr>Audio</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#replywithchataction" class="tsd-kind-icon">reply<wbr>With<wbr>Chat<wbr>Action</a>
+								<a href="useronly.iuseronlycontext-1.html#replywithchataction" class="tsd-kind-icon">reply<wbr>With<wbr>Chat<wbr>Action</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#replywithdice" class="tsd-kind-icon">reply<wbr>With<wbr>Dice</a>
+								<a href="useronly.iuseronlycontext-1.html#replywithdice" class="tsd-kind-icon">reply<wbr>With<wbr>Dice</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#replywithdocument" class="tsd-kind-icon">reply<wbr>With<wbr>Document</a>
+								<a href="useronly.iuseronlycontext-1.html#replywithdocument" class="tsd-kind-icon">reply<wbr>With<wbr>Document</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#replywithgame" class="tsd-kind-icon">reply<wbr>With<wbr>Game</a>
+								<a href="useronly.iuseronlycontext-1.html#replywithgame" class="tsd-kind-icon">reply<wbr>With<wbr>Game</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#replywithhtml" class="tsd-kind-icon">reply<wbr>WithHTML</a>
+								<a href="useronly.iuseronlycontext-1.html#replywithhtml" class="tsd-kind-icon">reply<wbr>WithHTML</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#replywithinvoice" class="tsd-kind-icon">reply<wbr>With<wbr>Invoice</a>
+								<a href="useronly.iuseronlycontext-1.html#replywithinvoice" class="tsd-kind-icon">reply<wbr>With<wbr>Invoice</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#replywithlocation" class="tsd-kind-icon">reply<wbr>With<wbr>Location</a>
+								<a href="useronly.iuseronlycontext-1.html#replywithlocation" class="tsd-kind-icon">reply<wbr>With<wbr>Location</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#replywithmarkdown" class="tsd-kind-icon">reply<wbr>With<wbr>Markdown</a>
+								<a href="useronly.iuseronlycontext-1.html#replywithmarkdown" class="tsd-kind-icon">reply<wbr>With<wbr>Markdown</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#replywithmediagroup" class="tsd-kind-icon">reply<wbr>With<wbr>Media<wbr>Group</a>
+								<a href="useronly.iuseronlycontext-1.html#replywithmediagroup" class="tsd-kind-icon">reply<wbr>With<wbr>Media<wbr>Group</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#replywithphoto" class="tsd-kind-icon">reply<wbr>With<wbr>Photo</a>
+								<a href="useronly.iuseronlycontext-1.html#replywithphoto" class="tsd-kind-icon">reply<wbr>With<wbr>Photo</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#replywithpoll" class="tsd-kind-icon">reply<wbr>With<wbr>Poll</a>
+								<a href="useronly.iuseronlycontext-1.html#replywithpoll" class="tsd-kind-icon">reply<wbr>With<wbr>Poll</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#replywithquiz" class="tsd-kind-icon">reply<wbr>With<wbr>Quiz</a>
+								<a href="useronly.iuseronlycontext-1.html#replywithquiz" class="tsd-kind-icon">reply<wbr>With<wbr>Quiz</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#replywithsticker" class="tsd-kind-icon">reply<wbr>With<wbr>Sticker</a>
+								<a href="useronly.iuseronlycontext-1.html#replywithsticker" class="tsd-kind-icon">reply<wbr>With<wbr>Sticker</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#replywithvideo" class="tsd-kind-icon">reply<wbr>With<wbr>Video</a>
+								<a href="useronly.iuseronlycontext-1.html#replywithvideo" class="tsd-kind-icon">reply<wbr>With<wbr>Video</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#replywithvoice" class="tsd-kind-icon">reply<wbr>With<wbr>Voice</a>
+								<a href="useronly.iuseronlycontext-1.html#replywithvoice" class="tsd-kind-icon">reply<wbr>With<wbr>Voice</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#restrictchatmember" class="tsd-kind-icon">restrict<wbr>Chat<wbr>Member</a>
+								<a href="useronly.iuseronlycontext-1.html#restrictchatmember" class="tsd-kind-icon">restrict<wbr>Chat<wbr>Member</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#setchattitle" class="tsd-kind-icon">set<wbr>Chat<wbr>Title</a>
+								<a href="useronly.iuseronlycontext-1.html#setchattitle" class="tsd-kind-icon">set<wbr>Chat<wbr>Title</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#setstickerpositioninset" class="tsd-kind-icon">set<wbr>Sticker<wbr>Position<wbr>InSet</a>
+								<a href="useronly.iuseronlycontext-1.html#setstickerpositioninset" class="tsd-kind-icon">set<wbr>Sticker<wbr>Position<wbr>InSet</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#stopmessagelivelocation" class="tsd-kind-icon">stop<wbr>Message<wbr>Live<wbr>Location</a>
+								<a href="useronly.iuseronlycontext-1.html#stopmessagelivelocation" class="tsd-kind-icon">stop<wbr>Message<wbr>Live<wbr>Location</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#stoppoll" class="tsd-kind-icon">stop<wbr>Poll</a>
+								<a href="useronly.iuseronlycontext-1.html#stoppoll" class="tsd-kind-icon">stop<wbr>Poll</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#unbanchatmember" class="tsd-kind-icon">unban<wbr>Chat<wbr>Member</a>
+								<a href="useronly.iuseronlycontext-1.html#unbanchatmember" class="tsd-kind-icon">unban<wbr>Chat<wbr>Member</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#unpinchatmessage" class="tsd-kind-icon">unpin<wbr>Chat<wbr>Message</a>
+								<a href="useronly.iuseronlycontext-1.html#unpinchatmessage" class="tsd-kind-icon">unpin<wbr>Chat<wbr>Message</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="adminonly.adminonlycontext-1.html#uploadstickerfile" class="tsd-kind-icon">upload<wbr>Sticker<wbr>File</a>
+								<a href="useronly.iuseronlycontext-1.html#uploadstickerfile" class="tsd-kind-icon">upload<wbr>Sticker<wbr>File</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/adminonly.html#adminonlymiddleware-1" class="tsd-kind-icon">Admin<wbr>Only<wbr>Middleware</a>
+						<a href="../modules/useronly.html#useronlymiddleware-1" class="tsd-kind-icon">user<wbr>Only<wbr>Middleware</a>
 					</li>
 				</ul>
 			</nav>

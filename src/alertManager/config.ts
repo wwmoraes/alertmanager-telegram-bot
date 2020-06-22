@@ -1,3 +1,7 @@
+/**
+ * @packageDocumentation
+ * @module AlertManager
+ */
 /* eslint-disable no-process-env */
 
 export const alertManagerDbPath = process.env.ALERTMANAGER_DB_PATH ||
