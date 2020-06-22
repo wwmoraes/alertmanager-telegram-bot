@@ -11,3 +11,8 @@ export const encodeToString = (obj: Record<string, unknown>): string =>
 export const decodeFromString = <T>(str: string): T =>
   decode<T>(new Uint8Array(str.split("").map((char) =>
     char.charCodeAt(0))).buffer);
+
+export default {
+  encodeToString,
+  decodeFromString
+};

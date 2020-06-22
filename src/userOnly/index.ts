@@ -3,8 +3,8 @@
  * receives no response, as if the bot had no backend running.
  *
  * @packageDocumentation
- * @module AdminOnly
+ * @module UserOnly
  */
 
-export * from "./context";
-export * from "./middleware";
+export * from "./IUserOnlyContext";
+export * from "./userOnlyMiddleware";

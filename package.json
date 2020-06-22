@@ -14,6 +14,7 @@
     "lint": "eslint -c .eslintrc.yml --ext .ts src",
     "docs": "typedoc --out docs src",
     "test": "jest --verbose --all",
+    "test:debug": "node --inspect-brk -r ts-node/register node_modules/.bin/jest --runInBand",
     "coverage": "jest --verbose --all --coverage",
     "postcoverage": "cc-test-reporter format-coverage -t lcov",
     "upload-coverage": "cc-test-reporter upload-coverage"
@@ -24,7 +25,8 @@
     "collectCoverageFrom": [
       "src/**/*.ts",
       "!src/**/*.d.ts",
-      "!src/setupTests.ts",
+      "!src/**/I*.ts",
+      "!src/**/__fixtures__/*.ts",
       "!src/**/*.(spec|test).ts"
     ]
   },

@@ -6,5 +6,7 @@ declare namespace NodeJS {
     TELEGRAM_ADMINS: string;
     EXTERNAL_URL?: string;
     INTERNAL_URL?: string;
+    ALERTMANAGER_DB_PATH?: string;
+    ALERTS_DB_PATH?: string;
   }
 }

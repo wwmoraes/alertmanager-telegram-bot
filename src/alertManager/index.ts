@@ -8,6 +8,6 @@
  * @module AlertManager
  */
 
-export * from "./context";
-export * from "./interfaces";
-export * from "./middleware";
+export * from "./IAlertManagerContext";
+export * from "./alertManagerComposer";
+export * from "./setupAlertManagerContext";

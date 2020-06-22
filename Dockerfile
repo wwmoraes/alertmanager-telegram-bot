@@ -47,7 +47,8 @@ RUN yarn install --prod --frozen-lockfile --link-duplicates --ignore-optional &&
 ### last-mile cleanups
 RUN rm -rf \
   /tmp \
-  /root
+  /root \
+  patches
 
 RUN chown -R bot:bot /opt/bot
 USER bot

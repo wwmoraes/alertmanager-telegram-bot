@@ -77,10 +77,10 @@ rules:
   max-classes-per-file: error
   max-depth: error
   max-len:
-  - error
+  - warn
   - tabWidth: 2
     code: 120
-    comments: 80
+    comments: 120
     ignoreUrls: true
     ignoreStrings: true
     ignoreTemplateLiterals: true
@@ -117,7 +117,7 @@ rules:
   no-div-regex: error
   no-duplicate-imports: error
   no-else-return: error
-  no-empty-function: error
+  no-empty-function: 0
   no-eq-null: error
   no-eval: error
   no-extend-native: error

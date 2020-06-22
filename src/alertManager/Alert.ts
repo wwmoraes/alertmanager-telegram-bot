@@ -3,7 +3,7 @@
  * @module AlertManager
  */
 
-import {AlertUpdate} from "./interfaces";
+import {IAlertUpdate} from "./IAlertUpdate";
 import {Update} from "telegraf/typings/telegram-types";
 import {createHash} from "crypto";
 import {readFileSync} from "fs";
@@ -14,7 +14,7 @@ export class Alert {
   private static formatAlert =
     template(readFileSync(config.templatePath).toString());
 
-  private readonly alertData: AlertUpdate;
+  private readonly alertData: IAlertUpdate;
 
   private readonly filter: string;
 
@@ -33,7 +33,7 @@ export class Alert {
   public readonly matchers: { name: string, value: string, isRegex: boolean }[];
 
   constructor (update: Update) {
-    this.alertData = (update as unknown) as AlertUpdate;
+    this.alertData = (update as unknown) as IAlertUpdate;
 
     if (typeof this.alertData.groupKey === "undefined") {
       throw Error("no groupKey defined on update");
@@ -68,9 +68,9 @@ export class Alert {
 
     this.matchers = Object.keys(this.alertData.commonLabels).map((key) =>
       ({
-        "isRegex": false,
-        "name": key,
-        "value": this.alertData.commonLabels[key]
+        isRegex: false,
+        name: key,
+        value: this.alertData.commonLabels[key]
       }));
   }
 }

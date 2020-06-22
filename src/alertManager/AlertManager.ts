@@ -7,52 +7,20 @@ import {Telegram} from "telegraf";
 import Level, {LevelGraph} from "level-ts";
 import {IGetTriple, ITriple} from "level-ts/dist/LevelGraph";
 import fetch, {FetchError, Response} from "node-fetch";
-import fs from "fs";
-import path from "path";
+import {mkdirSync} from "fs";
 
 import {
   InlineKeyboardButton,
   InlineKeyboardMarkup
 } from "telegraf/typings/telegram-types";
 
-import {Alert} from "./alert";
-import {AlertManagerContext} from "./context";
-import {CallbackData} from "./interfaces";
+import {Alert} from "./Alert";
+import {IAlertManagerContext} from "./IAlertManagerContext";
+import {ICallbackData} from "./ICallbackData";
 import {decodeFromString, encodeToString} from "./messagepack";
 import config from "./config";
-
-/** Predicates used on the levelgraph database to link resources */
-export const enum AlertManagerPredicates {
-
-  /** `user-id` `chat-on` `chat-id` */
-  ChatOn = "chat-on",
-
-  /** `chat-id` `has-message` `message-id` */
-  HasMessage = "has-message",
-
-  /** `message-id` `alerts` `alert-hash` */
-  Alerts = "alerts",
-}
-
-/**
- * Materialization structure containing the full chain of ids for an alert
- * @category levelgraph
- *
- */
-export interface AlertMessage {
-
-  /** Telegram API user ID */
-  userId: string,
-
-  /** Telegram API chat ID */
-  chatId: string,
-
-  /** Telegram API message ID */
-  messageId: string,
-
-  /** Alert hash from [[Alert.hash]] */
-  alertHash: string,
-}
+import {IAlertMessage} from "./IAlertMessage";
+import {IAlertManagerPredicates} from "./IAlertManagerPredicates";
 
 export class AlertManager {
   private db: LevelGraph;
@@ -69,17 +37,15 @@ export class AlertManager {
         params: {
           time: duration
         }
-      } as CallbackData);
+      } as ICallbackData);
 
   constructor (dbPath: string, alertDbPath: string) {
-    if (!fs.existsSync(path.dirname(dbPath))) {
-      throw new Error(`path ${path.dirname(dbPath)} does not exist`);
-    }
-    if (!fs.existsSync(path.dirname(alertDbPath))) {
-      throw new Error(`path ${path.dirname(alertDbPath)} does not exist`);
-    }
+    mkdirSync(dbPath, {recursive: true});
+    mkdirSync(alertDbPath, {recursive: true});
+
     this.db = new LevelGraph(dbPath);
     this.alerts = new Level<Alert>(alertDbPath);
+
     this.silenceButtons = [
       "1h",
       "3h"
@@ -126,7 +92,7 @@ export class AlertManager {
     return this.db.
       get({
         object: chatId,
-        predicate: AlertManagerPredicates.ChatOn,
+        predicate: IAlertManagerPredicates.ChatOn,
         subject: userId
       }).then((result) =>
         result.length > 0);
@@ -141,7 +107,7 @@ export class AlertManager {
   addUserChat (userId: string, chatId: string): Promise<void> {
     return this.db.put({
       subject: userId,
-      predicate: AlertManagerPredicates.ChatOn,
+      predicate: IAlertManagerPredicates.ChatOn,
       object: chatId
     });
   }
@@ -156,11 +122,11 @@ export class AlertManager {
   addAlertMessage (chatId: string, messageId: string, alertHash: string): Promise<IGetTriple<string | number>[]> {
     return this.db.chain.put({
       subject: chatId,
-      predicate: AlertManagerPredicates.HasMessage,
+      predicate: IAlertManagerPredicates.HasMessage,
       object: messageId
     }).put({
       subject: messageId,
-      predicate: AlertManagerPredicates.Alerts,
+      predicate: IAlertManagerPredicates.Alerts,
       object: alertHash
     }).
       finish();
@@ -169,9 +135,9 @@ export class AlertManager {
   /**
    * Gets all messages that have been sent for the given alert
    * @param {string} alertHash alert hash from [[Alert.hash]]
-   * @returns {Promise<AlertMessage[]>} alert message
+   * @returns {Promise<IAlertMessage[]>} alert message
    */
-  getAlertMessages (alertHash: string): Promise<AlertMessage[]> {
+  getAlertMessages (alertHash: string): Promise<IAlertMessage[]> {
     return this.db.walk(
       {
         materialized: {
@@ -179,7 +145,7 @@ export class AlertManager {
           chatId: this.db.v("chatId"),
           messageId: this.db.v("messageId"),
           alertHash: this.db.v("alertId")
-        } as AlertMessage,
+        } as IAlertMessage,
         filter: (solution, callback) =>
           callback(
             null,
@@ -187,15 +153,15 @@ export class AlertManager {
           )
       },
       {subject: this.db.v("userId"),
-        predicate: AlertManagerPredicates.ChatOn,
+        predicate: IAlertManagerPredicates.ChatOn,
         object: this.db.v("chatId")},
       {subject: this.db.v("chatId"),
-        predicate: AlertManagerPredicates.HasMessage,
+        predicate: IAlertManagerPredicates.HasMessage,
         object: this.db.v("messageId")},
       {subject: this.db.v("messageId"),
-        predicate: AlertManagerPredicates.Alerts,
+        predicate: IAlertManagerPredicates.Alerts,
         object: this.db.v("alertId")}
-    ) as Promise<AlertMessage[]>;
+    ) as Promise<IAlertMessage[]>;
   }
 
   /**
@@ -212,7 +178,7 @@ export class AlertManager {
       {
         materialized: {
           subject: this.db.v("userId"),
-          predicate: AlertManagerPredicates.ChatOn,
+          predicate: IAlertManagerPredicates.ChatOn,
           object: this.db.v("chatId")
         },
         filter: (solution, callback) =>
@@ -222,13 +188,13 @@ export class AlertManager {
           )
       },
       {subject: this.db.v("userId"),
-        predicate: AlertManagerPredicates.ChatOn,
+        predicate: IAlertManagerPredicates.ChatOn,
         object: this.db.v("chatId")},
       {subject: this.db.v("chatId"),
-        predicate: AlertManagerPredicates.HasMessage,
+        predicate: IAlertManagerPredicates.HasMessage,
         object: this.db.v("messageId")},
       {subject: this.db.v("messageId"),
-        predicate: AlertManagerPredicates.Alerts,
+        predicate: IAlertManagerPredicates.Alerts,
         object: this.db.v("alertHash")}
     ).then((entries) =>
       entries.map((entry) =>
@@ -241,9 +207,9 @@ export class AlertManager {
   /**
    * Get the alert context for the given message
    * @param {string} messageId telegram message ID
-   * @returns {Promise<AlertMessage|undefined>} alert context
+   * @returns {Promise<IAlertMessage|undefined>} alert context
    */
-  getAlertFromMessage (messageId: string): Promise<AlertMessage|undefined> {
+  getAlertFromMessage (messageId: string): Promise<IAlertMessage|undefined> {
     return this.db.walk(
       {
         materialized: {
@@ -251,7 +217,7 @@ export class AlertManager {
           chatId: this.db.v("chatId"),
           messageId: this.db.v("messageId"),
           alertHash: this.db.v("alertId")
-        } as AlertMessage,
+        } as IAlertMessage,
         filter: (solution, callback) =>
           callback(
             null,
@@ -259,16 +225,16 @@ export class AlertManager {
           )
       },
       {subject: this.db.v("userId"),
-        predicate: AlertManagerPredicates.ChatOn,
+        predicate: IAlertManagerPredicates.ChatOn,
         object: this.db.v("chatId")},
       {subject: this.db.v("chatId"),
-        predicate: AlertManagerPredicates.HasMessage,
+        predicate: IAlertManagerPredicates.HasMessage,
         object: this.db.v("messageId")},
       {subject: this.db.v("messageId"),
-        predicate: AlertManagerPredicates.Alerts,
+        predicate: IAlertManagerPredicates.Alerts,
         object: this.db.v("alertId")}
     ).then((results) =>
-      results[0]) as Promise<AlertMessage|undefined>;
+      results[0]) as Promise<IAlertMessage|undefined>;
   }
 
   /**
@@ -276,7 +242,7 @@ export class AlertManager {
    * @returns {Promise<ITriple<string|number>[]>} chat entries
    */
   getChats (): Promise<ITriple<string|number>[]> {
-    return this.db.get({predicate: AlertManagerPredicates.ChatOn});
+    return this.db.get({predicate: IAlertManagerPredicates.ChatOn});
   }
 
   /**
@@ -391,11 +357,11 @@ export class AlertManager {
 
   /**
    * Parses a callback
-   * @param {AlertManagerContext} ctx bot context
+   * @param {IAlertManagerContext} ctx bot context
    * @param {function(): Promise<void>} next middleware callback
    * @returns {Promise<void>} nothing
    */
-  async processCallback (ctx: AlertManagerContext, next: () => Promise<void>): Promise<void> {
+  async processCallback (ctx: IAlertManagerContext, next: () => Promise<void>): Promise<void> {
     console.info("[AlertManager] decoding data...");
     // Try to decode and use the callback data
     if (typeof ctx.callbackQuery === "undefined") {
@@ -410,7 +376,7 @@ export class AlertManager {
       throw new Error("no message on callback");
     }
 
-    const decodedData = decodeFromString<CallbackData>(ctx.callbackQuery.data);
+    const decodedData = decodeFromString<ICallbackData>(ctx.callbackQuery.data);
 
     // Not our callback, move along
     console.info("[AlertManager] checking if it is AM callback data...");

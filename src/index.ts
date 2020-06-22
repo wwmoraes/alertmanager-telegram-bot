@@ -1,18 +1,14 @@
 /**
- * Sample bot using the [[AlertManager]] and [[AdminOnly]] modules.
- *
+ * Sample bot using the [[AlertManager]] and [[UserOnly]] modules.
  * @packageDocumentation
  * @module Bot
- *
  */
 
 import {
-  AdminOnlyContext,
-  AdminOnlyMiddleware
-} from "./adminOnly";
+  userOnlyMiddleware
+} from "./userOnly";
 import {
-  AlertManagerContext,
-  AlertManagerMiddleware,
+  alertManagerComposer,
   setupAlertManagerContext
 } from "./alertManager";
 
@@ -20,12 +16,7 @@ import {Telegraf} from "telegraf";
 import fetch from "node-fetch";
 
 import config from "./config";
-
-/**
- * Bot context extending both the [[AlertManagerContext]] and
- * [[AdminOnlyContext]]
- */
-interface BotContext extends AlertManagerContext, AdminOnlyContext {}
+import {BotContext} from "./BotContext";
 
 /**
  * Bot instance
@@ -33,19 +24,19 @@ interface BotContext extends AlertManagerContext, AdminOnlyContext {}
 const bot = new Telegraf<BotContext>(
   config.telegramToken,
   {
-    "telegram": {
-      "webhookReply": false
+    telegram: {
+      webhookReply: false
     }
   }
 );
 
-bot.context.adminUserIds = config.telegramAdmins.split(",");
+bot.context.userIds = config.telegramAdmins.split(",");
 
 setupAlertManagerContext(bot);
 
 bot.use(
-  AdminOnlyMiddleware,
-  AlertManagerMiddleware
+  userOnlyMiddleware,
+  alertManagerComposer
 );
 
 bot.start((ctx) => {

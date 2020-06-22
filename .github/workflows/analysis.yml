@@ -1,0 +1,34 @@
+name: Analysis
+
+on: [push]
+
+env:
+  FORCE_COLOR: true
+  CI: true
+
+jobs:
+  analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Install yarn
+        run: |
+          npm i -g yarn
+
+      - name: Install dependencies for testing
+        run: |
+          yarn install
+
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v2.6.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: yarn coverage

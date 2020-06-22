@@ -3,6 +3,8 @@
     "Telegraf",
     "Unalerted",
     "alertmanager",
+    "alertname",
+    "jesttester",
     "levelgraph",
     "messagepack",
     "middlewares",

@@ -34,13 +34,15 @@ to messages instead of the boring slash commands.
 
 You can setup the bot using those environment variables:
 
-| variable        | description                                                                                        |
-|-----------------|----------------------------------------------------------------------------------------------------|
-| TELEGRAM_ADMINS | comma-separated telegram user IDs, which the bot will talk to                                      |
-| TELEGRAM_TOKEN  | your bot token                                                                                     |
-| TEMPLATE_FILE   | template file path to use for messages                                                             |
-| EXTERNAL_URL    | endpoint to register the webhook on Telegram (useful for reversed-proxy deployments)               |
-| INTERNAL_URL    | alertmanager endpoint to send silence requests (default: uses `externalURL` provided on the alert) |
+| variable             | default                 | description                                                                               |
+| -------------------- | ----------------------- | ----------------------------------------------------------------------------------------- |
+| TELEGRAM_ADMINS      | `undefined`             | comma-separated telegram user IDs, which the bot will talk to                             |
+| TELEGRAM_TOKEN       | `undefined`             | your bot token                                                                            |
+| TEMPLATE_FILE        | `default.tmpl`          | template file path to use for messages                                                    |
+| EXTERNAL_URL         | `http://127.0.0.1:9093` | endpoint to register the webhook on Telegram (useful for reversed-proxy deployments)      |
+| INTERNAL_URL         | `undefined`             | alertmanager URL to send API requests (default: uses `externalURL` provided on the alert) |
+| ALERTMANAGER_DB_PATH | `data/alertmanager`     | database path for alertmanager graph storage (LevelGraph)                                 |
+| ALERTS_DB_PATH       | `data/alerts`           | database path for alert storage (LevelDB)                                                 |
 
 ### Prerequisites
 
@@ -72,8 +74,8 @@ bots. You can do so with
 import {
   AlertManagerContext,
   AlertManagerMiddleware,
-  setupAlertManagerContext
-} from './alertManager';
+  setupAlertManagerContext,
+} from "./alertManager";
 
 interface YourBotContext extends AlertManagerContext {}
 
