@@ -44,7 +44,7 @@ export const alertManagerCBMiddleware: MiddlewareFn<IAlertManagerContext> =
   // Debug log
   console.debug(`[AlertManager] callback user ID ${ctx.callbackQuery.from.id}`);
   console.debug(`[AlertManager] callback chat ID ${ctx.callbackQuery.chat_instance}`);
-  console.debug(`[AlertManager] callback message ID ${ctx.callbackQuery.message?.message_id}`);
+  console.debug(`[AlertManager] callback message ID ${ctx.callbackQuery.message.message_id}`);
 
   console.debug("[AlertManager] processing callback...");
 

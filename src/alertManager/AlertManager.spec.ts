@@ -10,7 +10,9 @@
 /* eslint-disable no-undefined */
 /* eslint-disable max-lines-per-function */
 /* eslint-disable @typescript-eslint/no-empty-function */
+
 jest.mock("node-fetch");
+jest.mock("dotenv");
 
 import {rmdirSync, mkdirSync} from "fs";
 import {validAlertUpdate} from "./__fixtures__/updates";

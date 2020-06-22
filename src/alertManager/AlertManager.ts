@@ -94,7 +94,9 @@ export class AlertManager {
         object: chatId,
         predicate: IAlertManagerPredicates.ChatOn,
         subject: userId
-      }).then((result) =>
+      }).catch((reason) =>
+        Promise.reject(reason)).
+      then((result) =>
         result.length > 0);
   }
 
@@ -170,9 +172,12 @@ export class AlertManager {
    * @returns {Promise<(string|number)[]>} chats which didn't receive the alert
    */
   async getUnalertedChats (alertHash: string): Promise<(string|number)[]> {
-    const chatIds = await this.getChats().then((chats) =>
-      chats.map((chat) =>
-        chat.object));
+    const chatIds = await this.getChats().
+      catch((reason) =>
+        Promise.reject(reason)).
+      then((chats) =>
+        chats.map((chat) =>
+          chat.object));
 
     return this.db.walk(
       {
@@ -196,9 +201,11 @@ export class AlertManager {
       {subject: this.db.v("messageId"),
         predicate: IAlertManagerPredicates.Alerts,
         object: this.db.v("alertHash")}
-    ).then((entries) =>
-      entries.map((entry) =>
-        entry.object)).
+    ).catch((reason) =>
+      Promise.reject(reason)).
+      then((entries) =>
+        entries.map((entry) =>
+          entry.object)).
       then((chats) =>
         chatIds.filter((chat) =>
           !chats.includes(chat)));
@@ -233,8 +240,10 @@ export class AlertManager {
       {subject: this.db.v("messageId"),
         predicate: IAlertManagerPredicates.Alerts,
         object: this.db.v("alertId")}
-    ).then((results) =>
-      results[0]) as Promise<IAlertMessage|undefined>;
+    ).catch((reason) =>
+      Promise.reject(reason)).
+      then((results) =>
+        results[0]) as Promise<IAlertMessage|undefined>;
   }
 
   /**
@@ -270,28 +279,32 @@ export class AlertManager {
     return this.alerts.get(alertHash);
   }
 
-  async sendAlertMessages (alert: Alert, telegram: Telegram): Promise<void> {
+  sendAlertMessages (alert: Alert, telegram: Telegram): Promise<void> {
     if (alert.isFiring) {
       // If firing, we probably have a new alert
       this.addAlert(alert);
 
       // Get chats that haven't received this alert
-      const chatIds = await this.getUnalertedChats(alert.hash);
-
-      return chatIds.forEach((chatId) =>
-        telegram.sendMessage(
-          chatId,
-          alert.text,
-          {
-            parse_mode: "HTML",
-            reply_markup: this.firingMessageMarkup(alert)
-          }
-        ).then((message) =>
-          this.addAlertMessage(
-            chatId.toString(),
-            message.message_id.toString(),
-            alert.hash
-          )));
+      return this.getUnalertedChats(alert.hash).
+        catch((reason) =>
+          Promise.reject(reason)).
+        then((chats) =>
+          chats.forEach((chatId) =>
+            telegram.sendMessage(
+              chatId,
+              alert.text,
+              {
+                parse_mode: "HTML",
+                reply_markup: this.firingMessageMarkup(alert)
+              }
+            ).catch((reason) =>
+              Promise.reject(reason)).
+              then((message) =>
+                this.addAlertMessage(
+                  chatId.toString(),
+                  message.message_id.toString(),
+                  alert.hash
+                ))));
     }
     // Remove an existing alert as it is resolved
     this.delAlert(alert.hash);
@@ -300,18 +313,19 @@ export class AlertManager {
      * Cycle all chats to update the message, or send a new one if the user
      * Hasn't received one previously
      */
-    const alerts = await this.getAlertMessages(alert.hash);
-
-
-    return alerts.forEach((entry) => {
-      telegram.editMessageText(
-        entry.chatId,
-        parseInt(entry.messageId, 10),
-        "",
-        alert.text,
-        {parse_mode: "HTML"}
-      );
-    });
+    return this.getAlertMessages(alert.hash).
+      catch((reason) =>
+        Promise.reject(reason)).
+      then((messages) =>
+        messages.forEach((entry) => {
+          telegram.editMessageText(
+            entry.chatId,
+            parseInt(entry.messageId, 10),
+            "",
+            alert.text,
+            {parse_mode: "HTML"}
+          );
+        }));
   }
 
   /**

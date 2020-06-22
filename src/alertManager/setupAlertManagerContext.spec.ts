@@ -6,6 +6,9 @@
 /* eslint-disable no-undefined */
 /* eslint-disable no-process-env */
 /* eslint-disable @typescript-eslint/no-empty-function */
+
+jest.mock("dotenv");
+
 import {rmdirSync, mkdirSync} from "fs";
 import {Telegraf} from "telegraf/typings/telegraf";
 import {IAlertManagerContext} from "./IAlertManagerContext";
@@ -53,7 +56,7 @@ it("should setup successfully", async () => {
     }
   };
 
-  expect(setupAlertManagerContext(bot as unknown as Telegraf<IAlertManagerContext>)).resolves.toBeUndefined();
+  await expect(setupAlertManagerContext(bot as unknown as Telegraf<IAlertManagerContext>)).resolves.toBeUndefined();
 
   const AlertManager = await (await import("./AlertManager")).AlertManager;
   const alertmanagerInstance = bot.context.alertManager as unknown as typeof AlertManager;

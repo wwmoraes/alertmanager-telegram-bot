@@ -2,17 +2,17 @@
 
 > Yet another Prometheus alertmanager's telegram bot
 
-![GitHub license](https://img.shields.io/github/license/wwmoraes/alertmanager-telegram-bot)
-![GitHub top language](https://img.shields.io/github/languages/top/wwmoraes/alertmanager-telegram-bot)
+[![GitHub license](https://img.shields.io/github/license/wwmoraes/alertmanager-telegram-bot)](https://github.com/wwmoraes/alertmanager-telegram-bot/blob/master/LICENSE)
+[![GitHub top language](https://img.shields.io/github/languages/top/wwmoraes/alertmanager-telegram-bot)](https://github.com/wwmoraes/alertmanager-telegram-bot/search?l=typescript)
 ![GitHub repo size](https://img.shields.io/github/repo-size/wwmoraes/alertmanager-telegram-bot)
 ![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/wwmoraes/alertmanager-telegram-bot)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/wwmoraes/alertmanager-telegram-bot)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/wwmoraes/alertmanager-telegram-bot/DockerHub)
+[![GitHub last commit](https://img.shields.io/github/last-commit/wwmoraes/alertmanager-telegram-bot)](https://github.com/wwmoraes/alertmanager-telegram-bot/commits/master)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/wwmoraes/alertmanager-telegram-bot/DockerHub)](https://github.com/wwmoraes/alertmanager-telegram-bot/actions?query=workflow%3ADockerHub)
 
-![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability-percentage/wwmoraes/alertmanager-telegram-bot)
-![Code Climate issues](https://img.shields.io/codeclimate/issues/wwmoraes/alertmanager-telegram-bot)
-![Code Climate technical debt](https://img.shields.io/codeclimate/tech-debt/wwmoraes/alertmanager-telegram-bot)
+[![Maintainability](https://api.codeclimate.com/v1/badges/3423bf84a8f2cc9afdea/maintainability)](https://codeclimate.com/github/wwmoraes/alertmanager-telegram-bot/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/3423bf84a8f2cc9afdea/test_coverage)](https://codeclimate.com/github/wwmoraes/alertmanager-telegram-bot/test_coverage)
+[![Code Climate issues](https://img.shields.io/codeclimate/issues/wwmoraes/alertmanager-telegram-bot)](https://codeclimate.com/github/wwmoraes/alertmanager-telegram-bot/issues)
 
 This is a work in progress, so take all functionalities with a grain of salt.
 
