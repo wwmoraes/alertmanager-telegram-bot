@@ -63,8 +63,11 @@ export class Alert {
       /<br[ ]*\/?>/gu,
       "\r\n"
     );
-    this.silenceUrl = `${this.baseUrl}/#/silences/new?filter=${encodeURIComponent(`{${this.filter}}`)}`;
-    this.relatedAlertsUrl = `${this.baseUrl}/#/alerts?silenced=false&inhibited=false&active=true&filter=${encodeURIComponent(`{${this.filter}}`)}`;
+
+    const encodedFilter = encodeURIComponent(`{${this.filter}}`);
+
+    this.silenceUrl = `${this.baseUrl}/#/silences/new?filter=${encodedFilter}`;
+    this.relatedAlertsUrl = `${this.baseUrl}/#/alerts?silenced=false&inhibited=false&active=true&filter=${encodedFilter}`;
 
     this.matchers = Object.keys(this.alertData.commonLabels).map((key) =>
       ({
