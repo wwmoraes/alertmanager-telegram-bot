@@ -17,7 +17,7 @@
     "test": "jest --verbose --all",
     "test:debug": "node --inspect-brk --trace-warnings --unhandled-rejections=strict -r ts-node/register node_modules/.bin/jest --runInBand --detectOpenHandles",
     "coverage": "jest --verbose --all --coverage",
-    "upload-coverage": "cc-test-reporter format-coverage -t lcov && cc-test-reporter upload-coverage"
+    "upload-coverage": "cc-test-reporter format-coverage -t lcov && dotenv-load cc-test-reporter upload-coverage"
   },
   "jest": {
     "preset": "ts-jest",
@@ -53,6 +53,7 @@
   "optionalDependencies": {
     "@types/fetch-mock": "^7.3.2",
     "@types/jest": "^26.0.0",
+    "dotenv-load": "^2.0.0",
     "fetch-mock": "^9.10.2",
     "g8-typedoc-dark": "^0.1.2",
     "jest": "^26.0.1",
