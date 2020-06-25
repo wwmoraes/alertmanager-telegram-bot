@@ -22,6 +22,9 @@ import config from "./config";
 import {IAlertMessage} from "./IAlertMessage";
 import {IAlertManagerPredicates} from "./IAlertManagerPredicates";
 
+type walkCallback<T> = (error: string|null, solution?: T) => void;
+type walkFilter<T> = (solution: T, callback: walkCallback<T>) => void;
+
 export class AlertManager {
   private db: LevelGraph;
 
@@ -134,25 +137,16 @@ export class AlertManager {
       finish();
   }
 
-  /**
-   * Gets all messages that have been sent for the given alert
-   * @param {string} alertHash alert hash from [[Alert.hash]]
-   * @returns {Promise<IAlertMessage[]>} alert message
-   */
-  getAlertMessages (alertHash: string): Promise<IAlertMessage[]> {
+  getIdsFilteredBy (filter: walkFilter<IAlertMessage>): Promise<IAlertMessage[]> {
     return this.db.walk(
       {
         materialized: {
           userId: this.db.v("userId"),
           chatId: this.db.v("chatId"),
           messageId: this.db.v("messageId"),
-          alertHash: this.db.v("alertId")
+          alertHash: this.db.v("alertHash")
         } as IAlertMessage,
-        filter: (solution, callback) =>
-          callback(
-            null,
-            solution.alertId === alertHash && solution
-          )
+        filter
       },
       {subject: this.db.v("userId"),
         predicate: IAlertManagerPredicates.ChatOn,
@@ -162,8 +156,23 @@ export class AlertManager {
         object: this.db.v("messageId")},
       {subject: this.db.v("messageId"),
         predicate: IAlertManagerPredicates.Alerts,
-        object: this.db.v("alertId")}
+        object: this.db.v("alertHash")}
     ) as Promise<IAlertMessage[]>;
+  }
+
+  /**
+   * Gets all messages that have been sent for the given alert
+   * @param {string} alertHash alert hash from [[Alert.hash]]
+   * @returns {Promise<IAlertMessage[]>} alert message
+   */
+  getAlertMessages (alertHash: string): Promise<IAlertMessage[]> {
+    return this.getIdsFilteredBy((solution, callback) => {
+      if (solution.alertHash === alertHash) {
+        return callback(null, solution);
+      }
+
+      return callback(null);
+    });
   }
 
   /**
@@ -217,30 +226,13 @@ export class AlertManager {
    * @returns {Promise<IAlertMessage|undefined>} alert context
    */
   getAlertFromMessage (messageId: string): Promise<IAlertMessage|undefined> {
-    return this.db.walk(
-      {
-        materialized: {
-          userId: this.db.v("userId"),
-          chatId: this.db.v("chatId"),
-          messageId: this.db.v("messageId"),
-          alertHash: this.db.v("alertId")
-        } as IAlertMessage,
-        filter: (solution, callback) =>
-          callback(
-            null,
-            solution.messageId === messageId && solution
-          )
-      },
-      {subject: this.db.v("userId"),
-        predicate: IAlertManagerPredicates.ChatOn,
-        object: this.db.v("chatId")},
-      {subject: this.db.v("chatId"),
-        predicate: IAlertManagerPredicates.HasMessage,
-        object: this.db.v("messageId")},
-      {subject: this.db.v("messageId"),
-        predicate: IAlertManagerPredicates.Alerts,
-        object: this.db.v("alertId")}
-    ).catch((reason) =>
+    return this.getIdsFilteredBy((solution, callback) => {
+      if (solution.messageId === messageId) {
+        return callback(null, solution);
+      }
+
+      return callback(null);
+    }).catch((reason) =>
       Promise.reject(reason)).
       then((results) =>
         results[0]) as Promise<IAlertMessage|undefined>;
@@ -306,8 +298,6 @@ export class AlertManager {
                   alert.hash
                 ))));
     }
-    // Remove an existing alert as it is resolved
-    this.delAlert(alert.hash);
 
     /*
      * Cycle all chats to update the message, or send a new one if the user
