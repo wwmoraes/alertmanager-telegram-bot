@@ -17,8 +17,7 @@
     "test": "jest --verbose --all",
     "test:debug": "node --inspect-brk --trace-warnings --unhandled-rejections=strict -r ts-node/register node_modules/.bin/jest --runInBand --detectOpenHandles",
     "coverage": "jest --verbose --all --coverage",
-    "postcoverage": "cc-test-reporter format-coverage -t lcov",
-    "upload-coverage": "cc-test-reporter upload-coverage"
+    "upload-coverage": "cc-test-reporter format-coverage -t lcov && cc-test-reporter upload-coverage"
   },
   "jest": {
     "preset": "ts-jest",

@@ -11,15 +11,15 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable @typescript-eslint/no-empty-function */
 
-jest.mock("node-fetch");
 jest.mock("dotenv");
+jest.mock("node-fetch", () =>
+  require("fetch-mock").sandbox());
 
 import {rmdirSync, mkdirSync} from "fs";
 import {validAlertUpdate} from "./__fixtures__/updates";
 import pathGenerator from "./__fixtures__/pathGenerator";
 import {IAlertManagerContext} from "./IAlertManagerContext";
 import {ICallbackData} from "./ICallbackData";
-import type {FetchMockSandbox} from "fetch-mock";
 
 beforeAll(() => {
   jest.spyOn(console, "warn").mockImplementation(() => {});
@@ -70,10 +70,10 @@ describe("instance creation", () => {
     const Alert = await (await import("./Alert")).Alert;
     const encodeToString = await (await import("./messagepack")).encodeToString;
 
-    const nodeFetch = await (await import("node-fetch")).default;
-    const fetchMock = nodeFetch as unknown as FetchMockSandbox;
+    type FetchMockSandbox = import("fetch-mock").FetchMockSandbox;
+    const fetchMock = await import("node-fetch") as unknown as FetchMockSandbox;
 
-    fetchMock.post("path:/api/v2/silences", {
+    fetchMock.post("https://alertmanager.domain.com:9093/api/v2/silences", {
       body: {
         silenceID: "silence1"
       }

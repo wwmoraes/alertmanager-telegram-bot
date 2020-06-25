@@ -1,5 +1,7 @@
 .DEFAULT_GOAL := build
 
+.PHONY: build shell run
+
 build:
 	docker build -t wwmoraes/alertmanager-telegram-bot .
 
