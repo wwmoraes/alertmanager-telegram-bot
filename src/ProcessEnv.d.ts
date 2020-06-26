@@ -4,7 +4,7 @@
   */
 
 /** @module NodeJS */
- declare namespace NodeJS {
+declare namespace NodeJS {
   interface ProcessEnv {
     NODE_ENV?: string;
     TEMPLATE_FILE?: string;
