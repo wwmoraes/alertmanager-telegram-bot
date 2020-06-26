@@ -1,1 +1,1 @@
-/// <reference path="./src/ProcessEnv.d.ts" />
+import "./src/ProcessEnv";
