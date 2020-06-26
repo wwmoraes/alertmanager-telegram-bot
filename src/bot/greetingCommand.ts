@@ -3,8 +3,6 @@
  * @module Bot
  */
 
-import {BotContext} from "./BotContext";
+import {textReplyMiddleware} from "./textReplyMiddleware";
 
-export const greetingCommand = (ctx: BotContext): Promise<void> =>
-  ctx.reply("Hey there").then(() =>
-    Promise.resolve());
+export const greetingCommand = textReplyMiddleware("Hey there");

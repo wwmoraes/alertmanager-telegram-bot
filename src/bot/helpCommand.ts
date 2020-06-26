@@ -3,8 +3,6 @@
  * @module Bot
  */
 
-import {BotContext} from "./BotContext";
+import {textReplyMiddleware} from "./textReplyMiddleware";
 
-export const helpCommand = (ctx: BotContext): Promise<void> =>
-  ctx.reply("Send me a sticker").then(() =>
-    Promise.resolve());
+export const helpCommand = textReplyMiddleware("Send me a sticker");
