@@ -1,6 +1,10 @@
 plugins:
-  eslint:
+  fixme:
     enabled: true
+  editorconfig:
+    enabled: true
+  eslint:
+    enabled: false
     config: .eslint.yml
 exclude_patterns:
 - ".github/"
