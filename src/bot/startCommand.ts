@@ -13,7 +13,7 @@ export const startCommand = async (ctx: BotContext): Promise<void> => {
     return Promise.reject(new Error("no chat on the start request"));
   }
 
-  if (ctx.alertManager.hasUserChat(
+  if (await ctx.alertManager.hasUserChat(
     ctx.from.id.toString(),
     ctx.chat.id.toString()
   )) {
@@ -36,11 +36,11 @@ export const startCommand = async (ctx: BotContext): Promise<void> => {
         Promise.resolve());
   }
 
-  ctx.alertManager.addUserChat(
+  return ctx.alertManager.addUserChat(
     ctx.from.id.toString(),
     ctx.chat.id.toString()
-  );
-
-  return ctx.reply("Welcome!").then(() =>
-    Promise.resolve());
+  ).then(() =>
+    ctx.reply("Welcome!")).
+    then(() =>
+      Promise.resolve());
 };

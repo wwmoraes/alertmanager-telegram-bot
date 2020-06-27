@@ -32,5 +32,5 @@ it("should greet back", async () => {
   await helpCommand(botContext);
 
   expect(botContext.reply).toHaveBeenCalled();
-  expect(botContext.reply).toHaveBeenCalledWith("Send me a sticker");
+  expect(botContext.reply).toHaveBeenCalledWith("Send me a sticker", undefined);
 });

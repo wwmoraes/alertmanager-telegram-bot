@@ -1,18 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 
-import {BotContext} from "./BotContext";
-import {mock} from "jest-mock-extended";
-import {Message} from "telegraf/typings/telegram-types";
-
-const botContext = mock<BotContext>();
-const mockMessage = mock<Message>();
-
-botContext.reply.mockImplementation(() =>
-  Promise.resolve(mockMessage));
-
-// const next = jest.fn(() =>
-//   Promise.resolve());
-
 beforeAll(() => {
   jest.spyOn(console, "warn").mockImplementation(() => {});
   jest.spyOn(console, "info").mockImplementation(() => {});
@@ -28,9 +15,10 @@ beforeEach(() => {
 
 it("should greet back", async () => {
   const greetingCommand = await (await import("./greetingCommand")).greetingCommand;
+  const mockBotContextValid = await (await import("./__fixtures__/mockBotContext")).mockBotContextValid;
 
-  await greetingCommand(botContext);
+  await greetingCommand(mockBotContextValid);
 
-  expect(botContext.reply).toHaveBeenCalled();
-  expect(botContext.reply).toHaveBeenCalledWith("Hey there");
+  expect(mockBotContextValid.reply).toHaveBeenCalled();
+  expect(mockBotContextValid.reply).toHaveBeenCalledWith("Hey there", undefined);
 });
