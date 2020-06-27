@@ -8,6 +8,8 @@ import Level, {LevelGraph} from "level-ts";
 import {IGetTriple, ITriple} from "level-ts/dist/LevelGraph";
 import fetch, {FetchError, Response} from "node-fetch";
 import {mkdirSync} from "fs";
+import type {AbstractLevelDOWN, AbstractIterator} from "abstract-leveldown";
+import type {LevelUp} from "levelup";
 
 import {
   InlineKeyboardButton,
@@ -24,6 +26,18 @@ import {IAlertManagerPredicates} from "./IAlertManagerPredicates";
 
 type walkCallback<T> = (error: string|null, solution?: T) => void;
 type walkFilter<T> = (solution: T, callback: walkCallback<T>) => void;
+
+type BaseDBKey = string;
+type BaseDBValue = string;
+type BaseDBLevelDown = AbstractLevelDOWN<BaseDBKey, BaseDBValue>;
+type BaseDBLevelIterator = AbstractIterator<string, string>;
+type BaseDBLevelUp = LevelUp<BaseDBLevelDown, BaseDBLevelIterator>;
+
+type AlertsDBKey = string;
+type AlertsDBValue = Alert;
+type AlertsDBLevelDown = AbstractLevelDOWN<AlertsDBKey, AlertsDBValue>;
+type AlertsDBLevelIterator = AbstractIterator<string, string>;
+type AlertsDBLevelUp = LevelUp<AlertsDBLevelDown, AlertsDBLevelIterator>;
 
 export class AlertManager {
   private db: LevelGraph;
@@ -42,12 +56,20 @@ export class AlertManager {
         }
       } as ICallbackData);
 
-  constructor (dbPath: string, alertDbPath: string) {
-    mkdirSync(dbPath, {recursive: true});
-    mkdirSync(alertDbPath, {recursive: true});
+  constructor (baseDBPath: string|BaseDBLevelUp, alertsDBPath: string|AlertsDBLevelUp) {
+    if (typeof baseDBPath === "string") {
+      mkdirSync(baseDBPath, {recursive: true});
+      this.db = new LevelGraph<string>(baseDBPath);
+    } else {
+      this.db = new LevelGraph<string>(baseDBPath);
+    }
 
-    this.db = new LevelGraph(dbPath);
-    this.alerts = new Level<Alert>(alertDbPath);
+    if (typeof alertsDBPath === "string") {
+      mkdirSync(alertsDBPath, {recursive: true});
+      this.alerts = new Level<AlertsDBValue>(alertsDBPath);
+    } else {
+      this.alerts = new Level<AlertsDBValue>(alertsDBPath);
+    }
 
     this.silenceButtons = [
       "1h",
