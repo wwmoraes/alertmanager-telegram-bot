@@ -119,10 +119,11 @@ export class AlertManager {
         object: chatId,
         predicate: IAlertManagerPredicates.ChatOn,
         subject: userId
-      }).catch((reason) =>
-        Promise.reject(reason)).
+      }).
       then((result) =>
-        result.length > 0);
+        Promise.resolve(result.length > 0)).
+      catch((reason) =>
+        Promise.reject(reason));
   }
 
   /**
