@@ -6,6 +6,7 @@
     "alertname",
     "jesttester",
     "levelgraph",
+    "memdown",
     "messagepack",
     "middlewares",
     "tmpl"
