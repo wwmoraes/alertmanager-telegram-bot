@@ -8,30 +8,13 @@
 /* eslint-disable no-process-env */
 
 jest.mock("dotenv");
-jest.mock("./bot", () => {
-  const botModule = jest.requireActual("./bot");
-  let bot: Promise<Telegraf<BotContext>>|undefined = undefined;
-
-  return {
-    bot: () => {
-      if (typeof bot === "undefined") {
-        bot = botModule.bot();
-      }
-
-      return bot;
-    },
-    stop: () =>
-      bot?.then((botInstance: Telegraf<BotContext>) =>
-        botInstance.stop())
-  };
-});
 jest.mock("node-fetch");
+jest.mock("telegraf");
 
-import "./ProcessEnv.d";
 import pathGenerator from "./alertManager/__fixtures__/pathGenerator";
 import {rmdirSync, mkdirSync} from "fs";
 import Telegraf from "telegraf";
-import {BotContext} from "./bot/BotContext";
+import type {BotContext} from "./bot/BotContext";
 
 const {dbPathPrefix, alertManagerDbPath, alertsDbPath} = pathGenerator();
 
@@ -47,12 +30,13 @@ beforeAll(() => {
 
 beforeEach(() => {
   process.env.NODE_ENV = "test";
+
+  process.env.EXTERNAL_URL = "https://test.domain.com/";
+  process.env.INTERNAL_URL = "http://internal.test.localhost/";
+  process.env.TELEGRAM_TOKEN = "TELEGRAM_TOKEN";
+  process.env.TELEGRAM_ADMINS = "1";
+  process.env.TEMPLATE_FILE = "default.tmpl";
   process.env.PORT = "0";
-  Reflect.deleteProperty(process.env, "TEMPLATE_FILE");
-  Reflect.deleteProperty(process.env, "TELEGRAM_TOKEN");
-  Reflect.deleteProperty(process.env, "TELEGRAM_ADMINS");
-  Reflect.deleteProperty(process.env, "EXTERNAL_URL");
-  Reflect.deleteProperty(process.env, "INTERNAL_URL");
 
   process.env.ALERTMANAGER_DB_PATH = alertManagerDbPath();
   process.env.ALERTS_DB_PATH = alertsDbPath();
@@ -74,10 +58,6 @@ afterAll(() => {
 });
 
 it("should start sample successfully", async () => {
-  process.env.EXTERNAL_URL = "https://test.domain.com/";
-  process.env.TELEGRAM_TOKEN = "TELEGRAM_TOKEN";
-  process.env.TELEGRAM_ADMINS = "1";
-
   const fetchMock = await (await import("fetch-mock")).default;
 
   fetchMock.get("https://api.telegram.org/botTELEGRAM_TOKEN/setWebhook?url=https://test.domain.com/", 200);
@@ -93,17 +73,9 @@ it("should start sample successfully", async () => {
   });
 
   expect(import(".")).resolves.toEqual({});
-
-  const botModule = await import("./bot") as BotMock;
-
-  await botModule.stop();
 });
 
 it("should fail to start on unknown error from Telegram", async () => {
-  process.env.EXTERNAL_URL = "https://test.domain.com/";
-  process.env.TELEGRAM_TOKEN = "TELEGRAM_TOKEN";
-  process.env.TELEGRAM_ADMINS = "1";
-
   const fetchMock = await (await import("fetch-mock")).default;
 
   fetchMock.get(`https://api.telegram.org/bot${process.env.TELEGRAM_TOKEN}/setWebhook?url=${process.env.EXTERNAL_URL}`, 500);
@@ -118,29 +90,31 @@ it("should fail to start on unknown error from Telegram", async () => {
     }
   });
 
-  let bot: Telegraf<BotContext> | undefined = undefined;
+  let bot: Telegraf<BotContext> | void = undefined;
+  const botModule = await import("./bot");
 
   try {
-    bot = await (await import("./bot")).bot();
+    bot = await botModule.bot().catch(console.error);
   } finally {
     if (bot) {
       bot.stop();
     }
-    expect(bot).toBeDefined();
+    expect(bot).toBeUndefined();
   }
 });
 
-// it("should fail to start if with no token provided", async () => {
-//   process.env.TELEGRAM_TOKEN = undefined;
+it("should fail to start if with no token provided", async () => {
+  process.env.TELEGRAM_TOKEN = undefined;
 
-//   let bot: Telegraf<BotContext> | undefined = undefined;
+  let bot: Telegraf<BotContext> | void = undefined;
+  const botModule = await import("./bot");
 
-//   try {
-//     bot = await (await import("./index")).bot;
-//   } finally {
-//     if (bot) {
-//       await bot.stop();
-//     }
-//     expect(bot).toBeUndefined();
-//   }
-// });
+  try {
+    bot = await botModule.bot().catch(console.error);
+  } finally {
+    if (bot) {
+      await bot.stop();
+    }
+    expect(bot).toBeUndefined();
+  }
+});
