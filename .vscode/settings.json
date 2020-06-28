@@ -5,6 +5,7 @@
     "alertmanager",
     "alertname",
     "jesttester",
+    "leveldown",
     "levelgraph",
     "memdown",
     "messagepack",

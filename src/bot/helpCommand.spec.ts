@@ -1,3 +1,4 @@
+/* eslint-disable no-undefined */
 /* eslint-disable @typescript-eslint/no-empty-function */
 
 import {BotContext} from "./BotContext";
