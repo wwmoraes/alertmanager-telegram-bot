@@ -6,4 +6,4 @@
 
 import {bot} from "./bot";
 
-bot();
+bot().catch(console.error);

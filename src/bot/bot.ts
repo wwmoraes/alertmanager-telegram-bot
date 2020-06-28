@@ -20,7 +20,7 @@ import {userOnlyMiddleware} from "../userOnly";
  * safely creates the bot instance
  * @returns {Promise<Telegraf<BotContext>>} bot instance
  */
-export const bot = async (): Promise<Telegraf<BotContext>> => {
+export const bot = async (): Promise<Telegraf<BotContext>|undefined> => {
   // eslint-disable-next-line init-declarations,no-undef-init,no-undefined
   let botInstance: Telegraf<BotContext> | undefined = undefined;
 
@@ -57,23 +57,24 @@ export const bot = async (): Promise<Telegraf<BotContext>> => {
     );
 
     console.info(`registering webhook on ${config.externalUrl}...`);
-    fetch(`https://api.telegram.org/bot${config.telegramToken}/setWebhook?url=${config.externalUrl}`).
+
+    await fetch(`https://api.telegram.org/bot${config.telegramToken}/setWebhook?url=${config.externalUrl}`).
       then((response) => {
         if (response.status !== 200) {
           throw new Error("error setting the webhook");
         }
+
         console.info("webhook set successfully");
       });
-
-    return Promise.resolve(botInstance);
   } catch (error) {
     if (typeof botInstance !== "undefined") {
       botInstance.stop();
     }
 
     console.error("failed to create a bot instance");
-    console.error(error);
 
     return Promise.reject(error);
   }
+
+  return Promise.resolve(botInstance);
 };

@@ -16,13 +16,18 @@ interface BotMock {
 }
 jest.mock("./bot", () => {
   const botModule = jest.requireActual("./bot");
-  const bot = botModule.bot();
+  let bot: Promise<Telegraf<BotContext>>|undefined = undefined;
 
   return {
-    bot: () =>
-      bot,
+    bot: () => {
+      if (typeof bot === "undefined") {
+        bot = botModule.bot();
+      }
+
+      return bot;
+    },
     stop: () =>
-      bot.then((botInstance: Telegraf<BotContext>) =>
+      bot?.then((botInstance: Telegraf<BotContext>) =>
         botInstance.stop())
   };
 });
