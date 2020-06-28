@@ -8,12 +8,6 @@
 /* eslint-disable no-process-env */
 
 jest.mock("dotenv");
-jest.mock("node-fetch", () =>
-  require("fetch-mock").sandbox());
-interface BotMock {
-  bot: () => Promise<Telegraf<BotContext>>,
-  stop: () => Promise<void>
-}
 jest.mock("./bot", () => {
   const botModule = jest.requireActual("./bot");
   let bot: Promise<Telegraf<BotContext>>|undefined = undefined;
@@ -31,6 +25,7 @@ jest.mock("./bot", () => {
         botInstance.stop())
   };
 });
+jest.mock("node-fetch");
 
 import "./ProcessEnv.d";
 import pathGenerator from "./alertManager/__fixtures__/pathGenerator";
@@ -83,8 +78,7 @@ it("should start sample successfully", async () => {
   process.env.TELEGRAM_TOKEN = "TELEGRAM_TOKEN";
   process.env.TELEGRAM_ADMINS = "1";
 
-  type FetchMockSandbox = import("fetch-mock").FetchMockSandbox;
-  const fetchMock = await import("node-fetch") as unknown as FetchMockSandbox;
+  const fetchMock = await (await import("fetch-mock")).default;
 
   fetchMock.get("https://api.telegram.org/botTELEGRAM_TOKEN/setWebhook?url=https://test.domain.com/", 200);
   fetchMock.post("https://api.telegram.org/botTELEGRAM_TOKEN/getChat", {body: {
@@ -105,42 +99,12 @@ it("should start sample successfully", async () => {
   await botModule.stop();
 });
 
-it("should start bot successfully", async () => {
-  process.env.EXTERNAL_URL = "https://test.domain.com/";
-  process.env.TELEGRAM_TOKEN = "TELEGRAM_TOKEN";
-  process.env.TELEGRAM_ADMINS = "1";
-
-  type FetchMockSandbox = import("fetch-mock").FetchMockSandbox;
-  const fetchMock = await import("node-fetch") as unknown as FetchMockSandbox;
-
-  fetchMock.get("https://api.telegram.org/botTELEGRAM_TOKEN/setWebhook?url=https://test.domain.com/", 200);
-  fetchMock.post("https://api.telegram.org/botTELEGRAM_TOKEN/getChat", {body: {
-    ok: true,
-    result: {
-      id: 1
-    }
-  }}, {
-    body: {
-      chat_id: "1"
-    }
-  });
-
-  let bot: Telegraf<BotContext> | undefined = undefined;
-
-  bot = await (await import("./bot")).bot();
-  if (bot) {
-    await bot.stop();
-  }
-  expect(bot).toBeDefined();
-});
-
 it("should fail to start on unknown error from Telegram", async () => {
   process.env.EXTERNAL_URL = "https://test.domain.com/";
   process.env.TELEGRAM_TOKEN = "TELEGRAM_TOKEN";
   process.env.TELEGRAM_ADMINS = "1";
 
-  type FetchMockSandbox = import("fetch-mock").FetchMockSandbox;
-  const fetchMock = await import("node-fetch") as unknown as FetchMockSandbox;
+  const fetchMock = await (await import("fetch-mock")).default;
 
   fetchMock.get(`https://api.telegram.org/bot${process.env.TELEGRAM_TOKEN}/setWebhook?url=${process.env.EXTERNAL_URL}`, 500);
   fetchMock.post(`https://api.telegram.org/bot${process.env.TELEGRAM_TOKEN}/getChat`, {body: {
