@@ -6,7 +6,7 @@
 import {Alert} from "../Alert";
 import {mockUpdateAlert} from "./mockUpdate";
 
-export const alertValid = new Alert(mockUpdateAlert);
+export const alertValid = Alert.from(mockUpdateAlert);
 
 export default {
   alertValid

@@ -38,7 +38,7 @@ it("should error with invalid update data", async () => {
   const alertManagerMiddleware = await (await import("./alertManagerMiddleware")).alertManagerMiddleware;
 
   expect(alertManagerMiddleware(update as unknown as IAlertManagerContext, next)).
-    rejects.toThrowError("no groupKey defined on update");
+    rejects.toThrowError("cannot create an alert from the provided object");
   expect(next).toBeCalledTimes(0);
 });
 

@@ -5,7 +5,7 @@
 
 import {Telegram} from "telegraf";
 import Level, {LevelGraph} from "level-ts";
-import {IGetTriple, ITriple} from "level-ts/dist/LevelGraph";
+import {ITriple} from "level-ts/dist/LevelGraph";
 import fetch, {FetchError, Response} from "node-fetch";
 import {mkdirSync} from "fs";
 import type {AbstractLevelDOWN, AbstractIterator} from "abstract-leveldown";
@@ -23,6 +23,7 @@ import {decodeFromString, encodeToString} from "./messagepack";
 import config from "./config";
 import {IAlertMessage} from "./IAlertMessage";
 import {IAlertManagerPredicates} from "./IAlertManagerPredicates";
+import {IAlert} from "./IAlert";
 
 type walkCallback<T> = (error: string|null, solution?: T) => void;
 type walkFilter<T> = (solution: T, callback: walkCallback<T>) => void;
@@ -34,7 +35,7 @@ type BaseDBLevelIterator = AbstractIterator<string, string>;
 type BaseDBLevelUp = LevelUp<BaseDBLevelDown, BaseDBLevelIterator>;
 
 type AlertsDBKey = string;
-type AlertsDBValue = Alert;
+type AlertsDBValue = IAlert;
 type AlertsDBLevelDown = AbstractLevelDOWN<AlertsDBKey, AlertsDBValue>;
 type AlertsDBLevelIterator = AbstractIterator<string, string>;
 type AlertsDBLevelUp = LevelUp<AlertsDBLevelDown, AlertsDBLevelIterator>;
@@ -42,7 +43,7 @@ type AlertsDBLevelUp = LevelUp<AlertsDBLevelDown, AlertsDBLevelIterator>;
 export class AlertManager {
   private db: LevelGraph;
 
-  private alerts: Level<Alert>;
+  private alerts: Level<AlertsDBValue>;
 
   private readonly silenceButtons: InlineKeyboardButton[];
 
@@ -147,7 +148,7 @@ export class AlertManager {
    * @param {string} alertHash hash from [[Alert.hash]]
    * @returns {Promise<IGetTriple<string | number>[]>} levelgraph entry
    */
-  addAlertMessage (chatId: string, messageId: string, alertHash: string): Promise<IGetTriple<string | number>[]> {
+  addAlertMessage (chatId: string, messageId: string, alertHash: string): Promise<void> {
     return this.db.chain.put({
       subject: chatId,
       predicate: IAlertManagerPredicates.HasMessage,
@@ -274,7 +275,7 @@ export class AlertManager {
    * @param {Alert} alert the alert to store
    * @returns {Promise<Alert>} the alert itself
    */
-  addAlert (alert: Alert): Promise<Alert> {
+  addAlert (alert: IAlert): Promise<IAlert> {
     return this.alerts.put(
       alert.hash,
       alert
@@ -290,7 +291,7 @@ export class AlertManager {
     return this.alerts.del(alertHash);
   }
 
-  getAlert (alertHash: string): Promise<Alert> {
+  getAlert (alertHash: string): Promise<IAlert> {
     return this.alerts.get(alertHash);
   }
 
@@ -312,21 +313,22 @@ export class AlertManager {
                 parse_mode: "HTML",
                 reply_markup: this.firingMessageMarkup(alert)
               }
-            ).catch((reason) =>
-              Promise.reject(reason)).
+            ).
               then((message) =>
                 this.addAlertMessage(
                   chatId.toString(),
                   message.message_id.toString(),
                   alert.hash
-                ))));
+                )).
+              catch((reason) =>
+                Promise.reject(reason))));
     }
 
     /*
      * Cycle all chats to update the message, or send a new one if the user
      * Hasn't received one previously
      */
-    return this.getAlertMessages(alert.hash).
+    return this.getMessagesByAlert(alert.hash).
       catch((reason) =>
         Promise.reject(reason)).
       then((messages) =>

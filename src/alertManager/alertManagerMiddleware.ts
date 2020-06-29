@@ -17,7 +17,7 @@ export const alertManagerMiddleware: MiddlewareFn<IAlertManagerContext> =
 
   try {
     console.info("[AlertManager] parsing alert update...");
-    const alert = new Alert(ctx.update);
+    const alert = Alert.from(ctx.update);
 
     console.info("[AlertManager] sending alert messages...");
 

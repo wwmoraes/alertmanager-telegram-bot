@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /**
  * @packageDocumentation
  * @module AlertManager
  */
+
+import type {IAlertMessage} from "./IAlertMessage";
 
 /* eslint-disable global-require */
 /* eslint-disable @typescript-eslint/no-var-requires */

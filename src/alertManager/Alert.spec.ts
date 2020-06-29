@@ -9,15 +9,15 @@ import {IAlertUpdate} from "./IAlertUpdate";
 
 describe("valid update object", () => {
   it("should load with the provided external URL", () => {
-    const testAlert = new Alert(mockUpdateAlert);
+    const testAlert = Alert.from(mockUpdateAlert);
 
     expect(testAlert).toBeInstanceOf(Alert);
     expect(testAlert.baseUrl.toString()).toBe(`${mockUpdateAlert.externalURL}/`);
   });
 
   it("should load with default external URL", () => {
-    const testAlert = new Alert({...mockUpdateAlert,
-      externalURL: "http://localhost:9093"} as IAlertUpdate);
+    const testAlert = Alert.from(<IAlertUpdate>{...mockUpdateAlert,
+      externalURL: "http://localhost:9093"});
 
     expect(testAlert).toBeInstanceOf(Alert);
     expect(testAlert.baseUrl.toString()).not.toBe(mockUpdateAlert.externalURL);
@@ -30,7 +30,7 @@ describe("invalid update object", () => {
     const {groupKey, ...incompleteUpdate} = mockUpdateAlert;
 
     expect(() =>
-      new Alert(incompleteUpdate)).toThrowError("no groupKey defined on update");
+      Alert.from(incompleteUpdate as IAlertUpdate)).toThrowError("cannot create an alert from the provided object");
   });
 
   it("should error on update without status", () => {
@@ -38,7 +38,7 @@ describe("invalid update object", () => {
     const {status, ...incompleteUpdate} = mockUpdateAlert;
 
     expect(() =>
-      new Alert(incompleteUpdate)).toThrowError("no status defined on update");
+      Alert.from(incompleteUpdate as IAlertUpdate)).toThrowError("cannot create an alert from the provided object");
   });
 
   it("should error on update without status", () => {
@@ -46,6 +46,6 @@ describe("invalid update object", () => {
     const {receiver, ...incompleteUpdate} = mockUpdateAlert;
 
     expect(() =>
-      new Alert(incompleteUpdate)).toThrowError("no receiver defined on update");
+      Alert.from(incompleteUpdate as IAlertUpdate)).toThrowError("cannot create an alert from the provided object");
   });
 });

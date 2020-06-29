@@ -6,11 +6,11 @@
 import levelup from "levelup";
 import memdown from "memdown";
 import {AlertManager} from "../AlertManager";
-import {Alert} from "../Alert";
+import type {IAlert} from "../IAlert";
 
 export const alertManagerInstance = new AlertManager(
   levelup(memdown<string, string>()),
-  levelup(memdown<string, Alert>())
+  levelup(memdown<string, IAlert>())
 );
 
 export const addUserChatSpy = jest.spyOn(alertManagerInstance, "addUserChat");
