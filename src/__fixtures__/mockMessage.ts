@@ -17,12 +17,12 @@ export const mockMessageText = mock<Message>({
   text: "mock text message"
 });
 
-export const mockMessageSticker: typeof mockMessageText = {
-  ...mockMessageText,
+export const mockMessageSticker = mock<Message>({
   message_id: 2,
-  sticker: mockStickerValid,
-  text: undefined
-};
+  from: mockUserTest,
+  chat: mockChatValid,
+  sticker: mockStickerValid
+});
 
 export default {
   mockMessageText,
