@@ -16,7 +16,7 @@ jest.mock("node-fetch", () =>
   require("fetch-mock").sandbox());
 
 import {rmdirSync, mkdirSync} from "fs";
-import {validAlertUpdate} from "./__fixtures__/updates";
+import {mockUpdateAlert} from "./__fixtures__/mockUpdate";
 import pathGenerator from "./__fixtures__/pathGenerator";
 import {IAlertManagerContext} from "./IAlertManagerContext";
 import {ICallbackData} from "./ICallbackData";
@@ -79,7 +79,7 @@ describe("instance creation", () => {
       }
     }, {sendAsJson: true});
 
-    const alertData = new Alert(validAlertUpdate);
+    const alertData = new Alert(mockUpdateAlert);
 
     const callbackContext = {
       answerCbQuery: jest.fn(() =>

@@ -17,7 +17,7 @@ beforeEach(() => {
 it("should enroll the user and greet back", async () => {
   const startCommand = await (await import("./startCommand")).startCommand;
   const mockBotContextValid = await (await import("./__fixtures__/mockBotContext")).mockBotContextValid;
-  const mockAlertManager = await (await import("./__fixtures__/mockAlertManager")).default;
+  const mockAlertManager = await (await import("../alertManager/__fixtures__/mockAlertManager")).default;
 
   await expect(mockBotContextValid.alertManager.hasUserChat("1", "1")).
     resolves.toBe(false);
@@ -38,7 +38,7 @@ it("should enroll the user and greet back", async () => {
 it("should reply that the user is already enrolled", async () => {
   const startCommand = await (await import("./startCommand")).startCommand;
   const mockBotContextValid = await (await import("./__fixtures__/mockBotContext")).mockBotContextValid;
-  const mockAlertManager = await (await import("./__fixtures__/mockAlertManager")).default;
+  const mockAlertManager = await (await import("../alertManager/__fixtures__/mockAlertManager")).default;
 
   mockBotContextValid.alertManager.addUserChat("1", "1");
   mockAlertManager.addUserChatSpy.mockClear();

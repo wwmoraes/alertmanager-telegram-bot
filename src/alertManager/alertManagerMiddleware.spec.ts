@@ -5,7 +5,7 @@
 
 /* eslint-disable @typescript-eslint/no-empty-function */
 import {IAlertManagerContext} from "./IAlertManagerContext";
-import {validAlertUpdate} from "./__fixtures__/updates";
+import {mockUpdateAlert} from "./__fixtures__/mockUpdate";
 
 beforeAll(() => {
   jest.spyOn(console, "warn").mockImplementation(() => {});
@@ -44,7 +44,7 @@ it("should error with invalid update data", async () => {
 
 it("should send alert", async () => {
   const update = {
-    update: validAlertUpdate,
+    update: mockUpdateAlert,
     alertManager: {
       sendAlertMessages: jest.fn()
     }

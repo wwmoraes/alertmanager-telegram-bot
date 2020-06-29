@@ -1,7 +1,12 @@
-import {AlertManager} from "../../alertManager/AlertManager";
-import memdown from "memdown";
-import {Alert} from "../../alertManager/Alert";
+/**
+ * @packageDocumentation
+ * @module AlertManager
+ */
+
 import levelup from "levelup";
+import memdown from "memdown";
+import {AlertManager} from "../AlertManager";
+import {Alert} from "../Alert";
 
 export const alertManagerInstance = new AlertManager(
   levelup(memdown<string, string>()),

@@ -5,7 +5,7 @@
 
 import {IAlertUpdate} from "../IAlertUpdate";
 
-export const validAlertUpdate: IAlertUpdate = {
+export const mockUpdateAlert: IAlertUpdate = {
   version: "4",
   groupKey: "{}:{alertname='ValidUpdate' }",
   status: "firing",
@@ -40,4 +40,8 @@ export const validAlertUpdate: IAlertUpdate = {
   ],
   update_id: 1,
   truncatedAlerts: 0
+};
+
+export default {
+  mockUpdateAlert
 };
