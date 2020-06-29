@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module Bot
+ */
+
 import {mock} from "jest-mock-extended";
 import {Sticker} from "telegraf/typings/telegram-types";
 

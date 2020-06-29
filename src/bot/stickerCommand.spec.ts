@@ -17,7 +17,7 @@ beforeEach(() => {
 it("should reply to a sticker", async () => {
   const stickerCommand = await (await import("./stickerCommand")).stickerCommand;
   const mockBotContextValid = await (await import("./__fixtures__/mockBotContext")).mockBotContextValid;
-  const mockMessageSticker = await (await import("./__fixtures__/mockMessage")).mockMessageSticker;
+  const mockMessageSticker = await (await import("../__fixtures__/mockMessage")).mockMessageSticker;
 
   mockBotContextValid.message = mockMessageSticker;
 
@@ -43,7 +43,7 @@ it("should error on update without message", async () => {
 it("should error on update without sticker", async () => {
   const stickerCommand = await (await import("./stickerCommand")).stickerCommand;
   const mockBotContextValid = await (await import("./__fixtures__/mockBotContext")).mockBotContextValid;
-  const mockMessageText = await (await import("./__fixtures__/mockMessage")).mockMessageText;
+  const mockMessageText = await (await import("../__fixtures__/mockMessage")).mockMessageText;
 
   mockBotContextValid.message = mockMessageText;
   mockBotContextValid.message.sticker = undefined;
