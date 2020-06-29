@@ -1,3 +1,7 @@
+/**
+ * @packageDocumentation
+ * @module Bot
+ */
 /* eslint-disable no-undefined */
 /* eslint-disable @typescript-eslint/no-empty-function */
 
