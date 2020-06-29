@@ -29,8 +29,8 @@ export const mockUpdateAlert: IAlertUpdate = {
       labels: {
         "special-alert-label": "something distinct"
       },
-      startsAt: new Date("2020-06-21T16:48:43Z"),
-      endsAt: new Date("2020-06-21T16:50:43Z"),
+      startsAt: "2020-06-21T16:48:43Z",
+      endsAt: "2020-06-21T16:50:43Z",
       generatorURL: "https://prometheus.domain.com:9090/graph",
       fingerprint: "fingerprint",
       annotations: {

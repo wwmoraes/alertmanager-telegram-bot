@@ -9,8 +9,8 @@ export interface IAlertInfo {
   status: "resolved" | "firing",
   labels: ILabels,
   annotations: ILabels,
-  startsAt: Date,
-  endsAt: Date,
+  startsAt: string,
+  endsAt: string,
   generatorURL: string,
   fingerprint: string,
 }
