@@ -4,7 +4,8 @@
     "tmp/*",
     "src/**/*.spec.ts",
     "src/**/__fixtures__/*",
-    "src/**/__tests__/*"
+    "src/**/__mocks__/*",
+    "__mocks__/*"
   ],
   "compilerOptions": {
     /* Basic Options */

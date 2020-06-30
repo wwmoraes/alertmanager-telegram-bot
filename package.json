@@ -53,10 +53,12 @@
     "typescript": "^3.9.5"
   },
   "optionalDependencies": {
+    "@types/encoding-down": "^5.0.0",
     "@types/fetch-mock": "^7.3.2",
     "@types/jest": "^26.0.0",
     "@types/memdown": "^3.0.0",
     "dotenv-load": "^2.0.0",
+    "encoding-down": "^6.3.0",
     "fetch-mock": "^9.10.2",
     "g8-typedoc-dark": "^0.1.2",
     "jest": "^26.0.1",
