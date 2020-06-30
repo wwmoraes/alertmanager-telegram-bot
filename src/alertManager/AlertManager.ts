@@ -6,7 +6,7 @@
 import {Telegram} from "telegraf";
 import Level, {LevelGraph} from "level-ts";
 import {ITriple} from "level-ts/dist/LevelGraph";
-import fetch, {FetchError, Response} from "node-fetch";
+import fetch, {Response} from "node-fetch";
 import {mkdirSync} from "fs";
 import type {AbstractLevelDOWN, AbstractIterator} from "abstract-leveldown";
 import type {LevelUp} from "levelup";
@@ -158,18 +158,20 @@ export class AlertManager {
       predicate: IAlertManagerPredicates.Alerts,
       object: alertHash
     }).
-      finish();
+      finish().
+      then(() =>
+        Promise.resolve());
   }
 
-  getIdsFilteredBy (filter: walkFilter<IAlertMessage>): Promise<IAlertMessage[]> {
+  getIdsFilteredBy (filter?: walkFilter<IAlertMessage>): Promise<IAlertMessage[]> {
     return this.db.walk(
       {
-        materialized: {
+        materialized: <IAlertMessage>{
           userId: this.db.v("userId"),
           chatId: this.db.v("chatId"),
           messageId: this.db.v("messageId"),
           alertHash: this.db.v("alertHash")
-        } as IAlertMessage,
+        },
         filter
       },
       {subject: this.db.v("userId"),
@@ -189,7 +191,7 @@ export class AlertManager {
    * @param {string} alertHash alert hash from [[Alert.hash]]
    * @returns {Promise<IAlertMessage[]>} alert message
    */
-  getAlertMessages (alertHash: string): Promise<IAlertMessage[]> {
+  getMessagesByAlert (alertHash: string): Promise<IAlertMessage[]> {
     return this.getIdsFilteredBy((solution, callback) => {
       if (solution.alertHash === alertHash) {
         return callback(null, solution);
@@ -256,10 +258,14 @@ export class AlertManager {
       }
 
       return callback(null);
-    }).catch((reason) =>
-      Promise.reject(reason)).
-      then((results) =>
-        results[0]) as Promise<IAlertMessage|undefined>;
+    }).
+      then((results) => {
+        console.debug(results);
+
+        return Promise.resolve(results.pop());
+      }).
+      catch((reason) =>
+        Promise.reject(reason));
   }
 
   /**
@@ -469,11 +475,13 @@ export class AlertManager {
       } catch (error) {
         console.error("Error during silencing!");
         console.error(error);
-        if (error instanceof FetchError && error.errno === "ECONNREFUSED") {
-          ctx.answerCbQuery("unable to contact alertmanager - is it running and the URL set correctly?");
+        // if (typeof error !== "undefined" &&
+        //   error instanceof FetchError &&
+        //   error.errno === "ECONNREFUSED") {
+        //   ctx.answerCbQuery("unable to contact alertmanager - is it running and the URL set correctly?");
 
-          return next();
-        }
+        //   return next();
+        // }
         ctx.answerCbQuery("unknown error while contacting alertmanager - check logs for details");
 
         return next();
