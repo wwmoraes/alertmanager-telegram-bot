@@ -15,6 +15,7 @@ import pathGenerator from "./alertManager/__fixtures__/pathGenerator";
 import {rmdirSync, mkdirSync} from "fs";
 import Telegraf from "telegraf";
 import type {BotContext} from "./bot/BotContext";
+import type {FetchMockSandbox} from "fetch-mock";
 
 const {dbPathPrefix, alertManagerDbPath, alertsDbPath} = pathGenerator();
 
@@ -58,7 +59,7 @@ afterAll(() => {
 });
 
 it("should start sample successfully", async () => {
-  const fetchMock = await (await import("fetch-mock")).default;
+  const fetchMock = await (await import("node-fetch")).default as unknown as FetchMockSandbox;
 
   fetchMock.get("https://api.telegram.org/botTELEGRAM_TOKEN/setWebhook?url=https://test.domain.com/", 200);
   fetchMock.post("https://api.telegram.org/botTELEGRAM_TOKEN/getChat", {body: {
@@ -76,7 +77,7 @@ it("should start sample successfully", async () => {
 });
 
 it("should fail to start on unknown error from Telegram", async () => {
-  const fetchMock = await (await import("fetch-mock")).default;
+  const fetchMock = await (await import("node-fetch")).default as unknown as FetchMockSandbox;
 
   fetchMock.get(`https://api.telegram.org/bot${process.env.TELEGRAM_TOKEN}/setWebhook?url=${process.env.EXTERNAL_URL}`, 500);
   fetchMock.post(`https://api.telegram.org/bot${process.env.TELEGRAM_TOKEN}/getChat`, {body: {
