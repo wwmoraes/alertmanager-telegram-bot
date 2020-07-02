@@ -25,6 +25,7 @@
     "testTimeout": 10000,
     "collectCoverageFrom": [
       "src/**/*.ts",
+      "!src/index.ts",
       "!src/**/*.d.ts",
       "!src/**/I*.ts",
       "!src/**/__fixtures__/*.ts",
