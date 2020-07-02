@@ -102,6 +102,13 @@ describe("instance creation", () => {
 
     await expect(addMessagePromise).resolves.toBeUndefined();
 
+    // add another alert message, for a distinct alert
+    await expect(mockAlertManager.instance.addAlertMessage(
+      callbackContext.chat.id.toString(),
+      (callbackContext.callbackQuery.message.message_id + 1).toString(),
+      alertValid.hash + alertValid.hash
+    )).resolves.toBeUndefined();
+
     // check that the chat hasn't received the alert yet
     const getAlertFromMessagePromise = mockAlertManager.instance.
       getAlertFromMessage(callbackContext.callbackQuery.message.message_id.toString());
