@@ -5,6 +5,5 @@
  * @module AlertManager
  */
 
-export * from "./IAlertManagerContext.d";
 export * from "./alertManagerComposer";
 export * from "./setupAlertManagerContext";
