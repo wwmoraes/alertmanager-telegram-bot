@@ -5,7 +5,7 @@
  * @module Bot
  */
 
-import {IUserOnlyContext} from "../userOnly";
-import {IAlertManagerContext} from "../alertManager";
+import type {IUserOnlyContext} from "../userOnly/IUserOnlyContext";
+import type {IAlertManagerContext} from "../alertManager/IAlertManagerContext";
 
 export interface BotContext extends IAlertManagerContext, IUserOnlyContext { }
