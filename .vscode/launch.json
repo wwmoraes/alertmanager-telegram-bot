@@ -44,8 +44,8 @@
         "${workspaceFolder}/src/index.ts"
       ],
       "skipFiles": ["<node_internals>/**"],
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
+      "console": "internalConsole",
+      "internalConsoleOptions": "openOnSessionStart",
       "port": 9229
     },
     {
@@ -61,8 +61,8 @@
       ],
       "outFiles": ["${workspaceFolder}/build/**/*.js"],
       "skipFiles": ["<node_internals>/**"],
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
+      "console": "internalConsole",
+      "internalConsoleOptions": "openOnSessionStart",
       "port": 9229
     }
   ]
