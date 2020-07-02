@@ -60,9 +60,9 @@ export class AlertManager {
   constructor (baseDBPath: string|BaseDBLevelUp, alertsDBPath: string|AlertsDBLevelUp) {
     if (typeof baseDBPath === "string") {
       mkdirSync(baseDBPath, {recursive: true});
-      this.db = new LevelGraph<string>(baseDBPath);
+      this.db = new LevelGraph<BaseDBValue>(baseDBPath);
     } else {
-      this.db = new LevelGraph<string>(baseDBPath);
+      this.db = new LevelGraph<BaseDBValue>(baseDBPath);
     }
 
     if (typeof alertsDBPath === "string") {

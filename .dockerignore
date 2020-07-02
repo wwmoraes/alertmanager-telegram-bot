@@ -12,3 +12,4 @@ tmp
 src/**/*.test.ts
 src/**/*.spec.ts
 src/**/__fixtures__/*
+patches/@types*.patch

@@ -15,7 +15,7 @@ import type {IAlert} from "../alertManager/IAlert";
 jest.mock("dotenv");
 jest.mock("node-fetch");
 jest.mock("../alertManager/AlertManager", () => {
-  const originalAlertManager = jest.requireActual("../alertManager/alertManager").AlertManager;
+  const originalAlertManager = jest.requireActual("../alertManager/AlertManager").AlertManager;
 
   class MockAlertManager extends originalAlertManager {
     constructor () {
