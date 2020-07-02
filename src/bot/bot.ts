@@ -15,66 +15,61 @@ import {greetingCommand} from "./greetingCommand";
 
 import {setupAlertManagerContext, alertManagerComposer} from "../alertManager";
 import {userOnlyMiddleware} from "../userOnly";
+import config from "./config";
 
 /**
  * safely creates the bot instance
  * @returns {Promise<Telegraf<BotContext>>} bot instance
  */
-export const bot = async (): Promise<Telegraf<BotContext>|undefined> => {
+export const bot = async (): Promise<Telegraf<BotContext>> => {
   // eslint-disable-next-line init-declarations,no-undef-init,no-undefined
-  let botInstance: Telegraf<BotContext> | undefined = undefined;
+  const botInstance = new Telegraf<BotContext>(
+    config.telegramToken,
+    {telegram: {webhookReply: false}}
+  );
 
+  botInstance.context.userIds = config.telegramAdmins.split(",");
+
+  console.info("setting up alert manager context...");
   try {
-    const config = await import("./config");
-
-    botInstance = new Telegraf<BotContext>(
-      config.telegramToken,
-      {telegram: {webhookReply: false}}
-    );
-
-    botInstance.context.userIds = config.telegramAdmins.split(",");
-
-    console.info("setting up alert manager context...");
     await setupAlertManagerContext(botInstance);
-
-    console.info("registering middlewares...");
-    botInstance.use(
-      userOnlyMiddleware,
-      alertManagerComposer
-    );
-
-    console.info("registering commands...");
-    botInstance.start(startCommand);
-    botInstance.help(helpCommand);
-    botInstance.on("sticker", stickerCommand);
-    botInstance.hears("hi", greetingCommand);
-
-    console.info(`serving webhook on :${config.port}...`);
-    botInstance.startWebhook(
-      "/",
-      null,
-      config.port
-    );
-
-    console.info(`registering webhook on ${config.externalUrl}...`);
-
-    await fetch(`https://api.telegram.org/bot${config.telegramToken}/setWebhook?url=${config.externalUrl}`).
-      then((response) => {
-        if (response.status !== 200) {
-          throw new Error("error setting the webhook");
-        }
-
-        console.info("webhook set successfully");
-      });
   } catch (error) {
-    if (typeof botInstance !== "undefined") {
-      botInstance.stop();
-    }
-
-    console.error("failed to create a bot instance");
+    botInstance.stop();
 
     return Promise.reject(error);
   }
 
-  return Promise.resolve(botInstance);
+  console.info("registering middlewares...");
+  botInstance.use(
+    userOnlyMiddleware,
+    alertManagerComposer
+  );
+
+  console.info("registering commands...");
+  botInstance.start(startCommand);
+  botInstance.help(helpCommand);
+  botInstance.on("sticker", stickerCommand);
+  botInstance.hears("hi", greetingCommand);
+
+  console.info(`serving webhook on :${config.port}...`);
+  botInstance.startWebhook(
+    "/",
+    null,
+    config.port
+  );
+
+  console.info(`registering webhook on ${config.externalUrl}...`);
+
+  return fetch(`https://api.telegram.org/bot${config.telegramToken}/setWebhook?url=${config.externalUrl}`).
+    then((response) => {
+      if (response.status !== 200) {
+        botInstance.stop();
+
+        return Promise.reject(new Error("error setting the webhook"));
+      }
+
+      console.info("webhook set successfully");
+
+      return Promise.resolve(botInstance);
+    });
 };
