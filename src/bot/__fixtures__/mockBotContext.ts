@@ -10,7 +10,8 @@ import {alertManagerInstance} from "../../alertManager/__fixtures__/mockAlertMan
 
 export const mockBotContextValid = mock<BotContext>({
   ...mockContextValid,
-  alertManager: alertManagerInstance
+  alertManager: alertManagerInstance,
+  userIds: [mockContextValid.from?.id.toString()]
 });
 
 export default {
