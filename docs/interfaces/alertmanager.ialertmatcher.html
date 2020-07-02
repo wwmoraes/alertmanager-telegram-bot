@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IAlertManagerPredicates | AlertManager Telegram Bot</title>
+	<title>IAlertMatcher | AlertManager Telegram Bot</title>
 	<meta name="description" content="Documentation for AlertManager Telegram Bot">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -58,84 +58,70 @@
 					<a href="../modules/alertmanager.html">AlertManager</a>
 				</li>
 				<li>
-					<a href="alertmanager.ialertmanagerpredicates.html">IAlertManagerPredicates</a>
+					<a href="alertmanager.ialertmatcher.html">IAlertMatcher</a>
 				</li>
 			</ul>
-			<h1>Enumeration IAlertManagerPredicates</h1>
+			<h1>Interface IAlertMatcher</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Predicates used on the levelgraph database to link resources</p>
-					</div>
-				</div>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">IAlertMatcher</span>
+					</li>
+				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Enumeration members</h3>
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="alertmanager.ialertmanagerpredicates.html#alerts" class="tsd-kind-icon">Alerts</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="alertmanager.ialertmanagerpredicates.html#chaton" class="tsd-kind-icon">Chat<wbr>On</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="alertmanager.ialertmanagerpredicates.html#hasmessage" class="tsd-kind-icon">Has<wbr>Message</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="alertmanager.ialertmatcher.html#isregex" class="tsd-kind-icon">is<wbr>Regex</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="alertmanager.ialertmatcher.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="alertmanager.ialertmatcher.html#value" class="tsd-kind-icon">value</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Enumeration members</h2>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="alerts" class="tsd-anchor"></a>
-					<h3>Alerts</h3>
-					<div class="tsd-signature tsd-kind-icon">Alerts<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;alerts&quot;</span></div>
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="isregex" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> is<wbr>Regex</h3>
+					<div class="tsd-signature tsd-kind-icon">is<wbr>Regex<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/fd94601/src/alertManager/IAlertManagerPredicates.d.ts#L18">src/alertManager/IAlertManagerPredicates.d.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/fd94601/src/alertManager/IAlertMatcher.d.ts#L9">src/alertManager/IAlertMatcher.d.ts:9</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p><code>message-id</code> <code>alerts</code> <code>alert-hash</code></p>
-						</div>
-					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="chaton" class="tsd-anchor"></a>
-					<h3>Chat<wbr>On</h3>
-					<div class="tsd-signature tsd-kind-icon">Chat<wbr>On<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;chat-on&quot;</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="name" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/fd94601/src/alertManager/IAlertManagerPredicates.d.ts#L12">src/alertManager/IAlertManagerPredicates.d.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/fd94601/src/alertManager/IAlertMatcher.d.ts#L7">src/alertManager/IAlertMatcher.d.ts:7</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p><code>user-id</code> <code>chat-on</code> <code>chat-id</code></p>
-						</div>
-					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="hasmessage" class="tsd-anchor"></a>
-					<h3>Has<wbr>Message</h3>
-					<div class="tsd-signature tsd-kind-icon">Has<wbr>Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;has-message&quot;</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="value" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> value</h3>
+					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/fd94601/src/alertManager/IAlertManagerPredicates.d.ts#L15">src/alertManager/IAlertManagerPredicates.d.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/fd94601/src/alertManager/IAlertMatcher.d.ts#L8">src/alertManager/IAlertMatcher.d.ts:8</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p><code>chat-id</code> <code>has-message</code> <code>message-id</code></p>
-						</div>
-					</div>
 				</section>
 			</section>
 		</div>
@@ -170,24 +156,9 @@
 					<li class=" tsd-kind-reference tsd-parent-kind-module">
 						<a href="../modules/alertmanager.html#setupalertmanagercontext" class="tsd-kind-icon">setup<wbr>Alert<wbr>Manager<wbr>Context</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-enum tsd-parent-kind-module">
-						<a href="alertmanager.ialertmanagerpredicates.html" class="tsd-kind-icon">IAlert<wbr>Manager<wbr>Predicates</a>
-						<ul>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="alertmanager.ialertmanagerpredicates.html#alerts" class="tsd-kind-icon">Alerts</a>
-							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="alertmanager.ialertmanagerpredicates.html#chaton" class="tsd-kind-icon">Chat<wbr>On</a>
-							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="alertmanager.ialertmanagerpredicates.html#hasmessage" class="tsd-kind-icon">Has<wbr>Message</a>
-							</li>
-						</ul>
+					<li class=" tsd-kind-enum tsd-parent-kind-module">
+						<a href="../enums/alertmanager.ialertmanagerpredicates.html" class="tsd-kind-icon">IAlert<wbr>Manager<wbr>Predicates</a>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-parent-kind-module">
 						<a href="../classes/alertmanager.alert.html" class="tsd-kind-icon">Alert</a>
 					</li>
@@ -195,28 +166,43 @@
 						<a href="../classes/alertmanager.alertmanager-1.html" class="tsd-kind-icon">Alert<wbr>Manager</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="../interfaces/alertmanager.ialert.html" class="tsd-kind-icon">IAlert</a>
+						<a href="alertmanager.ialert.html" class="tsd-kind-icon">IAlert</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="../interfaces/alertmanager.ialertinfo.html" class="tsd-kind-icon">IAlert<wbr>Info</a>
+						<a href="alertmanager.ialertinfo.html" class="tsd-kind-icon">IAlert<wbr>Info</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="../interfaces/alertmanager.ialertmanagercontext-1.html" class="tsd-kind-icon">IAlert<wbr>Manager<wbr>Context</a>
+						<a href="alertmanager.ialertmanagercontext-1.html" class="tsd-kind-icon">IAlert<wbr>Manager<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="../interfaces/alertmanager.ialertmanagerurls.html" class="tsd-kind-icon">IAlert<wbr>Manager<wbr>Urls</a>
+						<a href="alertmanager.ialertmanagerurls.html" class="tsd-kind-icon">IAlert<wbr>Manager<wbr>Urls</a>
+					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-module">
+						<a href="alertmanager.ialertmatcher.html" class="tsd-kind-icon">IAlert<wbr>Matcher</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="alertmanager.ialertmatcher.html#isregex" class="tsd-kind-icon">is<wbr>Regex</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="alertmanager.ialertmatcher.html#name" class="tsd-kind-icon">name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="alertmanager.ialertmatcher.html#value" class="tsd-kind-icon">value</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="alertmanager.ialertmessage.html" class="tsd-kind-icon">IAlert<wbr>Message</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="../interfaces/alertmanager.ialertmatcher.html" class="tsd-kind-icon">IAlert<wbr>Matcher</a>
+						<a href="alertmanager.ialertupdate.html" class="tsd-kind-icon">IAlert<wbr>Update</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="../interfaces/alertmanager.ialertmessage.html" class="tsd-kind-icon">IAlert<wbr>Message</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="../interfaces/alertmanager.ialertupdate.html" class="tsd-kind-icon">IAlert<wbr>Update</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="../interfaces/alertmanager.icallbackdata.html" class="tsd-kind-icon">ICallback<wbr>Data</a>
+						<a href="alertmanager.icallbackdata.html" class="tsd-kind-icon">ICallback<wbr>Data</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported">
 						<a href="../modules/alertmanager.html#alertsdbkey" class="tsd-kind-icon">AlertsDBKey</a>
@@ -307,10 +293,11 @@
 				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>

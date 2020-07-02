@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @module AlertManager
+ */
+
 import {IAlertMatcher} from "./IAlertMatcher";
 
 export interface IAlert {
