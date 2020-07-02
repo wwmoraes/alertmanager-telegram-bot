@@ -5,6 +5,11 @@
 /* eslint-disable no-undefined */
 /* eslint-disable @typescript-eslint/no-empty-function */
 
+import type {FetchMockSandbox} from "fetch-mock";
+
+jest.mock("dotenv");
+jest.mock("node-fetch");
+
 beforeAll(() => {
   jest.spyOn(console, "warn").mockImplementation(() => {});
   jest.spyOn(console, "info").mockImplementation(() => {});
