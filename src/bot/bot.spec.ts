@@ -1,8 +1,8 @@
-/* eslint-disable no-process-env */
 /**
  * @packageDocumentation
  * @module Bot
  */
+/* eslint-disable no-process-env */
 /* eslint-disable no-undefined */
 /* eslint-disable @typescript-eslint/no-empty-function */
 

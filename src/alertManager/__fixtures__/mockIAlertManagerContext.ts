@@ -38,5 +38,6 @@ export const mockIAlertManagerContextCallback = <IAlertManagerContext>{
 };
 
 export default {
-  mockIAlertManagerContextValid
+  mockIAlertManagerContextValid,
+  mockIAlertManagerContextCallback
 };
