@@ -11,6 +11,7 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable @typescript-eslint/no-empty-function */
 
+import {IAlertMatcher} from "./IAlertMatcher";
 
 jest.mock("dotenv");
 
