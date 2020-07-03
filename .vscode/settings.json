@@ -1,4 +1,12 @@
 {
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/*.code-search": true,
+    "docs": true,
+    "build": true,
+    "coverage": true,
+    "data": true
+  },
   "cSpell.words": [
     "Telegraf",
     "Unalerted",
