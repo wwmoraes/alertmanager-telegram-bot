@@ -28,11 +28,9 @@ export const bot = async (): Promise<Telegraf<BotContext>> => {
     {telegram: {webhookReply: false}}
   );
 
-  botInstance.context.userIds = config.telegramAdmins.split(",");
-
   console.info("setting up alert manager context...");
   try {
-    await setupAlertManagerContext(botInstance);
+    await setupAlertManagerContext(botInstance, config.telegramAdmins.split(","));
   } catch (error) {
     botInstance.stop();
 

@@ -8,11 +8,19 @@ import {IAlertManagerContext} from "./IAlertManagerContext";
 import {AlertManager} from "./AlertManager";
 import config from "./config";
 
-export const setupAlertManagerContext = (bot: Telegraf<IAlertManagerContext>): Promise<void> => {
+export const setupAlertManagerContext = (bot: Telegraf<IAlertManagerContext>, users?: string[]): Promise<void> => {
   bot.context.alertManager = new AlertManager(
     config.alertManagerDbPath,
     config.alertsDbPath
   );
+
+  if (typeof users === "undefined" || users.length === 0) {
+    console.warn("no user ids provided to receive alertmanager messages");
+    bot.context.userIds = [];
+  } else {
+    bot.context.userIds = users;
+  }
+
 
   console.debug("adding admin users chats into context...");
 
