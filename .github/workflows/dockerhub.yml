@@ -26,7 +26,9 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: ${{ github.repository }}
+          build_args: BUILDKIT_INLINE_CACHE=1
           tags: latest
+          cache_froms: ${{ github.repository }}:latest
 
       - name: Update Docker Hub readme and description
         uses: meeDamian/sync-readme@v1.0.6
