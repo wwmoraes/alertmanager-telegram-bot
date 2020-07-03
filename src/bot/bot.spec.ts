@@ -87,14 +87,14 @@ it("should fail to start if webhook not set", async () => {
       module.bot())).rejects.toThrowError("error setting the webhook");
 });
 
-// it("should fail to start on getChat error", async () => {
-//   const fetchMock = await (await import("node-fetch")).default as unknown as FetchMockSandbox;
+it("should fail to start on getChat error", async () => {
+  const nock = (await import("nock")).default;
+  const {nockGetChatScope503, nockSetWebhookScope200} = await import("../../__stubs__/telegramAPI");
 
-//   fetchMock.get("https://api.telegram.org/botTELEGRAM_TOKEN/setWebhook?url=https://test.domain.com/", 503);
-//   fetchMock.post("https://api.telegram.org/botTELEGRAM_TOKEN/getChat", 503);
+  nockGetChatScope503(nock, process.env.TELEGRAM_TOKEN, "1");
+  nockSetWebhookScope200(nock, process.env.TELEGRAM_TOKEN);
 
-
-//   await expect(() =>
-//     import(".").then((module) =>
-//       module.bot())).rejects.toThrowError("error setting the webhook");
-// });
+  await expect(() =>
+    import(".").then((module) =>
+      module.bot())).rejects.toThrowError("500: Unsupported http response from Telegram");
+});

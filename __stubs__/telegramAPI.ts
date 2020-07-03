@@ -35,3 +35,12 @@ export const nockGetChatScope200 = (
       ok: true,
       result: {id: chatId}
     });
+
+export const nockGetChatScope503 = (
+  nock: nockFn,
+  telegramToken = "TELEGRAM_TOKEN",
+  chatId = "1"
+): Scope =>
+  nock("https://api.telegram.org").
+    post(`/bot${telegramToken}/getChat`, {chat_id: chatId}).
+    reply(503);
