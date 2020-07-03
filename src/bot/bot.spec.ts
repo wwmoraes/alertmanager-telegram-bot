@@ -6,14 +6,12 @@
 /* eslint-disable no-undefined */
 /* eslint-disable @typescript-eslint/no-empty-function */
 
-import type {FetchMockSandbox} from "fetch-mock";
 import levelup from "levelup";
 import encode from "encoding-down";
 import memdown from "memdown";
 import type {IAlert} from "../alertManager/IAlert";
 
 jest.mock("dotenv");
-jest.mock("node-fetch");
 jest.mock("../alertManager/AlertManager", () => {
   const originalAlertManager = jest.requireActual("../alertManager/AlertManager").AlertManager;
 
@@ -64,19 +62,11 @@ beforeEach(() => {
 });
 
 it("should start bot successfully", async () => {
-  const fetchMock = await (await import("node-fetch")).default as unknown as FetchMockSandbox;
+  const nock = (await import("nock")).default;
+  const {nockGetChatScope200, nockSetWebhookScope200} = await import("../../__stubs__/telegramAPI");
 
-  fetchMock.get("https://api.telegram.org/botTELEGRAM_TOKEN/setWebhook?url=https://test.domain.com/", 200);
-  fetchMock.post("https://api.telegram.org/botTELEGRAM_TOKEN/getChat", {body: {
-    ok: true,
-    result: {
-      id: 1
-    }
-  }}, {
-    body: {
-      chat_id: "1"
-    }
-  });
+  nockGetChatScope200(nock, process.env.TELEGRAM_TOKEN, "1");
+  nockSetWebhookScope200(nock, process.env.TELEGRAM_TOKEN);
 
   const botInstance = (await import(".")).bot();
 
@@ -86,20 +76,11 @@ it("should start bot successfully", async () => {
 });
 
 it("should fail to start if webhook not set", async () => {
-  const fetchMock = await (await import("node-fetch")).default as unknown as FetchMockSandbox;
+  const nock = (await import("nock")).default;
+  const {nockGetChatScope200, nockSetWebhookScope503} = await import("../../__stubs__/telegramAPI");
 
-  fetchMock.get("https://api.telegram.org/botTELEGRAM_TOKEN/setWebhook?url=https://test.domain.com/", 503);
-  fetchMock.post("https://api.telegram.org/botTELEGRAM_TOKEN/getChat", {body: {
-    ok: true,
-    result: {
-      id: 1
-    }
-  }}, {
-    body: {
-      chat_id: "1"
-    }
-  });
-
+  nockGetChatScope200(nock, process.env.TELEGRAM_TOKEN, "1");
+  nockSetWebhookScope503(nock, process.env.TELEGRAM_TOKEN);
 
   await expect(() =>
     import(".").then((module) =>

@@ -7,7 +7,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 
 jest.mock("dotenv");
-jest.mock("node-fetch");
 
 const configExportKeys = {
   externalUrl: "https://test.domain.com/",

@@ -11,10 +11,8 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable @typescript-eslint/no-empty-function */
 
-import type {FetchMockSandbox} from "fetch-mock";
 
 jest.mock("dotenv");
-jest.mock("node-fetch");
 
 beforeAll(() => {
   jest.spyOn(console, "warn").mockImplementation(() => {});
@@ -44,25 +42,26 @@ describe("instance creation", () => {
   });
 
   it("should process callback successfully", async () => {
-    const fetchMock = await (await import("node-fetch")).default as unknown as FetchMockSandbox;
     const callbackContext = await (await import("./__fixtures__/mockIAlertManagerContext")).mockIAlertManagerContextCallback;
     const mockAlertManager = await (await import("./__fixtures__/mockAlertManager")).default;
     const alertValid = await (await import("./__fixtures__/mockAlert")).alertValid;
 
-    fetchMock.post("https://alertmanager.domain.com:9093/api/v2/silences", {
-      body: {
-        silenceID: "silence1"
-      }
-    }, {
-      sendAsJson: true,
-      matchPartialBody: true,
-      body: {
-        matchers: alertValid.matchers,
-        createdBy: callbackContext.from?.username || "unknown",
-        comment: "silenced from Telegram bot",
-        id: null
-      }
-    });
+    const nock = (await import("nock")).default;
+
+    // TODO move this to a nock stub factory
+    nock("https://alertmanager.domain.com:9093").
+      post("/api/v2/silences", (body) =>
+        body.matchers.length === alertValid.matchers.length &&
+        body.matchers.every((matcher: IAlertMatcher, index: number) =>
+          matcher.isRegex === alertValid.matchers[index].isRegex &&
+          matcher.name === alertValid.matchers[index].name &&
+          matcher.value === alertValid.matchers[index].value) &&
+        body.createdBy === "jest_test" &&
+        body.comment === "silenced from Telegram bot" &&
+        body.id === null &&
+        typeof body.startsAt !== "undefined" &&
+        typeof body.endsAt !== "undefined").
+      reply(200, {silenceID: "silence1"});
 
     if (typeof callbackContext.callbackQuery === "undefined") {
       throw new Error("unable to test: callback query is undefined");
