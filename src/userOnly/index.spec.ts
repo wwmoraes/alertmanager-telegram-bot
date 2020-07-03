@@ -3,7 +3,7 @@
  * @module UserOnly
  */
 
-import userOnlyMiddleware from "./userOnlyMiddleware";
+import {userOnlyMiddleware} from ".";
 import IContext from "./IUserOnlyContext";
 
 it("should passthrough on unknown update type", () => {
