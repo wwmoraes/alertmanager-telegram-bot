@@ -16,6 +16,7 @@
     "docs": "typedoc --includeDeclarations --excludeExternals --name 'AlertManager Telegram Bot' --exclude '**/__fixtures__/*' --exclude '**/__mocks__/*' --exclude '**/__tests__/*' --exclude '**/__stubs__/*' --exclude '**/*.spec.ts' src",
     "test": "jest --verbose --all",
     "test:debug": "node --inspect-brk --trace-warnings --unhandled-rejections=strict -r ts-node/register node_modules/.bin/jest --runInBand --detectOpenHandles",
+    "coverage:watch": "jest --verbose --coverage --watch",
     "coverage": "jest --verbose --all --coverage",
     "upload-coverage": "cc-test-reporter format-coverage -t lcov && dotenv-load cc-test-reporter upload-coverage"
   },
