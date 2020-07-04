@@ -122,9 +122,7 @@ export class AlertManager {
         subject: userId
       }).
       then((result) =>
-        Promise.resolve(result.length > 0)).
-      catch((reason) =>
-        Promise.reject(reason));
+        Promise.resolve(result.length > 0));
   }
 
   /**
@@ -208,8 +206,6 @@ export class AlertManager {
    */
   async getUnalertedChats (alertHash: string): Promise<(string|number)[]> {
     const chatIds = await this.getChats().
-      catch((reason) =>
-        Promise.reject(reason)).
       then((chats) =>
         chats.map((chat) =>
           chat.object));
@@ -236,11 +232,9 @@ export class AlertManager {
       {subject: this.db.v("messageId"),
         predicate: IAlertManagerPredicates.Alerts,
         object: this.db.v("alertHash")}
-    ).catch((reason) =>
-      Promise.reject(reason)).
-      then((entries) =>
-        entries.map((entry) =>
-          entry.object)).
+    ).then((entries) =>
+      entries.map((entry) =>
+        entry.object)).
       then((chats) =>
         chatIds.filter((chat) =>
           !chats.includes(chat)));
@@ -263,9 +257,7 @@ export class AlertManager {
         console.debug(results);
 
         return Promise.resolve(results.pop());
-      }).
-      catch((reason) =>
-        Promise.reject(reason));
+      });
   }
 
   /**
@@ -308,8 +300,6 @@ export class AlertManager {
 
       // Get chats that haven't received this alert
       return this.getUnalertedChats(alert.hash).
-        catch((reason) =>
-          Promise.reject(reason)).
         then((chats) =>
           chats.forEach((chatId) =>
             telegram.sendMessage(
@@ -325,9 +315,7 @@ export class AlertManager {
                   chatId.toString(),
                   message.message_id.toString(),
                   alert.hash
-                )).
-              catch((reason) =>
-                Promise.reject(reason))));
+                ))));
     }
 
     /*
