@@ -9,6 +9,7 @@ import {readFileSync} from "fs";
 import {template} from "dot";
 import * as config from "./config";
 import type {IAlert} from "./typings/IAlert";
+import type {IAlertMatcher} from "./typings/IAlertMatcher";
 
 export class Alert implements IAlert {
   readonly baseUrl: string;
@@ -50,14 +51,15 @@ export class Alert implements IAlert {
    */
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/no-explicit-any
   public static isIAlert (object: any): object is IAlert {
-    return object &&
-      object.baseUrl instanceof URL &&
-      typeof object.hash === "string" &&
-      typeof object.isFiring === "string" &&
-      Array.isArray(object.matchers) &&
-      typeof object.relatedAlertsUrl === "string" &&
-      typeof object.silenceUrl === "string" &&
-      typeof object.text === "string";
+    return typeof object !== "undefined" &&
+    typeof object.baseUrl === "string" &&
+    typeof object.isFiring === "boolean" &&
+    typeof object.hash === "string" &&
+    Array.isArray(object.matchers) &&
+    object.matchers.every((matcher: IAlertMatcher) =>
+      typeof matcher.isRegex === "boolean" &&
+      typeof matcher.name === "string" &&
+      typeof matcher.value === "string");
   }
 
   /**
@@ -93,16 +95,6 @@ export class Alert implements IAlert {
   }
 
   private static fromUpdate (object: IUpdateAlert): Alert {
-    if (typeof object.groupKey === "undefined") {
-      throw Error("no groupKey defined on update");
-    }
-    if (typeof object.status === "undefined") {
-      throw Error("no status defined on update");
-    }
-    if (typeof object.receiver === "undefined") {
-      throw Error("no receiver defined on update");
-    }
-
     let baseUrl: string = config.externalUrl.toString();
 
     if (typeof object.externalURL !== "undefined" &&

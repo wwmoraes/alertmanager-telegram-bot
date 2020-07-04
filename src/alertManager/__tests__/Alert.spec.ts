@@ -5,7 +5,15 @@
 
 import {Alert} from "../Alert";
 import {stubIUpdateAlert} from "../__stubs__/stubIUpdateAlert";
+import {stubIAlert} from "../__stubs__/stubIAlert";
 import {IUpdateAlert} from "../typings/IAlertUpdate";
+
+it("should load with valid alert interface", () => {
+  const testAlert = Alert.from(stubIAlert);
+
+  expect(testAlert).toBeInstanceOf(Alert);
+  expect(testAlert.baseUrl.toString()).toBe(`${stubIAlert.baseUrl}`);
+});
 
 describe("valid update object", () => {
   it("should load with the provided external URL", () => {
