@@ -4,9 +4,9 @@
  */
 /* eslint-disable @typescript-eslint/no-empty-function */
 import Telegraf from "telegraf";
-import {IAlertManagerContext} from "./IAlertManagerContext";
+import type {IAlertManagerContext} from "../typings/IAlertManagerContext";
 
-jest.mock("./AlertManager");
+jest.mock("../AlertManager");
 
 beforeAll(() => {
   jest.spyOn(console, "warn").mockImplementation(() => {});
@@ -24,11 +24,11 @@ beforeEach(() => {
 
 it("should work with users provided", async () => {
   const nock = (await import("nock")).default;
-  const {nockGetChatScope200} = await import("../../__stubs__/telegramAPI");
+  const {nockGetChatScope200} = await import("../../__mocks__/TelegramAPI");
 
   nockGetChatScope200(nock);
 
-  const {setupAlertManagerContext, alertManagerComposer} = await import(".");
+  const {setupAlertManagerContext, alertManagerComposer} = await import("..");
 
   const botInstance = new Telegraf<IAlertManagerContext>("TELEGRAM_TOKEN");
 
@@ -40,7 +40,7 @@ it("should work with users provided", async () => {
 });
 
 it("should work without users provided", async () => {
-  const {setupAlertManagerContext, alertManagerComposer} = await import(".");
+  const {setupAlertManagerContext, alertManagerComposer} = await import("..");
 
   const botInstance = new Telegraf<IAlertManagerContext>("TOKEN");
 
@@ -56,26 +56,26 @@ describe("work e2e", () => {
     Promise.resolve());
 
   it("should send alert for unsent chat", async () => {
-    const {alertManagerMiddleware} = await import("./alertManagerMiddleware");
-    const {alertValid} = await import("./__fixtures__/mockAlert");
-    const {sendAlertMessagesSpy} = await import("./__fixtures__/mockAlertManager");
+    const {alertManagerMiddleware} = await import("../alertManagerMiddleware");
+    const {stubAlert} = await import("../__stubs__/stubAlert");
+    const {sendAlertMessagesSpy} = await import("../__fixtures__/mockAlertManager");
 
-    const {mockIAlertManagerContextValid} = await import("./__fixtures__/mockIAlertManagerContext");
-    const {mockUpdateAlert} = await import("./__fixtures__/mockUpdate");
+    const {stubIAlertManagerContext} = await import("../__stubs__/stubIAlertManagerContext");
+    const {stubIUpdateAlert} = await import("../__stubs__/stubIUpdateAlert");
 
-    mockIAlertManagerContextValid.update = mockUpdateAlert;
+    stubIAlertManagerContext.update = stubIUpdateAlert;
 
     const nock = (await import("nock")).default;
-    const {nockGetChatScope200} = await import("../../__stubs__/telegramAPI");
+    const {nockGetChatScope200} = await import("../../__mocks__/TelegramAPI");
 
     nockGetChatScope200(nock);
 
-    await expect(alertManagerMiddleware(mockIAlertManagerContextValid, next)).resolves.toBeUndefined();
+    await expect(alertManagerMiddleware(stubIAlertManagerContext, next)).resolves.toBeUndefined();
 
     await expect(next).not.toHaveBeenCalled();
     await expect(sendAlertMessagesSpy).toHaveBeenCalledWith(
-      alertValid,
-      mockIAlertManagerContextValid.telegram
+      stubAlert,
+      stubIAlertManagerContext.telegram
     );
   });
 });

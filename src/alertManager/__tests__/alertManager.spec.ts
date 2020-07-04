@@ -11,7 +11,7 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable @typescript-eslint/no-empty-function */
 
-import {IAlertMatcher} from "./IAlertMatcher";
+import type {IAlertMatcher} from "../typings/IAlertMatcher";
 
 jest.mock("dotenv");
 
@@ -34,18 +34,18 @@ describe("instance creation", () => {
     Promise.resolve());
 
   it("should instantiate successfully", async () => {
-    const AlertManager = await (await import("./AlertManager")).AlertManager;
+    const AlertManager = await (await import("../AlertManager")).AlertManager;
 
-    const mockAlertManager = await (await import("./__fixtures__/mockAlertManager")).default;
+    const mockAlertManager = await (await import("../__fixtures__/mockAlertManager")).default;
 
     expect(mockAlertManager.instance).toBeDefined();
     expect(mockAlertManager.instance).toBeInstanceOf(AlertManager);
   });
 
   it("should process callback successfully", async () => {
-    const callbackContext = await (await import("./__fixtures__/mockIAlertManagerContext")).mockIAlertManagerContextCallback;
-    const mockAlertManager = await (await import("./__fixtures__/mockAlertManager")).default;
-    const alertValid = await (await import("./__fixtures__/mockAlert")).alertValid;
+    const callbackContext = await (await import("../__stubs__/stubIAlertManagerContext")).stubIAlertManagerContextCallback;
+    const mockAlertManager = await (await import("../__fixtures__/mockAlertManager")).default;
+    const alertValid = await (await import("../__stubs__/stubAlert")).stubAlert;
 
     const nock = (await import("nock")).default;
 
@@ -129,10 +129,10 @@ describe("callback invalid data handling", () => {
     Promise.resolve());
 
   it("should error on empty callback query", async () => {
-    type IAlertManagerContext = import("./IAlertManagerContext").IAlertManagerContext;
-    const AlertManager = await (await import("./AlertManager")).AlertManager;
+    type IAlertManagerContext = import("../typings/IAlertManagerContext").IAlertManagerContext;
+    const AlertManager = await (await import("../AlertManager")).AlertManager;
 
-    const mockAlertManager = await (await import("./__fixtures__/mockAlertManager")).default;
+    const mockAlertManager = await (await import("../__fixtures__/mockAlertManager")).default;
 
     expect(mockAlertManager.instance).toBeDefined();
     expect(mockAlertManager.instance).toBeInstanceOf(AlertManager);
@@ -144,10 +144,10 @@ describe("callback invalid data handling", () => {
   });
 
   it("should error on empty callback data", async () => {
-    type IAlertManagerContext = import("./IAlertManagerContext").IAlertManagerContext;
-    const AlertManager = await (await import("./AlertManager")).AlertManager;
+    type IAlertManagerContext = import("../typings/IAlertManagerContext").IAlertManagerContext;
+    const AlertManager = await (await import("../AlertManager")).AlertManager;
 
-    const mockAlertManager = await (await import("./__fixtures__/mockAlertManager")).default;
+    const mockAlertManager = await (await import("../__fixtures__/mockAlertManager")).default;
 
     expect(mockAlertManager.instance).toBeDefined();
     expect(mockAlertManager.instance).toBeInstanceOf(AlertManager);
@@ -158,10 +158,10 @@ describe("callback invalid data handling", () => {
   });
 
   it("should error on empty callback message", async () => {
-    type IAlertManagerContext = import("./IAlertManagerContext").IAlertManagerContext;
-    const AlertManager = await (await import("./AlertManager")).AlertManager;
+    type IAlertManagerContext = import("../typings/IAlertManagerContext").IAlertManagerContext;
+    const AlertManager = await (await import("../AlertManager")).AlertManager;
 
-    const mockAlertManager = await (await import("./__fixtures__/mockAlertManager")).default;
+    const mockAlertManager = await (await import("../__fixtures__/mockAlertManager")).default;
 
     expect(mockAlertManager.instance).toBeDefined();
     expect(mockAlertManager.instance).toBeInstanceOf(AlertManager);

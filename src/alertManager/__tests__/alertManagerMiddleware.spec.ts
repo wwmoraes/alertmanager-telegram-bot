@@ -4,8 +4,8 @@
  */
 
 /* eslint-disable @typescript-eslint/no-empty-function */
-import {IAlertManagerContext} from "./IAlertManagerContext";
-import {mockUpdateAlert} from "./__fixtures__/mockUpdate";
+import type {IAlertManagerContext} from "../typings/IAlertManagerContext";
+import {stubIUpdateAlert} from "../__stubs__/stubIUpdateAlert";
 
 beforeAll(() => {
   jest.spyOn(console, "warn").mockImplementation(() => {});
@@ -24,7 +24,7 @@ const next = jest.fn(() =>
   Promise.resolve());
 
 it("should passthrough known update types", async () => {
-  const alertManagerMiddleware = await (await import("./alertManagerMiddleware")).alertManagerMiddleware;
+  const alertManagerMiddleware = await (await import("../alertManagerMiddleware")).alertManagerMiddleware;
 
   expect(alertManagerMiddleware({updateType: "message"} as IAlertManagerContext, next)).resolves.toBeUndefined();
   expect(next).toBeCalledTimes(1);
@@ -35,7 +35,7 @@ it("should error with invalid update data", async () => {
     update: {}
   };
 
-  const alertManagerMiddleware = await (await import("./alertManagerMiddleware")).alertManagerMiddleware;
+  const alertManagerMiddleware = await (await import("../alertManagerMiddleware")).alertManagerMiddleware;
 
   expect(alertManagerMiddleware(update as unknown as IAlertManagerContext, next)).
     rejects.toThrowError("cannot create an alert from the provided object");
@@ -44,13 +44,13 @@ it("should error with invalid update data", async () => {
 
 it("should send alert", async () => {
   const update = {
-    update: mockUpdateAlert,
+    update: stubIUpdateAlert,
     alertManager: {
       sendAlertMessages: jest.fn()
     }
   };
 
-  const alertManagerMiddleware = await (await import("./alertManagerMiddleware")).alertManagerMiddleware;
+  const alertManagerMiddleware = await (await import("../alertManagerMiddleware")).alertManagerMiddleware;
 
   expect(alertManagerMiddleware(update as unknown as IAlertManagerContext, next)).
     toBeUndefined();

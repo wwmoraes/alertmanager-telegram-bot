@@ -31,3 +31,4 @@ exclude_patterns:
 - "**/__fixtures__/*"
 - "**/__mocks__/*"
 - "**/__stubs__/*"
+- "**/__tests__/*"

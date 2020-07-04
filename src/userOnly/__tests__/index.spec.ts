@@ -3,8 +3,8 @@
  * @module UserOnly
  */
 
-import {userOnlyMiddleware} from ".";
-import IContext from "./IUserOnlyContext";
+import {userOnlyMiddleware} from "..";
+import IContext from "../typings/IUserOnlyContext";
 
 it("should passthrough on unknown update type", () => {
   const next = jest.fn(() =>

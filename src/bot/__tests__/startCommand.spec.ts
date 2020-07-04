@@ -6,6 +6,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 
 jest.mock("dotenv");
+jest.mock("../../alertManager/AlertManager");
 
 beforeAll(() => {
   jest.spyOn(console, "warn").mockImplementation(() => {});
@@ -21,15 +22,15 @@ beforeEach(() => {
 });
 
 it("should enroll the user and greet back", async () => {
-  const startCommand = await (await import("./startCommand")).startCommand;
-  const mockBotContextValid = await (await import("./__fixtures__/mockBotContext")).mockBotContextValid;
-  const mockAlertManager = await (await import("../alertManager/__fixtures__/mockAlertManager")).default;
+  const startCommand = await (await import("../startCommand")).startCommand;
+  const mockIBotContext = await (await import("../__mocks__/IBotContext")).mockIBotContext;
+  const mockAlertManager = await (await import("../../alertManager/__fixtures__/mockAlertManager")).default;
 
-  await expect(mockBotContextValid.alertManager.hasUserChat("1", "1")).
+  await expect(mockIBotContext.alertManager.hasUserChat("1", "1")).
     resolves.toBe(false);
   mockAlertManager.hasUserChatSpy.mockClear();
 
-  await startCommand(mockBotContextValid);
+  await startCommand(mockIBotContext);
 
   expect(mockAlertManager.hasUserChatSpy).toHaveBeenCalledTimes(1);
   expect(mockAlertManager.hasUserChatSpy).toHaveBeenCalledWith("1", "1");
@@ -37,58 +38,58 @@ it("should enroll the user and greet back", async () => {
     resolves.toEqual(false);
   expect(mockAlertManager.addUserChatSpy).toHaveBeenCalledTimes(1);
   expect(mockAlertManager.addUserChatSpy).toHaveBeenCalledWith("1", "1");
-  expect(mockBotContextValid.reply).toHaveBeenCalledTimes(1);
-  expect(mockBotContextValid.reply).toHaveBeenCalledWith("Welcome!");
+  expect(mockIBotContext.reply).toHaveBeenCalledTimes(1);
+  expect(mockIBotContext.reply).toHaveBeenCalledWith("Welcome!");
 });
 
 it("should reply that the user is already enrolled", async () => {
-  const startCommand = await (await import("./startCommand")).startCommand;
-  const mockBotContextValid = await (await import("./__fixtures__/mockBotContext")).mockBotContextValid;
-  const mockAlertManager = await (await import("../alertManager/__fixtures__/mockAlertManager")).default;
+  const startCommand = await (await import("../startCommand")).startCommand;
+  const mockIBotContext = await (await import("../__mocks__/IBotContext")).mockIBotContext;
+  const mockAlertManager = await (await import("../../alertManager/__fixtures__/mockAlertManager")).default;
 
-  mockBotContextValid.alertManager.addUserChat("1", "1");
+  mockIBotContext.alertManager.addUserChat("1", "1");
   mockAlertManager.addUserChatSpy.mockClear();
 
-  await startCommand(mockBotContextValid);
+  await startCommand(mockIBotContext);
 
   expect(mockAlertManager.hasUserChatSpy).toHaveBeenCalledTimes(1);
   expect(mockAlertManager.hasUserChatSpy).toHaveBeenCalledWith("1", "1");
   expect(mockAlertManager.hasUserChatSpy.mock.results[0].value).
     resolves.toEqual(true);
   expect(mockAlertManager.addUserChatSpy).not.toHaveBeenCalled();
-  expect(mockBotContextValid.reply).toHaveBeenCalled();
+  expect(mockIBotContext.reply).toHaveBeenCalled();
 });
 
 it("should fail with undefined from", async () => {
-  const startCommand = await (await import("./startCommand")).startCommand;
-  const mockBotContextValid = await (await import("./__fixtures__/mockBotContext")).mockBotContextValid;
+  const startCommand = await (await import("../startCommand")).startCommand;
+  const mockIBotContext = await (await import("../__mocks__/IBotContext")).mockIBotContext;
 
-  mockBotContextValid.from = undefined;
+  mockIBotContext.from = undefined;
 
   expect.assertions(3);
 
-  expect(mockBotContextValid.from).toBeUndefined();
+  expect(mockIBotContext.from).toBeUndefined();
 
-  const testCommand = startCommand(mockBotContextValid);
+  const testCommand = startCommand(mockIBotContext);
 
   expect(testCommand).rejects.
     toEqual<Error>(new Error("no sender on the start request"));
-  expect(mockBotContextValid.reply).not.toHaveBeenCalled();
+  expect(mockIBotContext.reply).not.toHaveBeenCalled();
 });
 
 it("should fail with undefined chat", async () => {
-  const startCommand = await (await import("./startCommand")).startCommand;
-  const mockBotContextValid = await (await import("./__fixtures__/mockBotContext")).mockBotContextValid;
+  const startCommand = await (await import("../startCommand")).startCommand;
+  const mockIBotContext = await (await import("../__mocks__/IBotContext")).mockIBotContext;
 
-  mockBotContextValid.chat = undefined;
+  mockIBotContext.chat = undefined;
 
   expect.assertions(3);
 
-  expect(mockBotContextValid.chat).toBeUndefined();
+  expect(mockIBotContext.chat).toBeUndefined();
 
-  const testCommand = startCommand(mockBotContextValid);
+  const testCommand = startCommand(mockIBotContext);
 
   expect(testCommand).rejects.
     toEqual<Error>(new Error("no chat on the start request"));
-  expect(mockBotContextValid.reply).not.toHaveBeenCalled();
+  expect(mockIBotContext.reply).not.toHaveBeenCalled();
 });

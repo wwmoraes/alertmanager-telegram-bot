@@ -4,7 +4,7 @@
  */
 
 /* eslint-disable @typescript-eslint/no-empty-function */
-import {IAlertManagerContext} from "./IAlertManagerContext";
+import type {IAlertManagerContext} from "../typings/IAlertManagerContext";
 
 beforeAll(() => {
   jest.spyOn(console, "warn").mockImplementation(() => {});
@@ -23,7 +23,7 @@ const next = jest.fn(() =>
   Promise.resolve());
 
 it("should passthrough on empty chat", async () => {
-  const alertManagerCBMiddleware = await (await import("./alertManagerCBMiddleware")).alertManagerCBMiddleware;
+  const alertManagerCBMiddleware = await (await import("../alertManagerCBMiddleware")).alertManagerCBMiddleware;
 
   const context = {} as IAlertManagerContext;
 
@@ -32,7 +32,7 @@ it("should passthrough on empty chat", async () => {
 });
 
 it("should passthrough on empty from", async () => {
-  const alertManagerCBMiddleware = await (await import("./alertManagerCBMiddleware")).alertManagerCBMiddleware;
+  const alertManagerCBMiddleware = await (await import("../alertManagerCBMiddleware")).alertManagerCBMiddleware;
 
   const context = {
     chat: {}
@@ -43,7 +43,7 @@ it("should passthrough on empty from", async () => {
 });
 
 it("should passthrough on empty callback query", async () => {
-  const alertManagerCBMiddleware = await (await import("./alertManagerCBMiddleware")).alertManagerCBMiddleware;
+  const alertManagerCBMiddleware = await (await import("../alertManagerCBMiddleware")).alertManagerCBMiddleware;
 
   const context = {
     chat: {},
@@ -55,7 +55,7 @@ it("should passthrough on empty callback query", async () => {
 });
 
 it("should passthrough on empty callback query data", async () => {
-  const alertManagerCBMiddleware = await (await import("./alertManagerCBMiddleware")).alertManagerCBMiddleware;
+  const alertManagerCBMiddleware = await (await import("../alertManagerCBMiddleware")).alertManagerCBMiddleware;
 
   const context = {
     chat: {},
@@ -68,7 +68,7 @@ it("should passthrough on empty callback query data", async () => {
 });
 
 it("should passthrough on empty callback query message", async () => {
-  const alertManagerCBMiddleware = await (await import("./alertManagerCBMiddleware")).alertManagerCBMiddleware;
+  const alertManagerCBMiddleware = await (await import("../alertManagerCBMiddleware")).alertManagerCBMiddleware;
 
   const context = {
     chat: {},
@@ -83,7 +83,7 @@ it("should passthrough on empty callback query message", async () => {
 });
 
 it("should passthrough on empty callback query message from", async () => {
-  const alertManagerCBMiddleware = await (await import("./alertManagerCBMiddleware")).alertManagerCBMiddleware;
+  const alertManagerCBMiddleware = await (await import("../alertManagerCBMiddleware")).alertManagerCBMiddleware;
 
   const context = {
     chat: {},
@@ -99,7 +99,7 @@ it("should passthrough on empty callback query message from", async () => {
 });
 
 it("should process successfully", async () => {
-  const alertManagerCBMiddleware = await (await import("./alertManagerCBMiddleware")).alertManagerCBMiddleware;
+  const alertManagerCBMiddleware = await (await import("../alertManagerCBMiddleware")).alertManagerCBMiddleware;
 
   const context = {
     alertManager: {

@@ -19,12 +19,11 @@ beforeEach(() => {
 });
 
 it("should greet back", async () => {
-  const helpCommand = await (await import("./helpCommand")).helpCommand;
+  const greetingCommand = await (await import("../greetingCommand")).greetingCommand;
+  const mockIBotContext = await (await import("../__mocks__/IBotContext")).mockIBotContext;
 
-  const mockBotContextValid = await (await import("./__fixtures__/mockBotContext")).mockBotContextValid;
+  await greetingCommand(mockIBotContext);
 
-  await helpCommand(mockBotContextValid);
-
-  expect(mockBotContextValid.reply).toHaveBeenCalled();
-  expect(mockBotContextValid.reply).toHaveBeenCalledWith("Send me a sticker", undefined);
+  expect(mockIBotContext.reply).toHaveBeenCalled();
+  expect(mockIBotContext.reply).toHaveBeenCalledWith("Hey there", undefined);
 });

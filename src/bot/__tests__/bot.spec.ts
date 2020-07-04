@@ -6,34 +6,8 @@
 /* eslint-disable no-undefined */
 /* eslint-disable @typescript-eslint/no-empty-function */
 
-import levelup from "levelup";
-import encode from "encoding-down";
-import memdown from "memdown";
-import type {IAlert} from "../alertManager/IAlert";
-
 jest.mock("dotenv");
-jest.mock("../alertManager/AlertManager", () => {
-  const originalAlertManager = jest.requireActual("../alertManager/AlertManager").AlertManager;
-
-  class MockAlertManager extends originalAlertManager {
-    constructor () {
-      super(
-        levelup(encode(memdown<string, string>(), {
-          valueEncoding: "string",
-          keyEncoding: "string"
-        })),
-        levelup(encode(memdown<string, IAlert>(), {
-          valueEncoding: "string",
-          keyEncoding: "json"
-        }))
-      );
-    }
-  }
-
-  return {
-    AlertManager: MockAlertManager
-  };
-});
+jest.mock("../../alertManager/AlertManager");
 
 beforeAll(() => {
   jest.spyOn(console, "warn").mockImplementation(() => {});
@@ -63,12 +37,12 @@ beforeEach(() => {
 
 it("should start bot successfully", async () => {
   const nock = (await import("nock")).default;
-  const {nockGetChatScope200, nockSetWebhookScope200} = await import("../../__stubs__/telegramAPI");
+  const {nockGetChatScope200, nockSetWebhookScope200} = await import("../../__mocks__/TelegramAPI");
 
   nockGetChatScope200(nock, process.env.TELEGRAM_TOKEN, "1");
   nockSetWebhookScope200(nock, process.env.TELEGRAM_TOKEN);
 
-  const botInstance = (await import(".")).bot();
+  const botInstance = (await import("..")).bot();
 
   await botInstance.then((instance) =>
     instance.stop());
@@ -77,24 +51,24 @@ it("should start bot successfully", async () => {
 
 it("should fail to start if webhook not set", async () => {
   const nock = (await import("nock")).default;
-  const {nockGetChatScope200, nockSetWebhookScope503} = await import("../../__stubs__/telegramAPI");
+  const {nockGetChatScope200, nockSetWebhookScope503} = await import("../../__mocks__/TelegramAPI");
 
   nockGetChatScope200(nock, process.env.TELEGRAM_TOKEN, "1");
   nockSetWebhookScope503(nock, process.env.TELEGRAM_TOKEN);
 
   await expect(() =>
-    import(".").then((module) =>
+    import("..").then((module) =>
       module.bot())).rejects.toThrowError("error setting the webhook");
 });
 
 it("should fail to start on getChat error", async () => {
   const nock = (await import("nock")).default;
-  const {nockGetChatScope503, nockSetWebhookScope200} = await import("../../__stubs__/telegramAPI");
+  const {nockGetChatScope503, nockSetWebhookScope200} = await import("../../__mocks__/TelegramAPI");
 
   nockGetChatScope503(nock, process.env.TELEGRAM_TOKEN, "1");
   nockSetWebhookScope200(nock, process.env.TELEGRAM_TOKEN);
 
   await expect(() =>
-    import(".").then((module) =>
+    import("..").then((module) =>
       module.bot())).rejects.toThrowError("500: Unsupported http response from Telegram");
 });
