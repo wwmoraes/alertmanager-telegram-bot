@@ -13,6 +13,8 @@ website
 images
 assets
 !istanbul-reports/lib/html/assets
+!typedoc-default-themes/bin/default/assets
+!g8-typedoc-dark/**/assets
 
 # examples
 example
