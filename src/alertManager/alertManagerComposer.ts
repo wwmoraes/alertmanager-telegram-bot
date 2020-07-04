@@ -4,7 +4,7 @@
  */
 
 import {Composer} from "telegraf";
-import type {IAlertManagerContext} from "./IAlertManagerContext";
+import type {IAlertManagerContext} from "./typings/IAlertManagerContext";
 import {alertManagerCBMiddleware} from "./alertManagerCBMiddleware";
 import {alertManagerMiddleware} from "./alertManagerMiddleware";
 

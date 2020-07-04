@@ -3,8 +3,8 @@
  * @module AlertManager
  */
 
-import {IAlertManagerContext} from "./IAlertManagerContext";
-import {MiddlewareFn} from "telegraf/typings/composer";
+import type {IAlertManagerContext} from "./typings/IAlertManagerContext";
+import type {MiddlewareFn} from "telegraf/typings/composer";
 
 export const alertManagerCBMiddleware: MiddlewareFn<IAlertManagerContext> =
 (ctx: IAlertManagerContext, next): Promise<void> => {

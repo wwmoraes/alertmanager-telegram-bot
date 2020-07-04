@@ -3,9 +3,9 @@
  * @module Bot
  */
 
-import {BotContext} from "./BotContext";
+import {IBotContext} from "./typings/IBotContext";
 
-export const stickerCommand = (ctx: BotContext): Promise<void> => {
+export const stickerCommand = (ctx: IBotContext): Promise<void> => {
   if (typeof ctx.message === "undefined") {
     return Promise.reject(new Error("undefined message on update"));
   }

@@ -1,7 +1,7 @@
 import levelup from "levelup";
 import encode from "encoding-down";
 import memdown from "memdown";
-import type {IAlert} from "../IAlert";
+import type {IAlert} from "../typings/IAlert";
 
 const AlertManagerActual = jest.requireActual("../AlertManager").AlertManager;
 

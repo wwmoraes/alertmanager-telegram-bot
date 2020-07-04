@@ -4,7 +4,7 @@
  */
 
 import Telegraf from "telegraf";
-import {IAlertManagerContext} from "./IAlertManagerContext";
+import type {IAlertManagerContext} from "./typings/IAlertManagerContext";
 import {AlertManager} from "./AlertManager";
 import config from "./config";
 

@@ -3,10 +3,10 @@
  * @module Bot
  */
 
-import {BotContext} from "./BotContext";
+import {IBotContext} from "./typings/IBotContext";
 import {ExtraReplyMessage} from "telegraf/typings/telegram-types";
 
 export const textReplyMiddleware = (text: string, extra?: ExtraReplyMessage) =>
-  (ctx: BotContext): Promise<void> =>
+  (ctx: IBotContext): Promise<void> =>
     ctx.reply(text, extra).then(() =>
       Promise.resolve());

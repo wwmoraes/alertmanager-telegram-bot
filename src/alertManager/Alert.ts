@@ -3,12 +3,12 @@
  * @module AlertManager
  */
 
-import {IAlertUpdate} from "./IAlertUpdate";
+import type {IUpdateAlert} from "./typings/IAlertUpdate";
 import {createHash} from "crypto";
 import {readFileSync} from "fs";
 import {template} from "dot";
 import * as config from "./config";
-import {IAlert} from "./IAlert";
+import type {IAlert} from "./typings/IAlert";
 
 export class Alert implements IAlert {
   readonly baseUrl: string;
@@ -34,7 +34,7 @@ export class Alert implements IAlert {
    * @returns {boolean}
    */
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/no-explicit-any
-  public static isIAlertUpdate (object: any): object is IAlertUpdate {
+  public static isIAlertUpdate (object: any): object is IUpdateAlert {
     return object &&
       typeof object.groupKey === "string" &&
       typeof object.status === "string" &&
@@ -65,7 +65,7 @@ export class Alert implements IAlert {
    * @param {any} object data to use to create the instance
    */
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/no-explicit-any
-  public static from (object: IAlertUpdate): Alert;
+  public static from (object: IUpdateAlert): Alert;
 
   /**
    * creates an alert from an object that implements [[IAlert]]
@@ -83,7 +83,7 @@ export class Alert implements IAlert {
   public static from (object: any): Alert;
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/no-explicit-any
-  public static from (object: any|IAlertUpdate|IAlert): Alert {
+  public static from (object: any|IUpdateAlert|IAlert): Alert {
     if (Alert.isIAlertUpdate(object)) {
       return Alert.fromUpdate(object);
     } else if (Alert.isIAlert(object)) {
@@ -92,7 +92,7 @@ export class Alert implements IAlert {
     throw new Error("cannot create an alert from the provided object");
   }
 
-  private static fromUpdate (object: IAlertUpdate): Alert {
+  private static fromUpdate (object: IUpdateAlert): Alert {
     if (typeof object.groupKey === "undefined") {
       throw Error("no groupKey defined on update");
     }

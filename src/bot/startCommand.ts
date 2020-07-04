@@ -3,9 +3,9 @@
  * @module Bot
  */
 
-import {BotContext} from "./BotContext";
+import {IBotContext} from "./typings/IBotContext";
 
-export const startCommand = async (ctx: BotContext): Promise<void> => {
+export const startCommand = async (ctx: IBotContext): Promise<void> => {
   if (!ctx.from) {
     return Promise.reject(new Error("no sender on the start request"));
   }

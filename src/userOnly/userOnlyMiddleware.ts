@@ -3,7 +3,7 @@
  * @module UserOnly
  */
 
-import {IUserOnlyContext} from "./IUserOnlyContext";
+import {IUserOnlyContext} from "./typings/IUserOnlyContext";
 import {MiddlewareFn} from "telegraf/typings/composer";
 
 /**

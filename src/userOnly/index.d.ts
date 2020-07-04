@@ -6,4 +6,4 @@
  * @module UserOnly
  */
 
-export * from "./IUserOnlyContext.d";
+export * from "./typings/IUserOnlyContext";

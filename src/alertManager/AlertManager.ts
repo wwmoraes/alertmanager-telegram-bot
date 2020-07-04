@@ -5,7 +5,7 @@
 
 import {Telegram} from "telegraf";
 import Level, {LevelGraph} from "level-ts";
-import {ITriple} from "level-ts/dist/LevelGraph";
+import type {ITriple} from "level-ts/dist/LevelGraph";
 import fetch, {Response} from "node-fetch";
 import {mkdirSync} from "fs";
 import type {AbstractLevelDOWN, AbstractIterator} from "abstract-leveldown";
@@ -17,13 +17,13 @@ import {
 } from "telegraf/typings/telegram-types";
 
 import {Alert} from "./Alert";
-import {IAlertManagerContext} from "./IAlertManagerContext";
-import {ICallbackData} from "./ICallbackData";
+import type {IAlertManagerContext} from "./typings/IAlertManagerContext";
+import {ICallbackData} from "./typings/ICallbackData";
 import {decodeFromString, encodeToString} from "./messagepack";
 import config from "./config";
-import {IAlertMessage} from "./IAlertMessage";
-import {IAlertManagerPredicates} from "./IAlertManagerPredicates";
-import {IAlert} from "./IAlert";
+import {IAlertMessage} from "./typings/IAlertMessage";
+import {IAlertManagerPredicates} from "./typings/IAlertManagerPredicates";
+import type {IAlert} from "./typings/IAlert";
 
 type walkCallback<T> = (error: string|null, solution?: T) => void;
 type walkFilter<T> = (solution: T, callback: walkCallback<T>) => void;

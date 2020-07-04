@@ -3,4 +3,4 @@
   * @module NodeJS
   */
 
-import "./ProcessEnv";
+import "./typings/ProcessEnv";

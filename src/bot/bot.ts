@@ -7,7 +7,7 @@
 import {Telegraf} from "telegraf";
 import fetch from "node-fetch";
 
-import {BotContext} from "./BotContext";
+import type {IBotContext} from "./typings/IBotContext";
 import {startCommand} from "./startCommand";
 import {helpCommand} from "./helpCommand";
 import {stickerCommand} from "./stickerCommand";
@@ -19,11 +19,11 @@ import config from "./config";
 
 /**
  * safely creates the bot instance
- * @returns {Promise<Telegraf<BotContext>>} bot instance
+ * @returns {Promise<Telegraf<IBotContext>>} bot instance
  */
-export const bot = async (): Promise<Telegraf<BotContext>> => {
+export const bot = async (): Promise<Telegraf<IBotContext>> => {
   // eslint-disable-next-line init-declarations,no-undef-init,no-undefined
-  const botInstance = new Telegraf<BotContext>(
+  const botInstance = new Telegraf<IBotContext>(
     config.telegramToken,
     {telegram: {webhookReply: false}}
   );
