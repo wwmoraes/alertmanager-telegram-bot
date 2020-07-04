@@ -29,6 +29,8 @@
       "!src/**/*.d.ts",
       "!src/**/I*.ts",
       "!src/**/__fixtures__/*.ts",
+      "!src/**/__stubs__/*.ts",
+      "!src/**/__mocks__/*.ts",
       "!src/**/*.(spec|test).ts"
     ]
   },
