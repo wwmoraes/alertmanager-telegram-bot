@@ -6,7 +6,7 @@
 import {mock} from "jest-mock-extended";
 import {User} from "telegraf/typings/telegram-types";
 
-export const mockUserTest = mock<User>({
+export const stubUserTest = mock<User>({
   id: 1,
   first_name: "jest",
   last_name: "test",
@@ -14,7 +14,7 @@ export const mockUserTest = mock<User>({
   username: "jest_test"
 });
 
-export const mockUserBot = mock<User>({
+export const stubUserBot = mock<User>({
   id: 1,
   first_name: "Alertmanager",
   last_name: "Bot",
@@ -23,6 +23,6 @@ export const mockUserBot = mock<User>({
 });
 
 export default {
-  mockUserTest,
-  mockUserBot
+  stubUserTest,
+  stubUserBot
 };

@@ -6,7 +6,7 @@
 import {mock} from "jest-mock-extended";
 import {StickerSet} from "telegraf/typings/telegram-types";
 
-export const mockStickerSetValid = mock<StickerSet>({
+export const stubStickerSet = mock<StickerSet>({
   name: "sticker_pack",
   stickers: [
     {
@@ -21,5 +21,5 @@ export const mockStickerSetValid = mock<StickerSet>({
 });
 
 export default {
-  mockStickerSetValid
+  stubStickerSet
 };

@@ -3,9 +3,9 @@
  * @module AlertManager
  */
 
-import {IAlertUpdate} from "../IAlertUpdate";
+import {IUpdateAlert} from "../typings/IAlertUpdate";
 
-export const mockUpdateAlert: IAlertUpdate = {
+export const stubIUpdateAlert: IUpdateAlert = {
   version: "4",
   groupKey: "{}:{alertname='ValidUpdate' }",
   status: "firing",
@@ -43,5 +43,5 @@ export const mockUpdateAlert: IAlertUpdate = {
 };
 
 export default {
-  mockUpdateAlert
+  stubIUpdateAlert
 };

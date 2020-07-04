@@ -3,9 +3,10 @@
     "scripts/*",
     "tmp/*",
     "src/**/*.spec.ts",
-    "src/**/__fixtures__/*",
-    "src/**/__mocks__/*",
-    "__mocks__/*"
+    "**/__tests__/*",
+    "**/__fixtures__/*",
+    "**/__mocks__/*",
+    "**/__stubs__/*"
   ],
   "compilerOptions": {
     /* Basic Options */

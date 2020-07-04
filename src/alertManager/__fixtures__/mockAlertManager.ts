@@ -3,22 +3,9 @@
  * @module AlertManager
  */
 
-import levelup from "levelup";
-import encode from "encoding-down";
-import memdown from "memdown";
-import {AlertManager} from "../AlertManager";
-import type {IAlert} from "../IAlert";
+import {AlertManager} from "../__mocks__/AlertManager";
 
-export const alertManagerInstance = new AlertManager(
-  levelup(encode(memdown<string, string>(), {
-    valueEncoding: "string",
-    keyEncoding: "string"
-  })),
-  levelup(encode(memdown<string, IAlert>(), {
-    valueEncoding: "string",
-    keyEncoding: "json"
-  }))
-);
+export const alertManagerInstance = new AlertManager();
 
 export const addUserChatSpy = jest.spyOn(alertManagerInstance, "addUserChat");
 export const hasUserChatSpy = jest.spyOn(alertManagerInstance, "hasUserChat");

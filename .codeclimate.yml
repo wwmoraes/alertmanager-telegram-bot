@@ -30,3 +30,4 @@ exclude_patterns:
 - "patches/"
 - "**/__fixtures__/*"
 - "**/__mocks__/*"
+- "**/__stubs__/*"
