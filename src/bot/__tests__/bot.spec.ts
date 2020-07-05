@@ -30,8 +30,8 @@ beforeEach(() => {
   process.env.TEMPLATE_FILE = "default.tmpl";
   process.env.PORT = "0";
 
-  process.env.ALERTMANAGER_DB_PATH = "test-data/alertmanager";
-  process.env.ALERTS_DB_PATH = "test-data/alerts";
+  delete process.env.ALERTMANAGER_DB_PATH;
+  delete process.env.ALERTS_DB_PATH;
 });
 
 it("should start bot successfully", async () => {

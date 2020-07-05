@@ -2,7 +2,9 @@
  * @packageDocumentation
  * @module AlertManager
  */
+/* eslint-disable no-process-env */
 /* eslint-disable @typescript-eslint/no-empty-function */
+
 import Telegraf from "telegraf";
 import type {IAlertManagerContext} from "../typings/IAlertManagerContext";
 
@@ -18,6 +20,9 @@ beforeEach(() => {
   jest.clearAllTimers();
   jest.resetModules();
   jest.resetModuleRegistry();
+
+  delete process.env.ALERTMANAGER_DB_PATH;
+  delete process.env.ALERTS_DB_PATH;
 });
 
 it("should work with users provided", async () => {
