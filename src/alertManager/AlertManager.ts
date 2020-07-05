@@ -1,15 +1,17 @@
 /**
- * @packageDocumentation
  * @module AlertManager
+ * @packageDocumentation
  */
+/* eslint-disable max-lines-per-function */
 
 import {Telegram} from "telegraf";
 import Level, {LevelGraph} from "level-ts";
 import type {ITriple} from "level-ts/dist/LevelGraph";
-import fetch, {Response} from "node-fetch";
-import {mkdirSync} from "fs";
+import fetch, {Response, FetchError} from "node-fetch";
 import type {AbstractLevelDOWN, AbstractIterator} from "abstract-leveldown";
-import type {LevelUp} from "levelup";
+import levelUpConstructor, {LevelUp} from "levelup";
+import encode from "encoding-down";
+import memdown from "memdown";
 
 import {
   InlineKeyboardButton,
@@ -24,6 +26,7 @@ import * as config from "./config";
 import {IAlertMessage} from "./typings/IAlertMessage";
 import {IAlertManagerPredicates} from "./typings/IAlertManagerPredicates";
 import type {IAlert} from "./typings/IAlert";
+import {mkdirSync} from "fs";
 
 type walkCallback<T> = (error: string|null, solution?: T) => void;
 type walkFilter<T> = (solution: T, callback: walkCallback<T>) => void;
@@ -57,15 +60,25 @@ export class AlertManager {
         }
       } as ICallbackData);
 
-  constructor (baseDBPath: string|BaseDBLevelUp, alertsDBPath: string|AlertsDBLevelUp) {
-    if (typeof baseDBPath === "string") {
+  constructor (baseDBPath?: string|BaseDBLevelUp, alertsDBPath?: string|AlertsDBLevelUp) {
+    if (typeof baseDBPath === "undefined") {
+      this.db = new LevelGraph<BaseDBValue>(levelUpConstructor(encode(memdown<string, string>(), {
+        valueEncoding: "string",
+        keyEncoding: "string"
+      })));
+    } else if (typeof baseDBPath === "string") {
       mkdirSync(baseDBPath, {recursive: true});
       this.db = new LevelGraph<BaseDBValue>(baseDBPath);
     } else {
       this.db = new LevelGraph<BaseDBValue>(baseDBPath);
     }
 
-    if (typeof alertsDBPath === "string") {
+    if (typeof alertsDBPath === "undefined") {
+      this.alerts = new Level<AlertsDBValue>(levelUpConstructor(encode(memdown<string, IAlert>(), {
+        valueEncoding: "string",
+        keyEncoding: "json"
+      })));
+    } else if (typeof alertsDBPath === "string") {
       mkdirSync(alertsDBPath, {recursive: true});
       this.alerts = new Level<AlertsDBValue>(alertsDBPath);
     } else {
@@ -237,7 +250,9 @@ export class AlertManager {
         entry.object)).
       then((chats) =>
         chatIds.filter((chat) =>
-          !chats.includes(chat)));
+          !chats.includes(chat))).
+      then((filteredChatIds) =>
+        Promise.resolve(filteredChatIds));
   }
 
   /**
@@ -433,14 +448,14 @@ export class AlertManager {
 
         if (alertmanagerResponse.status !== 200) {
           return alertmanagerResponse.text().then((responseText) =>
-            ctx.answerCbQuery(`error: ${responseText}`)).
-            then((value) => {
-              if (value) {
-                Promise.resolve();
-              } else {
-                Promise.reject(new Error("unable to answer callback"));
-              }
-            });
+            ctx.answerCbQuery(`error: ${responseText}`).
+              then((value) => {
+                const message = value
+                  ? "user got a visual alert"
+                  : "unable to alert user about this error";
+
+                return Promise.reject(new Error(`${responseText} - ${message}`));
+              }));
         }
 
         console.info("[AlertManager] extracting silence response...");
@@ -463,19 +478,33 @@ export class AlertManager {
       } catch (error) {
         console.error("Error during silencing!");
         console.error(error);
-        // if (typeof error !== "undefined" &&
-        //   error instanceof FetchError &&
-        //   error.errno === "ECONNREFUSED") {
-        //   ctx.answerCbQuery("unable to contact alertmanager - is it running and the URL set correctly?");
 
-        //   return next();
-        // }
-        ctx.answerCbQuery("unknown error while contacting alertmanager - check logs for details");
+        if (!(error instanceof FetchError)) {
+          const userError = new Error("unknown error while contacting alertmanager - check logs for details");
 
-        return next();
+          ctx.answerCbQuery(userError.message);
+
+          return Promise.reject(userError);
+        }
+        let message = "";
+
+        switch (error.errno) {
+        case "ECONNREFUSED":
+          message = "alertmanager refused connection";
+          break;
+        case "ENETUNREACH":
+          message = "alertmanager unreachable";
+          break;
+        default:
+          message = "unable to contact alertmanager due to unexpected error";
+          break;
+        }
+        ctx.answerCbQuery(message);
+
+        return Promise.reject(new Error(message));
       }
     default:
-      return next();
+      return Promise.reject(new Error("unknown callback action"));
     }
   }
 }
