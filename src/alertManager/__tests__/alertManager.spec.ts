@@ -1,25 +1,26 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /**
  * @packageDocumentation
  * @module AlertManager
  */
-/* eslint-disable global-require */
-/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-process-env */
 /* eslint-disable no-undef-init */
 /* eslint-disable no-undefined */
 /* eslint-disable max-lines-per-function */
 /* eslint-disable @typescript-eslint/no-empty-function */
 
-import type {IAlertMatcher} from "../typings/IAlertMatcher";
-
 jest.mock("dotenv");
+
+import nock from "nock";
+import type {IAlertManagerContext} from "../typings/IAlertManagerContext";
+import type {IAlertMatcher} from "../typings/IAlertMatcher";
+import type {IAlertMessage} from "../typings/IAlertMessage";
 
 beforeAll(() => {
   jest.spyOn(console, "warn").mockImplementation(() => {});
   jest.spyOn(console, "info").mockImplementation(() => {});
   jest.spyOn(console, "debug").mockImplementation(() => {});
   jest.spyOn(console, "error").mockImplementation(() => {});
+  nock.disableNetConnect();
 });
 
 beforeEach(() => {
@@ -27,149 +28,223 @@ beforeEach(() => {
   jest.clearAllTimers();
   jest.resetModules();
   jest.resetModuleRegistry();
+  nock.cleanAll();
 });
 
-describe("instance creation", () => {
+describe("instance creation with different DB locations", () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+
+  afterEach(() => {
+    jest.clearAllTimers();
+  });
+
+  it("should instantiate with memory DB", async () => {
+    const {AlertManager} = await import("../AlertManager");
+    const mockAlertManager = new AlertManager();
+
+    expect(mockAlertManager).toBeDefined();
+    expect(mockAlertManager).toBeInstanceOf(AlertManager);
+  });
+
+  it("should instantiate with given LevelUp-compliant objects", async () => {
+    type IAlert = import("../typings/IAlert").IAlert;
+    const {AlertManager} = await import("../AlertManager");
+    const levelup = (await import("levelup")).default;
+    const encode = (await import("encoding-down")).default;
+    const memdown = (await import("memdown")).default;
+    const mockAlertManager = new AlertManager(
+      levelup(encode(memdown<string, string>(), {
+        valueEncoding: "string",
+        keyEncoding: "string"
+      })),
+      levelup(encode(memdown<string, IAlert>(), {
+        valueEncoding: "string",
+        keyEncoding: "json"
+      }))
+    );
+
+    expect(mockAlertManager).toBeDefined();
+    expect(mockAlertManager).toBeInstanceOf(AlertManager);
+  });
+});
+
+describe("callback handling", () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+
+  afterEach(() => {
+    jest.clearAllTimers();
+  });
+
   const next = jest.fn(() =>
     Promise.resolve());
 
-  it("should instantiate successfully", async () => {
-    const AlertManager = await (await import("../AlertManager")).AlertManager;
-
-    const mockAlertManager = await (await import("../__fixtures__/mockAlertManager")).default;
-
-    expect(mockAlertManager.instance).toBeDefined();
-    expect(mockAlertManager.instance).toBeInstanceOf(AlertManager);
-  });
-
   it("should process callback successfully", async () => {
-    const callbackContext = await (await import("../__stubs__/stubIAlertManagerContext")).stubIAlertManagerContextCallback;
-    const mockAlertManager = await (await import("../__fixtures__/mockAlertManager")).default;
-    const alertValid = await (await import("../__stubs__/stubAlert")).stubAlert;
+    const {stubIAlertManagerContextCallback} = await import("../__stubs__/stubIAlertManagerContext");
+    const {stubAlert} = await import("../__stubs__/stubAlert");
 
-    const nock = (await import("nock")).default;
+    const {nockAPIv2Silences200} = await import("../../__mocks__/AlertManagerAPI");
 
-    // TODO move this to a nock stub factory
-    nock("https://alertmanager.domain.com:9093").
-      post("/api/v2/silences", (body) =>
-        body.matchers.length === alertValid.matchers.length &&
-        body.matchers.every((matcher: IAlertMatcher, index: number) =>
-          matcher.isRegex === alertValid.matchers[index].isRegex &&
-          matcher.name === alertValid.matchers[index].name &&
-          matcher.value === alertValid.matchers[index].value) &&
-        body.createdBy === "jest_test" &&
-        body.comment === "silenced from Telegram bot" &&
-        body.id === null &&
-        typeof body.startsAt !== "undefined" &&
-        typeof body.endsAt !== "undefined").
-      reply(200, {silenceID: "silence1"});
+    nockAPIv2Silences200(nock, (body) =>
+      body.matchers.length === stubAlert.matchers.length &&
+          body.matchers.every((matcher: IAlertMatcher, index: number) =>
+            matcher.isRegex === stubAlert.matchers[index].isRegex &&
+            matcher.name === stubAlert.matchers[index].name &&
+            matcher.value === stubAlert.matchers[index].value) &&
+          body.createdBy === (stubIAlertManagerContextCallback.from?.username || "unknown") &&
+          body.comment === "silenced from Telegram bot" &&
+          body.id === null &&
+          typeof body.startsAt !== "undefined" &&
+          typeof body.endsAt !== "undefined", process.env.INTERNAL_URL);
 
-    if (typeof callbackContext.callbackQuery === "undefined") {
+    if (typeof stubIAlertManagerContextCallback.callbackQuery === "undefined") {
       throw new Error("unable to test: callback query is undefined");
     }
 
-    if (typeof callbackContext.from === "undefined") {
+    if (typeof stubIAlertManagerContextCallback.from === "undefined") {
       throw new Error("unable to test: callback from is undefined");
     }
 
-    if (typeof callbackContext.chat === "undefined") {
+    if (typeof stubIAlertManagerContextCallback.message === "undefined") {
+      throw new Error("unable to test: message is undefined");
+    }
+
+    if (typeof stubIAlertManagerContextCallback.chat === "undefined") {
       throw new Error("unable to test: callback chat is undefined");
     }
 
-    if (typeof callbackContext.callbackQuery.message === "undefined") {
+    if (typeof stubIAlertManagerContextCallback.callbackQuery.message === "undefined") {
       throw new Error("unable to test: callback query message is undefined");
     }
 
     // add user to current alertmanager instance
-    const addUserPromise = mockAlertManager.instance.addUserChat(
-      callbackContext.from.id.toString(),
-      callbackContext.chat.id.toString()
-    );
-
-    await expect(addUserPromise).resolves.toBeUndefined();
-
-    // add alert to current alertmanager instance
-    const addAlertPromise = mockAlertManager.instance.addAlert(alertValid);
-
-    await expect(addAlertPromise).resolves.toEqual(alertValid);
-
-    // add message to current alertmanager instance
-    const addMessagePromise = mockAlertManager.instance.addAlertMessage(
-      callbackContext.chat.id.toString(),
-      callbackContext.callbackQuery.message.message_id.toString(),
-      alertValid.hash
-    );
-
-    await expect(addMessagePromise).resolves.toBeUndefined();
-
-    // add another alert message, for a distinct alert
-    await expect(mockAlertManager.instance.addAlertMessage(
-      callbackContext.chat.id.toString(),
-      (callbackContext.callbackQuery.message.message_id + 1).toString(),
-      alertValid.hash + alertValid.hash
+    await expect(stubIAlertManagerContextCallback.alertManager.addUserChat(
+      stubIAlertManagerContextCallback.from.id.toString(),
+      stubIAlertManagerContextCallback.chat.id.toString()
     )).resolves.toBeUndefined();
 
-    // check that the chat hasn't received the alert yet
-    const getAlertFromMessagePromise = mockAlertManager.instance.
-      getAlertFromMessage(callbackContext.callbackQuery.message.message_id.toString());
+    // add alert to current alertmanager instance
+    await expect(stubIAlertManagerContextCallback.alertManager.addAlert(stubAlert)).
+      resolves.toEqual(stubAlert);
 
-    await expect(getAlertFromMessagePromise).resolves.toBeDefined();
+    // add message to current alertmanager instance
+    await expect(stubIAlertManagerContextCallback.alertManager.addAlertMessage(
+      stubIAlertManagerContextCallback.chat.id.toString(),
+      stubIAlertManagerContextCallback.callbackQuery.message.message_id.toString(),
+      stubAlert.hash
+    )).resolves.toBeUndefined();
+
+    // add another alert message, for a distinct alert
+    await expect(stubIAlertManagerContextCallback.alertManager.addAlertMessage(
+      stubIAlertManagerContextCallback.chat.id.toString(),
+      (stubIAlertManagerContextCallback.callbackQuery.message.message_id + 1).toString(),
+      stubAlert.hash + stubAlert.hash
+    )).resolves.toBeUndefined();
+
+    await expect(stubIAlertManagerContextCallback.alertManager.getUnalertedChats(stubAlert.hash)).
+      resolves.toEqual([]);
+
+    // check that the chat hasn't received the alert yet
+    await expect(stubIAlertManagerContextCallback.alertManager.
+      getAlertFromMessage(stubIAlertManagerContextCallback.callbackQuery.message.message_id.toString())).
+      resolves.toEqual<IAlertMessage>({
+        alertHash: stubAlert.hash,
+        chatId: stubIAlertManagerContextCallback.chat.id.toString(),
+        messageId: stubIAlertManagerContextCallback.message.message_id.toString(),
+        userId: stubIAlertManagerContextCallback.from.id.toString()
+      });
 
     // process callback with existing data
-    const processResultPromise = mockAlertManager.instance.
-      processCallback(callbackContext, next);
-
-    await expect(processResultPromise).resolves.toBeUndefined();
-    expect(next).not.toHaveBeenCalled();
+    await expect(stubIAlertManagerContextCallback.alertManager.
+      processCallback(stubIAlertManagerContextCallback, next)).resolves.toBeUndefined();
+    await expect(next).not.toHaveBeenCalled();
   });
-});
-
-describe("callback invalid data handling", () => {
-  const next = jest.fn(() =>
-    Promise.resolve());
 
   it("should error on empty callback query", async () => {
-    type IAlertManagerContext = import("../typings/IAlertManagerContext").IAlertManagerContext;
-    const AlertManager = await (await import("../AlertManager")).AlertManager;
-
-    const mockAlertManager = await (await import("../__fixtures__/mockAlertManager")).default;
-
-    expect(mockAlertManager.instance).toBeDefined();
-    expect(mockAlertManager.instance).toBeInstanceOf(AlertManager);
+    const {mockAlertManagerInstance} = await import("../__fixtures__/mockAlertManager");
 
     await expect(() =>
-      mockAlertManager.instance.processCallback({} as IAlertManagerContext, next)).
-      rejects.
-      toThrowError("no callback query");
+      mockAlertManagerInstance.processCallback({} as IAlertManagerContext, next)).
+      rejects.toThrowError("no callback query");
   });
 
   it("should error on empty callback data", async () => {
-    type IAlertManagerContext = import("../typings/IAlertManagerContext").IAlertManagerContext;
-    const AlertManager = await (await import("../AlertManager")).AlertManager;
-
-    const mockAlertManager = await (await import("../__fixtures__/mockAlertManager")).default;
-
-    expect(mockAlertManager.instance).toBeDefined();
-    expect(mockAlertManager.instance).toBeInstanceOf(AlertManager);
+    const {mockAlertManagerInstance} = await import("../__fixtures__/mockAlertManager");
 
     await expect(() =>
-      mockAlertManager.instance.processCallback({callbackQuery: {}} as IAlertManagerContext, next)).
+      mockAlertManagerInstance.processCallback({callbackQuery: {}} as IAlertManagerContext, next)).
       rejects.toThrowError("no callback data");
   });
 
   it("should error on empty callback message", async () => {
-    type IAlertManagerContext = import("../typings/IAlertManagerContext").IAlertManagerContext;
-    const AlertManager = await (await import("../AlertManager")).AlertManager;
-
-    const mockAlertManager = await (await import("../__fixtures__/mockAlertManager")).default;
-
-    expect(mockAlertManager.instance).toBeDefined();
-    expect(mockAlertManager.instance).toBeInstanceOf(AlertManager);
+    const {mockAlertManagerInstance} = await import("../__fixtures__/mockAlertManager");
 
     await expect(() =>
-      mockAlertManager.instance.processCallback({callbackQuery: {data: ""}} as IAlertManagerContext, next)).
+      mockAlertManagerInstance.processCallback({callbackQuery: {data: ""}} as IAlertManagerContext, next)).
       rejects.
       toThrowError("no message on callback");
+  });
+
+  it("should not silence on network problems", async () => {
+    const {nockAPIv2Silences503} = await import("../../__mocks__/AlertManagerAPI");
+    const {stubIAlertManagerContextCallback} = await import("../__stubs__/stubIAlertManagerContext");
+    const stubAlert = await (await import("../__stubs__/stubAlert")).stubAlert;
+
+    nockAPIv2Silences503(nock, (body) =>
+      body.matchers.length === stubAlert.matchers.length &&
+      body.matchers.every((matcher: IAlertMatcher, index: number) =>
+        matcher.isRegex === stubAlert.matchers[index].isRegex &&
+        matcher.name === stubAlert.matchers[index].name &&
+        matcher.value === stubAlert.matchers[index].value) &&
+      body.createdBy === (stubIAlertManagerContextCallback.from?.username || "unknown") &&
+      body.comment === "silenced from Telegram bot" &&
+      body.id === null &&
+      typeof body.startsAt !== "undefined" &&
+      typeof body.endsAt !== "undefined", process.env.INTERNAL_URL);
+
+    if (typeof stubIAlertManagerContextCallback.callbackQuery === "undefined") {
+      throw new Error("unable to test: callback query is undefined");
+    }
+
+    if (typeof stubIAlertManagerContextCallback.from === "undefined") {
+      throw new Error("unable to test: callback from is undefined");
+    }
+
+    if (typeof stubIAlertManagerContextCallback.message === "undefined") {
+      throw new Error("unable to test: message is undefined");
+    }
+
+    if (typeof stubIAlertManagerContextCallback.chat === "undefined") {
+      throw new Error("unable to test: callback chat is undefined");
+    }
+
+    if (typeof stubIAlertManagerContextCallback.callbackQuery.message === "undefined") {
+      throw new Error("unable to test: callback query message is undefined");
+    }
+
+    // add user to current alertmanager instance
+    await expect(stubIAlertManagerContextCallback.alertManager.addUserChat(
+      stubIAlertManagerContextCallback.from.id.toString(),
+      stubIAlertManagerContextCallback.chat.id.toString()
+    )).resolves.toBeUndefined();
+
+    // add alert to current alertmanager instance
+    await expect(stubIAlertManagerContextCallback.alertManager.addAlert(stubAlert)).
+      resolves.toEqual(stubAlert);
+
+    // add message to current alertmanager instance
+    await expect(stubIAlertManagerContextCallback.alertManager.addAlertMessage(
+      stubIAlertManagerContextCallback.chat.id.toString(),
+      stubIAlertManagerContextCallback.callbackQuery.message.message_id.toString(),
+      stubAlert.hash
+    )).resolves.toBeUndefined();
+
+    await expect(() =>
+      stubIAlertManagerContextCallback.alertManager.processCallback(stubIAlertManagerContextCallback, next)).
+      rejects.toThrowError("Service Unavailable - user got a visual alert");
   });
 });
 
