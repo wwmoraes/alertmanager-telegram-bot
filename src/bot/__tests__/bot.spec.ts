@@ -7,7 +7,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 
 jest.mock("dotenv");
-jest.mock("../../alertManager/AlertManager");
 
 beforeAll(() => {
   jest.spyOn(console, "warn").mockImplementation(() => {});

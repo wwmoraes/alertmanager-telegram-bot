@@ -6,8 +6,6 @@
 import Telegraf from "telegraf";
 import type {IAlertManagerContext} from "../typings/IAlertManagerContext";
 
-jest.mock("../AlertManager");
-
 beforeAll(() => {
   jest.spyOn(console, "warn").mockImplementation(() => {});
   jest.spyOn(console, "info").mockImplementation(() => {});
