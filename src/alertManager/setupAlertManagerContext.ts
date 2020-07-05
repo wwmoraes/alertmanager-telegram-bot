@@ -6,7 +6,7 @@
 import Telegraf from "telegraf";
 import type {IAlertManagerContext} from "./typings/IAlertManagerContext";
 import {AlertManager} from "./AlertManager";
-import config from "./config";
+import * as config from "./config";
 
 export const setupAlertManagerContext = (bot: Telegraf<IAlertManagerContext>, users?: string[]): Promise<void> => {
   bot.context.alertManager = new AlertManager(

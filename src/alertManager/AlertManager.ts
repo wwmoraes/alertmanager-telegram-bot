@@ -20,7 +20,7 @@ import {Alert} from "./Alert";
 import type {IAlertManagerContext} from "./typings/IAlertManagerContext";
 import {ICallbackData} from "./typings/ICallbackData";
 import {decodeFromString, encodeToString} from "./messagepack";
-import config from "./config";
+import * as config from "./config";
 import {IAlertMessage} from "./typings/IAlertMessage";
 import {IAlertManagerPredicates} from "./typings/IAlertManagerPredicates";
 import type {IAlert} from "./typings/IAlert";

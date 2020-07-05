@@ -15,7 +15,7 @@ import {greetingCommand} from "./greetingCommand";
 
 import {setupAlertManagerContext, alertManagerComposer} from "../alertManager";
 import {userOnlyMiddleware} from "../userOnly";
-import config from "./config";
+import * as config from "./config";
 
 /**
  * safely creates the bot instance
