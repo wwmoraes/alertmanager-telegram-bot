@@ -6,7 +6,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 
 jest.mock("dotenv");
-jest.mock("../../alertManager/AlertManager");
 
 beforeAll(() => {
   jest.spyOn(console, "warn").mockImplementation(() => {});
@@ -24,20 +23,20 @@ beforeEach(() => {
 it("should enroll the user and greet back", async () => {
   const startCommand = await (await import("../startCommand")).startCommand;
   const mockIBotContext = await (await import("../__mocks__/IBotContext")).mockIBotContext;
-  const mockAlertManager = await (await import("../../alertManager/__fixtures__/mockAlertManager")).default;
+  const {hasUserChatSpy, addUserChatSpy} = await import("../../alertManager/__fixtures__/mockAlertManager");
 
   await expect(mockIBotContext.alertManager.hasUserChat("1", "1")).
     resolves.toBe(false);
-  mockAlertManager.hasUserChatSpy.mockClear();
+  hasUserChatSpy.mockClear();
 
   await startCommand(mockIBotContext);
 
-  expect(mockAlertManager.hasUserChatSpy).toHaveBeenCalledTimes(1);
-  expect(mockAlertManager.hasUserChatSpy).toHaveBeenCalledWith("1", "1");
-  expect(mockAlertManager.hasUserChatSpy.mock.results[0].value).
+  expect(hasUserChatSpy).toHaveBeenCalledTimes(1);
+  expect(hasUserChatSpy).toHaveBeenCalledWith("1", "1");
+  expect(hasUserChatSpy.mock.results[0].value).
     resolves.toEqual(false);
-  expect(mockAlertManager.addUserChatSpy).toHaveBeenCalledTimes(1);
-  expect(mockAlertManager.addUserChatSpy).toHaveBeenCalledWith("1", "1");
+  expect(addUserChatSpy).toHaveBeenCalledTimes(1);
+  expect(addUserChatSpy).toHaveBeenCalledWith("1", "1");
   expect(mockIBotContext.reply).toHaveBeenCalledTimes(1);
   expect(mockIBotContext.reply).toHaveBeenCalledWith("Welcome!");
 });
@@ -45,18 +44,18 @@ it("should enroll the user and greet back", async () => {
 it("should reply that the user is already enrolled", async () => {
   const startCommand = await (await import("../startCommand")).startCommand;
   const mockIBotContext = await (await import("../__mocks__/IBotContext")).mockIBotContext;
-  const mockAlertManager = await (await import("../../alertManager/__fixtures__/mockAlertManager")).default;
+  const {addUserChatSpy, hasUserChatSpy} = await import("../../alertManager/__fixtures__/mockAlertManager");
 
   mockIBotContext.alertManager.addUserChat("1", "1");
-  mockAlertManager.addUserChatSpy.mockClear();
+  addUserChatSpy.mockClear();
 
   await startCommand(mockIBotContext);
 
-  expect(mockAlertManager.hasUserChatSpy).toHaveBeenCalledTimes(1);
-  expect(mockAlertManager.hasUserChatSpy).toHaveBeenCalledWith("1", "1");
-  expect(mockAlertManager.hasUserChatSpy.mock.results[0].value).
+  expect(hasUserChatSpy).toHaveBeenCalledTimes(1);
+  expect(hasUserChatSpy).toHaveBeenCalledWith("1", "1");
+  expect(hasUserChatSpy.mock.results[0].value).
     resolves.toEqual(true);
-  expect(mockAlertManager.addUserChatSpy).not.toHaveBeenCalled();
+  expect(addUserChatSpy).not.toHaveBeenCalled();
   expect(mockIBotContext.reply).toHaveBeenCalled();
 });
 

@@ -6,14 +6,13 @@
 import type {IAlertManagerContext} from "../typings/IAlertManagerContext";
 import type {ICallbackData} from "../typings/ICallbackData";
 import {encodeToString} from "../messagepack";
-import {alertManagerInstance} from "../__fixtures__/mockAlertManager";
 import {stubContext} from "../../__stubs__/stubContext";
 import {stubUserTest} from "../../__stubs__/stubUser";
-import type {AlertManager} from "../AlertManager";
+import {mockAlertManagerInstance} from "../__fixtures__/mockAlertManager";
 
 export const stubIAlertManagerContext = <IAlertManagerContext>{
   ...stubContext,
-  alertManager: alertManagerInstance as AlertManager,
+  alertManager: mockAlertManagerInstance,
   userIds: [stubUserTest.id.toString()]
 };
 
