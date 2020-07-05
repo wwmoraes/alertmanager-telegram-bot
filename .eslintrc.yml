@@ -2,14 +2,18 @@ env:
   browser: false
   es2020: true
 extends:
-  - 'eslint:recommended'
+  - eslint:recommended
+  - plugin:import/errors
+  - plugin:import/warnings
+  - plugin:import/typescript
   - 'plugin:@typescript-eslint/recommended'
 parser: '@typescript-eslint/parser'
 parserOptions:
   ecmaVersion: 11
   sourceType: module
 plugins:
-  - '@typescript-eslint'
+- import
+- '@typescript-eslint'
 rules:
   accessor-pairs: error
   array-bracket-newline: error
