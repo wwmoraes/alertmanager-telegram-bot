@@ -250,9 +250,7 @@ export class AlertManager {
         entry.object)).
       then((chats) =>
         chatIds.filter((chat) =>
-          !chats.includes(chat))).
-      then((filteredChatIds) =>
-        Promise.resolve(filteredChatIds));
+          !chats.includes(chat)));
   }
 
   /**
