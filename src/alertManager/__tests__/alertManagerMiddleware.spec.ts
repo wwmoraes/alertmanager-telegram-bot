@@ -4,6 +4,8 @@
  */
 
 /* eslint-disable @typescript-eslint/no-empty-function */
+
+import nock from "nock";
 import type {IAlertManagerContext} from "../typings/IAlertManagerContext";
 import {stubIUpdateAlert} from "../__stubs__/stubIUpdateAlert";
 
@@ -11,6 +13,7 @@ beforeAll(() => {
   jest.spyOn(console, "warn").mockImplementation(() => {});
   jest.spyOn(console, "info").mockImplementation(() => {});
   jest.spyOn(console, "debug").mockImplementation(() => {});
+  nock.disableNetConnect();
 });
 
 beforeEach(() => {
@@ -18,6 +21,7 @@ beforeEach(() => {
   jest.clearAllTimers();
   jest.resetModules();
   jest.resetModuleRegistry();
+  nock.cleanAll();
 });
 
 const next = jest.fn(() =>

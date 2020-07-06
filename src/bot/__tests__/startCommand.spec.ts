@@ -7,10 +7,13 @@
 
 jest.mock("dotenv");
 
+import nock from "nock";
+
 beforeAll(() => {
   jest.spyOn(console, "warn").mockImplementation(() => {});
   jest.spyOn(console, "info").mockImplementation(() => {});
   jest.spyOn(console, "debug").mockImplementation(() => {});
+  nock.disableNetConnect();
 });
 
 beforeEach(() => {
@@ -18,6 +21,7 @@ beforeEach(() => {
   jest.clearAllTimers();
   jest.resetModules();
   jest.resetModuleRegistry();
+  nock.cleanAll();
 });
 
 it("should enroll the user and greet back", async () => {

@@ -7,12 +7,14 @@
 
 import Telegraf from "telegraf";
 import type {IAlertManagerContext} from "../typings/IAlertManagerContext";
+import nock from "nock";
 
 beforeAll(() => {
   jest.spyOn(console, "warn").mockImplementation(() => {});
   jest.spyOn(console, "info").mockImplementation(() => {});
   jest.spyOn(console, "debug").mockImplementation(() => {});
   jest.spyOn(console, "error").mockImplementation(() => {});
+  nock.disableNetConnect();
 });
 
 beforeEach(() => {
@@ -20,6 +22,7 @@ beforeEach(() => {
   jest.clearAllTimers();
   jest.resetModules();
   jest.resetModuleRegistry();
+  nock.cleanAll();
 
   delete process.env.ALERTMANAGER_DB_PATH;
   delete process.env.ALERTS_DB_PATH;

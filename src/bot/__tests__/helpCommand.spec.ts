@@ -5,10 +5,13 @@
 /* eslint-disable no-undefined */
 /* eslint-disable @typescript-eslint/no-empty-function */
 
+import nock from "nock";
+
 beforeAll(() => {
   jest.spyOn(console, "warn").mockImplementation(() => {});
   jest.spyOn(console, "info").mockImplementation(() => {});
   jest.spyOn(console, "debug").mockImplementation(() => {});
+  nock.disableNetConnect();
 });
 
 beforeEach(() => {
@@ -16,6 +19,7 @@ beforeEach(() => {
   jest.clearAllTimers();
   jest.resetModules();
   jest.resetModuleRegistry();
+  nock.disableNetConnect();
 });
 
 it("should greet back", async () => {

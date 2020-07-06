@@ -8,11 +8,14 @@
 
 jest.mock("dotenv");
 
+import nock from "nock";
+
 beforeAll(() => {
   jest.spyOn(console, "warn").mockImplementation(() => {});
   jest.spyOn(console, "info").mockImplementation(() => {});
   jest.spyOn(console, "debug").mockImplementation(() => {});
   jest.spyOn(console, "error").mockImplementation(() => {});
+  nock.disableNetConnect();
 });
 
 beforeEach(() => {
@@ -20,6 +23,7 @@ beforeEach(() => {
   jest.clearAllTimers();
   jest.resetModules();
   jest.resetModuleRegistry();
+  nock.cleanAll();
 
   process.env.NODE_ENV = "test";
 
@@ -35,7 +39,6 @@ beforeEach(() => {
 });
 
 it("should start bot successfully", async () => {
-  const nock = (await import("nock")).default;
   const {nockGetChatScope200, nockSetWebhookScope200} = await import("../../__mocks__/TelegramAPI");
 
   nockGetChatScope200(nock, process.env.TELEGRAM_TOKEN, "1");
@@ -49,7 +52,6 @@ it("should start bot successfully", async () => {
 });
 
 it("should fail to start if webhook not set", async () => {
-  const nock = (await import("nock")).default;
   const {nockGetChatScope200, nockSetWebhookScope503} = await import("../../__mocks__/TelegramAPI");
 
   nockGetChatScope200(nock, process.env.TELEGRAM_TOKEN, "1");
@@ -61,7 +63,6 @@ it("should fail to start if webhook not set", async () => {
 });
 
 it("should fail to start on getChat error", async () => {
-  const nock = (await import("nock")).default;
   const {nockGetChatScope503, nockSetWebhookScope200} = await import("../../__mocks__/TelegramAPI");
 
   nockGetChatScope503(nock, process.env.TELEGRAM_TOKEN, "1");
