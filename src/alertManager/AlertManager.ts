@@ -6,7 +6,7 @@
 import {Telegram} from "telegraf";
 import Level, {LevelGraph} from "level-ts";
 import type {ITriple} from "level-ts/dist/LevelGraph";
-import fetch, {Response, FetchError} from "node-fetch";
+import fetch, {Response} from "node-fetch";
 import type {AbstractLevelDOWN, AbstractIterator} from "abstract-leveldown";
 import levelUpConstructor, {LevelUp} from "levelup";
 import encode from "encoding-down";
