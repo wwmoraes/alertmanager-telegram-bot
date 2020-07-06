@@ -28,7 +28,5 @@ export const setupAlertManagerContext = (bot: Telegraf<IAlertManagerContext>, us
     bot.telegram.getChat(adminUserId).then((chat) =>
       bot.context.alertManager.addUserChat(adminUserId, chat.id.toString())))).
     then(() =>
-      Promise.resolve()).
-    catch((reason) =>
-      Promise.reject(reason));
+      Promise.resolve());
 };
