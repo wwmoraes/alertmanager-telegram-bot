@@ -67,9 +67,23 @@ describe("work e2e", () => {
     const {sendAlertMessagesSpy} = await import("../__fixtures__/mockAlertManager");
 
     const {stubIAlertManagerContext} = await import("../__stubs__/stubIAlertManagerContext");
+
+    if (typeof stubIAlertManagerContext.from === "undefined") {
+      throw new Error("test failed: context from is undefined");
+    }
+
+    if (typeof stubIAlertManagerContext.chat === "undefined") {
+      throw new Error("test failed: context chat is undefined");
+    }
+
     const {stubIUpdateAlert} = await import("../__stubs__/stubIUpdateAlert");
 
     stubIAlertManagerContext.update = stubIUpdateAlert;
+    delete stubIAlertManagerContext.updateType;
+    expect(stubIAlertManagerContext.alertManager.addUserChat(
+      stubIAlertManagerContext.from.id.toString(),
+      stubIAlertManagerContext.chat.id.toString()
+    )).resolves.toBeUndefined();
 
     const nock = (await import("nock")).default;
     const {nockGetChatScope200} = await import("../../__mocks__/TelegramAPI");
