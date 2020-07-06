@@ -9,7 +9,7 @@ jest.mock("dotenv");
 
 import nock from "nock";
 import type {IAlertManagerContext} from "../typings/IAlertManagerContext";
-import {stubIUpdateAlert} from "../__stubs__/stubIUpdateAlert";
+import {stubIUpdateAlertFiring} from "../__stubs__/stubIUpdateAlert";
 
 beforeAll(() => {
   jest.spyOn(console, "warn").mockImplementation(() => {});
@@ -51,7 +51,7 @@ it("should error with invalid update data", async () => {
 
 it("should send alert", async () => {
   const update = {
-    update: stubIUpdateAlert,
+    update: stubIUpdateAlertFiring,
     alertManager: {
       sendAlertMessages: jest.fn()
     }

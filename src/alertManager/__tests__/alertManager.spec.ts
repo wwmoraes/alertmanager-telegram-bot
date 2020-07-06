@@ -73,16 +73,16 @@ describe("callback handling", () => {
 
   it("should process silence request successfully", async () => {
     const {stubIAlertManagerContextCallback} = await import("../__stubs__/stubIAlertManagerContext");
-    const {stubAlert} = await import("../__stubs__/stubAlert");
+    const {stubAlertFiring} = await import("../__stubs__/stubAlert");
 
     const {nockAPIv2Silences200} = await import("../../__mocks__/AlertManagerAPI");
 
     nockAPIv2Silences200(nock, (body) =>
-      body.matchers.length === stubAlert.matchers.length &&
+      body.matchers.length === stubAlertFiring.matchers.length &&
           body.matchers.every((matcher: IAlertMatcher, index: number) =>
-            matcher.isRegex === stubAlert.matchers[index].isRegex &&
-            matcher.name === stubAlert.matchers[index].name &&
-            matcher.value === stubAlert.matchers[index].value) &&
+            matcher.isRegex === stubAlertFiring.matchers[index].isRegex &&
+            matcher.name === stubAlertFiring.matchers[index].name &&
+            matcher.value === stubAlertFiring.matchers[index].value) &&
           body.createdBy === (stubIAlertManagerContextCallback.from?.username || "unknown") &&
           body.comment === "silenced from Telegram bot" &&
           body.id === null &&
@@ -116,31 +116,31 @@ describe("callback handling", () => {
     )).resolves.toBeUndefined();
 
     // add alert to current alertmanager instance
-    await expect(stubIAlertManagerContextCallback.alertManager.addAlert(stubAlert)).
-      resolves.toEqual(stubAlert);
+    await expect(stubIAlertManagerContextCallback.alertManager.addAlert(stubAlertFiring)).
+      resolves.toEqual(stubAlertFiring);
 
     // add message to current alertmanager instance
     await expect(stubIAlertManagerContextCallback.alertManager.addAlertMessage(
       stubIAlertManagerContextCallback.chat.id.toString(),
       stubIAlertManagerContextCallback.callbackQuery.message.message_id.toString(),
-      stubAlert.hash
+      stubAlertFiring.hash
     )).resolves.toBeUndefined();
 
     // add another alert message, for a distinct alert
     await expect(stubIAlertManagerContextCallback.alertManager.addAlertMessage(
       stubIAlertManagerContextCallback.chat.id.toString(),
       (stubIAlertManagerContextCallback.callbackQuery.message.message_id + 1).toString(),
-      stubAlert.hash + stubAlert.hash
+      stubAlertFiring.hash + stubAlertFiring.hash
     )).resolves.toBeUndefined();
 
-    await expect(stubIAlertManagerContextCallback.alertManager.getUnalertedChats(stubAlert.hash)).
+    await expect(stubIAlertManagerContextCallback.alertManager.getUnalertedChats(stubAlertFiring.hash)).
       resolves.toEqual([]);
 
     // check that the chat hasn't received the alert yet
     await expect(stubIAlertManagerContextCallback.alertManager.
       getAlertFromMessage(stubIAlertManagerContextCallback.callbackQuery.message.message_id.toString())).
       resolves.toEqual<IAlertMessage>({
-        alertHash: stubAlert.hash,
+        alertHash: stubAlertFiring.hash,
         chatId: stubIAlertManagerContextCallback.chat.id.toString(),
         messageId: stubIAlertManagerContextCallback.message.message_id.toString(),
         userId: stubIAlertManagerContextCallback.from.id.toString()
@@ -180,7 +180,7 @@ describe("callback handling", () => {
   it("should not silence on network problems", async () => {
     const {nockAPIv2Silences503} = await import("../../__mocks__/AlertManagerAPI");
     const {stubIAlertManagerContextCallback} = await import("../__stubs__/stubIAlertManagerContext");
-    const stubAlert = await (await import("../__stubs__/stubAlert")).stubAlert;
+    const stubAlert = await (await import("../__stubs__/stubAlert")).stubAlertFiring;
 
     nockAPIv2Silences503(nock, (body) =>
       body.matchers.length === stubAlert.matchers.length &&
@@ -235,4 +235,21 @@ describe("callback handling", () => {
       stubIAlertManagerContextCallback.alertManager.processCallback(stubIAlertManagerContextCallback, next)).
       rejects.toThrowError("Service Unavailable - user got a visual alert");
   });
+});
+
+it("should return if user has chat or not", async () => {
+  const {mockAlertManagerInstance} = await import("../__fixtures__/mockAlertManager");
+
+  // add user to current alertmanager instance
+  expect(mockAlertManagerInstance.addUserChat("1", "1")).
+    resolves.toBeUndefined();
+
+  expect(mockAlertManagerInstance.hasUserChat("2", "2")).
+    resolves.toBe(false);
+  expect(mockAlertManagerInstance.hasUserChat("1", "2")).
+    resolves.toBe(false);
+  expect(mockAlertManagerInstance.hasUserChat("2", "1")).
+    resolves.toBe(false);
+  expect(mockAlertManagerInstance.hasUserChat("1", "1")).
+    resolves.toBe(true);
 });

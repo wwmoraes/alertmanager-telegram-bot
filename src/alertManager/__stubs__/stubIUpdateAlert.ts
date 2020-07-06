@@ -5,7 +5,7 @@
 
 import {IUpdateAlert} from "../typings/IAlertUpdate";
 
-export const stubIUpdateAlert: IUpdateAlert = {
+export const stubIUpdateAlertFiring: IUpdateAlert = {
   version: "4",
   groupKey: "{}:{alertname='ValidUpdate' }",
   status: "firing",
@@ -42,6 +42,7 @@ export const stubIUpdateAlert: IUpdateAlert = {
   truncatedAlerts: 0
 };
 
-export default {
-  stubIUpdateAlert
+export const stubIUpdateAlertResolved: IUpdateAlert = {
+  ...stubIUpdateAlertFiring,
+  status: "resolved"
 };

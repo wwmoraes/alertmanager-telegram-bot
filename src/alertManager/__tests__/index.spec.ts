@@ -62,7 +62,7 @@ describe("work e2e", () => {
 
   it("should send alert for unsent chat", async () => {
     const {alertManagerMiddleware} = await import("../alertManagerMiddleware");
-    const {stubAlert} = await import("../__stubs__/stubAlert");
+    const {stubAlertFiring} = await import("../__stubs__/stubAlert");
     const {sendAlertMessagesSpy} = await import("../__fixtures__/mockAlertManager");
 
     const {stubIAlertManagerContext} = await import("../__stubs__/stubIAlertManagerContext");
@@ -75,7 +75,7 @@ describe("work e2e", () => {
       throw new Error("test failed: context chat is undefined");
     }
 
-    const {stubIUpdateAlert} = await import("../__stubs__/stubIUpdateAlert");
+    const {stubIUpdateAlertFiring: stubIUpdateAlert} = await import("../__stubs__/stubIUpdateAlert");
 
     stubIAlertManagerContext.update = stubIUpdateAlert;
     delete stubIAlertManagerContext.updateType;
@@ -92,7 +92,7 @@ describe("work e2e", () => {
 
     await expect(next).not.toHaveBeenCalled();
     await expect(sendAlertMessagesSpy).toHaveBeenCalledWith(
-      stubAlert,
+      stubAlertFiring,
       stubIAlertManagerContext.telegram
     );
   });

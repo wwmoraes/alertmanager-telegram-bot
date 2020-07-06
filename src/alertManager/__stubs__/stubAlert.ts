@@ -4,10 +4,7 @@
  */
 
 import {Alert} from "../Alert";
-import {stubIUpdateAlert} from "./stubIUpdateAlert";
+import {stubIUpdateAlertFiring, stubIUpdateAlertResolved} from "./stubIUpdateAlert";
 
-export const stubAlert = Alert.from(stubIUpdateAlert);
-
-export default {
-  stubAlert
-};
+export const stubAlertFiring = Alert.from(stubIUpdateAlertFiring);
+export const stubAlertResolved = Alert.from(stubIUpdateAlertResolved);
