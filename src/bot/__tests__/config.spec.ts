@@ -41,7 +41,7 @@ describe("configuration output", () => {
   };
 
   it("should import successfully", () => {
-    expect(import("./config")).resolves.toEqual(configurationExports);
+    expect(import("../config")).resolves.toEqual(configurationExports);
   });
 
   it("should load with default port", () => {
@@ -56,7 +56,7 @@ describe("configuration output", () => {
       }
     };
 
-    expect(import("./config")).resolves.toEqual(expectedConfig);
+    expect(import("../config")).resolves.toEqual(expectedConfig);
   });
 });
 
@@ -64,21 +64,21 @@ describe("required variables check", () => {
   it("should fail without telegram token", () => {
     delete process.env.TELEGRAM_TOKEN;
 
-    expect(import("./config")).
+    expect(import("../config")).
       rejects.toThrowError("TELEGRAM_TOKEN is undefined");
   });
 
   it("should fail without telegram admins", () => {
     delete process.env.TELEGRAM_ADMINS;
 
-    expect(import("./config")).
+    expect(import("../config")).
       rejects.toThrowError("TELEGRAM_ADMINS is undefined");
   });
 
   it("should fail without external URL", () => {
     delete process.env.EXTERNAL_URL;
 
-    expect(import("./config")).
+    expect(import("../config")).
       rejects.toThrowError("EXTERNAL_URL is undefined");
   });
 });
