@@ -36,6 +36,18 @@ jest.spyOn(stubContext.telegram, "sendMessage").mockImplementation((chatId: stri
     }
   }));
 
+// eslint-disable-next-line max-params
+jest.spyOn(stubContext.telegram, "editMessageText").mockImplementation((chatId: string|number|void, messageId: number|void, inlineMessageId: string|void, text: string, extra?: ExtraEditMessage) =>
+  Promise.resolve(<Message>{
+    ...stubMessageText,
+    message_id: extra?.reply_to_message_id || inlineMessageId || messageId,
+    text,
+    chat: {
+      ...stubChat,
+      id: chatId
+    }
+  }));
+
 export default {
   stubContext
 };

@@ -118,20 +118,38 @@ describe("work e2e", () => {
       throw new Error("test failed: context chat is undefined");
     }
 
+    if (typeof stubIAlertManagerContext.message === "undefined") {
+      throw new Error("test failed: context message is undefined");
+    }
+
     const {stubIUpdateAlertResolved} = await import("../__stubs__/stubIUpdateAlert");
 
     stubIAlertManagerContext.update = stubIUpdateAlertResolved;
     delete stubIAlertManagerContext.updateType;
+
+    // add user to current alertmanager instance
     expect(stubIAlertManagerContext.alertManager.addUserChat(
       stubIAlertManagerContext.from.id.toString(),
       stubIAlertManagerContext.chat.id.toString()
+    )).resolves.toBeUndefined();
+
+    // add alert to current alertmanager instance
+    await expect(stubIAlertManagerContext.alertManager.addAlert(stubAlertResolved)).
+      resolves.toEqual(stubAlertResolved);
+
+    // add message to current alertmanager instance
+    await expect(stubIAlertManagerContext.alertManager.addAlertMessage(
+      stubIAlertManagerContext.chat.id.toString(),
+      stubIAlertManagerContext.message.message_id.toString(),
+      stubAlertResolved.hash
     )).resolves.toBeUndefined();
 
     const {nockGetChatScope200} = await import("../../__mocks__/TelegramAPI");
 
     nockGetChatScope200(nock);
 
-    await expect(alertManagerMiddleware(stubIAlertManagerContext, next)).resolves.toBeUndefined();
+    await expect(alertManagerMiddleware(stubIAlertManagerContext, next)).
+      resolves.toBeUndefined();
 
     await expect(next).not.toHaveBeenCalled();
     await expect(sendAlertMessagesSpy).toHaveBeenCalledWith(
