@@ -450,84 +450,50 @@ export class AlertManager {
       return Promise.reject(new Error("no message on callback"));
     }
 
-    // TODO get rid of try/catch
-    try {
-      console.info("[AlertManager] fetching alert message...");
-      const alertMessage = await this.getAlertFromMessage(ctx.callbackQuery.message.message_id.toString());
+    console.info("[AlertManager] fetching alert message...");
+    const alertMessage = await this.getAlertFromMessage(ctx.callbackQuery.message.message_id.toString());
 
-      if (typeof alertMessage === "undefined") {
-        // TODO give a feedback to the user or fetch alert info from alertmanager
-        throw new Error("message not found");
-      }
-
-      console.info("[AlertManager] fetching alert...");
-      const alert = await this.getAlert(alertMessage.alertHash);
-
-      console.info("[AlertManager] silencing alert...");
-      const alertmanagerResponse: Response = await AlertManager.silenceAlert(
-        alert,
-        time,
-        ctx.from?.username || "unknown"
-      );
-
-      console.info(alertmanagerResponse);
-
-      if (alertmanagerResponse.status !== 200) {
-        return alertmanagerResponse.text().then((responseText) =>
-          ctx.answerCbQuery(`error: ${responseText}`).
-            then((value) => {
-              const message = value
-                ? "user got a visual alert"
-                : "unable to alert user about this error";
-
-              return Promise.reject(new Error(`${responseText} - ${message}`));
-            }));
-      }
-
-      console.info("[AlertManager] extracting silence response...");
-      const responseData = await alertmanagerResponse.json();
-
-      console.info(responseData);
-
-      console.info("[AlertManager] sending silence replies...");
-
-      return Promise.all([
-        ctx.answerCbQuery(`silenced alert TODO for ${time}`),
-        ctx.reply(
-          `ok, I've silenced this alert for ${time} - more info here ${alert.baseUrl}/#/silences/${responseData.silenceID}`,
-          {
-            reply_to_message_id: ctx.callbackQuery.message.message_id
-          }
-        )
-      ]).then((_result): Promise<void> =>
-        Promise.resolve());
-    } catch (error) {
-      console.error("Error during silencing!");
-      console.error(error);
-
-      if (!(error instanceof FetchError)) {
-        const userError = new Error("unknown error while contacting alertmanager - check logs for details");
-
-        ctx.answerCbQuery(userError.message);
-
-        return Promise.reject(userError);
-      }
-      let message = "";
-
-      switch (error.errno) {
-      case "ECONNREFUSED":
-        message = "alertmanager refused connection";
-        break;
-      case "ENETUNREACH":
-        message = "alertmanager unreachable";
-        break;
-      default:
-        message = "unable to contact alertmanager due to unexpected error";
-        break;
-      }
-      ctx.answerCbQuery(message);
-
-      return Promise.reject(new Error(message));
+    if (typeof alertMessage === "undefined") {
+      // TODO give a feedback to the user or fetch alert info from alertmanager
+      return Promise.reject(new Error("message not found"));
     }
+
+    console.info("[AlertManager] fetching alert...");
+    const alert = await this.getAlert(alertMessage.alertHash);
+
+    console.info("[AlertManager] silencing alert...");
+    const alertmanagerResponse: Response = await AlertManager.silenceAlert(
+      alert,
+      time,
+      ctx.from?.username || "unknown"
+    );
+
+    if (alertmanagerResponse.status !== 200) {
+      return alertmanagerResponse.text().then((responseText) =>
+        ctx.answerCbQuery(`error: ${responseText}`).
+          then((value) => {
+            const message = value
+              ? "user got a visual alert"
+              : "unable to alert user about this error";
+
+            return Promise.reject(new Error(`${responseText} - ${message}`));
+          }));
+    }
+
+    console.info("[AlertManager] extracting silence response...");
+    const responseData = await alertmanagerResponse.json();
+
+    console.info("[AlertManager] sending silence replies...");
+
+    return Promise.all([
+      ctx.answerCbQuery(`silenced alert TODO for ${time}`),
+      ctx.reply(
+        `ok, I've silenced this alert for ${time} - more info here ${alert.baseUrl}/#/silences/${responseData.silenceID}`,
+        {
+          reply_to_message_id: ctx.callbackQuery.message.message_id
+        }
+      )
+    ]).then((_result): Promise<void> =>
+      Promise.resolve());
   }
 }

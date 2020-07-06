@@ -1,3 +1,5 @@
+/* eslint-disable prefer-destructuring */
+/* eslint-disable init-declarations */
 /**
  * @packageDocumentation
  * @module AlertManager
@@ -8,6 +10,7 @@
 import Telegraf from "telegraf";
 import type {IAlertManagerContext} from "../typings/IAlertManagerContext";
 import nock from "nock";
+import {MiddlewareFn} from "telegraf/typings/composer";
 
 beforeAll(() => {
   jest.spyOn(console, "warn").mockImplementation(() => {});
@@ -60,8 +63,13 @@ describe("work e2e", () => {
   const next = jest.fn(() =>
     Promise.resolve());
 
-  it("should send alert for unsent chat", async () => {
-    const {alertManagerMiddleware} = await import("../alertManagerMiddleware");
+  let alertManagerMiddleware: MiddlewareFn<IAlertManagerContext>;
+
+  beforeAll(async () => {
+    alertManagerMiddleware = (await import("../alertManagerMiddleware")).alertManagerMiddleware;
+  });
+
+  it("should send firing alert for unsent chat", async () => {
     const {stubAlertFiring} = await import("../__stubs__/stubAlert");
     const {sendAlertMessagesSpy} = await import("../__fixtures__/mockAlertManager");
 
@@ -93,6 +101,41 @@ describe("work e2e", () => {
     await expect(next).not.toHaveBeenCalled();
     await expect(sendAlertMessagesSpy).toHaveBeenCalledWith(
       stubAlertFiring,
+      stubIAlertManagerContext.telegram
+    );
+  });
+
+  it("should edit message with resolved alert", async () => {
+    const {stubAlertResolved} = await import("../__stubs__/stubAlert");
+    const {sendAlertMessagesSpy} = await import("../__fixtures__/mockAlertManager");
+    const {stubIAlertManagerContext} = await import("../__stubs__/stubIAlertManagerContext");
+
+    if (typeof stubIAlertManagerContext.from === "undefined") {
+      throw new Error("test failed: context from is undefined");
+    }
+
+    if (typeof stubIAlertManagerContext.chat === "undefined") {
+      throw new Error("test failed: context chat is undefined");
+    }
+
+    const {stubIUpdateAlertResolved} = await import("../__stubs__/stubIUpdateAlert");
+
+    stubIAlertManagerContext.update = stubIUpdateAlertResolved;
+    delete stubIAlertManagerContext.updateType;
+    expect(stubIAlertManagerContext.alertManager.addUserChat(
+      stubIAlertManagerContext.from.id.toString(),
+      stubIAlertManagerContext.chat.id.toString()
+    )).resolves.toBeUndefined();
+
+    const {nockGetChatScope200} = await import("../../__mocks__/TelegramAPI");
+
+    nockGetChatScope200(nock);
+
+    await expect(alertManagerMiddleware(stubIAlertManagerContext, next)).resolves.toBeUndefined();
+
+    await expect(next).not.toHaveBeenCalled();
+    await expect(sendAlertMessagesSpy).toHaveBeenCalledWith(
+      stubAlertResolved,
       stubIAlertManagerContext.telegram
     );
   });
