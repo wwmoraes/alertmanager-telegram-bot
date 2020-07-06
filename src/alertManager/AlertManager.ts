@@ -2,7 +2,6 @@
  * @module AlertManager
  * @packageDocumentation
  */
-/* eslint-disable max-lines-per-function */
 
 import {Telegram} from "telegraf";
 import Level, {LevelGraph} from "level-ts";
@@ -412,7 +411,7 @@ export class AlertManager {
    * @param {function(): Promise<void>} next middleware callback
    * @returns {Promise<void>} nothing
    */
-  async processCallback (ctx: IAlertManagerContext, next: () => Promise<void>): Promise<void> {
+  processCallback (ctx: IAlertManagerContext, next: () => Promise<void>): Promise<void> {
     console.info("[AlertManager] decoding data...");
     // Try to decode and use the callback data
     if (typeof ctx.callbackQuery === "undefined") {
@@ -435,89 +434,101 @@ export class AlertManager {
       return next();
     }
 
-    console.info("[AlertManager] fetching alert message...");
-    const alertMessage = await this.getAlertFromMessage(ctx.callbackQuery.message.message_id.toString());
-
-    if (typeof alertMessage === "undefined") {
-      // TODO give a feedback to the user or fetch alert info from alertmanager
-      throw new Error("message not found");
-    }
-
-    console.info("[AlertManager] fetching alert...");
-    const alert = await this.getAlert(alertMessage.alertHash);
-
     console.info("[AlertManager] checking which action is required...");
     switch (decodedData.do) {
     case "silence":
-      try {
-        console.info("[AlertManager] silencing alert...");
-        const alertmanagerResponse: Response = await AlertManager.silenceAlert(
-          alert,
-          decodedData.params.time,
-          ctx.from?.username || "unknown"
-        );
-
-        console.info(alertmanagerResponse);
-
-        if (alertmanagerResponse.status !== 200) {
-          return alertmanagerResponse.text().then((responseText) =>
-            ctx.answerCbQuery(`error: ${responseText}`).
-              then((value) => {
-                const message = value
-                  ? "user got a visual alert"
-                  : "unable to alert user about this error";
-
-                return Promise.reject(new Error(`${responseText} - ${message}`));
-              }));
-        }
-
-        console.info("[AlertManager] extracting silence response...");
-        const responseData = await alertmanagerResponse.json();
-
-        console.info(responseData);
-
-        console.info("[AlertManager] sending silence replies...");
-
-        return Promise.all([
-          ctx.answerCbQuery(`silenced alert TODO for ${decodedData.params.time}`),
-          ctx.reply(
-            `ok, I've silenced this alert for ${decodedData.params.time} - more info here ${alert.baseUrl}/#/silences/${responseData.silenceID}`,
-            {
-              reply_to_message_id: ctx.callbackQuery?.message?.message_id
-            }
-          )
-        ]).then((_result): Promise<void> =>
-          Promise.resolve());
-      } catch (error) {
-        console.error("Error during silencing!");
-        console.error(error);
-
-        if (!(error instanceof FetchError)) {
-          const userError = new Error("unknown error while contacting alertmanager - check logs for details");
-
-          ctx.answerCbQuery(userError.message);
-
-          return Promise.reject(userError);
-        }
-        let message = "";
-
-        switch (error.errno) {
-        case "ECONNREFUSED":
-          message = "alertmanager refused connection";
-          break;
-        case "ENETUNREACH":
-          message = "alertmanager unreachable";
-          break;
-        default:
-          message = "unable to contact alertmanager due to unexpected error";
-          break;
-        }
-        ctx.answerCbQuery(message);
-
-        return Promise.reject(new Error(message));
-      }
+      return this.processSilence(ctx, decodedData.params.time);
     default:
       return Promise.reject(new Error("unknown callback action"));
+    }
+  }
+
+  async processSilence (ctx: IAlertManagerContext, time: string): Promise<void> {
+    if (typeof ctx.callbackQuery === "undefined") {
+      throw new Error("no callback query");
+    }
+
+    if (typeof ctx.callbackQuery.message === "undefined") {
+      throw new Error("no message on callback");
+    }
+
+    try {
+      console.info("[AlertManager] fetching alert message...");
+      const alertMessage = await this.getAlertFromMessage(ctx.callbackQuery.message.message_id.toString());
+
+      if (typeof alertMessage === "undefined") {
+      // TODO give a feedback to the user or fetch alert info from alertmanager
+        throw new Error("message not found");
+      }
+
+      console.info("[AlertManager] fetching alert...");
+      const alert = await this.getAlert(alertMessage.alertHash);
+
+      console.info("[AlertManager] silencing alert...");
+      const alertmanagerResponse: Response = await AlertManager.silenceAlert(
+        alert,
+        time,
+        ctx.from?.username || "unknown"
+      );
+
+      console.info(alertmanagerResponse);
+
+      if (alertmanagerResponse.status !== 200) {
+        return alertmanagerResponse.text().then((responseText) =>
+          ctx.answerCbQuery(`error: ${responseText}`).
+            then((value) => {
+              const message = value
+                ? "user got a visual alert"
+                : "unable to alert user about this error";
+
+              return Promise.reject(new Error(`${responseText} - ${message}`));
+            }));
+      }
+
+      console.info("[AlertManager] extracting silence response...");
+      const responseData = await alertmanagerResponse.json();
+
+      console.info(responseData);
+
+      console.info("[AlertManager] sending silence replies...");
+
+      return Promise.all([
+        ctx.answerCbQuery(`silenced alert TODO for ${time}`),
+        ctx.reply(
+          `ok, I've silenced this alert for ${time} - more info here ${alert.baseUrl}/#/silences/${responseData.silenceID}`,
+          {
+            reply_to_message_id: ctx.callbackQuery?.message?.message_id
+          }
+        )
+      ]).then((_result): Promise<void> =>
+        Promise.resolve());
+    } catch (error) {
+      console.error("Error during silencing!");
+      console.error(error);
+
+      if (!(error instanceof FetchError)) {
+        const userError = new Error("unknown error while contacting alertmanager - check logs for details");
+
+        ctx.answerCbQuery(userError.message);
+
+        return Promise.reject(userError);
+      }
+      let message = "";
+
+      switch (error.errno) {
+      case "ECONNREFUSED":
+        message = "alertmanager refused connection";
+        break;
+      case "ENETUNREACH":
+        message = "alertmanager unreachable";
+        break;
+      default:
+        message = "unable to contact alertmanager due to unexpected error";
+        break;
+      }
+      ctx.answerCbQuery(message);
+
+      return Promise.reject(new Error(message));
     }
   }
 }
