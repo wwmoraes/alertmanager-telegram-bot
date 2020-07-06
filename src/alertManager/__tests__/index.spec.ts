@@ -29,7 +29,6 @@ beforeEach(() => {
 });
 
 it("should work with users provided", async () => {
-  const nock = (await import("nock")).default;
   const {nockGetChatScope200} = await import("../../__mocks__/TelegramAPI");
 
   nockGetChatScope200(nock);
@@ -85,7 +84,6 @@ describe("work e2e", () => {
       stubIAlertManagerContext.chat.id.toString()
     )).resolves.toBeUndefined();
 
-    const nock = (await import("nock")).default;
     const {nockGetChatScope200} = await import("../../__mocks__/TelegramAPI");
 
     nockGetChatScope200(nock);
