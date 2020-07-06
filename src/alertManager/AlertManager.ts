@@ -415,15 +415,16 @@ export class AlertManager {
     console.info("[AlertManager] decoding data...");
     // Try to decode and use the callback data
     if (typeof ctx.callbackQuery === "undefined") {
-      throw new Error("no callback query");
+      return Promise.reject(new Error("no callback query"));
     }
 
     if (typeof ctx.callbackQuery.data === "undefined") {
-      throw new Error("no callback data");
+      return Promise.reject(new Error("no callback data"));
     }
 
+    // TODO remove this test as it is needed on the silence process method
     if (typeof ctx.callbackQuery.message === "undefined") {
-      throw new Error("no message on callback");
+      return Promise.reject(new Error("no message on callback"));
     }
 
     const decodedData = decodeFromString<ICallbackData>(ctx.callbackQuery.data);
@@ -444,20 +445,17 @@ export class AlertManager {
   }
 
   async processSilence (ctx: IAlertManagerContext, time: string): Promise<void> {
-    if (typeof ctx.callbackQuery === "undefined") {
-      throw new Error("no callback query");
+    if (typeof ctx.callbackQuery?.message === "undefined") {
+      return Promise.reject(new Error("no message on callback"));
     }
 
-    if (typeof ctx.callbackQuery.message === "undefined") {
-      throw new Error("no message on callback");
-    }
-
+    // TODO get rid of try/catch
     try {
       console.info("[AlertManager] fetching alert message...");
       const alertMessage = await this.getAlertFromMessage(ctx.callbackQuery.message.message_id.toString());
 
       if (typeof alertMessage === "undefined") {
-      // TODO give a feedback to the user or fetch alert info from alertmanager
+        // TODO give a feedback to the user or fetch alert info from alertmanager
         throw new Error("message not found");
       }
 
@@ -497,7 +495,7 @@ export class AlertManager {
         ctx.reply(
           `ok, I've silenced this alert for ${time} - more info here ${alert.baseUrl}/#/silences/${responseData.silenceID}`,
           {
-            reply_to_message_id: ctx.callbackQuery?.message?.message_id
+            reply_to_message_id: ctx.callbackQuery.message.message_id
           }
         )
       ]).then((_result): Promise<void> =>
