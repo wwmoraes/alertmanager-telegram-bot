@@ -110,6 +110,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="alertmanager.alertmanager-1.html#getunalertedchats" class="tsd-kind-icon">get<wbr>Unalerted<wbr>Chats</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="alertmanager.alertmanager-1.html#hasuserchat" class="tsd-kind-icon">has<wbr>User<wbr>Chat</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="alertmanager.alertmanager-1.html#processcallback" class="tsd-kind-icon">process<wbr>Callback</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="alertmanager.alertmanager-1.html#processsilence" class="tsd-kind-icon">process<wbr>Silence</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="alertmanager.alertmanager-1.html#sendalertmessages" class="tsd-kind-icon">send<wbr>Alert<wbr>Messages</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="alertmanager.alertmanager-1.html#silencealert" class="tsd-kind-icon">silence<wbr>Alert</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static"><a href="alertmanager.alertmanager-1.html#silencecallbackdata" class="tsd-kind-icon">silence<wbr>Callback<wbr>Data</a></li>
@@ -124,22 +125,22 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Alert<wbr>Manager<span class="tsd-signature-symbol">(</span>baseDBPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../modules/alertmanager.html#basedblevelup" class="tsd-signature-type">BaseDBLevelUp</a>, alertsDBPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../modules/alertmanager.html#alertsdblevelup" class="tsd-signature-type">AlertsDBLevelUp</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="alertmanager.alertmanager-1.html" class="tsd-signature-type">AlertManager</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Alert<wbr>Manager<span class="tsd-signature-symbol">(</span>baseDBPath<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../modules/alertmanager.html#basedblevelup" class="tsd-signature-type">BaseDBLevelUp</a>, alertsDBPath<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../modules/alertmanager.html#alertsdblevelup" class="tsd-signature-type">AlertsDBLevelUp</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="alertmanager.alertmanager-1.html" class="tsd-signature-type">AlertManager</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/255bedb/src/alertManager/AlertManager.ts#L58">src/alertManager/AlertManager.ts:58</a></li>
+									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/d048c33/src/alertManager/AlertManager.ts#L60">src/alertManager/AlertManager.ts:60</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>baseDBPath: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../modules/alertmanager.html#basedblevelup" class="tsd-signature-type">BaseDBLevelUp</a></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> baseDBPath: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../modules/alertmanager.html#basedblevelup" class="tsd-signature-type">BaseDBLevelUp</a></h5>
 								</li>
 								<li>
-									<h5>alertsDBPath: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../modules/alertmanager.html#alertsdblevelup" class="tsd-signature-type">AlertsDBLevelUp</a></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> alertsDBPath: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="../modules/alertmanager.html#alertsdblevelup" class="tsd-signature-type">AlertsDBLevelUp</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="alertmanager.alertmanager-1.html" class="tsd-signature-type">AlertManager</a></h4>
@@ -155,7 +156,7 @@
 					<div class="tsd-signature tsd-kind-icon">alerts<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Level</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/alertmanager.html#alertsdbvalue" class="tsd-signature-type">AlertsDBValue</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/255bedb/src/alertManager/AlertManager.ts#L46">src/alertManager/AlertManager.ts:46</a></li>
+							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/d048c33/src/alertManager/AlertManager.ts#L48">src/alertManager/AlertManager.ts:48</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -165,7 +166,7 @@
 					<div class="tsd-signature tsd-kind-icon">db<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">LevelGraph</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/255bedb/src/alertManager/AlertManager.ts#L44">src/alertManager/AlertManager.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/d048c33/src/alertManager/AlertManager.ts#L46">src/alertManager/AlertManager.ts:46</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -175,7 +176,7 @@
 					<div class="tsd-signature tsd-kind-icon">silence<wbr>Buttons<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">InlineKeyboardButton</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/255bedb/src/alertManager/AlertManager.ts#L48">src/alertManager/AlertManager.ts:48</a></li>
+							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/d048c33/src/alertManager/AlertManager.ts#L50">src/alertManager/AlertManager.ts:50</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -192,7 +193,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/255bedb/src/alertManager/AlertManager.ts#L284">src/alertManager/AlertManager.ts:284</a></li>
+									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/d048c33/src/alertManager/AlertManager.ts#L289">src/alertManager/AlertManager.ts:289</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -224,7 +225,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/255bedb/src/alertManager/AlertManager.ts#L151">src/alertManager/AlertManager.ts:151</a></li>
+									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/d048c33/src/alertManager/AlertManager.ts#L162">src/alertManager/AlertManager.ts:162</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -268,7 +269,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/255bedb/src/alertManager/AlertManager.ts#L136">src/alertManager/AlertManager.ts:136</a></li>
+									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/d048c33/src/alertManager/AlertManager.ts#L147">src/alertManager/AlertManager.ts:147</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -306,7 +307,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/255bedb/src/alertManager/AlertManager.ts#L296">src/alertManager/AlertManager.ts:296</a></li>
+									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/d048c33/src/alertManager/AlertManager.ts#L301">src/alertManager/AlertManager.ts:301</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -338,7 +339,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/255bedb/src/alertManager/AlertManager.ts#L91">src/alertManager/AlertManager.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/d048c33/src/alertManager/AlertManager.ts#L103">src/alertManager/AlertManager.ts:103</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -370,7 +371,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/255bedb/src/alertManager/AlertManager.ts#L300">src/alertManager/AlertManager.ts:300</a></li>
+									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/d048c33/src/alertManager/AlertManager.ts#L305">src/alertManager/AlertManager.ts:305</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -393,7 +394,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/255bedb/src/alertManager/AlertManager.ts#L254">src/alertManager/AlertManager.ts:254</a></li>
+									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/d048c33/src/alertManager/AlertManager.ts#L261">src/alertManager/AlertManager.ts:261</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -425,7 +426,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/255bedb/src/alertManager/AlertManager.ts#L275">src/alertManager/AlertManager.ts:275</a></li>
+									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/d048c33/src/alertManager/AlertManager.ts#L280">src/alertManager/AlertManager.ts:280</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -448,7 +449,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/255bedb/src/alertManager/AlertManager.ts#L166">src/alertManager/AlertManager.ts:166</a></li>
+									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/d048c33/src/alertManager/AlertManager.ts#L177">src/alertManager/AlertManager.ts:177</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -471,7 +472,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/255bedb/src/alertManager/AlertManager.ts#L194">src/alertManager/AlertManager.ts:194</a></li>
+									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/d048c33/src/alertManager/AlertManager.ts#L205">src/alertManager/AlertManager.ts:205</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -503,7 +504,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/255bedb/src/alertManager/AlertManager.ts#L209">src/alertManager/AlertManager.ts:209</a></li>
+									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/d048c33/src/alertManager/AlertManager.ts#L220">src/alertManager/AlertManager.ts:220</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -535,7 +536,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/255bedb/src/alertManager/AlertManager.ts#L117">src/alertManager/AlertManager.ts:117</a></li>
+									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/d048c33/src/alertManager/AlertManager.ts#L129">src/alertManager/AlertManager.ts:129</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -573,7 +574,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/255bedb/src/alertManager/AlertManager.ts#L399">src/alertManager/AlertManager.ts:399</a></li>
+									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/d048c33/src/alertManager/AlertManager.ts#L415">src/alertManager/AlertManager.ts:415</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -614,6 +615,32 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="processsilence" class="tsd-anchor"></a>
+					<h3>process<wbr>Silence</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">process<wbr>Silence<span class="tsd-signature-symbol">(</span>ctx<span class="tsd-signature-symbol">: </span><a href="../interfaces/alertmanager.ialertmanagercontext-1.html" class="tsd-signature-type">IAlertManagerContext</a>, time<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/d048c33/src/alertManager/AlertManager.ts#L448">src/alertManager/AlertManager.ts:448</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>ctx: <a href="../interfaces/alertmanager.ialertmanagercontext-1.html" class="tsd-signature-type">IAlertManagerContext</a></h5>
+								</li>
+								<li>
+									<h5>time: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="sendalertmessages" class="tsd-anchor"></a>
 					<h3>send<wbr>Alert<wbr>Messages</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -623,7 +650,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/255bedb/src/alertManager/AlertManager.ts#L304">src/alertManager/AlertManager.ts:304</a></li>
+									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/d048c33/src/alertManager/AlertManager.ts#L309">src/alertManager/AlertManager.ts:309</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -649,7 +676,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/255bedb/src/alertManager/AlertManager.ts#L360">src/alertManager/AlertManager.ts:360</a></li>
+									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/d048c33/src/alertManager/AlertManager.ts#L376">src/alertManager/AlertManager.ts:376</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -696,7 +723,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/255bedb/src/alertManager/AlertManager.ts#L50">src/alertManager/AlertManager.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/d048c33/src/alertManager/AlertManager.ts#L52">src/alertManager/AlertManager.ts:52</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -803,6 +830,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="alertmanager.alertmanager-1.html#processcallback" class="tsd-kind-icon">process<wbr>Callback</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="alertmanager.alertmanager-1.html#processsilence" class="tsd-kind-icon">process<wbr>Silence</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="alertmanager.alertmanager-1.html#sendalertmessages" class="tsd-kind-icon">send<wbr>Alert<wbr>Messages</a>
