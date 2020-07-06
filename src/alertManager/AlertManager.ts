@@ -308,48 +308,63 @@ export class AlertManager {
     return this.alerts.get(alertHash);
   }
 
-  sendAlertMessages (alert: Alert, telegram: Telegram): Promise<void> {
+  async sendAlertMessages (alert: Alert, telegram: Telegram): Promise<void> {
     if (alert.isFiring) {
       // If firing, we probably have a new alert
+      console.info("adding alert to DB...");
       this.addAlert(alert);
 
       // Get chats that haven't received this alert
-      return this.getUnalertedChats(alert.hash).
-        then((chats) =>
-          chats.forEach((chatId) =>
-            telegram.sendMessage(
-              chatId,
-              alert.text,
-              {
-                parse_mode: "HTML",
-                reply_markup: this.firingMessageMarkup(alert)
-              }
-            ).
-              then((message) =>
-                this.addAlertMessage(
-                  chatId.toString(),
-                  message.message_id.toString(),
-                  alert.hash
-                ))));
+      console.info("getting unalerted chats...");
+      const chats = await this.getUnalertedChats(alert.hash);
+
+      console.info("sending telegram message...");
+      const chatMessages = await Promise.all(chats.map((chatId) =>
+        telegram.sendMessage(
+          chatId,
+          alert.text,
+          {
+            parse_mode: "HTML",
+            reply_markup: this.firingMessageMarkup(alert)
+          }
+        )));
+
+      console.info("adding alert messages to DB...");
+      const alertMessages = chatMessages.map((message) =>
+        this.addAlertMessage(
+          message.chat.id.toString(),
+          message.message_id.toString(),
+          alert.hash
+        ));
+
+      console.info("returning alert message promise...");
+
+      return Promise.all(alertMessages).then(() =>
+        Promise.resolve());
     }
 
     /*
      * Cycle all chats to update the message, or send a new one if the user
      * Hasn't received one previously
      */
-    return this.getMessagesByAlert(alert.hash).
-      catch((reason) =>
-        Promise.reject(reason)).
-      then((messages) =>
-        messages.forEach((entry) => {
-          telegram.editMessageText(
-            entry.chatId,
-            parseInt(entry.messageId, 10),
-            "",
-            alert.text,
-            {parse_mode: "HTML"}
-          );
-        }));
+    console.info("processing messages to alert...");
+
+    const alertedMessages = await this.getMessagesByAlert(alert.hash);
+
+    const editedMessages = alertedMessages.map((message) => {
+      console.info(`message exists on chat ${message.chatId} - editing message...`);
+
+      return telegram.editMessageText(
+        message.chatId,
+        parseInt(message.messageId, 10),
+        "",
+        alert.text,
+        {parse_mode: "HTML"}
+      );
+    });
+
+    return Promise.all(editedMessages).then(() =>
+      Promise.resolve());
   }
 
   /**
