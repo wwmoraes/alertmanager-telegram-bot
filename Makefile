@@ -3,7 +3,7 @@
 .PHONY: build shell run
 
 build:
-	docker build -t wwmoraes/alertmanager-telegram-bot .
+	docker build --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from wwmoraes/alertmanager-telegram-bot -t wwmoraes/alertmanager-telegram-bot .
 
 shell:
 	docker run --rm -it --entrypoint=ash wwmoraes/alertmanager-telegram-bot
