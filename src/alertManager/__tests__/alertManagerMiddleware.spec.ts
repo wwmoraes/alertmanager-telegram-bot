@@ -5,6 +5,8 @@
 
 /* eslint-disable @typescript-eslint/no-empty-function */
 
+jest.mock("dotenv");
+
 import nock from "nock";
 import type {IAlertManagerContext} from "../typings/IAlertManagerContext";
 import {stubIUpdateAlert} from "../__stubs__/stubIUpdateAlert";
@@ -13,6 +15,7 @@ beforeAll(() => {
   jest.spyOn(console, "warn").mockImplementation(() => {});
   jest.spyOn(console, "info").mockImplementation(() => {});
   jest.spyOn(console, "debug").mockImplementation(() => {});
+  jest.spyOn(console, "error").mockImplementation(() => {});
   nock.disableNetConnect();
 });
 

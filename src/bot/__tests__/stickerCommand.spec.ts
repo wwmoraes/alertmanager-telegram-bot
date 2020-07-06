@@ -5,12 +5,15 @@
 /* eslint-disable no-undefined */
 /* eslint-disable @typescript-eslint/no-empty-function */
 
+jest.mock("dotenv");
+
 import nock from "nock";
 
 beforeAll(() => {
   jest.spyOn(console, "warn").mockImplementation(() => {});
   jest.spyOn(console, "info").mockImplementation(() => {});
   jest.spyOn(console, "debug").mockImplementation(() => {});
+  jest.spyOn(console, "error").mockImplementation(() => {});
   nock.disableNetConnect();
 });
 
