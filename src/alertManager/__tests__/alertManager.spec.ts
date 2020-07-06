@@ -28,18 +28,15 @@ beforeEach(() => {
   jest.clearAllTimers();
   jest.resetModules();
   jest.resetModuleRegistry();
+  jest.useFakeTimers();
   nock.cleanAll();
 });
 
+afterEach(() => {
+  jest.clearAllTimers();
+});
+
 describe("instance creation with different DB locations", () => {
-  beforeEach(() => {
-    jest.useFakeTimers();
-  });
-
-  afterEach(() => {
-    jest.clearAllTimers();
-  });
-
   it("should instantiate with memory DB", async () => {
     const {AlertManager} = await import("../AlertManager");
     const mockAlertManager = new AlertManager();
@@ -71,18 +68,10 @@ describe("instance creation with different DB locations", () => {
 });
 
 describe("callback handling", () => {
-  beforeEach(() => {
-    jest.useFakeTimers();
-  });
-
-  afterEach(() => {
-    jest.clearAllTimers();
-  });
-
   const next = jest.fn(() =>
     Promise.resolve());
 
-  it("should process callback successfully", async () => {
+  it("should process silence request successfully", async () => {
     const {stubIAlertManagerContextCallback} = await import("../__stubs__/stubIAlertManagerContext");
     const {stubAlert} = await import("../__stubs__/stubAlert");
 
@@ -247,7 +236,3 @@ describe("callback handling", () => {
       rejects.toThrowError("Service Unavailable - user got a visual alert");
   });
 });
-
-// describe("database operations", () => {
-
-// });
