@@ -26,7 +26,11 @@
     "preset": "ts-jest",
     "testEnvironment": "node",
     "testTimeout": 10000,
-    "moduleFileExtensions": ["js", "ts", "d.ts"],
+    "moduleFileExtensions": [
+      "js",
+      "ts",
+      "d.ts"
+    ],
     "collectCoverageFrom": [
       "src/**/*.ts",
       "!src/index.ts",
@@ -41,7 +45,9 @@
   "dependencies": {
     "dot": "^1.1.3",
     "dotenv": "^8.2.0",
+    "encoding-down": "^6.3.0",
     "level-ts": "^1.12.2",
+    "memdown": "^5.1.0",
     "messagepack": "^1.1.10",
     "node-fetch": "^2.6.0",
     "patch-package": "^6.2.2",
@@ -51,7 +57,9 @@
   "devDependencies": {
     "@types/abstract-leveldown": "^5.0.1",
     "@types/dot": "^1.1.4",
+    "@types/encoding-down": "^5.0.0",
     "@types/levelup": "^4.3.0",
+    "@types/memdown": "^3.0.0",
     "@types/node": "^14.0.12",
     "@types/node-fetch": "*",
     "@typescript-eslint/eslint-plugin": "^3.3.0",
@@ -61,17 +69,13 @@
     "typescript": "^3.9.5"
   },
   "optionalDependencies": {
-    "@types/encoding-down": "^5.0.0",
     "@types/jest": "^26.0.0",
-    "@types/memdown": "^3.0.0",
     "@types/nock": "^11.1.0",
     "dotenv-load": "^2.0.0",
-    "encoding-down": "^6.3.0",
     "g8-typedoc-dark": "^0.1.2",
     "jest": "^26.0.1",
     "jest-environment-node": "^26.0.1",
     "jest-mock-extended": "^1.0.9",
-    "memdown": "^5.1.0",
     "ngrok": "^3.2.7",
     "nock": "^13.0.2",
     "ts-jest": "^26.1.0",
