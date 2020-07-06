@@ -126,15 +126,16 @@ export class AlertManager {
    * @param {string} chatId telegram chat ID
    * @returns {Promise<boolean>} true if the chat exists on context state
    */
-  hasUserChat (userId: string, chatId: string): Promise<boolean> {
-    return this.db.
+  async hasUserChat (userId: string, chatId: string): Promise<boolean> {
+    const entries = await this.db.
       get({
         object: chatId,
         predicate: IAlertManagerPredicates.ChatOn,
         subject: userId
-      }).
-      then((result) =>
-        Promise.resolve(result.length > 0));
+      });
+
+
+    return Promise.resolve(entries.length > 0);
   }
 
   /**
