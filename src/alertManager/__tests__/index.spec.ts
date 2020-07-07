@@ -1,16 +1,20 @@
-/* eslint-disable prefer-destructuring */
-/* eslint-disable init-declarations */
 /**
  * @packageDocumentation
  * @module AlertManager
  */
+/* eslint-disable max-lines-per-function */
+/* eslint-disable prefer-destructuring */
+/* eslint-disable init-declarations */
 /* eslint-disable no-process-env */
 /* eslint-disable @typescript-eslint/no-empty-function */
 
-import Telegraf from "telegraf";
+import Telegraf, {Telegram} from "telegraf";
 import type {IAlertManagerContext} from "../typings/IAlertManagerContext";
 import nock from "nock";
 import {MiddlewareFn} from "telegraf/typings/composer";
+import {Alert} from "../Alert";
+import {IUpdateAlert} from "../typings/IAlertUpdate";
+import {IAlertMessage} from "../typings/IAlertMessage";
 
 beforeAll(() => {
   jest.spyOn(console, "warn").mockImplementation(() => {});
@@ -23,8 +27,8 @@ beforeAll(() => {
 beforeEach(() => {
   jest.clearAllMocks();
   jest.clearAllTimers();
-  jest.resetModules();
-  jest.resetModuleRegistry();
+  // jest.resetModules();
+  // jest.resetModuleRegistry();
   nock.cleanAll();
 
   delete process.env.ALERTMANAGER_DB_PATH;
@@ -64,17 +68,26 @@ describe("work e2e", () => {
     Promise.resolve());
 
   let alertManagerMiddleware: MiddlewareFn<IAlertManagerContext>;
+  let sendAlertMessagesSpy: jest.SpyInstance<Promise<void>, [Alert, Telegram]>;
+  let stubIAlertManagerContext: IAlertManagerContext;
+  let stubIUpdateAlertFiring: IUpdateAlert;
+  let stubIUpdateAlertResolved: IUpdateAlert;
+  let stubAlertFiring: Alert;
+  let stubAlertResolved: Alert;
+  let stubAlertResolved2: Alert;
 
   beforeAll(async () => {
     alertManagerMiddleware = (await import("../alertManagerMiddleware")).alertManagerMiddleware;
+    sendAlertMessagesSpy = (await import("../__fixtures__/mockAlertManager")).sendAlertMessagesSpy;
+    stubIAlertManagerContext = (await import("../__stubs__/stubIAlertManagerContext")).stubIAlertManagerContext;
+    stubIUpdateAlertFiring = (await import("../__stubs__/stubIUpdateAlert")).stubIUpdateAlertFiring;
+    stubIUpdateAlertResolved = (await import("../__stubs__/stubIUpdateAlert")).stubIUpdateAlertResolved;
+    stubAlertFiring = (await import("../__stubs__/stubAlert")).stubAlertFiring;
+    stubAlertResolved = (await import("../__stubs__/stubAlert")).stubAlertResolved;
+    stubAlertResolved2 = (await import("../__stubs__/stubAlert")).stubAlertResolved2;
   });
 
   it("should send firing alert for unsent chat", async () => {
-    const {stubAlertFiring} = await import("../__stubs__/stubAlert");
-    const {sendAlertMessagesSpy} = await import("../__fixtures__/mockAlertManager");
-
-    const {stubIAlertManagerContext} = await import("../__stubs__/stubIAlertManagerContext");
-
     if (typeof stubIAlertManagerContext.from === "undefined") {
       throw new Error("test failed: context from is undefined");
     }
@@ -83,9 +96,7 @@ describe("work e2e", () => {
       throw new Error("test failed: context chat is undefined");
     }
 
-    const {stubIUpdateAlertFiring: stubIUpdateAlert} = await import("../__stubs__/stubIUpdateAlert");
-
-    stubIAlertManagerContext.update = stubIUpdateAlert;
+    stubIAlertManagerContext.update = stubIUpdateAlertFiring;
     delete stubIAlertManagerContext.updateType;
     expect(stubIAlertManagerContext.alertManager.addUserChat(
       stubIAlertManagerContext.from.id.toString(),
@@ -106,10 +117,6 @@ describe("work e2e", () => {
   });
 
   it("should edit message with resolved alert", async () => {
-    const {stubAlertResolved} = await import("../__stubs__/stubAlert");
-    const {sendAlertMessagesSpy} = await import("../__fixtures__/mockAlertManager");
-    const {stubIAlertManagerContext} = await import("../__stubs__/stubIAlertManagerContext");
-
     if (typeof stubIAlertManagerContext.from === "undefined") {
       throw new Error("test failed: context from is undefined");
     }
@@ -122,8 +129,6 @@ describe("work e2e", () => {
       throw new Error("test failed: context message is undefined");
     }
 
-    const {stubIUpdateAlertResolved} = await import("../__stubs__/stubIUpdateAlert");
-
     stubIAlertManagerContext.update = stubIUpdateAlertResolved;
     delete stubIAlertManagerContext.updateType;
 
@@ -133,15 +138,24 @@ describe("work e2e", () => {
       stubIAlertManagerContext.chat.id.toString()
     )).resolves.toBeUndefined();
 
-    // add alert to current alertmanager instance
+    // add alerts to current alertmanager instance
     await expect(stubIAlertManagerContext.alertManager.addAlert(stubAlertResolved)).
       resolves.toEqual(stubAlertResolved);
+    await expect(stubIAlertManagerContext.alertManager.addAlert(stubAlertResolved2)).
+      resolves.toEqual(stubAlertResolved2);
 
     // add message to current alertmanager instance
     await expect(stubIAlertManagerContext.alertManager.addAlertMessage(
       stubIAlertManagerContext.chat.id.toString(),
       stubIAlertManagerContext.message.message_id.toString(),
       stubAlertResolved.hash
+    )).resolves.toBeUndefined();
+
+    // add another message, unrelated, to test the query
+    await expect(stubIAlertManagerContext.alertManager.addAlertMessage(
+      stubIAlertManagerContext.chat.id.toString(),
+      stubIAlertManagerContext.message.message_id.toString(),
+      stubAlertResolved.hash + stubAlertResolved.hash
     )).resolves.toBeUndefined();
 
     const {nockGetChatScope200} = await import("../../__mocks__/TelegramAPI");

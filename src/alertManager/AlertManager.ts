@@ -341,6 +341,9 @@ export class AlertManager {
         Promise.resolve());
     }
 
+    // resolved, so the alert is removed from DB
+    this.delAlert(alert.hash);
+
     /*
      * Cycle all chats to update the message, or send a new one if the user
      * Hasn't received one previously
@@ -373,7 +376,7 @@ export class AlertManager {
    * @param {string} [comment] silence reason (shows on AlertManager)
    * @returns {Promise<Response>} request response from AlertManager
    */
-  static silenceAlert (alert: Alert, time: string, username: string, comment?: string): Promise<Response> {
+  static silenceAlert (alert: Alert, time: string, username?: string, comment?: string): Promise<Response> {
     const hoursInSeconds = parseInt(time, 10) * 60 * 60 * 1000;
     const startAt = new Date(Date.now());
     const endsAt = new Date(startAt.getTime() + hoursInSeconds);
@@ -386,7 +389,7 @@ export class AlertManager {
       matchers: alert.matchers,
       startsAt: startAt.toISOString(),
       endsAt: endsAt.toISOString(),
-      createdBy: username,
+      createdBy: username || "unknown",
       comment: comment || "silenced from Telegram bot",
       id: null
     };
@@ -413,8 +416,6 @@ export class AlertManager {
    * @returns {Promise<void>} nothing
    */
   processCallback (ctx: IAlertManagerContext, next: () => Promise<void>): Promise<void> {
-    console.info("[AlertManager] decoding data...");
-    // Try to decode and use the callback data
     if (typeof ctx.callbackQuery === "undefined") {
       return Promise.reject(new Error("no callback query"));
     }
@@ -428,6 +429,8 @@ export class AlertManager {
       return Promise.reject(new Error("no message on callback"));
     }
 
+    console.info("[AlertManager] decoding data...");
+    // Try to decode and use the callback data
     const decodedData = decodeFromString<ICallbackData>(ctx.callbackQuery.data);
 
     // Not our callback, move along
@@ -446,8 +449,16 @@ export class AlertManager {
   }
 
   async processSilence (ctx: IAlertManagerContext, time: string): Promise<void> {
-    if (typeof ctx.callbackQuery?.message === "undefined") {
+    if (typeof ctx.callbackQuery === "undefined") {
+      return Promise.reject(new Error("no callback query"));
+    }
+
+    if (typeof ctx.callbackQuery.message === "undefined") {
       return Promise.reject(new Error("no message on callback"));
+    }
+
+    if (typeof ctx.from === "undefined") {
+      return Promise.reject(new Error("no from on callback"));
     }
 
     console.info("[AlertManager] fetching alert message...");
@@ -465,19 +476,15 @@ export class AlertManager {
     const alertmanagerResponse: Response = await AlertManager.silenceAlert(
       alert,
       time,
-      ctx.from?.username || "unknown"
+      ctx.from.username
     );
 
     if (alertmanagerResponse.status !== 200) {
-      return alertmanagerResponse.text().then((responseText) =>
-        ctx.answerCbQuery(`error: ${responseText}`).
-          then((value) => {
-            const message = value
-              ? "user got a visual alert"
-              : "unable to alert user about this error";
+      return alertmanagerResponse.text().then((responseText) => {
+        ctx.answerCbQuery(`error: ${responseText}`);
 
-            return Promise.reject(new Error(`${responseText} - ${message}`));
-          }));
+        return Promise.reject(new Error(responseText));
+      });
     }
 
     console.info("[AlertManager] extracting silence response...");
