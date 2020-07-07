@@ -37,6 +37,48 @@ export const stubIAlertManagerContextCallback = <IAlertManagerContext>{
   }
 };
 
+export const stubIAlertManagerContextCallbackInvalidAction = <IAlertManagerContext>{
+  ...stubContext,
+  ...stubIAlertManagerContext,
+  answerCbQuery: jest.fn(() =>
+    Promise.resolve(true)),
+  updateType: "callback_query",
+  callbackQuery: {
+    id: "1",
+    chat_instance: stubIAlertManagerContext.chat?.id.toString(),
+    from: stubIAlertManagerContext.from,
+    message: stubIAlertManagerContext.message,
+    data: encodeToString({
+      module: "am",
+      "do": "undefined",
+      params: {
+        time: "1h"
+      }
+    } as unknown as ICallbackData)
+  }
+};
+
+export const stubIAlertManagerContextCallbackUnknownModule = <IAlertManagerContext>{
+  ...stubContext,
+  ...stubIAlertManagerContext,
+  answerCbQuery: jest.fn(() =>
+    Promise.resolve(true)),
+  updateType: "callback_query",
+  callbackQuery: {
+    id: "1",
+    chat_instance: stubIAlertManagerContext.chat?.id.toString(),
+    from: stubIAlertManagerContext.from,
+    message: stubIAlertManagerContext.message,
+    data: encodeToString({
+      module: "__",
+      "do": "silence",
+      params: {
+        time: "1h"
+      }
+    } as unknown as ICallbackData)
+  }
+};
+
 export default {
   stubIAlertManagerContext,
   stubIAlertManagerContextCallback
