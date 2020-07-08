@@ -10,6 +10,7 @@ exclude_patterns:
 - ".github/"
 - ".vscode/"
 - ".dockerignore"
+- ".eslintignore"
 - ".editorconfig"
 - ".eslint.yml"
 - ".Dockerfile"
