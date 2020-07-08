@@ -6,6 +6,27 @@
 import type {IAlertManagerContext} from "./typings/IAlertManagerContext";
 import type {MiddlewareFn} from "telegraf/typings/composer";
 
+/**
+ * Telegraf bot
+ *
+ * @external Telegraf
+ * @see {@link https://telegraf.js.org/}
+ */
+
+/**
+ * Telegraf next callback
+ *
+ * @callback Telegraf~next
+ * @returns {Promise<void>} callback chain result
+ */
+
+/**
+ * processes callback requests from inline keyboards
+ *
+ * @param {IAlertManagerContext} ctx alertmanager's context
+ * @param {Telegraf~next} next continues middleware callback chain
+ * @returns {Promise<void>} callback chain result
+ */
 export const alertManagerCBMiddleware: MiddlewareFn<IAlertManagerContext> =
 (ctx: IAlertManagerContext, next): Promise<void> => {
   // No chat, move along
