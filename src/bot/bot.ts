@@ -1,5 +1,6 @@
 /**
  * Bot instance safe factory
+ *
  * @packageDocumentation
  * @module Bot
  */
@@ -19,6 +20,7 @@ import * as config from "./config";
 
 /**
  * safely creates the bot instance
+ *
  * @returns {Promise<Telegraf<IBotContext>>} bot instance
  */
 export const bot = async (): Promise<Telegraf<IBotContext>> => {

@@ -1,5 +1,6 @@
 /**
  * Sample bot using the [[AlertManager]] and [[UserOnly]] modules.
+ *
  * @packageDocumentation
  * @module Bot
  */

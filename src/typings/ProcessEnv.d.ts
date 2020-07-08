@@ -1,7 +1,7 @@
 /**
-  * @packageDocumentation
-  * @module NodeJS
-  */
+ * @packageDocumentation
+ * @module NodeJS
+ */
 
 /** @module NodeJS */
 declare namespace NodeJS {

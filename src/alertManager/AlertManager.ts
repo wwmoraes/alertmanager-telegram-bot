@@ -97,6 +97,7 @@ export class AlertManager {
 
   /**
    * Inline keyboard markup for an alert
+   *
    * @param {Alert.hash} alert alert to generate the markup for
    * @returns {InlineKeyboardMarkup} keyboard markup
    */
@@ -122,6 +123,7 @@ export class AlertManager {
 
   /**
    * Check whether a given user chat is already on state
+   *
    * @param {string} userId telegram user ID
    * @param {string} chatId telegram chat ID
    * @returns {Promise<boolean>} true if the chat exists on context state
@@ -140,9 +142,10 @@ export class AlertManager {
 
   /**
    * Adds a user chat to the state
+   *
    * @param {string} userId telegram user ID
    * @param {string} chatId telegram chat ID
-   * @return {Promise<void>} void on success or throws error
+   * @returns {Promise<void>} void on success or throws error
    */
   addUserChat (userId: string, chatId: string): Promise<void> {
     return this.db.put({
@@ -154,10 +157,11 @@ export class AlertManager {
 
   /**
    * Links a message and the alert on the state
+   *
    * @param {string} chatId telegram chat ID
    * @param {string} messageId telegram message ID
    * @param {string} alertHash hash from [[Alert.hash]]
-   * @returns {Promise<IGetTriple<string | number>[]>} levelgraph entry
+   * @returns {Promise<void>} resolves if added successfully
    */
   addAlertMessage (chatId: string, messageId: string, alertHash: string): Promise<void> {
     return this.db.chain.put({
@@ -199,6 +203,7 @@ export class AlertManager {
 
   /**
    * Gets all messages that have been sent for the given alert
+   *
    * @param {string} alertHash alert hash from [[Alert.hash]]
    * @returns {Promise<IAlertMessage[]>} alert message
    */
@@ -214,6 +219,7 @@ export class AlertManager {
 
   /**
    * Gets all chats which haven't received the given alert
+   *
    * @param {Alert.hash} alertHash alert hash to search for
    * @returns {Promise<(string|number)[]>} chats which didn't receive the alert
    */
@@ -255,6 +261,7 @@ export class AlertManager {
 
   /**
    * Get the alert context for the given message
+   *
    * @param {string} messageId telegram message ID
    * @returns {Promise<IAlertMessage|undefined>} alert context
    */
@@ -275,6 +282,7 @@ export class AlertManager {
 
   /**
    * Get all current chats on state
+   *
    * @returns {Promise<ITriple<string|number>[]>} chat entries
    */
   getChats (): Promise<ITriple<string|number>[]> {
@@ -283,6 +291,7 @@ export class AlertManager {
 
   /**
    * Stores an alert
+   *
    * @param {Alert} alert the alert to store
    * @returns {Promise<Alert>} the alert itself
    */
@@ -295,6 +304,7 @@ export class AlertManager {
 
   /**
    * Deletes an alert
+   *
    * @param {Alert.hash} alertHash alert hash to delete
    * @returns {Promise<void>} nothing
    */
@@ -370,6 +380,7 @@ export class AlertManager {
 
   /**
    * Silence an alert
+   *
    * @param {Alert} alert the alert to silence
    * @param {string} time period to silence the alert (e.g. "1h")
    * @param {string} username silence requester (shows on AlertManager)
@@ -411,6 +422,7 @@ export class AlertManager {
 
   /**
    * Parses a callback
+   *
    * @param {IAlertManagerContext} ctx bot context
    * @param {function(): Promise<void>} next middleware callback
    * @returns {Promise<void>} nothing

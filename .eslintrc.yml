@@ -7,6 +7,7 @@ extends:
   - plugin:import/warnings
   - plugin:import/typescript
   - 'plugin:@typescript-eslint/recommended'
+  - plugin:jsdoc/recommended
 parser: '@typescript-eslint/parser'
 parserOptions:
   ecmaVersion: 11
@@ -14,6 +15,12 @@ parserOptions:
 plugins:
 - import
 - '@typescript-eslint'
+- jsdoc
+settings:
+  jsdoc:
+    mode: typescript
+    tagNamePreference:
+      packageDocumentation: packageDocumentation
 rules:
   accessor-pairs: error
   array-bracket-newline: error

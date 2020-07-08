@@ -1,6 +1,7 @@
 /**
  * Bot context extending both the [[AlertManagerContext]] and
  * [[IUserOnlyContext]]
+ *
  * @packageDocumentation
  * @module Bot
  */

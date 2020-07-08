@@ -31,8 +31,9 @@ export class Alert implements IAlert {
 
   /**
    * check if an object is a valid [[IAlertUpdate]]
+   *
    * @param {any} object object to check
-   * @returns {boolean}
+   * @returns {boolean} alert update data
    */
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/no-explicit-any
   public static isIAlertUpdate (object: any): object is IUpdateAlert {
@@ -46,8 +47,9 @@ export class Alert implements IAlert {
 
   /**
    * check if an object is a valid [[IAlert]]
+   *
    * @param {any} object object to check
-   * @returns {boolean}
+   * @returns {boolean} alert data
    */
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/no-explicit-any
   public static isIAlert (object: any): object is IAlert {
@@ -64,6 +66,7 @@ export class Alert implements IAlert {
 
   /**
    * creates an alert from an object that implements [[IAlertUpdate]]
+   *
    * @param {any} object data to use to create the instance
    */
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/no-explicit-any
@@ -71,6 +74,7 @@ export class Alert implements IAlert {
 
   /**
    * creates an alert from an object that implements [[IAlert]]
+   *
    * @param {any} object data to use to create the instance
    */
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/no-explicit-any
@@ -79,6 +83,7 @@ export class Alert implements IAlert {
   /**
    * creates an alert from the object passed, which must be implement [[IAlert]]
    *  or [[IAlertUpdate]]
+   *
    * @param {any} object data to use to create the instance
    */
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/no-explicit-any

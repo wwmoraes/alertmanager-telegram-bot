@@ -1,6 +1,6 @@
 /**
-  * @packageDocumentation
-  * @module NodeJS
-  */
+ * @packageDocumentation
+ * @module NodeJS
+ */
 
 import "./typings/ProcessEnv";
