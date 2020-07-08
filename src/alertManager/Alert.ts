@@ -11,6 +11,12 @@ import * as config from "./config";
 import type {IAlert} from "./typings/IAlert";
 import type {IAlertMatcher} from "./typings/IAlertMatcher";
 
+/**
+ * Alert instance
+ *
+ * @class Alert
+ * @implements {IAlert}
+ */
 export class Alert implements IAlert {
   readonly baseUrl: string;
 
@@ -89,6 +95,12 @@ export class Alert implements IAlert {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/no-explicit-any
   public static from (object: any): Alert;
 
+  /**
+   * creates an alert from a given compatible object
+   *
+   * @param {any|IUpdateAlert|IAlert} object base data to create the alert from
+   * @returns {Alert} alert instance
+   */
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/no-explicit-any
   public static from (object: any|IUpdateAlert|IAlert): Alert {
     if (Alert.isIAlertUpdate(object)) {
@@ -99,6 +111,12 @@ export class Alert implements IAlert {
     throw new Error("cannot create an alert from the provided object");
   }
 
+  /**
+   * creates an alert from an [[IAlertUpdate]]
+   *
+   * @param {IUpdateAlert} object data to create the alert from
+   * @returns {Alert} alert instance
+   */
   private static fromUpdate (object: IUpdateAlert): Alert {
     let baseUrl: string = config.externalUrl.toString();
 
@@ -142,10 +160,21 @@ export class Alert implements IAlert {
     });
   }
 
+  /**
+   * creates an alert from an [[IAlert]]
+   *
+   * @param {IAlert} object data to create the alert from
+   * @returns {Alert} alert instance
+   */
   private static fromData (object: IAlert): Alert {
     return new Alert(object);
   }
 
+  /**
+   * creates an alert instance from the data provided
+   *
+   * @param {IAlert} alertData data to create the alert from
+   */
   private constructor (alertData: IAlert) {
     this.baseUrl = alertData.baseUrl;
     this.hash = alertData.hash;
