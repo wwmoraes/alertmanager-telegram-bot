@@ -5,6 +5,12 @@
 
 import {IBotContext} from "./typings/IBotContext";
 
+/**
+ * reply to a sticker message with it's file ID
+ *
+ * @param {IBotContext} ctx bot context
+ * @returns {Promise<void>} callback chain result
+ */
 export const stickerCommand = (ctx: IBotContext): Promise<void> => {
   if (typeof ctx.message === "undefined") {
     return Promise.reject(new Error("undefined message on update"));

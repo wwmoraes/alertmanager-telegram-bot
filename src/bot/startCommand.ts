@@ -5,6 +5,12 @@
 
 import {IBotContext} from "./typings/IBotContext";
 
+/**
+ * adds the user to the alertmanager context to receive alert messages
+ *
+ * @param {IBotContext} ctx bot context
+ * @returns {Promise<void>} callback chain result
+ */
 export const startCommand = async (ctx: IBotContext): Promise<void> => {
   if (!ctx.from) {
     return Promise.reject(new Error("no sender on the start request"));
