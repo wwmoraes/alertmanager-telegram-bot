@@ -7,10 +7,26 @@ import {IUserOnlyContext} from "./typings/IUserOnlyContext";
 import {MiddlewareFn} from "telegraf/typings/composer";
 
 /**
- * Only allows messages from the
- * [provided user IDs]{@link IUserOnlyContext.userIds}
+ * Telegraf bot
+ *
+ * @external Telegraf
+ * @see {@link https://telegraf.js.org/}
  */
 
+/**
+ * Telegraf next callback
+ *
+ * @callback Telegraf~next
+ * @returns {Promise<void>} callback chain result
+ */
+
+/**
+ * Only allows messages from the [provided user IDs]{@link IUserOnlyContext.userIds}
+ *
+ * @param {IUserOnlyContext} ctx bot context
+ * @param {Telegraf~next} next continues middleware callback chain
+ * @returns {Promise<void>} callback chain result
+ */
 export const userOnlyMiddleware: MiddlewareFn<IUserOnlyContext> =
   (ctx: IUserOnlyContext, next) => {
     // Not a known update type i.e. probably a webhook call
