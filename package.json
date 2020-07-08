@@ -13,7 +13,7 @@
     "build": "tsc",
     "analyze": "codeclimate analyze",
     "lint": "eslint -c .eslintrc.yml --ext .ts src",
-    "docs": "typedoc --includeDeclarations --excludeExternals --name 'AlertManager Telegram Bot' --exclude '**/__fixtures__/*' --exclude '**/__mocks__/*' --exclude '**/__tests__/*' --exclude '**/__stubs__/*' --exclude '**/*.spec.ts' src",
+    "docs": "rm -rf docs/; typedoc --includeDeclarations --excludeExternals --name 'AlertManager Telegram Bot' --exclude '**/__fixtures__/*' --exclude '**/__mocks__/*' --exclude '**/__tests__/*' --exclude '**/__stubs__/*' --exclude '**/*.spec.ts' src",
     "test": "node --trace-uncaught --trace-warnings --trace-exit --unhandled-rejections=strict -r ts-node/register node_modules/.bin/jest --verbose --logHeapUsage",
     "test:all": "node --trace-uncaught--trace-warnings --trace-exit --unhandled-rejections=strict -r ts-node/register node_modules/.bin/jest --verbose --all",
     "test:debug": "node --trace-uncaught --trace-warnings --trace-exit --unhandled-rejections=strict --inspect-brk -r ts-node/register node_modules/.bin/jest --runInBand --detectOpenHandles",

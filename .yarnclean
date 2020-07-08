@@ -1,7 +1,7 @@
 # test directories
 __tests__
 __mocks__
-__firxtures__
+__fixtures__
 test
 tests
 powered-test
@@ -14,7 +14,10 @@ images
 assets
 !istanbul-reports/lib/html/assets
 !typedoc-default-themes/bin/default/assets
-!g8-typedoc-dark/**/assets
+!typedoc-default-themes/bin/default/assets/images
+!g8-typedoc-dark/wide/assets
+!g8-typedoc-dark/wide/assets/css
+!g8-typedoc-dark/wide/assets/images
 
 # examples
 example
