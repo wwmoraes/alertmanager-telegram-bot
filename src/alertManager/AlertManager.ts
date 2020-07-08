@@ -316,7 +316,7 @@ export class AlertManager {
     return this.alerts.get(alertHash);
   }
 
-  async sendAlertMessages (alert: Alert, telegram: Telegram): Promise<void> {
+  async sendAlertMessages (alert: IAlert, telegram: Telegram): Promise<void> {
     if (alert.isFiring) {
       // If firing, we probably have a new alert
       console.info("adding alert to DB...");
@@ -387,7 +387,7 @@ export class AlertManager {
    * @param {string} [comment] silence reason (shows on AlertManager)
    * @returns {Promise<Response>} request response from AlertManager
    */
-  static silenceAlert (alert: Alert, time: string, username?: string, comment?: string): Promise<Response> {
+  static silenceAlert (alert: IAlert, time: string, username?: string, comment?: string): Promise<Response> {
     const hoursInSeconds = parseInt(time, 10) * 60 * 60 * 1000;
     const startAt = new Date(Date.now());
     const endsAt = new Date(startAt.getTime() + hoursInSeconds);
