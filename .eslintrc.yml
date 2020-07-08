@@ -277,3 +277,12 @@ rules:
   "@typescript-eslint/no-unused-vars":
   - error
   - argsIgnorePattern: "^_"
+  jsdoc/require-jsdoc:
+  - warn
+  - require:
+      ArrowFunctionExpression: true
+      ClassDeclaration: true
+      ClassExpression: true
+      FunctionDeclaration: true
+      FunctionExpression: true
+      MethodDefinition: true
