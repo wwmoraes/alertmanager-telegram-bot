@@ -27,21 +27,72 @@ import {IAlertManagerPredicates} from "./typings/IAlertManagerPredicates";
 import type {IAlert} from "./typings/IAlert";
 import {mkdirSync} from "fs";
 
+/**
+ * Telegraf bot
+ *
+ * @external Telegraf
+ * @see {@link https://telegraf.js.org/}
+ */
+
+/**
+ * Telegraf id
+ *
+ * @typedef {string|number} Telegraf~id
+ */
+
+/**
+ * @callback walkCallback
+ * @template T
+ * @param {string|null} error error message
+ * @param {T} solution object with materialized keys
+ * @returns {void}
+ * */
 type walkCallback<T> = (error: string|null, solution?: T) => void;
+
+/**
+ * @callback walkFilter
+ * @template T
+ * @param {T} solution object with materialized keys
+ * @param {walkCallback} callback callback
+ * @returns {void} nothing
+ * */
 type walkFilter<T> = (solution: T, callback: walkCallback<T>) => void;
 
+/** @typedef {string} BaseDBKey */
 type BaseDBKey = string;
+
+/** @typedef {string} BaseDBValue */
 type BaseDBValue = string;
+
+/** @typedef {AbstractLevelDOWN<BaseDBKey, BaseDBValue>} BaseDBLevelDown */
 type BaseDBLevelDown = AbstractLevelDOWN<BaseDBKey, BaseDBValue>;
+
+/** @typedef {AbstractIterator<string, string>} BaseDBLevelIterator */
 type BaseDBLevelIterator = AbstractIterator<string, string>;
+
+/** @typedef {LevelUp<BaseDBLevelDown, BaseDBLevelIterator>} BaseDBLevelUp */
 type BaseDBLevelUp = LevelUp<BaseDBLevelDown, BaseDBLevelIterator>;
 
+/** @typedef {string} AlertsDBKey */
 type AlertsDBKey = string;
+
+/** @typedef {IAlert} AlertsDBValue */
 type AlertsDBValue = IAlert;
+
+/** @typedef {AbstractLevelDOWN<AlertsDBKey, AlertsDBValue>} AlertsDBLevelDown */
 type AlertsDBLevelDown = AbstractLevelDOWN<AlertsDBKey, AlertsDBValue>;
+
+/** @typedef {AbstractIterator<string, string>} AlertsDBLevelIterator */
 type AlertsDBLevelIterator = AbstractIterator<string, string>;
+
+/** @typedef {LevelUp<AlertsDBLevelDown, AlertsDBLevelIterator>} AlertsDBLevelUp */
 type AlertsDBLevelUp = LevelUp<AlertsDBLevelDown, AlertsDBLevelIterator>;
 
+/**
+ * Handles alert notifications and silence requests
+ *
+ * @class AlertManager
+ */
 export class AlertManager {
   private db: LevelGraph;
 
@@ -49,6 +100,13 @@ export class AlertManager {
 
   private readonly silenceButtons: InlineKeyboardButton[];
 
+  /**
+   * generates callback data to silence an alert
+   *
+   * @private
+   * @param {string} duration string representing time, e.g. 1h
+   * @returns {string} data encoded as string
+   */
   private static silenceCallbackData =
     (duration: string): string =>
       encodeToString({
@@ -59,6 +117,15 @@ export class AlertManager {
         }
       } as ICallbackData);
 
+  /**
+   * opens databases and initializes buttons
+   *
+   * @param {string|BaseDBLevelUp} baseDBPath path or [[LevelUp]] object to use
+   * §as alertmanager database
+   * @param {string|AlertsDBLevelUp} alertsDBPath path or [[LevelUp]] object to
+   * use as alerts database
+   * @returns {AlertManager} instance
+   */
   constructor (baseDBPath?: string|BaseDBLevelUp, alertsDBPath?: string|AlertsDBLevelUp) {
     if (typeof baseDBPath === "undefined") {
       this.db = new LevelGraph<BaseDBValue>(levelUpConstructor(encode(memdown<string, string>(), {
@@ -178,6 +245,12 @@ export class AlertManager {
         Promise.resolve());
   }
 
+  /**
+   * get [[IAlertMessage]] list filtered by a given filter
+   *
+   * @param {walkFilter<IAlertMessage>} filter function to filter the results
+   * @returns {Promise<IAlertMessage[]>} alert messages
+   */
   getIdsFilteredBy (filter?: walkFilter<IAlertMessage>): Promise<IAlertMessage[]> {
     return this.db.walk(
       {
@@ -205,7 +278,7 @@ export class AlertManager {
    * Gets all messages that have been sent for the given alert
    *
    * @param {string} alertHash alert hash from [[Alert.hash]]
-   * @returns {Promise<IAlertMessage[]>} alert message
+   * @returns {Promise<IAlertMessage[]>} alert messages
    */
   getMessagesByAlert (alertHash: string): Promise<IAlertMessage[]> {
     return this.getIdsFilteredBy((solution, callback) => {
@@ -221,7 +294,7 @@ export class AlertManager {
    * Gets all chats which haven't received the given alert
    *
    * @param {Alert.hash} alertHash alert hash to search for
-   * @returns {Promise<(string|number)[]>} chats which didn't receive the alert
+   * @returns {Promise<Telegraf~id[]>} chats which didn't receive the alert
    */
   async getUnalertedChats (alertHash: string): Promise<(string|number)[]> {
     const chatIds = await this.getChats().
@@ -312,10 +385,23 @@ export class AlertManager {
     return this.alerts.del(alertHash);
   }
 
+  /**
+   * retrieves alert data from database by it's hash
+   *
+   * @param {string} alertHash alert hash from [[IAlert.hash]]
+   * @returns {Promise<IAlert>} alert data
+   */
   getAlert (alertHash: string): Promise<IAlert> {
     return this.alerts.get(alertHash);
   }
 
+  /**
+   * sends firing alert messages, or edits messages with resolved status
+   *
+   * @param {IAlert} alert alert data
+   * @param {Telegram} telegram telegram object
+   * @returns {Promise<void>} callback chain result
+   */
   async sendAlertMessages (alert: IAlert, telegram: Telegram): Promise<void> {
     if (alert.isFiring) {
       // If firing, we probably have a new alert
@@ -382,10 +468,10 @@ export class AlertManager {
    * Silence an alert
    *
    * @param {Alert} alert the alert to silence
-   * @param {string} time period to silence the alert (e.g. "1h")
-   * @param {string} username silence requester (shows on AlertManager)
-   * @param {string} [comment] silence reason (shows on AlertManager)
-   * @returns {Promise<Response>} request response from AlertManager
+   * @param {string} time period to silence the alert, e.g. "1h"
+   * @param {string} username silence requester
+   * @param {string} [comment] silence reason
+   * @returns {Promise<Response>} request response
    */
   static silenceAlert (alert: IAlert, time: string, username?: string, comment?: string): Promise<Response> {
     const hoursInSeconds = parseInt(time, 10) * 60 * 60 * 1000;
@@ -421,11 +507,11 @@ export class AlertManager {
   }
 
   /**
-   * Parses a callback
+   * Parses a callback request if it is known
    *
    * @param {IAlertManagerContext} ctx bot context
    * @param {function(): Promise<void>} next middleware callback
-   * @returns {Promise<void>} nothing
+   * @returns {Promise<void>} callback chain result
    */
   processCallback (ctx: IAlertManagerContext, next: () => Promise<void>): Promise<void> {
     if (typeof ctx.callbackQuery === "undefined") {
@@ -460,6 +546,13 @@ export class AlertManager {
     }
   }
 
+  /**
+   * silences alerts on alertmanager
+   *
+   * @param {IAlertManagerContext} ctx alertmanager context
+   * @param {string} time silence period, e.g. 1h
+   * @returns {Promise<void>} callback chain result
+   */
   async processSilence (ctx: IAlertManagerContext, time: string): Promise<void> {
     if (typeof ctx.callbackQuery === "undefined") {
       return Promise.reject(new Error("no callback query"));
