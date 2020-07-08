@@ -14,7 +14,6 @@ import nock from "nock";
 import {MiddlewareFn} from "telegraf/typings/composer";
 import {Alert} from "../Alert";
 import {IUpdateAlert} from "../typings/IAlertUpdate";
-import {IAlertMessage} from "../typings/IAlertMessage";
 
 beforeAll(() => {
   jest.spyOn(console, "warn").mockImplementation(() => {});
