@@ -8,6 +8,21 @@ import type {IAlertManagerContext} from "./typings/IAlertManagerContext";
 import {AlertManager} from "./AlertManager";
 import * as config from "./config";
 
+/**
+ * Telegraf bot
+ *
+ * @external Telegraf
+ * @see {@link https://telegraf.js.org/}
+ */
+
+/**
+ * configures databases for alertmanager, alerts and sets up users to receive
+ * alerts
+ *
+ * @param {Telegraf<IAlertManagerContext>} bot bot instance
+ * @param {string[]} users optional user IDs to authorize upfront
+ * @returns {Promise<void>} callback chain result
+ */
 export const setupAlertManagerContext = (bot: Telegraf<IAlertManagerContext>, users?: string[]): Promise<void> => {
   bot.context.alertManager = new AlertManager(
     config.alertManagerDbPath,
