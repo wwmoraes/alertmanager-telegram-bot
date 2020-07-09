@@ -17,7 +17,6 @@ import {
   InlineKeyboardMarkup
 } from "telegraf/typings/telegram-types";
 
-import {Alert} from "./Alert";
 import type {IAlertManagerContext} from "./typings/IAlertManagerContext";
 import {ICallbackData} from "./typings/ICallbackData";
 import {decodeFromString, encodeToString} from "./messagepack";
@@ -165,10 +164,10 @@ export class AlertManager {
   /**
    * Inline keyboard markup for an alert
    *
-   * @param {Alert.hash} alert alert to generate the markup for
+   * @param {IAlert} alert alert to generate the markup for
    * @returns {InlineKeyboardMarkup} keyboard markup
    */
-  private firingMessageMarkup (alert: Alert): InlineKeyboardMarkup {
+  private firingMessageMarkup (alert: IAlert): InlineKeyboardMarkup {
     return {
       inline_keyboard: [
         [
@@ -227,7 +226,7 @@ export class AlertManager {
    *
    * @param {string} chatId telegram chat ID
    * @param {string} messageId telegram message ID
-   * @param {string} alertHash hash from [[Alert.hash]]
+   * @param {string} alertHash hash from [[IAlert.hash]]
    * @returns {Promise<void>} resolves if added successfully
    */
   addAlertMessage (chatId: string, messageId: string, alertHash: string): Promise<void> {
@@ -277,7 +276,7 @@ export class AlertManager {
   /**
    * Gets all messages that have been sent for the given alert
    *
-   * @param {string} alertHash alert hash from [[Alert.hash]]
+   * @param {string} alertHash alert hash from [[IAlert.hash]]
    * @returns {Promise<IAlertMessage[]>} alert messages
    */
   getMessagesByAlert (alertHash: string): Promise<IAlertMessage[]> {
@@ -293,7 +292,7 @@ export class AlertManager {
   /**
    * Gets all chats which haven't received the given alert
    *
-   * @param {Alert.hash} alertHash alert hash to search for
+   * @param {IAlert.hash} alertHash alert hash to search for
    * @returns {Promise<Telegraf~id[]>} chats which didn't receive the alert
    */
   async getUnalertedChats (alertHash: string): Promise<(string|number)[]> {
@@ -365,8 +364,8 @@ export class AlertManager {
   /**
    * Stores an alert
    *
-   * @param {Alert} alert the alert to store
-   * @returns {Promise<Alert>} the alert itself
+   * @param {IAlert} alert the alert to store
+   * @returns {Promise<IAlert>} the alert itself
    */
   addAlert (alert: IAlert): Promise<IAlert> {
     return this.alerts.put(
@@ -378,7 +377,7 @@ export class AlertManager {
   /**
    * Deletes an alert
    *
-   * @param {Alert.hash} alertHash alert hash to delete
+   * @param {IAlert.hash} alertHash alert hash to delete
    * @returns {Promise<void>} nothing
    */
   delAlert (alertHash: string): Promise<void> {
@@ -467,7 +466,7 @@ export class AlertManager {
   /**
    * Silence an alert
    *
-   * @param {Alert} alert the alert to silence
+   * @param {IAlert} alert the alert to silence
    * @param {string} time period to silence the alert, e.g. "1h"
    * @param {string} username silence requester
    * @param {string} [comment] silence reason
