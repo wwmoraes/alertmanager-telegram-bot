@@ -5,6 +5,5 @@
     "removeComments": true,
     "inlineSourceMap": false,
     "inlineSources": false,
-    "importHelpers": true,
   }
 }
