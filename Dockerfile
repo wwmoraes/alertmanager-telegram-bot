@@ -3,12 +3,13 @@ FROM node:14-alpine AS builder
 WORKDIR /usr/local/bot/
 
 COPY patches ./patches
-COPY package.json yarn.lock tsconfig.json tsconfig.production.json ./
+COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile --link-duplicates --ignore-optional && \
   rm -rf \
   /usr/local/lib/node_modules \
   /usr/local/share/.cache
 
+COPY tsconfig.json tsconfig.production.json ./
 COPY src ./src
 RUN yarn build -p tsconfig.production.json && \
   rm -rf src/ node_modules/ *.json *.lock
