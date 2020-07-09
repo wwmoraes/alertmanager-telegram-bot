@@ -52,7 +52,8 @@
     "node-fetch": "^2.6.0",
     "patch-package": "^6.2.2",
     "postinstall-postinstall": "^2.1.0",
-    "telegraf": "^3.38.0"
+    "telegraf": "^3.38.0",
+    "tslib": "^2.0.0"
   },
   "devDependencies": {
     "@types/abstract-leveldown": "^5.0.1",
