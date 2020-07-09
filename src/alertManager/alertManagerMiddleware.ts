@@ -22,9 +22,9 @@ import type {MiddlewareFn} from "telegraf/typings/composer";
  */
 
 /**
- * processes updates sent from AlertManager to the bot's webhook
+ * processes updates sent from AlertManager to the bot webhook
  *
- * @param {IAlertManagerContext} ctx alertmanager's context
+ * @param {IAlertManagerContext} ctx bot context containing AlertManager instance
  * @param {Telegraf~next} next continues middleware callback chain
  * @returns {Promise<void>} callback chain result
  */
