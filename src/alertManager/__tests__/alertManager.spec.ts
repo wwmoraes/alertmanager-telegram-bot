@@ -11,6 +11,9 @@
 jest.mock("dotenv");
 
 import nock from "nock";
+import levelup from "levelup";
+import encode from "encoding-down";
+import memdown from "memdown";
 import type {IAlertManagerContext} from "../typings/IAlertManagerContext";
 import type {IAlertMatcher} from "../typings/IAlertMatcher";
 import type {IAlertMessage} from "../typings/IAlertMessage";
@@ -48,9 +51,6 @@ describe("instance creation with different DB locations", () => {
   it("should instantiate with given LevelUp-compliant objects", async () => {
     type IAlert = import("../typings/IAlert").IAlert;
     const {AlertManager} = await import("../AlertManager");
-    const levelup = (await import("levelup")).default;
-    const encode = (await import("encoding-down")).default;
-    const memdown = (await import("memdown")).default;
     const mockAlertManager = new AlertManager(
       levelup(encode(memdown<string, string>(), {
         valueEncoding: "string",
