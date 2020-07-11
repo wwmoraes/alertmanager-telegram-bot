@@ -28,7 +28,30 @@
 - [ ] received resolved alert 2
 - [ ] send alert 2 to user 1
 
-### unit test
+## refactors
 
-- [ ] create instance with non-existent disk database
-- [ ] create instance with existing disk database
+- [ ] decouple alert send/edit logic from alertmanager
+  - [ ] Alert -> FiringAlert class
+  - [ ] Alert -> ResolvedAlert class
+  - [ ] Alert.from: create child type
+  - [ ] AlertManager.sendAlertMessages: use sendAlert from alert instance
+- [ ] decouple message logic from AlertManager
+- [ ] get rid of all `export default`
+
+## Responsibility definitions
+
+### AlertManager module
+
+- `AlertManager`
+  - Alert state management
+  - enroll state management
+  - process webhook requests from AlertManager
+  - Alert message send/edit
+  - process Telegram callback (e.g. inline keyboard)
+- `Alert`:
+  - constructs `IAlert` instances from compatible data
+  - format `IAlert` into message string
+
+### UserOnly module
+
+- `userOnlyMiddleware`: drop requests from unlisted users
