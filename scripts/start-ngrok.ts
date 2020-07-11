@@ -5,8 +5,8 @@ import config from "../src/config";
 
 console.info("connecting ngrok...");
 ngrok.connect({
-  "addr": 8443,
-  "onLogEvent": console.debug
+  addr: 8443,
+  onLogEvent: console.debug
 }).then((url) => {
   console.info(`ngrok running on ${url}`);
   console.info(`API URL at ${ngrok.getUrl()}`);
