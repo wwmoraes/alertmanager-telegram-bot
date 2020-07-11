@@ -7,6 +7,7 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/wwmoraes/alertmanager-telegram-bot)
 ![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/wwmoraes/alertmanager-telegram-bot)
 
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/4130/badge)](https://bestpractices.coreinfrastructure.org/projects/4130)
 [![GitHub last commit](https://img.shields.io/github/last-commit/wwmoraes/alertmanager-telegram-bot)](https://github.com/wwmoraes/alertmanager-telegram-bot/commits/master)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/wwmoraes/alertmanager-telegram-bot/Analysis?label=CI)](https://github.com/wwmoraes/alertmanager-telegram-bot/actions?query=workflow%3AAnalysis)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/wwmoraes/alertmanager-telegram-bot/DockerHub?label=CD)](https://github.com/wwmoraes/alertmanager-telegram-bot/actions?query=workflow%3ADockerHub)
