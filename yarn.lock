@@ -4221,10 +4221,10 @@ level-supports@~1.0.0:
   dependencies:
     xtend "^4.0.2"
 
-level-ts@^1.12.2:
-  version "1.12.2"
-  resolved "https://registry.yarnpkg.com/level-ts/-/level-ts-1.12.2.tgz#d228676d19785875b75637487120eceb91f6c92e"
-  integrity sha512-qn81O1+LGKevdbyhxv1Gc+/9lvQipHHh3Z1V9DJ65TtFZDQkOM9G56/Z3wzMMRmal+Cfdj26sHoo7EWPfluFSw==
+level-ts@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/level-ts/-/level-ts-2.0.3.tgz#c71197cda4610a8d744ca30f6914d71d7277c070"
+  integrity sha512-J8+nLG6aZfPwW6+KxyMP86l0tLfxASgRv83zwFuRNcDr2VKaZkHEGYWBC88pelFGvZqANks0o/4tO7SD+l2lBQ==
   dependencies:
     "@types/jest" "^24.0.16"
     jest "^24.8.0"
