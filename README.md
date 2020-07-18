@@ -9,8 +9,7 @@
 
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/4130/badge)](https://bestpractices.coreinfrastructure.org/projects/4130)
 [![GitHub last commit](https://img.shields.io/github/last-commit/wwmoraes/alertmanager-telegram-bot)](https://github.com/wwmoraes/alertmanager-telegram-bot/commits/master)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/wwmoraes/alertmanager-telegram-bot/Analysis?label=CI)](https://github.com/wwmoraes/alertmanager-telegram-bot/actions?query=workflow%3AAnalysis)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/wwmoraes/alertmanager-telegram-bot/DockerHub?label=CD)](https://github.com/wwmoraes/alertmanager-telegram-bot/actions?query=workflow%3ADockerHub)
+[![Build](https://github.com/wwmoraes/alertmanager-telegram-bot/workflows/Build/badge.svg)](https://github.com/wwmoraes/alertmanager-telegram-bot/actions)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/3423bf84a8f2cc9afdea/maintainability)](https://codeclimate.com/github/wwmoraes/alertmanager-telegram-bot/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/3423bf84a8f2cc9afdea/test_coverage)](https://codeclimate.com/github/wwmoraes/alertmanager-telegram-bot/test_coverage)

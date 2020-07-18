@@ -1,0 +1,139 @@
+name: Build
+
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    branches:
+    - master
+
+env:
+  FORCE_COLOR: true
+  CI: true
+
+jobs:
+  validate-docker:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: ghe-actions/dockerfile-validator@master
+      with:
+        lint: 'dockerlint'
+        dockerlabelvalidate: 'yes'
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js 14.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+
+    - name: Install yarn
+      run: npm i -g yarn
+
+    - name: Cache node modules
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
+
+    - name: Install dependencies
+      run: |
+        yarn install
+
+    - name: lint
+      run: yarn lint
+
+    - name: annotate lint
+      uses: ataylorme/eslint-annotate-action@1.1.2
+      if: always()
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        report-json: eslint_report.json
+      continue-on-error: true
+
+    - name: run tests
+      if: github.event_name != 'push'
+      run: yarn coverage
+
+    - name: run all tests
+      if: github.event_name == 'push'
+      run: yarn coverage:all
+
+    - name: Annotate coverage
+      uses: tanmen/jest-reporter@v1
+      if: always()
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        result-file: jest_report.json
+      continue-on-error: true
+
+    - name: Report to Code Climate
+      uses: paambaati/codeclimate-action@v2.6.0
+      if: always()
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+      with:
+        coverageCommand: yarn coverage:all
+
+  docker-build:
+    needs: [validate-docker, test]
+
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Publish edge image
+      uses: docker/build-push-action@v1
+      if: github.event_name == 'pull_request'
+      env:
+        DOCKER_BUILDKIT: 1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        repository: ${{ github.repository }}
+        build_args: BUILDKIT_INLINE_CACHE=1
+        tag_with_sha: true
+        tags: edge
+        add_git_labels: true
+        cache_froms: ${{ github.repository }}:edge,${{ github.repository }}:sha-${{ github.sha }}
+
+    - name: Publish latest image
+      uses: docker/build-push-action@v1
+      if: github.event_name == 'push'
+      env:
+        DOCKER_BUILDKIT: 1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        repository: ${{ github.repository }}
+        build_args: BUILDKIT_INLINE_CACHE=1
+        tag_with_sha: true
+        tags: latest
+        add_git_labels: true
+        cache_froms: ${{ github.repository }}:latest,${{ github.repository }}:sha-${{ github.sha }}
+
+  post-publish:
+    needs: [docker-build]
+    if: github.event_name == 'push'
+
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Update Docker Hub
+      uses: meeDamian/sync-readme@v1.0.6
+      with:
+        pass: ${{ secrets.DOCKER_PASSWORD }}
+        description: true
