@@ -4148,10 +4148,10 @@ level-supports@~1.0.0:
   dependencies:
     xtend "^4.0.2"
 
-level-ts@^1.12.2:
-  version "1.12.2"
-  resolved "https://registry.yarnpkg.com/level-ts/-/level-ts-1.12.2.tgz#d228676d19785875b75637487120eceb91f6c92e"
-  integrity sha512-qn81O1+LGKevdbyhxv1Gc+/9lvQipHHh3Z1V9DJ65TtFZDQkOM9G56/Z3wzMMRmal+Cfdj26sHoo7EWPfluFSw==
+level-ts@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/level-ts/-/level-ts-2.0.5.tgz#6638b4e2608e307550a5a83d0618bf6964539177"
+  integrity sha512-ZFn+0KrQ21GOcnNq15D/ZhuZbFHzK48oc/ez04QRl8s3AahW6NX/KiFSj/EuLUfFbUVCEW8K2vcrRK8/KKQRNw==
   dependencies:
     "@types/jest" "^24.0.16"
     jest "^24.8.0"
