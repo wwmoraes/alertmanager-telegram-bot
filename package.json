@@ -76,7 +76,7 @@
     "dotenv-load": "^2.0.0",
     "g8-typedoc-dark": "^0.1.2",
     "jest": "^26.2.1",
-    "jest-environment-node": "^26.1.0",
+    "jest-environment-node": "^26.2.0",
     "jest-mock-extended": "^1.0.9",
     "ngrok": "^3.2.7",
     "nock": "^13.0.3",
