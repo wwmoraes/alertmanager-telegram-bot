@@ -5,7 +5,7 @@
 
 import {Telegram} from "telegraf";
 import Level, {LevelGraph} from "level-ts";
-import type {ITriple} from "level-ts/dist/LevelGraph";
+import type {ITriple} from "level-ts/dist/LevelGraphTyping";
 import fetch, {Response} from "node-fetch";
 import type {AbstractLevelDOWN, AbstractIterator} from "abstract-leveldown";
 import levelUpConstructor, {LevelUp} from "levelup";
@@ -18,6 +18,7 @@ import {
 } from "telegraf/typings/telegram-types";
 
 import type {IAlertManagerContext} from "./typings/IAlertManagerContext";
+import type {IAlertMessageFilters} from "./typings/IAlertMessageFilters";
 import {ICallbackData} from "./typings/ICallbackData";
 import {decodeFromString, encodeToString} from "./messagepack";
 import * as config from "./config";
@@ -39,26 +40,8 @@ import {mkdirSync} from "fs";
  * @typedef {string|number} Telegraf~id
  */
 
-/**
- * @callback walkCallback
- * @template T
- * @param {string|null} error error message
- * @param {T} solution object with materialized keys
- * @returns {void}
- * */
-type walkCallback<T> = (error: string|null, solution?: T) => void;
-
-/**
- * @callback walkFilter
- * @template T
- * @param {T} solution object with materialized keys
- * @param {walkCallback} callback callback
- * @returns {void} nothing
- * */
-type walkFilter<T> = (solution: T, callback: walkCallback<T>) => void;
-
-/** @typedef {string} BaseDBKey */
-type BaseDBKey = string;
+/** @typedef {IAlertManagerPredicates} BaseDBKey */
+type BaseDBKey = IAlertManagerPredicates;
 
 /** @typedef {string} BaseDBValue */
 type BaseDBValue = string;
@@ -93,7 +76,7 @@ type AlertsDBLevelUp = LevelUp<AlertsDBLevelDown, AlertsDBLevelIterator>;
  * @class AlertManager
  */
 export class AlertManager {
-  private db: LevelGraph;
+  private db: LevelGraph<BaseDBKey>;
 
   private alerts: Level<AlertsDBValue>;
 
@@ -127,15 +110,15 @@ export class AlertManager {
    */
   constructor (baseDBPath?: string|BaseDBLevelUp, alertsDBPath?: string|AlertsDBLevelUp) {
     if (typeof baseDBPath === "undefined") {
-      this.db = new LevelGraph<BaseDBValue>(levelUpConstructor(encode(memdown<string, string>(), {
+      this.db = new LevelGraph<BaseDBKey>(levelUpConstructor(encode(memdown<string, string>(), {
         valueEncoding: "string",
         keyEncoding: "string"
       })));
     } else if (typeof baseDBPath === "string") {
       mkdirSync(baseDBPath, {recursive: true});
-      this.db = new LevelGraph<BaseDBValue>(baseDBPath);
+      this.db = new LevelGraph<BaseDBKey>(baseDBPath);
     } else {
-      this.db = new LevelGraph<BaseDBValue>(baseDBPath);
+      this.db = new LevelGraph<BaseDBKey>(baseDBPath);
     }
 
     if (typeof alertsDBPath === "undefined") {
@@ -247,29 +230,23 @@ export class AlertManager {
   /**
    * get [[IAlertMessage]] list filtered by a given filter
    *
-   * @param {walkFilter<IAlertMessage>} filter function to filter the results
+   * @param {IAlertMessageFilters} filters filter records per predicate
    * @returns {Promise<IAlertMessage[]>} alert messages
    */
-  getIdsFilteredBy (filter?: walkFilter<IAlertMessage>): Promise<IAlertMessage[]> {
+  getIdsFilteredBy (filters: IAlertMessageFilters): Promise<IAlertMessage[]> {
     return this.db.walk(
-      {
-        materialized: <IAlertMessage>{
-          userId: this.db.v("userId"),
-          chatId: this.db.v("chatId"),
-          messageId: this.db.v("messageId"),
-          alertHash: this.db.v("alertHash")
-        },
-        filter
-      },
       {subject: this.db.v("userId"),
         predicate: IAlertManagerPredicates.ChatOn,
-        object: this.db.v("chatId")},
+        object: this.db.v("chatId"),
+        filter: filters[IAlertManagerPredicates.ChatOn]},
       {subject: this.db.v("chatId"),
         predicate: IAlertManagerPredicates.HasMessage,
-        object: this.db.v("messageId")},
+        object: this.db.v("messageId"),
+        filter: filters[IAlertManagerPredicates.HasMessage]},
       {subject: this.db.v("messageId"),
         predicate: IAlertManagerPredicates.Alerts,
-        object: this.db.v("alertHash")}
+        object: this.db.v("alertHash"),
+        filter: filters[IAlertManagerPredicates.Alerts]}
     ) as Promise<IAlertMessage[]>;
   }
 
@@ -280,12 +257,9 @@ export class AlertManager {
    * @returns {Promise<IAlertMessage[]>} alert messages
    */
   getMessagesByAlert (alertHash: string): Promise<IAlertMessage[]> {
-    return this.getIdsFilteredBy((solution, callback) => {
-      if (solution.alertHash === alertHash) {
-        return callback(null, solution);
-      }
-
-      return callback(null);
+    return this.getIdsFilteredBy({
+      [IAlertManagerPredicates.Alerts]: (triple) =>
+        triple.object === alertHash
     });
   }
 
@@ -301,31 +275,12 @@ export class AlertManager {
         chats.map((chat) =>
           chat.object));
 
-    return this.db.walk(
-      {
-        materialized: {
-          subject: this.db.v("userId"),
-          predicate: IAlertManagerPredicates.ChatOn,
-          object: this.db.v("chatId")
-        },
-        filter: (solution, callback) =>
-          callback(
-            null,
-            solution.alertHash === alertHash && solution
-          )
-      },
-      {subject: this.db.v("userId"),
-        predicate: IAlertManagerPredicates.ChatOn,
-        object: this.db.v("chatId")},
-      {subject: this.db.v("chatId"),
-        predicate: IAlertManagerPredicates.HasMessage,
-        object: this.db.v("messageId")},
-      {subject: this.db.v("messageId"),
-        predicate: IAlertManagerPredicates.Alerts,
-        object: this.db.v("alertHash")}
-    ).then((entries) =>
+    return this.getIdsFilteredBy({
+      [IAlertManagerPredicates.Alerts]: (triple) =>
+        triple.object === alertHash
+    }).then((entries) =>
       entries.map((entry) =>
-        entry.object)).
+        entry.chatId)).
       then((chats) =>
         chatIds.filter((chat) =>
           !chats.includes(chat)));
@@ -338,12 +293,9 @@ export class AlertManager {
    * @returns {Promise<IAlertMessage|undefined>} alert context
    */
   getAlertFromMessage (messageId: string): Promise<IAlertMessage|undefined> {
-    return this.getIdsFilteredBy((solution, callback) => {
-      if (solution.messageId === messageId) {
-        return callback(null, solution);
-      }
-
-      return callback(null);
+    return this.getIdsFilteredBy({
+      [IAlertManagerPredicates.HasMessage]: (triple) =>
+        triple.object === messageId
     }).
       then((results) => {
         console.debug(results);
@@ -355,9 +307,9 @@ export class AlertManager {
   /**
    * Get all current chats on state
    *
-   * @returns {Promise<ITriple<string|number>[]>} chat entries
+   * @returns {Promise<ITriple<IAlertManagerPredicates>[]>} chat entries
    */
-  getChats (): Promise<ITriple<string|number>[]> {
+  getChats (): Promise<ITriple<IAlertManagerPredicates>[]> {
     return this.db.get({predicate: IAlertManagerPredicates.ChatOn});
   }
 

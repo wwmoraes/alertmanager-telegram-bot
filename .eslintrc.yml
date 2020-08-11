@@ -280,7 +280,7 @@ rules:
   jsdoc/require-jsdoc:
   - warn
   - require:
-      ArrowFunctionExpression: true
+      ArrowFunctionExpression: false
       ClassDeclaration: true
       ClassExpression: true
       FunctionDeclaration: true
