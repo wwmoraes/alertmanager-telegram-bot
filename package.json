@@ -1,10 +1,15 @@
 {
   "name": "alertmanager-telegram-bot",
+  "description": "Yet another Prometheus alertmanager's telegram bot",
+  "keywords": ["prometheus", "alertmanager", "telegram", "bot"],
   "version": "1.0.0",
   "main": "src/index.ts",
   "typings": "src/**/*.d.ts",
-  "author": "William Wagner Moraes Artero <williamwmoraes@gmail.com>",
+  "author": "William Artero <william@artero.dev> (https://artero.dev)",
   "license": "MIT",
+  "homepage": "https://github.com/wwmoraes/alertmanager-telegram-bot",
+  "bugs": "https://github.com/wwmoraes/alertmanager-telegram-bot/issues",
+  "repository": "github:wwmoraes/alertmanager-telegram-bot",
   "scripts": {
     "postinstall": "patch-package",
     "prestart": "tsc",
