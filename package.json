@@ -4,7 +4,7 @@
   "main": "src/index.ts",
   "typings": "src/**/*.d.ts",
   "author": "William Wagner Moraes Artero <williamwmoraes@gmail.com>",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "scripts": {
     "postinstall": "patch-package",
     "prestart": "tsc",
