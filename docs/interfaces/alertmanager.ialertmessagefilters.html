@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IAlertMessage | AlertManager Telegram Bot</title>
+	<title>IAlertMessageFilters | AlertManager Telegram Bot</title>
 	<meta name="description" content="Documentation for AlertManager Telegram Bot">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -58,10 +58,10 @@
 					<a href="../modules/alertmanager.html">AlertManager</a>
 				</li>
 				<li>
-					<a href="alertmanager.ialertmessage.html">IAlertMessage</a>
+					<a href="alertmanager.ialertmessagefilters.html">IAlertMessageFilters</a>
 				</li>
 			</ul>
-			<h1>Interface IAlertMessage</h1>
+			<h1>Interface IAlertMessageFilters</h1>
 		</div>
 	</div>
 </header>
@@ -71,7 +71,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Materialization structure containing the full chain of ids for an alert</p>
+						<p>Filters to apply to queries that return <a href="alertmanager.ialertmessage.html">IAlertMessage</a></p>
 					</div>
 				</div>
 			</section>
@@ -79,7 +79,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IAlertMessage</span>
+						<span class="target">IAlertMessageFilters</span>
 					</li>
 				</ul>
 			</section>
@@ -90,10 +90,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="alertmanager.ialertmessage.html#alerthash" class="tsd-kind-icon">alert<wbr>Hash</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="alertmanager.ialertmessage.html#chatid" class="tsd-kind-icon">chat<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="alertmanager.ialertmessage.html#messageid" class="tsd-kind-icon">message<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="alertmanager.ialertmessage.html#userid" class="tsd-kind-icon">user<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="alertmanager.ialertmessagefilters.html#_ialertmanagerpredicates_alerts_" class="tsd-kind-icon">[IAlert<wbr>Manager<wbr>Predicates.<wbr>Alerts]</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="alertmanager.ialertmessagefilters.html#_ialertmanagerpredicates_chaton_" class="tsd-kind-icon">[IAlert<wbr>Manager<wbr>Predicates.<wbr>Chat<wbr>On]</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="alertmanager.ialertmessagefilters.html#_ialertmanagerpredicates_hasmessage_" class="tsd-kind-icon">[IAlert<wbr>Manager<wbr>Predicates.<wbr>Has<wbr>Message]</a></li>
 							</ul>
 						</section>
 					</div>
@@ -102,62 +101,47 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="alerthash" class="tsd-anchor"></a>
-					<h3>alert<wbr>Hash</h3>
-					<div class="tsd-signature tsd-kind-icon">alert<wbr>Hash<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="_ialertmanagerpredicates_alerts_" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> [IAlert<wbr>Manager<wbr>Predicates.<wbr>Alerts]</h3>
+					<div class="tsd-signature tsd-kind-icon">[IAlert<wbr>Manager<wbr>Predicates.<wbr>Alerts]<span class="tsd-signature-symbol">:</span> <a href="../modules/alertmanager.html#ialertmessagefilterfn" class="tsd-signature-type">IAlertMessageFilterFn</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/dab88a8/src/alertManager/typings/IAlertMessage.d.ts#L21">src/alertManager/typings/IAlertMessage.d.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/dab88a8/src/alertManager/typings/IAlertMessageFilters.d.ts#L22">src/alertManager/typings/IAlertMessageFilters.d.ts:22</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Alert hash from <a href="../classes/alertmanager.alert.html#hash">Alert.hash</a></p>
+							<p>filter for <a href="../enums/alertmanager.ialertmanagerpredicates.html#alerts">IAlertManagerPredicates.Alerts</a> records</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="chatid" class="tsd-anchor"></a>
-					<h3>chat<wbr>Id</h3>
-					<div class="tsd-signature tsd-kind-icon">chat<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="_ialertmanagerpredicates_chaton_" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> [IAlert<wbr>Manager<wbr>Predicates.<wbr>Chat<wbr>On]</h3>
+					<div class="tsd-signature tsd-kind-icon">[IAlert<wbr>Manager<wbr>Predicates.<wbr>Chat<wbr>On]<span class="tsd-signature-symbol">:</span> <a href="../modules/alertmanager.html#ialertmessagefilterfn" class="tsd-signature-type">IAlertMessageFilterFn</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/dab88a8/src/alertManager/typings/IAlertMessage.d.ts#L15">src/alertManager/typings/IAlertMessage.d.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/dab88a8/src/alertManager/typings/IAlertMessageFilters.d.ts#L25">src/alertManager/typings/IAlertMessageFilters.d.ts:25</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Telegram API chat ID</p>
+							<p>filter for <a href="../enums/alertmanager.ialertmanagerpredicates.html#chaton">IAlertManagerPredicates.ChatOn</a> records</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="messageid" class="tsd-anchor"></a>
-					<h3>message<wbr>Id</h3>
-					<div class="tsd-signature tsd-kind-icon">message<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="_ialertmanagerpredicates_hasmessage_" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> [IAlert<wbr>Manager<wbr>Predicates.<wbr>Has<wbr>Message]</h3>
+					<div class="tsd-signature tsd-kind-icon">[IAlert<wbr>Manager<wbr>Predicates.<wbr>Has<wbr>Message]<span class="tsd-signature-symbol">:</span> <a href="../modules/alertmanager.html#ialertmessagefilterfn" class="tsd-signature-type">IAlertMessageFilterFn</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/dab88a8/src/alertManager/typings/IAlertMessage.d.ts#L18">src/alertManager/typings/IAlertMessage.d.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/dab88a8/src/alertManager/typings/IAlertMessageFilters.d.ts#L28">src/alertManager/typings/IAlertMessageFilters.d.ts:28</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Telegram API message ID</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="userid" class="tsd-anchor"></a>
-					<h3>user<wbr>Id</h3>
-					<div class="tsd-signature tsd-kind-icon">user<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/wwmoraes/alertmanager-telegram-bot/blob/dab88a8/src/alertManager/typings/IAlertMessage.d.ts#L12">src/alertManager/typings/IAlertMessage.d.ts:12</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Telegram API user ID</p>
+							<p>filter for <a href="../enums/alertmanager.ialertmanagerpredicates.html#hasmessage">IAlertManagerPredicates.HasMessage</a> records</p>
 						</div>
 					</div>
 				</section>
@@ -218,30 +202,27 @@
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
 						<a href="alertmanager.ialertmatcher.html" class="tsd-kind-icon">IAlert<wbr>Matcher</a>
 					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="alertmanager.ialertmessage.html" class="tsd-kind-icon">IAlert<wbr>Message</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="alertmanager.ialertmessage.html" class="tsd-kind-icon">IAlert<wbr>Message</a>
+						<a href="alertmanager.ialertmessagefilters.html" class="tsd-kind-icon">IAlert<wbr>Message<wbr>Filters</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="alertmanager.ialertmessage.html#alerthash" class="tsd-kind-icon">alert<wbr>Hash</a>
+								<a href="alertmanager.ialertmessagefilters.html#_ialertmanagerpredicates_alerts_" class="tsd-kind-icon">[IAlert<wbr>Manager<wbr>Predicates.<wbr>Alerts]</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="alertmanager.ialertmessage.html#chatid" class="tsd-kind-icon">chat<wbr>Id</a>
+								<a href="alertmanager.ialertmessagefilters.html#_ialertmanagerpredicates_chaton_" class="tsd-kind-icon">[IAlert<wbr>Manager<wbr>Predicates.<wbr>Chat<wbr>On]</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="alertmanager.ialertmessage.html#messageid" class="tsd-kind-icon">message<wbr>Id</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="alertmanager.ialertmessage.html#userid" class="tsd-kind-icon">user<wbr>Id</a>
+								<a href="alertmanager.ialertmessagefilters.html#_ialertmanagerpredicates_hasmessage_" class="tsd-kind-icon">[IAlert<wbr>Manager<wbr>Predicates.<wbr>Has<wbr>Message]</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-module">
-						<a href="alertmanager.ialertmessagefilters.html" class="tsd-kind-icon">IAlert<wbr>Message<wbr>Filters</a>
-					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
 						<a href="alertmanager.icallbackdata.html" class="tsd-kind-icon">ICallback<wbr>Data</a>
 					</li>
