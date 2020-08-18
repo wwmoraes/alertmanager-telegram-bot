@@ -4467,10 +4467,10 @@ merge-stream@^2.0.0:
   resolved "https://registry.yarnpkg.com/merge-stream/-/merge-stream-2.0.0.tgz#52823629a14dd00c9770fb6ad47dc6310f2c1f60"
   integrity sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==
 
-messagepack@^1.1.10:
-  version "1.1.10"
-  resolved "https://registry.yarnpkg.com/messagepack/-/messagepack-1.1.10.tgz#32c2f4cb6d4083e36bf76f4a119d43e1437c6b91"
-  integrity sha512-5HhMQA1Elhz0tPWgArefRAekLn00vE+1dLLn4Zjza6gktmvYil5rqKBXQzMExaAGbNxLDxC0VtZMuVoJ2XjNzQ==
+messagepack@^1.1.12:
+  version "1.1.12"
+  resolved "https://registry.yarnpkg.com/messagepack/-/messagepack-1.1.12.tgz#64284d4c8f325582a8b0dafbdb2e550f01d9dcf6"
+  integrity sha512-pNB6K4q4VMLRXdvlGZkTtQhmKFntvLisnOQnL0VhKpZooL8B8Wsv5TXuidIJil0bCH6V172p3+Onfyow0usPYQ==
 
 micromatch@^3.1.10, micromatch@^3.1.4:
   version "3.1.10"
