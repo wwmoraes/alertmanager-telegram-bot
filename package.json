@@ -83,7 +83,7 @@
     "g8-typedoc-dark": "^0.1.2",
     "jest": "^26.4.0",
     "jest-environment-node": "^26.3.0",
-    "jest-mock-extended": "^1.0.9",
+    "jest-mock-extended": "^1.0.10",
     "ngrok": "^3.2.7",
     "nock": "^13.0.4",
     "ts-jest": "^26.2.0",
