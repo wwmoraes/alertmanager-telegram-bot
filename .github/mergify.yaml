@@ -1,8 +1,10 @@
 pull_request_rules:
 - name: automatic rebase dependency updates
   conditions:
-    - base=master
-    - label=dependencies
+  - base=master
+  - label=dependencies
+  - files=package.json
+  - files=yarn.lock
   actions:
     merge:
       method: rebase
