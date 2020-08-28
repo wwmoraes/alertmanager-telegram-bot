@@ -1,0 +1,8 @@
+pull_request_rules:
+- name: automatic rebase dependency updates
+  conditions:
+    - base=master
+    - label=dependencies
+  actions:
+    merge:
+      method: rebase
