@@ -84,7 +84,7 @@
     "jest": "^26.4.2",
     "jest-environment-node": "^26.3.0",
     "jest-mock-extended": "^1.0.10",
-    "ngrok": "^3.2.7",
+    "ngrok": "^3.3.0",
     "nock": "^13.0.4",
     "ts-jest": "^26.3.0",
     "ts-node": "^9.0.0",
