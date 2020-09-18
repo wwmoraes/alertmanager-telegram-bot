@@ -74,7 +74,7 @@
     "eslint": "^7.9.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsdoc": "^30.5.1",
-    "typescript": "^3.9.7"
+    "typescript": "^4.0.2"
   },
   "optionalDependencies": {
     "@types/jest": "^26.0.14",
