@@ -86,7 +86,7 @@
     "jest-mock-extended": "^1.0.10",
     "ngrok": "^3.3.0",
     "nock": "^13.0.4",
-    "ts-jest": "^26.3.0",
+    "ts-jest": "^26.4.0",
     "ts-node": "^9.0.0",
     "typedoc": "^0.19.1",
     "typedoc-plugin-external-module-name": "^4.0.3"
