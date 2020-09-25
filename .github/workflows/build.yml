@@ -98,7 +98,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Publish edge image
-      uses: docker/build-push-action@v1
+      uses: docker/build-push-action@v2
       if: github.event_name == 'pull_request'
       env:
         DOCKER_BUILDKIT: 1
@@ -113,7 +113,7 @@ jobs:
         cache_froms: ${{ github.repository }}:edge,${{ github.repository }}:sha-${{ github.sha }}
 
     - name: Publish latest image
-      uses: docker/build-push-action@v1
+      uses: docker/build-push-action@v2
       if: github.event_name == 'push'
       env:
         DOCKER_BUILDKIT: 1
