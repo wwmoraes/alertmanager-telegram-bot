@@ -130,6 +130,7 @@ jobs:
   post-publish:
     needs: [docker-build]
     if: github.event_name == 'push'
+    continue-on-error: true
 
     runs-on: ubuntu-latest
     steps:
