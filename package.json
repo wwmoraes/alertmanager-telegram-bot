@@ -1,7 +1,12 @@
 {
   "name": "alertmanager-telegram-bot",
   "description": "Yet another Prometheus alertmanager's telegram bot",
-  "keywords": ["prometheus", "alertmanager", "telegram", "bot"],
+  "keywords": [
+    "prometheus",
+    "alertmanager",
+    "telegram",
+    "bot"
+  ],
   "version": "1.0.0",
   "main": "src/index.ts",
   "typings": "src/**/*.d.ts",

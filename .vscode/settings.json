@@ -8,6 +8,7 @@
     "data": true
   },
   "cSpell.words": [
+    "Beanstalkd",
     "Telegraf",
     "Unalerted",
     "alertmanager",
@@ -18,6 +19,8 @@
     "memdown",
     "messagepack",
     "middlewares",
+    "onprem",
+    "saas",
     "tmpl"
   ]
 }
