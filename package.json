@@ -21,7 +21,6 @@
     "start": "node --trace-warnings --unhandled-rejections=strict build/index.js",
     "ngrok": "ts-node scripts/start-ngrok.ts",
     "build": "tsc",
-    "analyze": "codeclimate analyze",
     "lint": "eslint -c .eslintrc.yml --ext .ts src",
     "lint:report": "eslint -c .eslintrc.yml --ext .ts --output-file reports/eslint_report.json --format json src",
     "docs": "rm -rf docs/; typedoc --includeDeclarations --excludeExternals --name 'AlertManager Telegram Bot' --exclude '**/__fixtures__/*' --exclude '**/__mocks__/*' --exclude '**/__tests__/*' --exclude '**/__stubs__/*' --exclude '**/*.spec.ts' src",
@@ -30,8 +29,7 @@
     "test:debug": "node --trace-uncaught --trace-warnings --trace-exit --unhandled-rejections=strict --inspect-brk -r ts-node/register node_modules/.bin/jest --runInBand --detectOpenHandles",
     "coverage": "jest --verbose --coverage --json --outputFile=reports/jest_report.json --testLocationInResults",
     "coverage:all": "jest --verbose --coverage --json --outputFilereports/=jest_report.json --testLocationInResults --all",
-    "coverage:watch": "jest --verbose --coverage --watchAll",
-    "upload-coverage": "cc-test-reporter format-coverage -t lcov && dotenv-load cc-test-reporter upload-coverage"
+    "coverage:watch": "jest --verbose --coverage --watchAll"
   },
   "jest": {
     "preset": "ts-jest",
