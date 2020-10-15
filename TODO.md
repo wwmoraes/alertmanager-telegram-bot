@@ -5,6 +5,11 @@
 - [ ] replace mock user data with [faker.js](https://github.com/Marak/Faker.js)
 - [ ] fix: test Alert.formatAlert loaded template
 
+## v2
+
+- [ ] queue + worker (beanstalkd + worker threads?)
+- [ ] rocksDB (readonly on workers)
+
 ## AlertManager
 
 ### e2e test
