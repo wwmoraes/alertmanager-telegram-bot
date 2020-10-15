@@ -27,9 +27,9 @@
     "test": "node --trace-uncaught --trace-warnings --trace-exit --unhandled-rejections=strict -r ts-node/register node_modules/.bin/jest --verbose --logHeapUsage --json --outputFile=reports/jest_report.json --testLocationInResults",
     "test:all": "node --trace-uncaught--trace-warnings --trace-exit --unhandled-rejections=strict -r ts-node/register node_modules/.bin/jest --verbose --logHeapUsage --json --outputFile=reports/jest_report.json --testLocationInResults --all",
     "test:debug": "node --trace-uncaught --trace-warnings --trace-exit --unhandled-rejections=strict --inspect-brk -r ts-node/register node_modules/.bin/jest --runInBand --detectOpenHandles",
-    "coverage": "jest --verbose --coverage --json --outputFile=reports/jest_report.json --testLocationInResults",
-    "coverage:all": "jest --verbose --coverage --json --outputFilereports/=jest_report.json --testLocationInResults --all",
-    "coverage:watch": "jest --verbose --coverage --watchAll"
+    "coverage": "node --trace-uncaught --trace-warnings --trace-exit --unhandled-rejections=strict -r ts-node/register node_modules/.bin/jest --verbose --coverage --json --outputFile=reports/jest_report.json --testLocationInResults",
+    "coverage:all": "node --trace-uncaught --trace-warnings --trace-exit --unhandled-rejections=strict -r ts-node/register node_modules/.bin/jest --verbose --coverage --json --outputFilereports/=jest_report.json --testLocationInResults --all",
+    "coverage:watch": "node --trace-uncaught --trace-warnings --trace-exit --unhandled-rejections=strict -r ts-node/register node_modules/.bin/jest --verbose --coverage --watchAll"
   },
   "jest": {
     "preset": "ts-jest",
