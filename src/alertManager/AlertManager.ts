@@ -2,6 +2,7 @@
  * @module AlertManager
  * @packageDocumentation
  */
+/* global console, URL */
 
 import {Telegram} from "telegraf";
 import Level, {LevelGraph} from "level-ts";

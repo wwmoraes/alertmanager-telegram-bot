@@ -2,6 +2,7 @@
  * @packageDocumentation
  * @module AlertManager
  */
+/* global console */
 
 import type {IAlertManagerContext} from "./typings/IAlertManagerContext";
 import type {MiddlewareFn} from "telegraf/typings/composer";

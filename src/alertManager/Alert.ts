@@ -2,6 +2,7 @@
  * @packageDocumentation
  * @module AlertManager
  */
+/* global URL */
 
 import type {IUpdateAlert} from "./typings/IAlertUpdate";
 import {createHash} from "crypto";

@@ -2,6 +2,7 @@
  * @packageDocumentation
  * @module AlertManager
  */
+/* global console */
 
 import Telegraf from "telegraf";
 import type {IAlertManagerContext} from "./typings/IAlertManagerContext";

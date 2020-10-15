@@ -14,5 +14,3 @@ export interface IUserOnlyContext extends TelegrafContext {
   /** List of Telegram user IDs to allow interactions with */
   userIds: string[],
 }
-
-export default IUserOnlyContext;
