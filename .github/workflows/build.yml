@@ -68,11 +68,11 @@ jobs:
 
     - name: run tests
       if: github.event_name != 'push'
-      run: yarn coverage
+      run: yarn coverage:ci
 
     - name: run all tests
       if: github.event_name == 'push'
-      run: yarn coverage:all
+      run: yarn coverage:all:ci
 
     - name: Annotate coverage
       uses: tanmen/jest-reporter@v1
