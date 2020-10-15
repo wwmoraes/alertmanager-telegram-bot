@@ -4,6 +4,7 @@
  * @packageDocumentation
  * @module Bot
  */
+/* global console */
 
 import {bot} from "./bot";
 

@@ -4,6 +4,7 @@
  * @packageDocumentation
  * @module Bot
  */
+/* global console */
 
 import {Telegraf} from "telegraf";
 import fetch from "node-fetch";
