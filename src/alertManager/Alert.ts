@@ -132,6 +132,7 @@ export class Alert implements IAlert {
     const isFiring = object.status === "firing";
     const hash = createHash("md5").update(object.groupKey).
       digest("hex");
+    // TODO dot template should be checked if valid, otherwise it'll throw an error here
     const text = Alert.formatAlert(object).replace(
       /<br[ ]*\/?>/gu,
       "\r\n"

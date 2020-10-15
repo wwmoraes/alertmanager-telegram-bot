@@ -3,6 +3,7 @@
 ## General
 
 - [ ] replace mock user data with [faker.js](https://github.com/Marak/Faker.js)
+- [ ] fix: test Alert.formatAlert loaded template
 
 ## AlertManager
 
