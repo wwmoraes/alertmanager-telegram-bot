@@ -56,7 +56,7 @@ jobs:
     - name: lint
       run: |
         yarn lint
-        yarn lint:report
+        yarn lint:ci
 
     - name: annotate lint
       uses: ataylorme/eslint-annotate-action@1.1.2
