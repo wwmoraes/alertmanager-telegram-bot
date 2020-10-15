@@ -63,7 +63,7 @@ jobs:
       if: always()
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        report-json: eslint_report.json
+        report-json: reports/eslint_report.json
       continue-on-error: true
 
     - name: run tests
@@ -79,16 +79,14 @@ jobs:
       if: always()
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        result-file: jest_report.json
+        result-file: reports/jest_report.json
       continue-on-error: true
 
-    - name: Report to Code Climate
-      uses: paambaati/codeclimate-action@v2.6.0
-      if: always()
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@master
       env:
-        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-      with:
-        coverageCommand: yarn coverage:all
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   docker-build:
     needs: [validate-docker, test]

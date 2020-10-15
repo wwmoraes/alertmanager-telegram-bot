@@ -11,9 +11,16 @@
 [![GitHub last commit](https://img.shields.io/github/last-commit/wwmoraes/alertmanager-telegram-bot)](https://github.com/wwmoraes/alertmanager-telegram-bot/commits/master)
 [![Build](https://github.com/wwmoraes/alertmanager-telegram-bot/workflows/Build/badge.svg)](https://github.com/wwmoraes/alertmanager-telegram-bot/actions)
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/3423bf84a8f2cc9afdea/maintainability)](https://codeclimate.com/github/wwmoraes/alertmanager-telegram-bot/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/3423bf84a8f2cc9afdea/test_coverage)](https://codeclimate.com/github/wwmoraes/alertmanager-telegram-bot/test_coverage)
-[![Code Climate issues](https://img.shields.io/codeclimate/issues/wwmoraes/alertmanager-telegram-bot)](https://codeclimate.com/github/wwmoraes/alertmanager-telegram-bot/issues)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=wwmoraes_alertmanager-telegram-bot&metric=alert_status)](https://sonarcloud.io/dashboard?id=wwmoraes_alertmanager-telegram-bot)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=wwmoraes_alertmanager-telegram-bot&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=wwmoraes_alertmanager-telegram-bot)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=wwmoraes_alertmanager-telegram-bot&metric=security_rating)](https://sonarcloud.io/dashboard?id=wwmoraes_alertmanager-telegram-bot)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=wwmoraes_alertmanager-telegram-bot&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=wwmoraes_alertmanager-telegram-bot)
+
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=wwmoraes_alertmanager-telegram-bot&metric=coverage)](https://sonarcloud.io/dashboard?id=wwmoraes_alertmanager-telegram-bot)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=wwmoraes_alertmanager-telegram-bot&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=wwmoraes_alertmanager-telegram-bot)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=wwmoraes_alertmanager-telegram-bot&metric=bugs)](https://sonarcloud.io/dashboard?id=wwmoraes_alertmanager-telegram-bot)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=wwmoraes_alertmanager-telegram-bot&metric=code_smells)](https://sonarcloud.io/dashboard?id=wwmoraes_alertmanager-telegram-bot)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=wwmoraes_alertmanager-telegram-bot&metric=sqale_index)](https://sonarcloud.io/dashboard?id=wwmoraes_alertmanager-telegram-bot)
 
 This is a work in progress, so take all functionalities with a grain of salt.
 

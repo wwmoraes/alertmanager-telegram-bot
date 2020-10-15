@@ -18,13 +18,13 @@
     "build": "tsc",
     "analyze": "codeclimate analyze",
     "lint": "eslint -c .eslintrc.yml --ext .ts src",
-    "lint:report": "eslint -c .eslintrc.yml --ext .ts --output-file eslint_report.json --format json src",
+    "lint:report": "eslint -c .eslintrc.yml --ext .ts --output-file reports/eslint_report.json --format json src",
     "docs": "rm -rf docs/; typedoc --includeDeclarations --excludeExternals --name 'AlertManager Telegram Bot' --exclude '**/__fixtures__/*' --exclude '**/__mocks__/*' --exclude '**/__tests__/*' --exclude '**/__stubs__/*' --exclude '**/*.spec.ts' src",
-    "test": "node --trace-uncaught --trace-warnings --trace-exit --unhandled-rejections=strict -r ts-node/register node_modules/.bin/jest --verbose --logHeapUsage --json --outputFile=jest_report.json --testLocationInResults",
-    "test:all": "node --trace-uncaught--trace-warnings --trace-exit --unhandled-rejections=strict -r ts-node/register node_modules/.bin/jest --verbose --logHeapUsage --json --outputFile=jest_report.json --testLocationInResults --all",
+    "test": "node --trace-uncaught --trace-warnings --trace-exit --unhandled-rejections=strict -r ts-node/register node_modules/.bin/jest --verbose --logHeapUsage --json --outputFile=reports/jest_report.json --testLocationInResults",
+    "test:all": "node --trace-uncaught--trace-warnings --trace-exit --unhandled-rejections=strict -r ts-node/register node_modules/.bin/jest --verbose --logHeapUsage --json --outputFile=reports/jest_report.json --testLocationInResults --all",
     "test:debug": "node --trace-uncaught --trace-warnings --trace-exit --unhandled-rejections=strict --inspect-brk -r ts-node/register node_modules/.bin/jest --runInBand --detectOpenHandles",
-    "coverage": "jest --verbose --coverage --json --outputFile=jest_report.json --testLocationInResults",
-    "coverage:all": "jest --verbose --coverage --json --outputFile=jest_report.json --testLocationInResults --all",
+    "coverage": "jest --verbose --coverage --json --outputFile=reports/jest_report.json --testLocationInResults",
+    "coverage:all": "jest --verbose --coverage --json --outputFilereports/=jest_report.json --testLocationInResults --all",
     "coverage:watch": "jest --verbose --coverage --watchAll",
     "upload-coverage": "cc-test-reporter format-coverage -t lcov && dotenv-load cc-test-reporter upload-coverage"
   },
@@ -46,7 +46,13 @@
       "!src/**/__stubs__/*.ts",
       "!src/**/__mocks__/*.ts",
       "!src/**/*.(spec|test).ts"
-    ]
+    ],
+    "testResultsProcessor": "jest-sonar-reporter"
+  },
+  "jestSonar": {
+    "reportPath": "reports",
+    "reportFile": "test-report.xml",
+    "indent": 2
   },
   "dependencies": {
     "dot": "^1.1.3",
@@ -84,6 +90,7 @@
     "jest": "^26.6.1",
     "jest-environment-node": "^26.5.2",
     "jest-mock-extended": "^1.0.10",
+    "jest-sonar-reporter": "^2.0.0",
     "ngrok": "^3.3.0",
     "nock": "^13.0.4",
     "ts-jest": "^26.4.1",
