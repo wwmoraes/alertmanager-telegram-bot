@@ -82,6 +82,12 @@ jobs:
         result-file: reports/jest-report.json
       continue-on-error: true
 
+    - name: fix code coverage paths for SolarCloud
+      run: |
+        sed -i 's|/home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/|/github/workspace/|g' coverage/lcov.info
+        sed -i 's|/home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/|/github/workspace/|g' reports/eslint-report.json
+        sed -i 's|/home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/|/github/workspace/|g' reports/test-report.xml
+
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
       env:
