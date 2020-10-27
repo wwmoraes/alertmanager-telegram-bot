@@ -211,7 +211,11 @@ rules:
   no-useless-return: error
   no-var: error
   no-void: error
-  no-warning-comments: 0
+  no-warning-comments:
+  - warn
+  - terms:
+    - todo
+    - fixme
   no-whitespace-before-property: error
   nonblock-statement-body-position: error
   object-curly-newline: error
