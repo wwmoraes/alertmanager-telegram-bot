@@ -63,7 +63,7 @@ jobs:
       if: always()
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        report-json: reports/eslint_report.json
+        report-json: reports/eslint-report.json
       continue-on-error: true
 
     - name: run tests
@@ -79,7 +79,7 @@ jobs:
       if: always()
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        result-file: reports/jest_report.json
+        result-file: reports/jest-report.json
       continue-on-error: true
 
     - name: SonarCloud Scan
