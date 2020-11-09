@@ -98,7 +98,7 @@
     "jest-sonar-reporter": "^2.0.0",
     "ngrok": "^3.3.0",
     "nock": "^13.0.4",
-    "ts-jest": "^26.4.3",
+    "ts-jest": "^26.4.4",
     "ts-node": "^9.0.0",
     "typedoc": "^0.19.2",
     "typedoc-plugin-external-module-name": "^4.0.3"
