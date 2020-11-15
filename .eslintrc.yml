@@ -281,9 +281,7 @@ rules:
   yield-star-spacing: error
   yoda: error
   no-unused-vars: 0
-  "@typescript-eslint/no-unused-vars":
-  - error
-  - argsIgnorePattern: "^_"
+  "@typescript-eslint/no-unused-vars": 0
   jsdoc/require-jsdoc:
   - warn
   - require:
