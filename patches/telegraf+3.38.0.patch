@@ -1,0 +1,13 @@
+diff --git a/node_modules/telegraf/typings/context.d.ts b/node_modules/telegraf/typings/context.d.ts
+index 7021bad..0bd682c 100644
+--- a/node_modules/telegraf/typings/context.d.ts
++++ b/node_modules/telegraf/typings/context.d.ts
+@@ -5,7 +5,7 @@ import * as tt from './telegram-types'
+ import { Telegram } from './telegram'
+ 
+ export declare class TelegrafContext {
+-  updateType: tt.UpdateType
++  updateType?: tt.UpdateType
+   updateSubTypes: tt.MessageSubTypes[]
+   update: tt.Update
+   tg: Telegram
