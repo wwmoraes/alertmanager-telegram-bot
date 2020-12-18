@@ -5287,10 +5287,10 @@ typedoc-default-themes@^0.11.4:
   resolved "https://registry.yarnpkg.com/typedoc-default-themes/-/typedoc-default-themes-0.11.4.tgz#1bc55b7c8d1132844616ff6f570e1e2cd0eb7343"
   integrity sha512-Y4Lf+qIb9NTydrexlazAM46SSLrmrQRqWiD52593g53SsmUFioAsMWt8m834J6qsp+7wHRjxCXSZeiiW5cMUdw==
 
-typedoc-plugin-external-module-name@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/typedoc-plugin-external-module-name/-/typedoc-plugin-external-module-name-4.0.3.tgz#ba386317d97f7b5abe5bbd67cff46c3c57e56a42"
-  integrity sha512-2PjEN9kdmkB7NxN3DEax6yDIPjq7HV8qELQhkSRJGxJs/8G/ZwPPvXT0z6hUqtWVr6MeCjpAoYJFzHo04C14Aw==
+typedoc-plugin-external-module-name@^4.0.4:
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-external-module-name/-/typedoc-plugin-external-module-name-4.0.4.tgz#335d7f8ea343d45d74bc667ac4824388360f1a1f"
+  integrity sha512-q0pbBtkJFm5Hm+a4XQeVbDZkS+vZLWs7xN3a6ODYTonx8jj6liTnxsJCTS0ZHvp7b+i3WV6KZ59DVrm1jzr+kA==
   dependencies:
     lodash "^4.1.2"
     semver "^7.1.1"
