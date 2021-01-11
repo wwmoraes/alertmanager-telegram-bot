@@ -100,7 +100,7 @@
     "nock": "^13.0.5",
     "ts-jest": "^26.4.4",
     "ts-node": "^9.1.1",
-    "typedoc": "^0.20.13",
+    "typedoc": "^0.20.14",
     "typedoc-plugin-external-module-name": "^4.0.6"
   }
 }
