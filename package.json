@@ -97,7 +97,7 @@
     "jest-mock-extended": "^1.0.10",
     "jest-sonar-reporter": "^2.0.0",
     "ngrok": "^3.4.0",
-    "nock": "^13.0.5",
+    "nock": "^13.0.6",
     "ts-jest": "^26.4.4",
     "ts-node": "^9.1.1",
     "typedoc": "^0.20.16",
