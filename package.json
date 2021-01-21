@@ -84,7 +84,7 @@
     "@typescript-eslint/parser": "^3.10.1",
     "eslint": "^7.18.0",
     "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsdoc": "^31.0.7",
+    "eslint-plugin-jsdoc": "^31.0.8",
     "typescript": "^4.1.3"
   },
   "optionalDependencies": {
