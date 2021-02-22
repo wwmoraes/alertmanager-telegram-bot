@@ -3,7 +3,7 @@
  * @module AlertManager
  */
 
-import {decode, encode} from "messagepack";
+import { decode, encode } from "messagepack";
 
 /**
  * encodes an object into a messagepack string

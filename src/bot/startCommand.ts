@@ -3,7 +3,7 @@
  * @module Bot
  */
 
-import {IBotContext} from "./typings/IBotContext";
+import { IBotContext } from "./typings/IBotContext";
 
 /**
  * adds the user to the alertmanager context to receive alert messages

@@ -4,8 +4,8 @@
  */
 /* global console */
 
-import type {IAlertManagerContext} from "./typings/IAlertManagerContext";
-import type {MiddlewareFn} from "telegraf/typings/composer";
+import type { IAlertManagerContext } from "./typings/IAlertManagerContext";
+import type { MiddlewareFn } from "telegraf";
 
 /**
  * Telegraf bot
@@ -29,49 +29,49 @@ import type {MiddlewareFn} from "telegraf/typings/composer";
  * @returns {Promise<void>} callback chain result
  */
 export const alertManagerCBMiddleware: MiddlewareFn<IAlertManagerContext> =
-(ctx: IAlertManagerContext, next): Promise<void> => {
-  // No chat, move along
-  console.info("[AlertManager] checking if the request came from a chat...");
-  if (typeof ctx.chat === "undefined") {
-    return next();
-  }
+  (ctx: IAlertManagerContext, next): Promise<void> => {
+    // No chat, move along
+    console.info("[AlertManager] checking if the request came from a chat...");
+    if (typeof ctx.chat === "undefined") {
+      return next();
+    }
 
-  // No sender, move along
-  console.info("[AlertManager] checking if the request has a user...");
-  if (typeof ctx.from === "undefined") {
-    return next();
-  }
+    // No sender, move along
+    console.info("[AlertManager] checking if the request has a user...");
+    if (typeof ctx.from === "undefined") {
+      return next();
+    }
 
-  // Keep processing other middlewares
-  console.info("[AlertManager] checking if the request a is callback...");
-  if (typeof ctx.callbackQuery === "undefined") {
-    return next();
-  }
+    // Keep processing other middlewares
+    console.info("[AlertManager] checking if the request a is callback...");
+    if (!("callbackQuery" in ctx) || typeof ctx.callbackQuery === "undefined") {
+      return next();
+    }
 
-  console.info("[AlertManager] checking if callback has data...");
-  if (typeof ctx.callbackQuery.data === "undefined") {
-    return next();
-  }
+    console.info("[AlertManager] checking if callback has data...");
+    if (!("data" in ctx.callbackQuery)) {
+      return next();
+    }
 
-  console.info("[AlertManager] checking if callback has message...");
-  if (typeof ctx.callbackQuery.message === "undefined") {
-    return next();
-  }
+    console.info("[AlertManager] checking if callback has message...");
+    if (!("message" in ctx.callbackQuery) || typeof ctx.callbackQuery.message === "undefined") {
+      return next();
+    }
 
-  console.info("[AlertManager] checking if callback message has from...");
-  if (typeof ctx.callbackQuery.message.from === "undefined") {
-    return next();
-  }
+    console.info("[AlertManager] checking if callback message has from...");
+    if (!("from" in ctx.callbackQuery.message) || typeof ctx.callbackQuery.message.from === "undefined") {
+      return next();
+    }
 
-  // Debug log
-  console.debug(`[AlertManager] callback user ID ${ctx.callbackQuery.from.id}`);
-  console.debug(`[AlertManager] callback chat ID ${ctx.callbackQuery.chat_instance}`);
-  console.debug(`[AlertManager] callback message ID ${ctx.callbackQuery.message.message_id}`);
+    // Debug log
+    console.debug(`[AlertManager] callback user ID ${ctx.callbackQuery.from.id}`);
+    console.debug(`[AlertManager] callback chat ID ${ctx.callbackQuery.chat_instance}`);
+    console.debug(`[AlertManager] callback message ID ${ctx.callbackQuery.message.message_id}`);
 
-  console.debug("[AlertManager] processing callback...");
+    console.debug("[AlertManager] processing callback...");
 
-  return ctx.alertManager.processCallback(
-    ctx,
-    next
-  );
-};
+    return ctx.alertManager.processCallback(
+      ctx,
+      next
+    );
+  };

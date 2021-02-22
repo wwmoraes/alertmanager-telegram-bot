@@ -3,8 +3,8 @@
  * @module AlertManager
  */
 
-import type {ITriple} from "level-ts/dist/LevelGraphTyping";
-import type {IAlertManagerPredicates} from "./IAlertManagerPredicates";
+import type { ITriple } from "level-ts/dist/LevelGraphTyping";
+import type { IAlertManagerPredicates } from "./IAlertManagerPredicates";
 
 /**
  * @callback IAlertMessageFilterFn

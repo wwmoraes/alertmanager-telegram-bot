@@ -6,17 +6,17 @@
  */
 /* global console */
 
-import {Telegraf} from "telegraf";
+import { Telegraf } from "telegraf";
 import fetch from "node-fetch";
 
-import type {IBotContext} from "./typings/IBotContext";
-import {startCommand} from "./startCommand";
-import {helpCommand} from "./helpCommand";
-import {stickerCommand} from "./stickerCommand";
-import {greetingCommand} from "./greetingCommand";
+import type { IBotContext } from "./typings/IBotContext";
+import { startCommand } from "./startCommand";
+import { helpCommand } from "./helpCommand";
+import { stickerCommand } from "./stickerCommand";
+import { greetingCommand } from "./greetingCommand";
 
-import {setupAlertManagerContext, alertManagerComposer} from "../alertManager";
-import {userOnlyMiddleware} from "../userOnly";
+import { setupAlertManagerContext, alertManagerComposer } from "../alertManager";
+import { userOnlyMiddleware } from "../userOnly";
 import * as config from "./config";
 
 /**
@@ -28,7 +28,7 @@ export const bot = async (): Promise<Telegraf<IBotContext>> => {
   // eslint-disable-next-line init-declarations,no-undef-init,no-undefined
   const botInstance = new Telegraf<IBotContext>(
     config.telegramToken,
-    {telegram: {webhookReply: false}}
+    { telegram: { webhookReply: false } }
   );
 
   console.info("setting up alert manager context...");
@@ -53,11 +53,12 @@ export const bot = async (): Promise<Telegraf<IBotContext>> => {
   botInstance.hears("hi", greetingCommand);
 
   console.info(`serving webhook on :${config.port}...`);
-  botInstance.startWebhook(
-    "/",
-    null,
-    config.port
-  );
+  botInstance.launch({
+    webhook: {
+      hookPath: "/",
+      port: config.port
+    }
+  });
 
   console.info(`registering webhook on ${config.externalUrl}...`);
 

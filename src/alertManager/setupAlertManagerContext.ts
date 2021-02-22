@@ -4,9 +4,9 @@
  */
 /* global console */
 
-import Telegraf from "telegraf";
-import type {IAlertManagerContext} from "./typings/IAlertManagerContext";
-import {AlertManager} from "./AlertManager";
+import type { Telegraf } from "telegraf";
+import type { IAlertManagerContext } from "./typings/IAlertManagerContext";
+import { AlertManager } from "./AlertManager";
 import * as config from "./config";
 
 /**
@@ -42,7 +42,7 @@ export const setupAlertManagerContext = (bot: Telegraf<IAlertManagerContext>, us
 
   return Promise.all(bot.context.userIds.map((adminUserId) =>
     bot.telegram.getChat(adminUserId).then((chat) =>
-      bot.context.alertManager.addUserChat(adminUserId, chat.id.toString())))).
+      bot.context.alertManager?.addUserChat(adminUserId, chat.id.toString())))).
     then(() =>
       Promise.resolve());
 };

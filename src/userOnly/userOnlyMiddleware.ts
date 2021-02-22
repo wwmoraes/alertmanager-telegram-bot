@@ -3,8 +3,8 @@
  * @module UserOnly
  */
 
-import {IUserOnlyContext} from "./typings/IUserOnlyContext";
-import {MiddlewareFn} from "telegraf/typings/composer";
+import { IUserOnlyContext } from "./typings/IUserOnlyContext";
+import type { MiddlewareFn } from "telegraf";
 
 /**
  * Telegraf bot
