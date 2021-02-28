@@ -3,11 +3,11 @@
  * @module AlertManager
  */
 
-import {Update} from "telegraf/typings/telegram-types";
-import {ILabels} from "./ILabels";
-import {IAlertInfo} from "./IAlertInfo";
+import { Update } from "telegraf/typings/telegram-types";
+import { ILabels } from "./ILabels";
+import { IAlertInfo } from "./IAlertInfo";
 
-export interface IUpdateAlert extends Update {
+export interface IUpdateAlert extends Update.AbstractMessageUpdate {
   version: string;
   groupKey: string;
   truncatedAlerts: number;

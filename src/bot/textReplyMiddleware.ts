@@ -3,8 +3,8 @@
  * @module Bot
  */
 
-import {IBotContext} from "./typings/IBotContext";
-import {ExtraReplyMessage} from "telegraf/typings/telegram-types";
+import { IBotContext } from "./typings/IBotContext";
+import { ExtraReplyMessage } from "telegraf/typings/telegram-types";
 
 /**
  * replies user with plain text

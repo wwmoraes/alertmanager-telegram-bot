@@ -4,12 +4,12 @@
  */
 /* global console, URL */
 
-import {Telegram} from "telegraf";
-import Level, {LevelGraph} from "level-ts";
-import type {ITriple} from "level-ts/dist/LevelGraphTyping";
-import fetch, {Response} from "node-fetch";
-import type {AbstractLevelDOWN, AbstractIterator} from "abstract-leveldown";
-import levelUpConstructor, {LevelUp} from "levelup";
+import { Telegram } from "telegraf";
+import Level, { LevelGraph } from "level-ts";
+import type { ITriple } from "level-ts/dist/LevelGraphTyping";
+import fetch, { Response } from "node-fetch";
+import type { AbstractLevelDOWN, AbstractIterator } from "abstract-leveldown";
+import levelUpConstructor, { LevelUp } from "levelup";
 import encode from "encoding-down";
 import memdown from "memdown";
 
@@ -18,15 +18,15 @@ import {
   InlineKeyboardMarkup
 } from "telegraf/typings/telegram-types";
 
-import type {IAlertManagerContext} from "./typings/IAlertManagerContext";
-import type {IAlertMessageFilters} from "./typings/IAlertMessageFilters";
-import {ICallbackData} from "./typings/ICallbackData";
-import {decodeFromString, encodeToString} from "./messagepack";
+import type { IAlertManagerContext } from "./typings/IAlertManagerContext";
+import type { IAlertMessageFilters } from "./typings/IAlertMessageFilters";
+import { ICallbackData } from "./typings/ICallbackData";
+import { decodeFromString, encodeToString } from "./messagepack";
 import * as config from "./config";
-import {IAlertMessage} from "./typings/IAlertMessage";
-import {IAlertManagerPredicates} from "./typings/IAlertManagerPredicates";
-import type {IAlert} from "./typings/IAlert";
-import {mkdirSync} from "fs";
+import { IAlertMessage } from "./typings/IAlertMessage";
+import { IAlertManagerPredicates } from "./typings/IAlertManagerPredicates";
+import type { IAlert } from "./typings/IAlert";
+import { mkdirSync } from "fs";
 
 /**
  * Telegraf bot
@@ -109,14 +109,14 @@ export class AlertManager {
    * use as alerts database
    * @returns {AlertManager} instance
    */
-  constructor (baseDBPath?: string|BaseDBLevelUp, alertsDBPath?: string|AlertsDBLevelUp) {
+  constructor (baseDBPath?: string | BaseDBLevelUp, alertsDBPath?: string | AlertsDBLevelUp) {
     if (typeof baseDBPath === "undefined") {
       this.db = new LevelGraph<BaseDBKey>(levelUpConstructor(encode(memdown<string, string>(), {
         valueEncoding: "string",
         keyEncoding: "string"
       })));
     } else if (typeof baseDBPath === "string") {
-      mkdirSync(baseDBPath, {recursive: true});
+      mkdirSync(baseDBPath, { recursive: true });
       this.db = new LevelGraph<BaseDBKey>(baseDBPath);
     } else {
       this.db = new LevelGraph<BaseDBKey>(baseDBPath);
@@ -128,7 +128,7 @@ export class AlertManager {
         keyEncoding: "json"
       })));
     } else if (typeof alertsDBPath === "string") {
-      mkdirSync(alertsDBPath, {recursive: true});
+      mkdirSync(alertsDBPath, { recursive: true });
       this.alerts = new Level<AlertsDBValue>(alertsDBPath);
     } else {
       this.alerts = new Level<AlertsDBValue>(alertsDBPath);
@@ -236,18 +236,24 @@ export class AlertManager {
    */
   getIdsFilteredBy (filters: IAlertMessageFilters): Promise<IAlertMessage[]> {
     return this.db.walk(
-      {subject: this.db.v("userId"),
+      {
+        subject: this.db.v("userId"),
         predicate: IAlertManagerPredicates.ChatOn,
         object: this.db.v("chatId"),
-        filter: filters[IAlertManagerPredicates.ChatOn]},
-      {subject: this.db.v("chatId"),
+        filter: filters[IAlertManagerPredicates.ChatOn]
+      },
+      {
+        subject: this.db.v("chatId"),
         predicate: IAlertManagerPredicates.HasMessage,
         object: this.db.v("messageId"),
-        filter: filters[IAlertManagerPredicates.HasMessage]},
-      {subject: this.db.v("messageId"),
+        filter: filters[IAlertManagerPredicates.HasMessage]
+      },
+      {
+        subject: this.db.v("messageId"),
         predicate: IAlertManagerPredicates.Alerts,
         object: this.db.v("alertHash"),
-        filter: filters[IAlertManagerPredicates.Alerts]}
+        filter: filters[IAlertManagerPredicates.Alerts]
+      }
     ) as Promise<IAlertMessage[]>;
   }
 
@@ -270,7 +276,7 @@ export class AlertManager {
    * @param {IAlert.hash} alertHash alert hash to search for
    * @returns {Promise<Telegraf~id[]>} chats which didn't receive the alert
    */
-  async getUnalertedChats (alertHash: string): Promise<(string|number)[]> {
+  async getUnalertedChats (alertHash: string): Promise<(string | number)[]> {
     const chatIds = await this.getChats().
       then((chats) =>
         chats.map((chat) =>
@@ -293,7 +299,7 @@ export class AlertManager {
    * @param {string} messageId telegram message ID
    * @returns {Promise<IAlertMessage|undefined>} alert context
    */
-  getAlertFromMessage (messageId: string): Promise<IAlertMessage|undefined> {
+  getAlertFromMessage (messageId: string): Promise<IAlertMessage | undefined> {
     return this.getIdsFilteredBy({
       [IAlertManagerPredicates.HasMessage]: (triple) =>
         triple.object === messageId
@@ -311,7 +317,7 @@ export class AlertManager {
    * @returns {Promise<ITriple<IAlertManagerPredicates>[]>} chat entries
    */
   getChats (): Promise<ITriple<IAlertManagerPredicates>[]> {
-    return this.db.get({predicate: IAlertManagerPredicates.ChatOn});
+    return this.db.get({ predicate: IAlertManagerPredicates.ChatOn });
   }
 
   /**
@@ -408,7 +414,7 @@ export class AlertManager {
         parseInt(message.messageId, 10),
         "",
         alert.text,
-        {parse_mode: "HTML"}
+        { parse_mode: "HTML" }
       );
     });
 
@@ -470,12 +476,12 @@ export class AlertManager {
       return Promise.reject(new Error("no callback query"));
     }
 
-    if (typeof ctx.callbackQuery.data === "undefined") {
+    if (!("data" in ctx.callbackQuery) || typeof ctx.callbackQuery.data === "undefined") {
       return Promise.reject(new Error("no callback data"));
     }
 
     // TODO remove this test as it is needed on the silence process method
-    if (typeof ctx.callbackQuery.message === "undefined") {
+    if (!("message" in ctx.callbackQuery) || typeof ctx.callbackQuery.message === "undefined") {
       return Promise.reject(new Error("no message on callback"));
     }
 

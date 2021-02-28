@@ -3,7 +3,7 @@
  * @module AlertManager
  */
 
-import {IAlertMatcher} from "./IAlertMatcher";
+import { IAlertMatcher } from "./IAlertMatcher";
 
 export interface IAlert {
   readonly baseUrl: string;

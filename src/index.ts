@@ -6,6 +6,6 @@
  */
 /* global console */
 
-import {bot} from "./bot";
+import { bot } from "./bot";
 
 bot().catch(console.error);

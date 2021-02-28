@@ -4,13 +4,13 @@
  */
 /* global URL */
 
-import type {IUpdateAlert} from "./typings/IAlertUpdate";
-import {createHash} from "crypto";
-import {readFileSync} from "fs";
-import {template} from "dot";
+import type { IUpdateAlert } from "./typings/IAlertUpdate";
+import { createHash } from "crypto";
+import { readFileSync } from "fs";
+import { template } from "dot";
 import * as config from "./config";
-import type {IAlert} from "./typings/IAlert";
-import type {IAlertMatcher} from "./typings/IAlertMatcher";
+import type { IAlert } from "./typings/IAlert";
+import type { IAlertMatcher } from "./typings/IAlertMatcher";
 
 /**
  * Alert instance

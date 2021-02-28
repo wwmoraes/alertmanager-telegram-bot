@@ -3,10 +3,10 @@
  * @module AlertManager
  */
 
-import {Composer} from "telegraf";
-import type {IAlertManagerContext} from "./typings/IAlertManagerContext";
-import {alertManagerCBMiddleware} from "./alertManagerCBMiddleware";
-import {alertManagerMiddleware} from "./alertManagerMiddleware";
+import { Composer } from "telegraf";
+import type { IAlertManagerContext } from "./typings/IAlertManagerContext";
+import { alertManagerCBMiddleware } from "./alertManagerCBMiddleware";
+import { alertManagerMiddleware } from "./alertManagerMiddleware";
 
 export const alertManagerComposer = new Composer<IAlertManagerContext>();
 

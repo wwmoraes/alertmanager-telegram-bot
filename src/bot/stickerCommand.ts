@@ -3,7 +3,7 @@
  * @module Bot
  */
 
-import {IBotContext} from "./typings/IBotContext";
+import { IBotContext } from "./typings/IBotContext";
 
 /**
  * reply to a sticker message with it's file ID
@@ -16,7 +16,7 @@ export const stickerCommand = (ctx: IBotContext): Promise<void> => {
     return Promise.reject(new Error("undefined message on update"));
   }
 
-  if (typeof ctx.message.sticker === "undefined") {
+  if (!("sticker" in ctx.message)) {
     return Promise.reject(new Error("undefined sticker on update"));
   }
 

@@ -3,7 +3,7 @@
  * @module AlertManager
  */
 
-import {ILabels} from "./ILabels";
+import { ILabels } from "./ILabels";
 
 export interface IAlertInfo {
   status: "resolved" | "firing",
