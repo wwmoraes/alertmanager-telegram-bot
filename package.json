@@ -67,7 +67,7 @@
     "memdown": "^5.1.0",
     "messagepack": "^1.1.12",
     "node-fetch": "^2.6.1",
-    "patch-package": "^6.4.2",
+    "patch-package": "^6.4.4",
     "postinstall-postinstall": "^2.1.0",
     "telegraf": "^3.38.0",
     "tslib": "^2.1.0"
