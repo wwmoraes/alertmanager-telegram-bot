@@ -22,9 +22,8 @@
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=wwmoraes_alertmanager-telegram-bot&metric=code_smells)](https://sonarcloud.io/dashboard?id=wwmoraes_alertmanager-telegram-bot)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=wwmoraes_alertmanager-telegram-bot&metric=sqale_index)](https://sonarcloud.io/dashboard?id=wwmoraes_alertmanager-telegram-bot)
 
-This is a work in progress, so take all functionalities with a grain of salt.
-
-You can also [jump directly to the docs](http://wwmoraes.github.io/alertmanager-telegram-bot).
+> WARNING: this project uses the old Telegraf v3 library, and won't be
+> updated to v4.
 
 ## Table of Contents
 
